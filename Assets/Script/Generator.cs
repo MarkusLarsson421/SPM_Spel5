@@ -5,25 +5,23 @@ using UnityEngine;
 public class Generator : MonoBehaviour
 {
     [SerializeField] private float fuel;
-    [SerializeField] private float secondDelay;
+    [SerializeField] private float secondDelay; //time until fuel-level decreases
     [SerializeField] private Light fuelLevelIndicator;
     private float timer;
-
-    private Color fullTankColor = new Color(0, 133, 0, 255);
-    private Color halfEmptyTankColor = new Color(188, 174, 0, 255);
-    private Color emptyTankColor = new Color(188, 0, 0, 255);
-
     private float maxFuel;
     private bool isEmpty;
 
-    // Start is called before the first frame update
+    private Color fullGeneratorColor = new Color(0, 133, 0, 255);
+    private Color halfEmptyGeneratorColor = new Color(188, 174, 0, 255);
+    private Color emptyGeneratorColor = new Color(188, 0, 0, 255);
+
+
     void Start()
     {
         maxFuel = fuel;
-        fuelLevelIndicator.color = fullTankColor;
+        fuelLevelIndicator.color = fullGeneratorColor;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!isEmpty)
@@ -36,18 +34,17 @@ public class Generator : MonoBehaviour
                 timer = 0;
             }
         }
-
-        if (fuel == maxFuel/2)
+        if (!isEmpty && fuel <= maxFuel/2)
         {
-            fuelLevelIndicator.color = halfEmptyTankColor;
-        }
-        
+            fuelLevelIndicator.color = halfEmptyGeneratorColor;
+        }     
     }
 
     public void Refill()
     {
         fuel = 100;
-        fuelLevelIndicator.color = fullTankColor;
+        fuelLevelIndicator.color = fullGeneratorColor;
+        isEmpty = false;
     }
 
     private void DecreaseFuelLevel()
@@ -56,7 +53,7 @@ public class Generator : MonoBehaviour
         if(fuel <= 0)
         {
             isEmpty = true;
-            fuelLevelIndicator.color = emptyTankColor;
+            fuelLevelIndicator.color = emptyGeneratorColor;
         }
     }
 }
