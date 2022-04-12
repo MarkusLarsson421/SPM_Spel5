@@ -20,6 +20,7 @@ public class Generator : MonoBehaviour
 
     void Start()
     {
+        isTurnedOn = true;
         maxFuel = fuel;
         fuelLevelIndicator.color = fullGeneratorColor;
     }
@@ -105,7 +106,7 @@ public class Generator : MonoBehaviour
         
         for(int i = 0; i < lights.Length; i++)
         {
-            if (isEmpty)
+            if (isEmpty || !isTurnedOn)
             {
                 lights[i].intensity = 0;
             }
