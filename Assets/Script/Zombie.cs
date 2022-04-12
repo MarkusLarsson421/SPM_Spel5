@@ -29,4 +29,13 @@ public class Zombie : MonoBehaviour
     {
         target = nTarget;
     }
+    /*
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerStats>().HitByZombie();
+        }
+    }
+    */
 }
