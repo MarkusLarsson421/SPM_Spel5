@@ -30,14 +30,5 @@ public class Zombie : MonoBehaviour
         target = nTarget;
     }
     
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("bombam 1");
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("bombam");
-            collision.gameObject.GetComponent<PlayerStats>().HitByZombie();
-        }
-    }
     
 }
