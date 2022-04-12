@@ -1,34 +1,34 @@
 {
-    "name": "Gamepad",
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "Gameplay",
-            "id": "56d7d7f7-d0a3-4532-b01c-12090aa86874",
+            "id": "53e8a3b5-b004-435a-9c09-3f10b9bab4f0",
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Button",
-                    "id": "61fbc5ac-0a45-4d01-91e2-34736b8b74d5",
-                    "expectedControlType": "Button",
+                    "type": "Value",
+                    "id": "efac0019-abaf-4578-829a-5fa33701c79f",
+                    "expectedControlType": "Stick",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Rotate",
-                    "type": "Button",
-                    "id": "098092c6-bb12-4ed9-a114-c3b6cca82f39",
-                    "expectedControlType": "Button",
+                    "type": "Value",
+                    "id": "8fd4ed5b-c37c-4346-9ee2-22f1fa85a541",
+                    "expectedControlType": "Stick",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "d47e70fa-581e-4472-9c51-6c43aaa58dbb",
-                    "path": "<Gamepad>/leftStick/up",
+                    "id": "332af4bb-32e1-4eb9-9229-69e3e3fec08b",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -38,8 +38,8 @@
                 },
                 {
                     "name": "",
-                    "id": "69be8cb7-84cf-4a9f-b437-cbec181d4e5e",
-                    "path": "<Gamepad>/rightStick/right",
+                    "id": "123015cb-a846-4785-8637-79d3737de975",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
