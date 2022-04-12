@@ -39,5 +39,7 @@ public class PlayerStats : MonoBehaviour
         health -= randomNr;
 
     }
+
+    //private void 
     
 }
