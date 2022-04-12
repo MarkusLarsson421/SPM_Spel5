@@ -182,10 +182,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 2979776025397200163, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
 --- !u!4 &34188100 stripped
@@ -497,10 +493,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 2979776025397200163, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
 --- !u!4 &495747575 stripped
@@ -566,7 +558,7 @@ MonoBehaviour:
     m_Bits: 8
   skinWidth: 0.01
   gravity: 15
-  jump: 0
+  jump: 10
   groundCheckDistance: 0.04
   velocity: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0}
@@ -607,7 +599,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0bcc142ae0a13b941a22845dcea4dfed, type: 2}
+  - {fileID: 2100000, guid: 9978989e18029504696443bbd9feaa19, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1123,10 +1115,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 508526876}
-    - target: {fileID: 2979776025397200156, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
-      propertyPath: m_Speed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2979776025397200159, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
       propertyPath: m_RootOrder
       value: 0
