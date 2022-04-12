@@ -15,4 +15,20 @@ public class DamagePlayer : MonoBehaviour
             collision.gameObject.GetComponent<PlayerStats>().HitByZombie();
         }
     }
+    //solution 1
+    /*
+     * Put this script on the Zombies. 
+     * Benefits: Every type of zombie can have his own damage.
+     * Variables: layer mask = player, player object.
+     * Methods: we need to activate script when a zombie collides with the player. The code needed is to take a set amount of health from the player.
+     */
+
+
+    //solution 2
+    /* 
+     * Put this script on the Players. 
+     * Benefits: more effecient.
+     * Variables: layer mask.
+     * Methods: we need to see which zombie type collider we hit. Then decrease the players health according to it.
+     */
 }
