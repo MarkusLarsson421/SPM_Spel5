@@ -1,30 +1,59 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour{
+	//Fire
 	[SerializeField] private int damage = 20;
 	[SerializeField] private float range = 100.0f;
+	[SerializeField] private float fireRate = 5.0f;
+	private float nextTimeToFire;
 	
 	[SerializeField] private Camera fpsCamera;
 	
-	private byte ammo = 32;
+	//Ammo
+	[SerializeField] private int maxAmmo = 100;
+	[SerializeField] private int magCapacity = 8;
+	[SerializeField] private float reloadTime = 2.0f;
+	private int currentAmmo;
+	private bool isReloading;
+	
+	private int ammo = 32;
+	
+	private void Start(){
+		currentAmmo = magCapacity;
+	}
 
 	void Update(){
-		if(true){ //TODO replace true condition with an input condition. Talk to Axel about it.
+		if(Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && !isReloading){
+			nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
+		}else if(Input.GetKeyDown(KeyCode.R) && !isReloading){
+			StartCoroutine(Reload());
 		}
 	}
 
 	private void Fire(){
-		//ammo -= 1;
+		ammo--;
 		
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
-			Debug.Log(hit.transform.name);
 			Target target = hit.transform.GetComponent<Target>();
 			if(target != null){
-				Debug.Log("HIT A ZOMBIE!");
 				target.TakeDamage(damage);
 			}
 		}
+	}
+
+	IEnumerator Reload(){
+		isReloading = true;
+		Debug.Log("Reloading...");
+
+		yield return new WaitForSeconds(reloadTime);
+		currentAmmo = magCapacity;
+		ammo -= magCapacity;
+		
+		Debug.Log("Reloaded.");
+		isReloading = false;
 	}
 }
