@@ -6,13 +6,14 @@ public class ZombieSpawnSystem : MonoBehaviour
 {
 
     [SerializeField] private GameObject[] spawnPositions;
-    //[SerializeField] private float timeBetweenWavesLong;
-    [SerializeField] private float timeBetweenWavesShort;
+    
+    [SerializeField] private float timeBetweenWaves;
+    
+    [SerializeField] private float waveLength;
 
 
-
-    private float waveDuration;
-    private float waitDuration;
+    private float waveDuration; //time a wave lasts
+    private float waitDuration; //wait between 2 waves
     
     private float waveTimer;
     private float second = 1f;
@@ -25,8 +26,8 @@ public class ZombieSpawnSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-         
+
+        ongoingWave = false;  
     }
 
     // Update is called once per frame
@@ -41,30 +42,40 @@ public class ZombieSpawnSystem : MonoBehaviour
                 waveDuration++;
                 waveTimer = 0;
             }
+            if(waveDuration >= waveLength)
+            {
+                ongoingWave = false;
+                Debug.Log("wave over");
+                waitDuration = 0;
+            }
         }
-        else
+        else if(!ongoingWave)
         {
             waveTimer += Time.deltaTime;
 
             if(waveTimer >= second)
             {
                 waitDuration++;
+                Debug.Log(waitDuration);
                 waveTimer = 0;
             }
 
-            if(waitDuration >= timeBetweenWavesShort)
+            if(waitDuration >= timeBetweenWaves)
             {
                 waveSpawn();
+                ongoingWave = true;
+                waitDuration = 0;
             }
         }
     }
 
     private void waveSpawn()
     {
-        ongoingWave = true;
+        
         for(int i = 0; i < spawnPositions.Length; i++)
         {
             spawnPositions[i].GetComponent<ZombieSpawnPoint>().Spawn();
+            Debug.Log("Spawn!");
         }
 
 

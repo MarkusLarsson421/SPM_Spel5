@@ -156,7 +156,8 @@ MonoBehaviour:
   - {fileID: 1923897345}
   - {fileID: 1197044084}
   - {fileID: 500418825}
-  timeBetweenWavesShort: 10
+  timeBetweenWaves: 5
+  waveLength: 10
 --- !u!4 &211357339
 Transform:
   m_ObjectHideFlags: 0
@@ -230,8 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9995954da6c53d74fa0be2308fc9d3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmountAtSpawnPoint: 3
   zombie: {fileID: 2979776025397200163, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
+  maxAmountAtSpawnPoint: 1
 --- !u!4 &500418827
 Transform:
   m_ObjectHideFlags: 0
@@ -617,8 +618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9995954da6c53d74fa0be2308fc9d3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmountAtSpawnPoint: 3
   zombie: {fileID: 2979776025397200163, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
+  maxAmountAtSpawnPoint: 1
 --- !u!4 &1197044086
 Transform:
   m_ObjectHideFlags: 0
@@ -885,8 +886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9995954da6c53d74fa0be2308fc9d3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmountAtSpawnPoint: 3
   zombie: {fileID: 2979776025397200163, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
+  maxAmountAtSpawnPoint: 1
 --- !u!1 &1941956898
 GameObject:
   m_ObjectHideFlags: 0

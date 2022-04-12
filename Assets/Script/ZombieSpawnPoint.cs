@@ -4,25 +4,16 @@ using UnityEngine;
 
 public class ZombieSpawnPoint : MonoBehaviour
 {
-    [SerializeField] private int maxAmountAtSpawnPoint;
+    
     [SerializeField] private GameObject zombie;
+    [SerializeField] private int maxAmountAtSpawnPoint;
     private int randomNr;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
 
     public void Spawn()
     {
-        nrOfZombies();
+        NrOfZombies();
         for(int i = 0; i < maxAmountAtSpawnPoint; i++)
         {
             Instantiate(zombie, this.transform);
@@ -30,10 +21,15 @@ public class ZombieSpawnPoint : MonoBehaviour
 
     }
 
-    private void nrOfZombies()
+    private void NrOfZombies()
     {
         int randomNr = Random.Range(0, maxAmountAtSpawnPoint);
         
+    }
+
+    public void SetMaxZombies(int amount)
+    {
+        maxAmountAtSpawnPoint = amount;
     }
 
 
