@@ -35,6 +35,7 @@ public class PlayerStats : MonoBehaviour
     
     public void HitByZombie()
     {
+        // Hur mycket skada man tar av en zombie varierar
         int randomNr = Random.Range(15, 26);
         health -= randomNr;
         Debug.Log(health);
@@ -43,6 +44,7 @@ public class PlayerStats : MonoBehaviour
 
     private void PlayerDeath()
     {
+        //Mest till för att testa, inte bestämt vad som ska hända när man dör
         Debug.Log("ded");
         GetComponent<Movement>().enabled = false;
     }
