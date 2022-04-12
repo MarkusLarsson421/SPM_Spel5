@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Zombie : MonoBehaviour
 {
+    // instruktion är här https://www.youtube.com/watch?v=LIn2jOyOTKQ&t=294s
     [SerializeField] private NavMeshAgent agent = null;
     [SerializeField] private Transform target;
 
@@ -16,16 +17,15 @@ public class Zombie : MonoBehaviour
     {
         MoveToTarget();
     }
-    private void MoveToTarget()
+    private void MoveToTarget() // sets the detination to the target
     {
-
         agent.SetDestination(target.position);
     }
-    private void GetReferences()
+    private void GetReferences() // gets the Navigation Mesh Agent
     {
         agent.GetComponent<NavMeshAgent>();
     }
-    public void SetTarget(Transform nTarget)
+    public void SetTarget(Transform nTarget) // does nothing right now. Khaled will conitnue working with it.
     {
         target = nTarget;
     }
