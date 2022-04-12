@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Movement : MonoBehaviour
     public Transform camTarget;
     public float pLerp = .01f;
     public float rLerp = .02f;
+    
 
 
     //[SerializeField] Vector3 input;
@@ -34,6 +36,8 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
+        
+
         Controllers();
         Vector3 gravityForce = Vector3.down * gravity * Time.deltaTime;
         Vector3 jumpForce = Vector3.up * jump;
@@ -56,8 +60,9 @@ public class Movement : MonoBehaviour
     }
     void Rotation()
     {
-        rotation.x += Input.GetAxis("Mouse X") * mouseSensitivity;
-        rotation.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
+       // rotation.x += Input.GetAxis("Mouse X") * mouseSensitivity;
+       // rotation.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
+        
         rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
         transform.localRotation = Quaternion.Euler(-rotation.y, rotation.x, 0f);
     }
@@ -66,7 +71,6 @@ public class Movement : MonoBehaviour
     {
         Vector3 input = Vector3.right * Input.GetAxisRaw("Horizontal") + Vector3.forward * Input.GetAxisRaw("Vertical");
         input = transform.rotation * input;
-
 
         if (input.magnitude > float.Epsilon)
             Accelerate(input);
