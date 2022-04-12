@@ -1,5 +1,6 @@
+using System;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.Rendering;
 
 public class FlashLight : MonoBehaviour{
 	[SerializeField] [Range(1, 100)] private double batteryCharge = 100.0;
@@ -7,27 +8,46 @@ public class FlashLight : MonoBehaviour{
 	
 	private bool flashLightState;
 
-	private void Update(){
-		batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
-		
-		//TODO Check if the user pressed the flashlight button.
-	}
-	
-	public bool Toggle(){
-		return SetState(!flashLightState);
-	}
-	
-	public bool SetState(bool state){
-		if(batteryCharge > 0){
-			flashLightState = state;
-		}
-		return flashLightState;
+	private void Start(){
+		gameObject.transform.GetChild(0).gameObject.SetActive(false);
 	}
 
-	public void Recharge(){
+	void Update(){
+		batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
+
+		if(batteryCharge == 0){
+			SetState(false);
+		}
+
+		if(Input.GetKeyDown(KeyCode.F)){
+			Toggle();
+		}
+
+		if(Input.GetKeyDown(KeyCode.R)){
+			Recharge(); //TODO make it actually consume batteries! Temporary for playtest.
+		}
+	}
+	
+	private void Toggle(){
+		SetState(!flashLightState);
+	}
+	
+	private void SetState(bool desiredState){
+		if(desiredState && batteryCharge > 0){
+			//Turn on flash light (if it has battery)
+			gameObject.transform.GetChild(0).gameObject.SetActive(true);
+			flashLightState = true;
+		}else{
+			//Turn off flash light.
+			gameObject.transform.GetChild(0).gameObject.SetActive(false);
+			flashLightState = false;
+		}
+	}
+
+	private void Recharge(){
 		Recharge(100);
 	}
-	public void Recharge(byte setCharge){
+	private void Recharge(byte setCharge){
 		batteryCharge = setCharge;
 	}
 }
