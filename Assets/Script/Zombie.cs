@@ -25,4 +25,8 @@ public class Zombie : MonoBehaviour
     {
         agent.GetComponent<NavMeshAgent>();
     }
+    public void SetTarget(Transform nTarget)
+    {
+        target = nTarget;
+    }
 }

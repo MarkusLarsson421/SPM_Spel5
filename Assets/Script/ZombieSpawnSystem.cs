@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZombieSpawnSystem : MonoBehaviour
 {
-
+    
     [SerializeField] private GameObject[] spawnPositions;
     
     [SerializeField] private float timeBetweenWaves;
