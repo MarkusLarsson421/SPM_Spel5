@@ -7,6 +7,12 @@ public class FlashLight : MonoBehaviour{
 	
 	private bool flashLightState;
 
+	private void Update(){
+		batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
+		
+		//TODO Check if the user pressed the flashlight button.
+	}
+	
 	public bool Toggle(){
 		return SetState(!flashLightState);
 	}
@@ -23,11 +29,5 @@ public class FlashLight : MonoBehaviour{
 	}
 	public void Recharge(byte setCharge){
 		batteryCharge = setCharge;
-	}
-
-	private void Update(){
-		batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
-		
-		//TODO Check if the user pressed the flashlight button.
 	}
 }

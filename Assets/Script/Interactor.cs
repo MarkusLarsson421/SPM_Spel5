@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Interactor : MonoBehaviour
 {
-    // om det behˆvs mer instruktioner: https://www.youtube.com/watch?v=lZThP8KG1W0&t=21&ab_channel=JTAGames
+    // om det beh√∂vs mer instruktioner: https://www.youtube.com/watch?v=lZThP8KG1W0&t=21&ab_channel=JTAGames
     public LayerMask interactableLayerMask = 7;
     public Image interactImage;
     public Sprite defaultIcon;
@@ -21,7 +21,7 @@ public class Interactor : MonoBehaviour
 
     void interactHandler()
     {
-        RaycastHit hit; //man l‰gger till vad som h‰nder i onInteract MÂste ha Layermask Interactable.
+        RaycastHit hit; //man l√§gger till vad som h√§nder i onInteract M√•ste ha Layermask Interactable.
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 2, interactableLayerMask))
         {
             if (hit.collider.GetComponent<Interactable>() != false) //makes u interact Only Once. Doesnt update every frame.
@@ -32,7 +32,7 @@ public class Interactor : MonoBehaviour
                     Debug.Log("interaction Done Once");
                 }
                 ChangeInteractionIcon();
-                if (Input.GetKeyDown(KeyCode.E)) //h‰nder n‰r man klickar E
+                if (Input.GetKeyDown(KeyCode.E)) //h√§nder n√§r man klickar E
                 {
                     interactable.onInteract.Invoke();
 
