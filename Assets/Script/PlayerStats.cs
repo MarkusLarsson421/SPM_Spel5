@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private int health;
-    private int stamina;
-    // Start is called before the first frame update
+    [SerializeField] private int health; // set the amount of health in unity
+    [SerializeField] private int stamina; //set the stamina of health in unity
     void Start()
     {
-        health = 100;
-        stamina = 100;
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(health <= 0)
