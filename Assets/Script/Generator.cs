@@ -68,6 +68,7 @@ public class Generator : MonoBehaviour
         fuel = maxFuel;
         fuelLevelIndicator.color = fullGeneratorColor;
         isEmpty = false;
+        toggleLights();
     }
 
     //script for testing
@@ -101,9 +102,18 @@ public class Generator : MonoBehaviour
 
     private void toggleLights()
     {
+        
         for(int i = 0; i < lights.Length; i++)
         {
-            lights[i].intensity = 0;
+            if (isEmpty)
+            {
+                lights[i].intensity = 0;
+            }
+            else
+            {
+                lights[i].intensity = 2;
+            }
+            
         }
     }
 }
