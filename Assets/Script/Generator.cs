@@ -47,6 +47,14 @@ public class Generator : MonoBehaviour
         isEmpty = false;
     }
 
+    //script for testing
+    private void setEmpty()
+    {
+        fuel = 0;
+        fuelLevelIndicator.color = emptyGeneratorColor;
+        isEmpty = true;
+    }
+
     private void DecreaseFuelLevel()
     {
         fuel--;
