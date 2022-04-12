@@ -8,6 +8,8 @@ public class Zombie : MonoBehaviour
     [SerializeField] private NavMeshAgent agent = null;
     [SerializeField] private Transform target;
 
+	private int health = 100;
+
     private void Start()
     {
         agent.GetComponent<NavMeshAgent>();
@@ -29,6 +31,9 @@ public class Zombie : MonoBehaviour
     {
         target = nTarget;
     }
-    
-    
+
+	public void TakeDamage(int damage){
+		health -= damage;
+		if(health <= 0){ Destroy(this); }
+	}
 }
