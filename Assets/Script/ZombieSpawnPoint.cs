@@ -24,7 +24,7 @@ public class ZombieSpawnPoint : MonoBehaviour
 
     private void NrOfZombies()
     {
-        randomAmountOfZombies = Random.Range(0, maxAmountAtSpawnPoint);
+        randomAmountOfZombies = Random.Range(1, maxAmountAtSpawnPoint);
         
     }
 
