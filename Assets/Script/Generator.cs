@@ -10,11 +10,13 @@ public class Generator : MonoBehaviour
     private float timer;
     private float maxFuel;
     private bool isEmpty;
+    private bool isTurnedOn;
 
     private Color fullGeneratorColor = new Color(0, 133, 0, 255);
     private Color halfEmptyGeneratorColor = new Color(188, 174, 0, 255);
     private Color emptyGeneratorColor = new Color(188, 0, 0, 255);
 
+    [SerializeField] private Light[] lights;
 
     void Start()
     {
@@ -24,25 +26,46 @@ public class Generator : MonoBehaviour
 
     void Update()
     {
-        if (!isEmpty)
+        if (Input.GetKeyDown("p"))
         {
-            timer += Time.deltaTime;
-
-            if (timer >= secondDelay)
-            {
-                DecreaseFuelLevel();
-                timer = 0;
-            }
+            GeneratorOnOff();
         }
-        if (!isEmpty && fuel <= maxFuel/2)
+
+        if (isTurnedOn)
         {
-            fuelLevelIndicator.color = halfEmptyGeneratorColor;
-        }     
+            if (!isEmpty)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= secondDelay)
+                {
+                    DecreaseFuelLevel();
+                    timer = 0;
+                }
+            }
+
+            if (!isEmpty && fuel <= maxFuel / 2)
+            {
+                fuelLevelIndicator.color = halfEmptyGeneratorColor;
+            }
+
+            if (Input.GetKeyDown("l"))
+            {
+                setEmpty();
+            }
+
+            if (Input.GetKeyDown("k"))
+            {
+                Refill();
+            }
+
+        }
+        
     }
 
     public void Refill()
     {
-        fuel = 100;
+        fuel = maxFuel;
         fuelLevelIndicator.color = fullGeneratorColor;
         isEmpty = false;
     }
@@ -62,6 +85,25 @@ public class Generator : MonoBehaviour
         {
             isEmpty = true;
             fuelLevelIndicator.color = emptyGeneratorColor;
+            toggleLights();
+        }
+    }
+
+    private void GeneratorOnOff()
+    {
+        if (isTurnedOn)
+        {
+            isTurnedOn = false;
+        }
+        else
+            isTurnedOn = true;
+    }
+
+    private void toggleLights()
+    {
+        for(int i = 0; i < lights.Length; i++)
+        {
+            lights[i].intensity = 0;
         }
     }
 }
