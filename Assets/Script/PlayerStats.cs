@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour
     {
         if(health <= 0)
         {
-            Debug.Log("ded");
+            PlayerDeath();  
         }
     }
 
@@ -41,6 +41,10 @@ public class PlayerStats : MonoBehaviour
 
     }
 
-    //private void 
+    private void PlayerDeath()
+    {
+        Debug.Log("ded");
+        GetComponent<Movement>().enabled = false;
+    }
     
 }
