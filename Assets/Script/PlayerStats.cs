@@ -37,6 +37,7 @@ public class PlayerStats : MonoBehaviour
     {
         int randomNr = Random.Range(15, 26);
         health -= randomNr;
+        Debug.Log(health);
 
     }
 

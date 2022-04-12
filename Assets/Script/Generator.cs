@@ -20,7 +20,7 @@ public class Generator : MonoBehaviour
 
     void Start()
     {
-        isTurnedOn = true;
+        //isTurnedOn = true;
         maxFuel = fuel;
         fuelLevelIndicator.color = fullGeneratorColor;
     }
