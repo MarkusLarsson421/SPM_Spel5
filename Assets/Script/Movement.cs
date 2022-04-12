@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
@@ -60,8 +59,8 @@ public class Movement : MonoBehaviour
     }
     void Rotation()
     {
-       // rotation.x += Input.GetAxis("Mouse X") * mouseSensitivity;
-       // rotation.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
+        rotation.x += Input.GetAxis("Mouse X") * mouseSensitivity;
+        rotation.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
         
         rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
         transform.localRotation = Quaternion.Euler(-rotation.y, rotation.x, 0f);
