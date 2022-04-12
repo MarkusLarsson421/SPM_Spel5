@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZombieSpawnPoint : MonoBehaviour
 {
-    
+    public Transform target;
     [SerializeField] private GameObject zombie;
     [SerializeField] private int maxAmountAtSpawnPoint;
     private int randomNr;
@@ -16,7 +16,8 @@ public class ZombieSpawnPoint : MonoBehaviour
         NrOfZombies();
         for(int i = 0; i < maxAmountAtSpawnPoint; i++)
         {
-            Instantiate(zombie, this.transform);
+            GameObject go = Instantiate(zombie, this.transform);
+            go.GetComponent<Zombie>().SetTarget(target);
         }
 
     }
