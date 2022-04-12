@@ -6,12 +6,13 @@ public class Generator : MonoBehaviour
 {
     [SerializeField] private float fuel;
     [SerializeField] private float secondDelay; //time until fuel-level decreases
-    [SerializeField] private Light fuelLevelIndicator;
+    [SerializeField] private Light fuelLevelIndicator; // light that changes color based on the fuel-level
     private float timer;
     private float maxFuel;
     private bool isEmpty;
     private bool isTurnedOn;
 
+    //colors for the fuelLevelIndicator
     private Color fullGeneratorColor = new Color(0, 133, 0, 255);
     private Color halfEmptyGeneratorColor = new Color(188, 174, 0, 255);
     private Color emptyGeneratorColor = new Color(188, 0, 0, 255);
@@ -20,7 +21,7 @@ public class Generator : MonoBehaviour
 
     void Start()
     {
-        //isTurnedOn = true;
+        isTurnedOn = true;
         maxFuel = fuel;
         fuelLevelIndicator.color = fullGeneratorColor;
     }
@@ -49,12 +50,12 @@ public class Generator : MonoBehaviour
             {
                 fuelLevelIndicator.color = halfEmptyGeneratorColor;
             }
-
+            //For testing, set fuel to 0
             if (Input.GetKeyDown("l"))
             {
                 setEmpty();
             }
-
+            //For testing, set fuel to 100
             if (Input.GetKeyDown("k"))
             {
                 Refill();

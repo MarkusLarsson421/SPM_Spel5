@@ -7,14 +7,14 @@ public class ZombieSpawnPoint : MonoBehaviour
     public Transform target;
     [SerializeField] private GameObject zombie;
     [SerializeField] private int maxAmountAtSpawnPoint;
-    private int randomNr;
+    private int randomAmountOfZombies;
     
 
 
     public void Spawn()
     {
         NrOfZombies();
-        for(int i = 0; i < maxAmountAtSpawnPoint; i++)
+        for(int i = 0; i < randomAmountOfZombies; i++)
         {
             GameObject go = Instantiate(zombie, this.transform);
             go.GetComponent<Zombie>().SetTarget(target);
@@ -24,7 +24,7 @@ public class ZombieSpawnPoint : MonoBehaviour
 
     private void NrOfZombies()
     {
-        int randomNr = Random.Range(0, maxAmountAtSpawnPoint);
+        randomAmountOfZombies = Random.Range(0, maxAmountAtSpawnPoint);
         
     }
 

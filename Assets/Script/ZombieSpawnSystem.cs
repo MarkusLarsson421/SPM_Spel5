@@ -5,17 +5,17 @@ using UnityEngine;
 public class ZombieSpawnSystem : MonoBehaviour
 {
     
-    [SerializeField] private GameObject[] spawnPositions;
+    [SerializeField] private GameObject[] spawnPositions; // An array of ZombieSpawnPoints
     
-    [SerializeField] private float timeBetweenWaves;
+    [SerializeField] private float timeBetweenWaves; // 
     
-    [SerializeField] private float waveLength;
+    [SerializeField] private float waveLength; // Length of a wave, wave is "over" when the timer equals waveLength
 
 
     private float waveDuration; //time a wave lasts
     private float waitDuration; //wait between 2 waves
     
-    private float waveTimer;
+    private float waveTimer; //Timer that increases every second
     private float second = 1f;
     
 
@@ -68,7 +68,7 @@ public class ZombieSpawnSystem : MonoBehaviour
             }
         }
     }
-
+    // The spawn method of every spawnPoints gets called when the wave begins
     private void waveSpawn()
     {
         
