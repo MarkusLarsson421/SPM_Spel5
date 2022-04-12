@@ -42,8 +42,9 @@ public class PlayerStats : MonoBehaviour
     private void PlayerDeath()
     {
         //Mest till för att testa, inte bestämt vad som ska hända när man dör
-        Debug.Log("ded");
+        Debug.Log("dead");
         GetComponent<Movement>().enabled = false;
+        //Kanske respawn??
     }
     
 }
