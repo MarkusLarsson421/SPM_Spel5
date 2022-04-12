@@ -10,11 +10,11 @@ public class Zombie : MonoBehaviour
 
 	private void Start()
     {
-        agent.GetComponent<NavMeshAgent>();
+        GetReferences();
     }
     private void Update()
     {
-        agent.SetDestination(target.position);
+        MoveToTarget();
     }
     private void MoveToTarget()
     {
