@@ -4,23 +4,23 @@ using UnityEngine;
 using TMPro;
 
 
-public class Weapon : MonoBehaviour{
+public class Weapon : MonoBehaviour {
 	//Fire
 	[SerializeField] private int damage = 20;
 	[SerializeField] private float range = 100.0f;
 	[SerializeField] private float fireRate = 5.0f;
 	[SerializeField] private TextMeshProUGUI ammoText;
 	private float nextTimeToFire;
-	
+
 	[SerializeField] private Camera fpsCamera;
-	
+
 	//Ammo
 	[SerializeField] private int maxAmmo = 100;
 	[SerializeField] private int magCapacity = 8;
 	[SerializeField] private float reloadTime = 2.0f;
 	private int currentMag;
 	private bool isReloading;
-	
+
 	private int ammo = 32; //extra ammo
 
 	private void Start(){
@@ -41,6 +41,7 @@ public class Weapon : MonoBehaviour{
 
 	private void Fire(){
 		currentMag--;
+		ammo--;
 
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
