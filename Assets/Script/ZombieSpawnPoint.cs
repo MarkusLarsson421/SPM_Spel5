@@ -8,17 +8,27 @@ public class ZombieSpawnPoint : MonoBehaviour
     [SerializeField] private GameObject zombie;
     [SerializeField] private int maxAmountAtSpawnPoint;
     private int randomAmountOfZombies;
-    
+    private BoxCollider spawnStopper;
 
+    private bool canSpawn;
+
+    private void Start()
+    {
+        spawnStopper = gameObject.GetComponent<BoxCollider>();
+    }
 
     public void Spawn()
     {
-        NrOfZombies();
-        for(int i = 0; i < randomAmountOfZombies; i++)
+        if (canSpawn)
         {
-            GameObject go = Instantiate(zombie, this.transform);
-            go.GetComponent<Zombie>().SetTarget(target);
+            NrOfZombies();
+            for (int i = 0; i < randomAmountOfZombies; i++)
+            {
+                GameObject go = Instantiate(zombie, this.transform);
+                go.GetComponent<Zombie>().SetTarget(target);
+            }
         }
+        
 
     }
 
@@ -31,6 +41,22 @@ public class ZombieSpawnPoint : MonoBehaviour
     public void SetMaxZombies(int amount)
     {
         maxAmountAtSpawnPoint = amount;
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            canSpawn = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            canSpawn = true;
+        }
     }
 
 
