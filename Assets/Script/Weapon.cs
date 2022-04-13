@@ -18,14 +18,14 @@ public class Weapon : MonoBehaviour{
 	[SerializeField] private int maxAmmo = 100;
 	[SerializeField] private int magCapacity = 8;
 	[SerializeField] private float reloadTime = 2.0f;
-	private int currentAmmo;
+	private int currentMag;
 	private bool isReloading;
 	
-	private int ammo = 32;
+	private int ammo = 32; //extra ammo
 	private void setAmmText() { ammoText.text = ammo.ToString(); }
 	
 	private void Start(){
-		currentAmmo = magCapacity;
+		currentMag = magCapacity;
 	}
 
 	void Update(){
@@ -41,7 +41,7 @@ public class Weapon : MonoBehaviour{
 	}
 
 	private void Fire(){
-		ammo--;
+		currentMag--;
 
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
@@ -59,7 +59,7 @@ public class Weapon : MonoBehaviour{
 		Debug.Log("Reloading...");
 
 		yield return new WaitForSeconds(reloadTime);
-		currentAmmo = magCapacity;
+		currentMag = magCapacity;
 		ammo -= magCapacity;
 		
 		Debug.Log("Reloaded.");
