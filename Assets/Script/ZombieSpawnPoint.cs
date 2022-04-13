@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Martin Wallmark
 public class ZombieSpawnPoint : MonoBehaviour
 {
     public Transform target;
