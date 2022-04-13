@@ -6,11 +6,16 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
-    private int invSize = 32;
-    private int ammoCount, scrapCount, batteryCount;
+    private int scrapCount, batteryCount;
+    private int ammoCap = 100;
+    private int scrapCap = 10;
+    private int batteryCap = 3; //maxantal
     private int PickUpQuant;
     private string itemTag;
-    Weapon wpn;
+    public Weapon wpn;
+
+    private int MINAMMOPICKUP = 10;
+    private int MAXAMMOPICKUP = 40;
     
     void Start()
     {
@@ -22,34 +27,13 @@ public class ResourceManager : MonoBehaviour
         
     }
 
-   /* public void PickUp(GameObject g)
-    {
-        //switch med handler för varje objekt
-            if (g.CompareTag("Ammo"))
-            {
-                ammo++;
-                invSlots--;
-                Debug.Log(invSlots);
-            }
-            if (g.CompareTag("Battery"))
-            {
-                Debug.Log("battery picked up");
-            }
-            if (g.CompareTag("Scrap"))
-            {
-                Debug.Log("scrap picked up");
-            }
-    }*/
-
     public void PickUp(GameObject g)
     {
         itemTag = g.tag;
         switch (itemTag)
         {
             case "Ammo":
-                ItemHandler(g);
-                ammoCount += PickUpQuant;
-                Debug.Log("Quantity: " + PickUpQuant);
+                AmmoHandler(g);
                 break;
 
             case "Scrap":
@@ -69,13 +53,23 @@ public class ResourceManager : MonoBehaviour
     private void ItemHandler(GameObject g)
     {
         PickUpQuant = Random.Range(1, 15);//ändra vid behov
-        invSize -= PickUpQuant;
+       
     }
 
     private void AmmoHandler(GameObject g)
     {
-        PickUpQuant = Random.Range(1, 15);
-        invSize -= PickUpQuant;
-        
+        Debug.Log("funkar");
+        int currentAmmo = wpn.getAmmo();
+        if(currentAmmo >= ammoCap)
+        {
+            wpn.SetAmmo(100);
+        }
+        else
+        {
+            PickUpQuant = Random.Range(MINAMMOPICKUP, MAXAMMOPICKUP);
+            wpn.SetAmmo(PickUpQuant);
+
+        }
+
     }
 }

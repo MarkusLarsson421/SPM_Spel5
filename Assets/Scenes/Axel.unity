@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 160416817, guid: b49be5c1964bad14b9cc5fe46a1be1f5, type: 3}
+      propertyPath: wpn
+      value: 
+      objectReference: {fileID: 1482118541}
     - target: {fileID: 1555586264518437387, guid: b49be5c1964bad14b9cc5fe46a1be1f5, type: 3}
       propertyPath: fpsCamera
       value: 
@@ -571,6 +575,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1482118541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1555586264518437387, guid: b49be5c1964bad14b9cc5fe46a1be1f5, type: 3}
+  m_PrefabInstance: {fileID: 354970851}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80bc4a078cb3224cb1aa8a4752bda0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1709463539
 GameObject:
   m_ObjectHideFlags: 0
