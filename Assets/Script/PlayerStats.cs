@@ -8,6 +8,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int health; // set the amount of health in unity
     [SerializeField] private int stamina; //set the stamina of health in unity
     [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private GameObject CanvasObject;
+    [SerializeField] private GameObject deathCanvasObject;
     //[SerializeField] private TextMeshProUGUI staminaText;
 
     void Start()
@@ -21,7 +23,9 @@ public class PlayerStats : MonoBehaviour
         //setStaminaText();
         if (health <= 0)
         {
-            PlayerDeath();  
+            health = 0;
+            PlayerDeath();
+            DisableCanvas();
         }
     }
 
@@ -48,6 +52,10 @@ public class PlayerStats : MonoBehaviour
         //Kanske respawn??
     }
 
+    void DisableCanvas()
+    {
+        CanvasObject.SetActive(false);
+        deathCanvasObject.SetActive(true);
+    }
 
-    
 }
