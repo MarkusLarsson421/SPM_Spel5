@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
-    private int ammo;
-    private int batteries;
-    private int scrapParts;
-    private int invSlots;
+    private int ammo = 0;
+    private int batteries = 0;
+    private int scrapParts = 0;
+    private int invSlots = 4;
     
     void Start()
     {
@@ -23,29 +23,28 @@ public class ResourceManager : MonoBehaviour
     }
 
     public void PickUp(GameObject g)
-    {
-        while(invSlots >= 1)
-        {
+    {        
             if (g.CompareTag("Ammo"))
             {
                 Debug.Log("ammo picked up");
                 ammo++;
                 invSlots--;
+                Debug.Log(invSlots);
             }
             if (g.CompareTag("Battery"))
             {
                 Debug.Log("battery picked up");
                 batteries++;
                 invSlots--;
+                Debug.Log(invSlots);
             }
             if (g.CompareTag("Scrap"))
             {
                 Debug.Log("scrap picked up");
                 scrapParts++;
                 invSlots--;
+                Debug.Log(invSlots);
             }
-        }
-        
     }
 
 }
