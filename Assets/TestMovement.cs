@@ -19,6 +19,7 @@ public class TestMovement : MonoBehaviour
         input.Gameplay.Move.canceled += ctx => move = Vector2.zero;
         input.Gameplay.Rotate.canceled += ctx => rotate = Vector2.zero;
     }
+    
 
     private void Update()
     {
