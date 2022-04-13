@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int health; // set the amount of health in unity
     [SerializeField] private int stamina; //set the stamina of health in unity
+    [SerializeField] private TextMeshProUGUI healthText;
+    //[SerializeField] private TextMeshProUGUI staminaText;
+
     void Start()
     {
 
@@ -13,23 +17,20 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        if(health <= 0)
+        setHealthtext();
+        //setStaminaText();
+        if (health <= 0)
         {
             PlayerDeath();  
         }
     }
 
-    public int getHealth()
-    {
-        return health;
-    }
+    public int getHealth()  { return health; }
+    public int getStamina() { return stamina; }
+    private void setHealthtext() { healthText.text = health.ToString(); }
+    //private void setStaminaText() { staminaText.text = stamina.ToString(); }
 
-    public int getStamina()
-    {
-        return stamina;
-    }
 
-    
     public void HitByZombie()
     {
         // Hur mycket skada man tar av en zombie varierar
@@ -46,5 +47,7 @@ public class PlayerStats : MonoBehaviour
         GetComponent<Movement>().enabled = false;
         //Kanske respawn??
     }
+
+
     
 }
