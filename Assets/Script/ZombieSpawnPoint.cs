@@ -42,11 +42,12 @@ public class ZombieSpawnPoint : MonoBehaviour
     {
         maxAmountAtSpawnPoint = amount;
     }
-
+    /*
     private void OnTriggerEnter(Collider collision)
     {
         if(collision.gameObject.tag == "Player")
         {
+            Debug.Log("Collision");
             canSpawn = false;
         }
     }
@@ -57,6 +58,12 @@ public class ZombieSpawnPoint : MonoBehaviour
         {
             canSpawn = true;
         }
+    }
+    */
+
+    public bool getCanSpawn()
+    {
+        return canSpawn;
     }
 
 
