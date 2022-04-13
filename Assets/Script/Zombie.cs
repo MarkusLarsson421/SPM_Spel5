@@ -25,8 +25,8 @@ public class Zombie : MonoBehaviour
     {
         agent.GetComponent<NavMeshAgent>();
     }
-    public void SetTarget(Transform nTarget) // does nothing right now. Khaled will conitnue working with it.
+    public void SetTarget(Transform newTarget) // Used in the zombieSpawnPosition script the set the target
     {
-        target = nTarget;
+        target = newTarget;
     }
 }
