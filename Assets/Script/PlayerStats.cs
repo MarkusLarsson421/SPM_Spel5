@@ -25,17 +25,12 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public int getHealth()
-    {
-        return health;
-    }
+    public int getHealth()  { return health; }
+    public int getStamina() { return stamina; }
+    private void setHealthtext() { healthText.text = health.ToString(); }
+    //private void setStaminaText() { staminaText.text = stamina.ToString(); }
 
-    public int getStamina()
-    {
-        return stamina;
-    }
 
-    
     public void HitByZombie()
     {
         // Hur mycket skada man tar av en zombie varierar
@@ -53,7 +48,6 @@ public class PlayerStats : MonoBehaviour
         //Kanske respawn??
     }
 
-    private void setHealthtext() { healthText.text = health.ToString(); }
-    //private void setStaminaText() { staminaText.text = stamina.ToString(); }
+
     
 }
