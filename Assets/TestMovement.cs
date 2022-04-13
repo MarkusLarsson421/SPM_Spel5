@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TestMovement : MonoBehaviour
 {
-    [SerializeField] InputSystem input;
-    [SerializeField] Vector3 move;
-    [SerializeField] Vector3 rotate;
+    InputSystem input;
+    Vector2 move;
+    Vector2 rotate;
 
     void Awake()
     {
@@ -21,14 +21,11 @@ public class TestMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector3 m = new Vector3(move.x,0f,move.y).normalized * Time.deltaTime;
-        transform.Translate(m, Space.Self);
+        Vector3 m = new Vector3(move.x,0f,move.y) * Time.deltaTime;
+        transform.Translate(m, Space.World);
 
-        Vector3 r = new Vector3(0f , rotate.y, 0f).normalized * 100 * Time.deltaTime;
-        transform.Rotate(r, Space.Self);
-
-        //transform.Rotate(r.x, 0.0f, r.z);
-
+        Vector3 r = new Vector3(rotate.x,0f) * 100f * Time.deltaTime;
+        transform.Rotate(r, Space.World);
     }
 
     private void OnEnable()

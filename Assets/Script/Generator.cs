@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Martin Wallmark
+
 public class Generator : MonoBehaviour
 {
     [SerializeField] private float fuel;
@@ -18,7 +18,6 @@ public class Generator : MonoBehaviour
     private Color emptyGeneratorColor = new Color(188, 0, 0, 255);
 
     [SerializeField] private Light[] lights;
-    [SerializeField] private Animator[] doorAnimators;
 
     void Start()
     {
@@ -54,7 +53,7 @@ public class Generator : MonoBehaviour
             //For testing, set fuel to 0
             if (Input.GetKeyDown("l"))
             {
-                SetEmpty();
+                setEmpty();
             }
             //For testing, set fuel to 100
             if (Input.GetKeyDown("k"))
@@ -63,7 +62,7 @@ public class Generator : MonoBehaviour
             }
 
         }
-
+        
     }
 
     public void Refill()
@@ -71,12 +70,11 @@ public class Generator : MonoBehaviour
         fuel = maxFuel;
         fuelLevelIndicator.color = fullGeneratorColor;
         isEmpty = false;
-        ToggleLights();
-        OpenDoor();
+        toggleLights();
     }
 
     //script for testing
-    private void SetEmpty()
+    private void setEmpty()
     {
         fuel = 0;
         fuelLevelIndicator.color = emptyGeneratorColor;
@@ -86,11 +84,11 @@ public class Generator : MonoBehaviour
     private void DecreaseFuelLevel()
     {
         fuel--;
-        if (fuel <= 0)
+        if(fuel <= 0)
         {
             isEmpty = true;
             fuelLevelIndicator.color = emptyGeneratorColor;
-            ToggleLights();
+            toggleLights();
         }
     }
 
@@ -104,10 +102,10 @@ public class Generator : MonoBehaviour
             isTurnedOn = true;
     }
 
-    private void ToggleLights()
+    private void toggleLights()
     {
-
-        for (int i = 0; i < lights.Length; i++)
+        
+        for(int i = 0; i < lights.Length; i++)
         {
             if (isEmpty || !isTurnedOn)
             {
@@ -117,17 +115,7 @@ public class Generator : MonoBehaviour
             {
                 lights[i].intensity = 2;
             }
-
+            
         }
     }
-
-    private void OpenDoor()
-    {
-        if (doorAnimators.Length == 0) { return; }
-        for (int i = 0; i < doorAnimators.Length; i++)
-        {
-            doorAnimators[i].SetTrigger("DoorOpen");
-        }
-    }
-
 }
