@@ -22,21 +22,20 @@ public class Weapon : MonoBehaviour{
 	private bool isReloading;
 	
 	private int ammo = 32; //extra ammo
-	private void setAmmText() { ammoText.text = ammo.ToString(); }
-	
+
 	private void Start(){
 		currentMag = magCapacity;
 	}
 
 	void Update(){
-		setAmmText();
-
 		if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && !isReloading){
 			nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
+			SetAmmoText();
 		}
 		else if(Input.GetKeyDown(KeyCode.R) && !isReloading){
 			StartCoroutine(Reload());
+			SetAmmoText();
 		}
 	}
 
@@ -64,5 +63,9 @@ public class Weapon : MonoBehaviour{
 		
 		Debug.Log("Reloaded.");
 		isReloading = false;
+	}
+	
+	private void SetAmmoText(){
+		ammoText.text = ammo.ToString();
 	}
 }
