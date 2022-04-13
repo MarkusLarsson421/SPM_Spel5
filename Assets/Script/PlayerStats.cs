@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int health; // set the amount of health in unity
     [SerializeField] private int stamina; //set the stamina of health in unity
+    [SerializeField] private TextMeshProUGUI healthText;
+    //[SerializeField] private TextMeshProUGUI staminaText;
+
     void Start()
     {
 
@@ -13,7 +17,9 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        if(health <= 0)
+        setHealthtext();
+        //setStaminaText();
+        if (health <= 0)
         {
             PlayerDeath();  
         }
@@ -46,5 +52,8 @@ public class PlayerStats : MonoBehaviour
         GetComponent<Movement>().enabled = false;
         //Kanske respawn??
     }
+
+    private void setHealthtext() { healthText.text = health.ToString(); }
+    //private void setStaminaText() { staminaText.text = stamina.ToString(); }
     
 }
