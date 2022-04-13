@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09951939e20d17a439271c36cfe980c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rM: {fileID: 0}
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -409,6 +410,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.36
       objectReference: {fileID: 0}
+    - target: {fileID: 7862691786803276623, guid: a32f12fc96298cf43bd72f563ccd0180, type: 3}
+      propertyPath: fpsCamera
+      value: 
+      objectReference: {fileID: 3085997580443032870}
     - target: {fileID: 7862691786899708116, guid: a32f12fc96298cf43bd72f563ccd0180, type: 3}
       propertyPath: m_Name
       value: WeaponHolster
