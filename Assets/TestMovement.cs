@@ -24,8 +24,9 @@ public class TestMovement : MonoBehaviour
         Vector3 m = new Vector3(move.x,0f,move.y) * Time.deltaTime;
         transform.Translate(m, Space.World);
 
-        Vector3 r = new Vector3(rotate.x,0f) * 100f * Time.deltaTime;
-        transform.Rotate(r, Space.World);
+        Vector3 r = new Vector3(rotate.x, 0f, rotate.y) * 100f * Time.deltaTime;
+        //transform.Rotate(r, Space.World);
+        transform.Rotate(r.x, 0.0f, r.z);
     }
 
     private void OnEnable()

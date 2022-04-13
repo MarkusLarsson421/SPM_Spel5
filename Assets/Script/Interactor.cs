@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Interactor : MonoBehaviour
 {
+    public ResourceManager rM;
     // om det behövs mer instruktioner: https://www.youtube.com/watch?v=lZThP8KG1W0&t=21&ab_channel=JTAGames
     public LayerMask interactableLayerMask = 7;
     public Image interactImage;
@@ -14,6 +15,8 @@ public class Interactor : MonoBehaviour
     public Vector2 defaultInteractionIconSize;
 
     Interactable interactable;
+
+    
     void Update()
     {
         interactHandler();
@@ -34,6 +37,7 @@ public class Interactor : MonoBehaviour
                 ChangeInteractionIcon();
                 if (Input.GetKeyDown(KeyCode.E)) //händer när man klickar E
                 {
+                    rM.PickUp(interactable.gameObject);
                     interactable.onInteract.Invoke();
 
                 }
