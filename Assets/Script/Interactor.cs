@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//Simon Hessling Oscarson
+//Axel Sterner
 public class Interactor : MonoBehaviour
 {
     public ResourceManager rM;
@@ -39,6 +40,7 @@ public class Interactor : MonoBehaviour
                 {
                     rM.PickUp(interactable.gameObject);
                     interactable.onInteract.Invoke();
+                    Destroy(interactable.gameObject);
 
                 }
             }
