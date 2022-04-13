@@ -6,27 +6,27 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
-    private int ammo = 0;
-    private int batteries = 0;
-    private int scrapParts = 0;
-    private int invSlots = 4;
+    private int invSize = 32;
+    private int ammoCount, scrapCount, batteryCount;
+    private int PickUpQuant;
+    private string itemTag;
+    Weapon wpn;
     
     void Start()
     {
         
     }
 
-    
     void Update()
     {
         
     }
 
-    public void PickUp(GameObject g)
-    {        
+   /* public void PickUp(GameObject g)
+    {
+        //switch med handler för varje objekt
             if (g.CompareTag("Ammo"))
             {
-                Debug.Log("ammo picked up");
                 ammo++;
                 invSlots--;
                 Debug.Log(invSlots);
@@ -34,17 +34,48 @@ public class ResourceManager : MonoBehaviour
             if (g.CompareTag("Battery"))
             {
                 Debug.Log("battery picked up");
-                batteries++;
-                invSlots--;
-                Debug.Log(invSlots);
             }
             if (g.CompareTag("Scrap"))
             {
                 Debug.Log("scrap picked up");
-                scrapParts++;
-                invSlots--;
-                Debug.Log(invSlots);
             }
+    }*/
+
+    public void PickUp(GameObject g)
+    {
+        itemTag = g.tag;
+        switch (itemTag)
+        {
+            case "Ammo":
+                ItemHandler(g);
+                ammoCount += PickUpQuant;
+                Debug.Log("Quantity: " + PickUpQuant);
+                break;
+
+            case "Scrap":
+                ItemHandler(g);
+                scrapCount += PickUpQuant;
+                Debug.Log("Quantity: " + PickUpQuant);
+                break;
+
+            case "Battery":
+                ItemHandler(g);
+                batteryCount += PickUpQuant;
+                Debug.Log("Quantity: " + PickUpQuant);
+                break;
+        }
+    }
+   
+    private void ItemHandler(GameObject g)
+    {
+        PickUpQuant = Random.Range(1, 15);//ändra vid behov
+        invSize -= PickUpQuant;
     }
 
+    private void AmmoHandler(GameObject g)
+    {
+        PickUpQuant = Random.Range(1, 15);
+        invSize -= PickUpQuant;
+        
+    }
 }

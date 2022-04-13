@@ -22,6 +22,7 @@ public class Weapon : MonoBehaviour{
 	private bool isReloading;
 	
 	private int ammo = 32; //extra ammo
+	public int getAmmo() { return ammo; }
 
 	private void Start(){
 		currentMag = magCapacity;

@@ -39,8 +39,8 @@ public class Interactor : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E)) //händer när man klickar E
                 {
                     rM.PickUp(interactable.gameObject);
-                    interactable.onInteract.Invoke();
                     Destroy(interactable.gameObject);
+                    //interactable.onInteract.Invoke();
 
                 }
             }
