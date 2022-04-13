@@ -74,11 +74,12 @@ public class ZombieSpawnSystem : MonoBehaviour
         
         for(int i = 0; i < spawnPositions.Length; i++)
         {
-            //if (spawnPositions[i].GetComponent<ZombieSpawnPoint>().getCanSpawn() == true)
-            //{
+            spawnPositions[i].GetComponent<ZombieSpawnPoint>().setCanSpawn();
+            if (spawnPositions[i].GetComponent<ZombieSpawnPoint>().getCanSpawn() == true)
+            {
                 spawnPositions[i].GetComponent<ZombieSpawnPoint>().Spawn();
                 Debug.Log("Spawn!");
-            //}
+            }
             
         }
 

@@ -5,29 +5,34 @@ using UnityEngine;
 public class ZombieSpawnPoint : MonoBehaviour
 {
     public Transform target;
+    [SerializeField] private float minimunDistanceToPlayer;
     [SerializeField] private GameObject zombie;
     [SerializeField] private int maxAmountAtSpawnPoint;
     private int randomAmountOfZombies;
-    private BoxCollider spawnStopper;
+    private GameObject player;
+    
 
     private bool canSpawn;
 
     private void Start()
     {
-        spawnStopper = gameObject.GetComponent<BoxCollider>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        //spawnStopper = gameObject.GetComponent<BoxCollider>();
+        canSpawn = true;
+        
     }
 
     public void Spawn()
     {
-        if (canSpawn)
-        {
+        //if (canSpawn)
+        //{
             NrOfZombies();
             for (int i = 0; i < randomAmountOfZombies; i++)
             {
                 GameObject go = Instantiate(zombie, this.transform);
                 go.GetComponent<Zombie>().SetTarget(target);
             }
-        }
+        //}
         
 
     }
@@ -42,29 +47,26 @@ public class ZombieSpawnPoint : MonoBehaviour
     {
         maxAmountAtSpawnPoint = amount;
     }
-    /*
-    private void OnTriggerEnter(Collider collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            Debug.Log("Collision");
-            canSpawn = false;
-        }
-    }
-
-    private void OnTriggerExit(Collider collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            canSpawn = true;
-        }
-    }
-    */
+  
+    
 
     public bool getCanSpawn()
     {
         return canSpawn;
     }
 
+    public void setCanSpawn()
+    {
+        float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+        Debug.Log(distanceToPlayer);
+        if(distanceToPlayer <= minimunDistanceToPlayer)
+        {
+            canSpawn = false;
+        }
+        else
+        {
+            canSpawn = true;
+        }
+    }
 
 }
