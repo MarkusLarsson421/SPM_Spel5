@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private GameObject CanvasObject;
     [SerializeField] private GameObject deathCanvasObject;
-    //[SerializeField] private TextMeshProUGUI staminaText;
+    [SerializeField] private Button tryAgainButton;
 
     void Start()
     {
@@ -56,6 +58,17 @@ public class PlayerStats : MonoBehaviour
     {
         CanvasObject.SetActive(false);
         deathCanvasObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        tryAgainButton.onClick.AddListener(TaskOnClick);
+    }
+    void TaskOnClick()
+    {
+        RestartGame();
+    }
+    public void RestartGame()
+    {
+        Debug.Log("restart");
+        SceneManager.LoadScene("Whitebox");
     }
 
 }

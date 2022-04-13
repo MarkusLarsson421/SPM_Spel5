@@ -21,18 +21,18 @@ public class Movement : MonoBehaviour
     public Transform camTarget;
     public float pLerp = .01f;
     public float rLerp = .02f;
-    
+
 
 
     //[SerializeField] Vector3 input;
 
-    void Awake() => collider = GetComponent<CapsuleCollider>();
-
-    RaycastHit hit;
-    private void Start()
+    void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        collider = GetComponent<CapsuleCollider>();
     }
+
+    RaycastHit hit;
     void Update()
     {
         
