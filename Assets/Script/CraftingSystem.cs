@@ -20,7 +20,7 @@ public class CraftingSystem : MonoBehaviour
         Text infoText = canvas.AddComponent<Text>();
         infoText.text = "Craft hehe";
     }
-
+    /*
     private void damageUpgrade()
     {
         player.GetComponent<Weapon>().SetDamage(player.GetComponent<Weapon>().getDamage() + 5);
@@ -31,4 +31,5 @@ public class CraftingSystem : MonoBehaviour
     {
         //ska göra så ficklampans batterie räcker längre(eller nåt)
     }
+    */
 }
