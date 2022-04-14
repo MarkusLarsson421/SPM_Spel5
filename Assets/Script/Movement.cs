@@ -31,13 +31,10 @@ public class Movement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         collider = GetComponent<CapsuleCollider>();
     }
-
-    RaycastHit hit;
+    
     void Update()
     {
-        
-
-        Controllers();
+	    Controllers();
         Vector3 gravityForce = Vector3.down * gravity * Time.deltaTime;
         Vector3 jumpForce = Vector3.up * jump;
 
@@ -48,10 +45,31 @@ public class Movement : MonoBehaviour
             velocity += jumpForce;
         }
 
+        //Open door
+        if(Input.GetKeyDown(KeyCode.E)){Interact();}
+        
         UpdateVelocity();
         Rotation();
         ThirdPersonCamera();
     }
+
+    /**
+     * @author Markus Larsson
+     * 
+     * Opens or closes the door the user is looking at.
+     * Shoots raycast from the main camera.
+     */
+    private void Interact()
+    {
+	    RaycastHit hit;
+	    //Possibly replace Camera.main.transform with a reference to the camera.
+	    Transform cameraTransform = Camera.main.transform; 
+	    if(!Physics.Raycast(cameraTransform.position, cameraTransform.forward * 2, out hit, 10)){return;}
+	    SingleDoor singleDoor = hit.transform.gameObject.GetComponent<SingleDoor>();
+	    if(singleDoor == null){return;}
+	    singleDoor.ToggleOpen();
+    }
+    
     void ThirdPersonCamera()
     {
         transform.position = Vector3.Lerp(transform.position, camTarget.position, pLerp);
@@ -103,8 +121,8 @@ public class Movement : MonoBehaviour
 
     void UpdateVelocity()
     {
-
-        int temp = 0;
+	    RaycastHit hit;
+	    int temp = 0;
         do
         {
             //Vector3 look = velocity.normalized * skinWidth;
@@ -151,6 +169,7 @@ public class Movement : MonoBehaviour
 
         Vector3 point1 = transform.position + collider.center + Vector3.up * (collider.height / 2 - collider.radius);
         Vector3 point2 = transform.position + collider.center + Vector3.down * (collider.height / 2 - collider.radius);
+        RaycastHit hit;
         bool check = Physics.CapsuleCast(point1, point2, collider.radius, velocity.normalized, out hit, look.magnitude + skinWidth, collisionMask);
         if (check) { return true; }
         else return false;
