@@ -15,6 +15,8 @@ public class ResourceManager : MonoBehaviour
 
     private int MINAMMOPICKUP = 10;
     private int MAXAMMOPICKUP = 40;
+    private int MINSCRAPPICKUP = 3;
+    private int MAXSCRAPPICKUP = 6;
     
     void Start()
     {
@@ -80,7 +82,12 @@ public class ResourceManager : MonoBehaviour
         }
 
     }
-    /*dela upp ammo och andra pickups i interactor-scriptet
+
+    private void ScrapHandler(GameObject g)
+    {
+        PickUpQuant = Random.Range(MINSCRAPPICKUP, MAXSCRAPPICKUP);
+    }
+    /*
      * 
      * */
 }

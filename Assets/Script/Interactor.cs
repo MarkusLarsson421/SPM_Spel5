@@ -36,6 +36,7 @@ public class Interactor : MonoBehaviour
                     Debug.Log("interaction Done Once");
                 }
                 ChangeInteractionIcon();
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     interactable.onInteract.Invoke();
@@ -45,6 +46,7 @@ public class Interactor : MonoBehaviour
                 {
                     rM.PickUp(interactable.gameObject);
                 }
+
             }
         }
         else
