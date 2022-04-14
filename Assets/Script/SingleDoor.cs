@@ -1,45 +1,56 @@
+using System;
 using UnityEngine;
 
 public class SingleDoor : MonoBehaviour
 {
 	[SerializeField] private bool blocked = true;
-	private bool doorOpen;
-	private Collider trigger;
+	private bool open;
+	private Animator animation;
 
-	void Start()
+	private void Awake()
 	{
-		//transform.GetComponent<Collision>() //Reference to trigger collision box.
+		animation = gameObject.GetComponent<Animator>();
 	}
 
-	void Update()
-	{
-		//TODO
-		//Raycast, see if it hits the door.
-		if(Input.GetKeyDown(KeyCode.E))
-		{
-			RaycastHit hit;
-			/*if(Physics.Raycast())
-			{
-				ToggleState();
-			}*/
-			
-		}
+	/**
+	 * Toggle the open-close state of the door.
+	 */
+	public void ToggleOpen(){
+		if(open){Close();}
+		if(!open){Open();}
+		Debug.Log("Toggled Open State!");
 	}
 
-	public void ToggleState()
+	/**
+	 * @Author Markus Larsson
+	 *
+	 * Block or unblock the door. Allows a player to interact with it.
+	 */
+	public void ToggleBlocked()
 	{
-		SetState(!doorOpen);
+		blocked = !blocked;
+	}
+
+	/**
+	 * @Author Markus Larsson
+	 *
+	 * Close the door.
+	 */
+	private void Close(){
+		open = false;
+		animation.Play("Close", 0, 0.0f);
+		Debug.Log("Closing!");
 	}
 	
-	private void SetState(bool desiredState){
-		if(desiredState && !blocked){
-			// Open door.
-			gameObject.transform.GetChild(0).gameObject.SetActive(true);
-			doorOpen = true;
-		}else{
-			// Close door.
-			gameObject.transform.GetChild(0).gameObject.SetActive(false);
-			doorOpen = false;
-		}
+	/**
+	 * @Author Markus Larsson
+	 *
+	 * Open the door.
+	 */
+	private void Open(){
+		open = true;
+		animation.Play("Open", 0, 0.0f);
+		Debug.Log("Opening!");
+
 	}
 }
