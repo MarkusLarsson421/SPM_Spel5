@@ -16,6 +16,7 @@ public class CraftingSystem : MonoBehaviour
 
     private void damageUpgrade()
     {
+        //player.GetComponent<Weapon>().ge
         //Ska göra så pistolen gör mer skada
     }
 

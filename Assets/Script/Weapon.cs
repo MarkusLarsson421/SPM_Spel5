@@ -28,6 +28,11 @@ public class Weapon : MonoBehaviour {
 		ammo += newAmmo;
     }
 
+	public void SetDamage(int newDamage)
+    {
+		damage = newDamage;
+    }
+
 	private void Start(){
 		currentMag = magCapacity;
 	}
