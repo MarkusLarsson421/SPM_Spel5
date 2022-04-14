@@ -13,6 +13,8 @@ public class SingleDoor : MonoBehaviour
 	}
 
 	/**
+	 * @Author Markus Larsson
+	 * 
 	 * Toggle the open-close state of the door.
 	 */
 	public void ToggleOpen(){
