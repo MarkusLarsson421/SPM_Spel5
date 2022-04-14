@@ -11,6 +11,7 @@ public class Generator : MonoBehaviour
     private float maxFuel;
     private bool isEmpty;
     private bool isTurnedOn;
+    private bool doorsDisabled = false;
 
     //colors for the fuelLevelIndicator
     private Color fullGeneratorColor = new Color(0, 133, 0, 255);
@@ -18,7 +19,7 @@ public class Generator : MonoBehaviour
     private Color emptyGeneratorColor = new Color(188, 0, 0, 255);
 
     [SerializeField] private Light[] lights;
-    [SerializeField] private Animator[] doorAnimators;
+    [SerializeField] private SingleDoor[] singleDoors;
 
     void Start()
     {
@@ -124,10 +125,11 @@ public class Generator : MonoBehaviour
 
     private void OpenDoor()
     {
-        if (doorAnimators.Length == 0) { return; }
-        for (int i = 0; i < doorAnimators.Length; i++)
+        if (singleDoors.Length == 0 && doorsDisabled) { return; }
+        for (int i = 0; i < singleDoors.Length; i++)
         {
-            doorAnimators[i].SetTrigger("DoorOpen");
+            singleDoors[i].ToggleOpen();
+            doorsDisabled = true;
         }
     }
 
