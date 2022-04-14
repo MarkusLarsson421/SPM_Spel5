@@ -36,6 +36,10 @@ public class Interactor : MonoBehaviour
                     Debug.Log("interaction Done Once");
                 }
                 ChangeInteractionIcon();
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    interactable.onInteract.Invoke();
+                }
 
                 if (interactable.gameObject.CompareTag("Ammo") && Input.GetKeyDown(KeyCode.E))
                 {
