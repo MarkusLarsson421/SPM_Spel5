@@ -11,11 +11,14 @@ public class CraftingSystem : MonoBehaviour
     private GameObject player;
     private Text infoText;
     private bool isToggled;
+    private Button upgradeButton;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         infoText = canvas.AddComponent<Text>();
+        upgradeButton = canvas.AddComponent<Button>();
+        upgradeButton.enabled = false;
         infoText.font = font;
         infoText.enabled = false;
     }
@@ -27,6 +30,7 @@ public class CraftingSystem : MonoBehaviour
             isToggled = true;
             Debug.Log("toggled");
             infoText.enabled = true;
+            upgradeButton.enabled = true;
 
             infoText.text = "Craft hehe";
         }
