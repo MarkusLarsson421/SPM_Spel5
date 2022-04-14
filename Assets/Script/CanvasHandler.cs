@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class CanvasHandler : MonoBehaviour
+public class CanvasHandler : MonoBehaviour // @Khaled Alraas
 {
-    [SerializeField] private Button tryAgainButton;
+    [SerializeField] private Button tryAgainButton; 
 
     // Start is called before the first frame update
     void Start()
