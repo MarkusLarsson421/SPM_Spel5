@@ -32,7 +32,15 @@ public class ResourceManager : MonoBehaviour
         switch (itemTag)
         {
             case "Ammo":
-                AmmoHandler(g);
+                if(wpn.getAmmo() == 100)
+                {
+                    return;
+                }
+                else
+                {
+                    AmmoHandler(g);
+                    Destroy(g);
+                }
                 break;
 
             case "Scrap":
@@ -72,7 +80,7 @@ public class ResourceManager : MonoBehaviour
         }
 
     }
-    /*
+    /*dela upp ammo och andra pickups i interactor-scriptet
      * 
      * */
 }

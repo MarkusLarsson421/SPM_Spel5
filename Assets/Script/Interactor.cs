@@ -37,23 +37,9 @@ public class Interactor : MonoBehaviour
                 }
                 ChangeInteractionIcon();
 
-                if (Input.GetKeyDown(KeyCode.E)) //händer när man klickar E
+                if (interactable.gameObject.CompareTag("Ammo") && Input.GetKeyDown(KeyCode.E))
                 {
-                    /*rM.PickUp(interactable.gameObject);
-                    Destroy(interactable.gameObject);*/
-                    interactable.onInteract.Invoke();
-                }
-                if(interactable.gameObject.CompareTag("Ammo") && Input.GetKeyDown(KeyCode.E))
-                {
-                    if (wpn.getAmmo() == 100)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        rM.PickUp(interactable.gameObject);
-                        Destroy(interactable.gameObject);
-                    }
+                    rM.PickUp(interactable.gameObject);
                 }
             }
         }
