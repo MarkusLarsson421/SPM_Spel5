@@ -16,7 +16,7 @@ public class Interactor : MonoBehaviour
     public Vector2 defaultInteractionIconSize;
 
     Interactable interactable;
-
+    
     
     void Update()
     {
@@ -40,8 +40,7 @@ public class Interactor : MonoBehaviour
                 {
                     rM.PickUp(interactable.gameObject);
                     Destroy(interactable.gameObject);
-                    //interactable.onInteract.Invoke();
-
+                    interactable.onInteract.Invoke();
                 }
             }
         }

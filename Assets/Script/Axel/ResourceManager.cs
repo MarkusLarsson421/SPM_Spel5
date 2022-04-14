@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Axel Sterner
-//Simon Hessling Oscarson
 
 public class ResourceManager : MonoBehaviour
 {
@@ -58,18 +57,24 @@ public class ResourceManager : MonoBehaviour
 
     private void AmmoHandler(GameObject g)
     {
-        Debug.Log("funkar");
+        PickUpQuant = Random.Range(MINAMMOPICKUP, MAXAMMOPICKUP);
+        Debug.Log("Antal: " + PickUpQuant);
         int currentAmmo = wpn.getAmmo();
-        if(currentAmmo >= ammoCap)
+        if(currentAmmo + PickUpQuant > 100)
         {
-            wpn.SetAmmo(100);
+            wpn.resetAmmo();
+            Debug.Log(wpn.getAmmo());
         }
         else
         {
-            PickUpQuant = Random.Range(MINAMMOPICKUP, MAXAMMOPICKUP);
-            wpn.SetAmmo(PickUpQuant);
+            
+            wpn.setAmmo(PickUpQuant);
+            Debug.Log("Total ammo: " + wpn.getAmmo());
 
         }
 
     }
+    /*spelaren ska inte kunna plocka upp ammo när den har max ammo
+     * 
+     * */
 }
