@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour {
 	[SerializeField] private int damage = 20;
 	[SerializeField] private float range = 100.0f;
 	[SerializeField] private float fireRate = 5.0f;
-	[SerializeField] private TextMeshProUGUI ammoText;
+	[SerializeField] private TextMeshProUGUI ammoText; // ammo Text UI; @Khaled Alraas
 	private float nextTimeToFire;
 
 	[SerializeField] private Camera fpsCamera;
@@ -41,11 +41,11 @@ public class Weapon : MonoBehaviour {
 		if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && !isReloading){
 			nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
-			SetAmmoText();
+			SetAmmoText(); // show ammo text;  @Khaled Alraas
 		}
 		else if(Input.GetKeyDown(KeyCode.R) && !isReloading){
 			StartCoroutine(Reload());
-			SetAmmoText();
+			SetAmmoText(); // show ammo text; @Khaled Alraas
 		}
 	}
 
@@ -76,7 +76,8 @@ public class Weapon : MonoBehaviour {
 		isReloading = false;
 	}
 	
-	private void SetAmmoText(){
+	private void SetAmmoText()
+	{  // set ammo Text UI; @Khaled Alraas
 		ammoText.text = ammo.ToString();
 	}
 }

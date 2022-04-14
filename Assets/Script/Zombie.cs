@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Zombie : MonoBehaviour
+public class Zombie : MonoBehaviour //khal6952
 {
     // instruktion är här https://www.youtube.com/watch?v=LIn2jOyOTKQ&t=294s
     [SerializeField] private NavMeshAgent agent = null;
