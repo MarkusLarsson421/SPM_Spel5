@@ -63,7 +63,12 @@ public class PlayerStats : MonoBehaviour
     }
     void TaskOnClick()
     {
+        RestartGame();
     }
-
+    public void RestartGame()
+    {
+        Debug.Log("restart");
+        SceneManager.LoadScene("Whitebox");
+    }
 
 }
