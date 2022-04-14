@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6866050423502219767}
   - component: {fileID: 2361844172441048928}
   - component: {fileID: 8543792464098795598}
+  - component: {fileID: 8806855577156713419}
   m_Layer: 0
   m_Name: TempDoor
   m_TagString: Door
@@ -115,6 +116,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8806855577156713419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9953495254567451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef04ecb068e66545aeced5d1f34dcf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blocked: 1
 --- !u!1 &3853353534469938436
 GameObject:
   m_ObjectHideFlags: 0
