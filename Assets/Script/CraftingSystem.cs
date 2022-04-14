@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 //Martin Wallmark
 public class CraftingSystem : MonoBehaviour
 {
-    [SerializeField] int scrapAmountNeeded;
+    [SerializeField] private int scrapAmountNeeded;
+    [SerializeField] private GameObject canvas;
     private GameObject player;
 
     private void Start()
@@ -12,7 +14,12 @@ public class CraftingSystem : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-
+    public void ToggleCraftingBench()
+    {
+        Debug.Log("toggled");
+        Text infoText = canvas.AddComponent<Text>();
+        infoText.text = "Craft hehe";
+    }
 
     private void damageUpgrade()
     {
