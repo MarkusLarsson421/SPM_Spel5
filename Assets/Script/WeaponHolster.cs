@@ -39,8 +39,15 @@ public class WeaponHolster : MonoBehaviour{
 			SelectWeapon();
 		}
 	}
-
-	private void SelectWeapon(){
+    
+    
+    /**
+	 * @Author Markus Larsson
+     *
+     * Loops through the list of weapons and disables all non-desired weapons and enables the desired ones.
+	 */
+    private void SelectWeapon(){
+	    //Should be improved, alterantive ways of doing this?
 		for(int i = 0; i < transform.childCount; i++){
 			if(selectedWeapon == i){
 				transform.GetChild(i).transform.gameObject.SetActive(true);

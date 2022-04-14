@@ -49,6 +49,12 @@ public class Weapon : MonoBehaviour {
 		}
 	}
 
+	
+	/**
+	 * @Author Markus Larsson
+	 *
+	 * Shoots from the referenced camera 10 units forward.
+	 */
 	private void Fire(){
 		currentMag--;
 		ammo--;
