@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GeneratorInteraction : MonoBehaviour
 {
-    Interactable interactable;
-    public LayerMask interactableLayerMask = 7;
+    Clickable clickable;
+    public LayerMask interactableLayerMask = 8;
 
     // Update is called once per frame
     void Update()
@@ -22,16 +22,16 @@ public class GeneratorInteraction : MonoBehaviour
         {
             if (hit.collider.GetComponent<Interactable>() != false) //makes u interact Only Once. Doesnt update every frame.
             {
-                if (interactable == null || interactable.ID != hit.collider.GetComponent<Interactable>().ID)
+                if (clickable == null || clickable.ID != hit.collider.GetComponent<Interactable>().ID)
                 {
-                    interactable = hit.collider.GetComponent<Interactable>();
+                    clickable = hit.collider.GetComponent<Clickable>();
                     Debug.Log("interaction Done Once");
                 }
                 
                 if (Input.GetKeyDown(KeyCode.E)) //händer när man klickar E
                 {
-                    
-                    interactable.onInteract.Invoke();
+
+                    clickable.onInteract.Invoke();
 
                 }
             }
