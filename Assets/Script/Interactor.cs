@@ -16,7 +16,7 @@ public class Interactor : MonoBehaviour
     public Vector2 defaultInteractionIconSize;
 
     Interactable interactable;
-    
+    Weapon wpn;
     
     void Update()
     {
@@ -36,11 +36,24 @@ public class Interactor : MonoBehaviour
                     Debug.Log("interaction Done Once");
                 }
                 ChangeInteractionIcon();
+
                 if (Input.GetKeyDown(KeyCode.E)) //händer när man klickar E
                 {
-                    rM.PickUp(interactable.gameObject);
-                    Destroy(interactable.gameObject);
+                    /*rM.PickUp(interactable.gameObject);
+                    Destroy(interactable.gameObject);*/
                     interactable.onInteract.Invoke();
+                }
+                if(interactable.gameObject.CompareTag("Ammo") && Input.GetKeyDown(KeyCode.E))
+                {
+                    if (wpn.getAmmo() == 100)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        rM.PickUp(interactable.gameObject);
+                        Destroy(interactable.gameObject);
+                    }
                 }
             }
         }

@@ -67,14 +67,12 @@ public class ResourceManager : MonoBehaviour
         }
         else
         {
-            
             wpn.setAmmo(PickUpQuant);
             Debug.Log("Total ammo: " + wpn.getAmmo());
-
         }
 
     }
-    /*spelaren ska inte kunna plocka upp ammo när den har max ammo
+    /*
      * 
      * */
 }
