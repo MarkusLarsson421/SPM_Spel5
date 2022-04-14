@@ -10,7 +10,7 @@ public class LevelLoader : MonoBehaviour
 
 
     public float transitionTime = 1f;
-    public string sceneToLoadName;
+    public int sceneToIndex;
 
     public bool doTransitionOnStart = true;
 
@@ -34,7 +34,7 @@ public class LevelLoader : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene(sceneToLoadName);
+        SceneManager.LoadScene(sceneToIndex);
     }
 
 }
