@@ -4,16 +4,17 @@ using UnityEngine;
 //testscript för att få till handkontrollern
 public class GamePadCamera : MonoBehaviour
 {
-    private InputSystem input;
     [SerializeField] private float sensitity;
+    
+    private InputSystem input;
     private Vector2 look;
     private float xRotation = 0f;
 
-    private Transform playerbody;
+    private Transform player;
     // Start is called before the first frame update
     void Awake()
     {
-        playerbody = transform.parent;
+        player = transform.parent;
 
         input = new InputSystem();
 
@@ -38,7 +39,7 @@ public class GamePadCamera : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        playerbody.Rotate(Vector3.up * xAxis);
+        player.Rotate(Vector3.up * xAxis);
     }
 
     private void OnEnable()
