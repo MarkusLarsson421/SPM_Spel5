@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Clickable : MonoBehaviour
+public class Clickable : MonoBehaviour // det här scriptet finns redan. Det är interactable
 {
     public UnityEvent onInteract; //Vad som händer när man interagerar med något.
     public Sprite interactIcon; //vilken Ikon ska man ha på interaktionen.

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-
+    //SIMON HESSLING
     //Lägg denna klass på ett gameobjekt för att göra så man kan interagera med det.
     //Ändra Layer mask till nr7 interactable.
     public UnityEvent onInteract; //Vad som händer när man interagerar med något.
@@ -16,11 +16,5 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         ID = Random.Range(0, 99999);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
