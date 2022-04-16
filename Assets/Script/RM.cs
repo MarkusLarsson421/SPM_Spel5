@@ -5,7 +5,7 @@ using UnityEngine;
 public class RM : MonoBehaviour
 {
 
-    /*SIMON
+    /*skapat av SIMON HESSLING
      * Test klass vill kunna få UI att fungera korrekt.
      * 
      * 
