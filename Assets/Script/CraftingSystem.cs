@@ -82,7 +82,7 @@ public class CraftingSystem : MonoBehaviour
     {
         if (!hasMagazineSizeUpgrade)
         {
-
+            player.GetComponent<Weapon>().setMagCapacity(12);
         }
     }
 

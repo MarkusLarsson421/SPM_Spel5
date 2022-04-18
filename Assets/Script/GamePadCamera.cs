@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //testscript för att få till handkontrollern
+//Martin Wallmark
 public class GamePadCamera : MonoBehaviour
 {
     [SerializeField] private float sensitity;
