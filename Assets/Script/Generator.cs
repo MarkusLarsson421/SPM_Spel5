@@ -51,6 +51,8 @@ public class Generator : MonoBehaviour
             if (!isEmpty && fuel <= maxFuel / 2)
             {
                 fuelLevelIndicator.color = halfEmptyGeneratorColor;
+
+                LerpingLights();
             }
             //For testing, set fuel to 0
             if (Input.GetKeyDown("l"))
@@ -131,6 +133,20 @@ public class Generator : MonoBehaviour
             singleDoors[i].ToggleOpen();
             doorsDisabled = true;
         }
+    }
+
+    private void LerpingLights()
+    {
+        foreach(Light light in lights){
+            float lerpTimer = Time.deltaTime / 3f;
+            light.intensity = Mathf.Lerp(light.intensity, 0.5f, lerpTimer);
+        }
+        foreach (Light light in lights)
+        {
+            float lerpTimer = Time.deltaTime / 3f;
+            light.intensity = Mathf.Lerp(light.intensity, 1.5f, lerpTimer);
+        }
+        
     }
 
 }
