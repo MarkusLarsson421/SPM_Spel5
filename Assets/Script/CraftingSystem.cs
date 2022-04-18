@@ -39,6 +39,7 @@ public class CraftingSystem : MonoBehaviour
         toggleButtons();
         if (!isToggled)
         {
+            Cursor.lockState = CursorLockMode.None;
             isToggled = true;
             Debug.Log("toggled");
             infoText.enabled = true;
@@ -52,7 +53,8 @@ public class CraftingSystem : MonoBehaviour
         {
             isToggled = false;
             infoText.enabled = false;
-            
+            Cursor.lockState = CursorLockMode.Locked;
+
         }
         
         
