@@ -12,14 +12,16 @@ public class AmmoPickUpHandler : MonoBehaviour
     * Sammarbetar med klassen RM för att uppdatera mängden ammo man har
     */
     public RM rm;
-
     private int MINPICKUP = 5;
     private int MAXPICKUP = 15;
     private int currentAmmo = 0;
     private int maxAmmo = 100;
     private bool ammoLimit = true;
   
-
+    public int GetMaxAmmo()
+    {
+        return maxAmmo;
+    }
 
 
     public void PickUpAmmo()
@@ -39,9 +41,12 @@ public class AmmoPickUpHandler : MonoBehaviour
             {
                 Debug.Log("current ammo = 100");
                 rm.SetTotalAmmo(100);
+                
             }
+        
             Destroy(gameObject);
             Debug.Log("current ammo =" + currentAmmo);
+            Debug.Log("total ammo =" + rm.GetTotalAmmo());
         }
         else
         {

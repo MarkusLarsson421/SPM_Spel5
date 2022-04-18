@@ -1022,6 +1022,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1351539073}
+  - {fileID: 1629817108}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1533,53 +1534,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dadc4458e91b5364ebcfe4f47025e978, type: 3}
---- !u!1 &1449352832 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7191338239713041058, guid: dadc4458e91b5364ebcfe4f47025e978, type: 3}
-  m_PrefabInstance: {fileID: 1502250618}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1449352833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1449352832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d07e711ae3a7f84b9a0fe9b27df0b4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1449352834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1449352832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf15f4fcdab6924cbb7dc773fe31d05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: PickUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactIcon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  iconSize: {x: 25, y: 25}
-  ID: 0
 --- !u!1001 &1502250618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1587,6 +1541,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1046961733, guid: dadc4458e91b5364ebcfe4f47025e978, type: 3}
+      propertyPath: rm
+      value: 
+      objectReference: {fileID: 1351539074}
+    - target: {fileID: 1046961733, guid: dadc4458e91b5364ebcfe4f47025e978, type: 3}
+      propertyPath: uIH
+      value: 
+      objectReference: {fileID: 1629817109}
     - target: {fileID: 3514180810726154000, guid: dadc4458e91b5364ebcfe4f47025e978, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1634,10 +1596,6 @@ PrefabInstance:
     - target: {fileID: 7191338239713041058, guid: dadc4458e91b5364ebcfe4f47025e978, type: 3}
       propertyPath: m_Name
       value: Ammunition
-      objectReference: {fileID: 0}
-    - target: {fileID: 7191338239713041058, guid: dadc4458e91b5364ebcfe4f47025e978, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dadc4458e91b5364ebcfe4f47025e978, type: 3}
@@ -1721,6 +1679,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605833315}
   m_CullTransparentMesh: 1
+--- !u!1 &1629817107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1629817108}
+  - component: {fileID: 1629817109}
+  m_Layer: 0
+  m_Name: UIHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1629817108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629817107}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -32.29902, y: -63.18013, z: 9.523301}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1165978607}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1629817109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629817107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e75bd798fd05fb4d80c5e3015cae100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rm: {fileID: 1351539074}
+  ammoText: {fileID: 2096674773}
+  batteryText: {fileID: 175516017}
+  scrapText: {fileID: 1355198291}
 --- !u!1001 &1695692654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2197,9 +2202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ammo
-
-    0/200'
+  m_text: ammo in gun / TotalAmmo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17f40626e7f42574ab0307552ee9965f, type: 2}
   m_sharedMaterial: {fileID: -3115018622578122639, guid: 17f40626e7f42574ab0307552ee9965f, type: 2}
@@ -2242,7 +2245,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -2275,4 +2278,4 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096674771}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
