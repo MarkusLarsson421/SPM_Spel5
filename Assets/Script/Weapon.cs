@@ -35,6 +35,11 @@ public class Weapon : MonoBehaviour {
 		damage = newDamage;
     }
 
+	public void setMagCapacity(int newMagCapacity)
+    {
+		magCapacity = newMagCapacity;
+    }
+
 	public void resetAmmo()
     {
 		ammo = 100;

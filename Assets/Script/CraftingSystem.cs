@@ -19,6 +19,7 @@ public class CraftingSystem : MonoBehaviour
     private GameObject fireRateUpgrade;
 
     private bool hasUpgradedDamage;
+    private bool hasMagazineSizeUpgrade;
 
     private void Start()
     {
@@ -75,6 +76,14 @@ public class CraftingSystem : MonoBehaviour
             hasUpgradedDamage = true;
         }
         
+    }
+
+    public void IncreaseMagazineSize()
+    {
+        if (!hasMagazineSizeUpgrade)
+        {
+
+        }
     }
 
     private void flashLightUpgrade()
