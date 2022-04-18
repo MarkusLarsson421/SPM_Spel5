@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d344003c722b9d49a53d6d473912f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wpn: {fileID: 0}
 --- !u!1 &3085997579580629145
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +192,9 @@ MonoBehaviour:
   health: 100
   stamina: 100
   healthText: {fileID: 0}
+  CanvasObject: {fileID: 0}
+  deathCanvasObject: {fileID: 0}
+  tryAgainButton: {fileID: 0}
 --- !u!114 &5457171248501786591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,7 +428,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7862691786581626923, guid: a32f12fc96298cf43bd72f563ccd0180, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.641
+      value: -0.178
       objectReference: {fileID: 0}
     - target: {fileID: 7862691786581626923, guid: a32f12fc96298cf43bd72f563ccd0180, type: 3}
       propertyPath: m_LocalPosition.y
@@ -432,7 +436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7862691786581626923, guid: a32f12fc96298cf43bd72f563ccd0180, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.325
+      value: -3.11
       objectReference: {fileID: 0}
     - target: {fileID: 7862691786803276620, guid: a32f12fc96298cf43bd72f563ccd0180, type: 3}
       propertyPath: m_LocalScale.y
