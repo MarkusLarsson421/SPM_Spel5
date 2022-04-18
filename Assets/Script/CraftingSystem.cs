@@ -12,6 +12,9 @@ public class CraftingSystem : MonoBehaviour
     private Text infoText;
     private bool isToggled;
     private Button upgradeButton;
+    private GameObject damageUpgrade;
+    private GameObject magazineUpgrade;
+    private GameObject fireRateUpgrade;
 
     private void Start()
     {
@@ -21,10 +24,19 @@ public class CraftingSystem : MonoBehaviour
         upgradeButton.enabled = false;
         infoText.font = font;
         infoText.enabled = false;
+
+        damageUpgrade = GameObject.Find("DamageUpgrade");
+        magazineUpgrade = GameObject.Find("MagazineUpgrade");
+        fireRateUpgrade = GameObject.Find("fireRateUpgrade");
+        damageUpgrade.active = false;
+        magazineUpgrade.active = false;
+        fireRateUpgrade.active = false;
+
     }
 
     public void ToggleCraftingBench()
     {
+        toggleButtons();
         if (!isToggled)
         {
             isToggled = true;
@@ -32,25 +44,54 @@ public class CraftingSystem : MonoBehaviour
             infoText.enabled = true;
             upgradeButton.enabled = true;
 
+
             infoText.text = "Craft hehe";
+            
         }
         else
         {
             isToggled = false;
             infoText.enabled = false;
+            
         }
+        
         
     }
     /*
-    private void damageUpgrade()
+    public void CreateButton(Transform panel, Vector3 position, Vector2 size, UnityEngine.Events.UnityAction action)
     {
-        player.GetComponent<Weapon>().SetDamage(player.GetComponent<Weapon>().getDamage() + 5);
+        GameObject button = new GameObject();
+
+
+    }
+    */
+    
+    public void DamageUpgrade()
+    {
+        //player.GetComponent<Weapon>().SetDamage(player.GetComponent<Weapon>().getDamage() + 5);
         //Ska göra så pistolen gör mer skada
+        Debug.Log("+1");
     }
 
     private void flashLightUpgrade()
     {
         //ska göra så ficklampans batterie räcker längre(eller nåt)
     }
-    */
+
+    private void toggleButtons()
+    {
+        if (!isToggled)
+        {
+            damageUpgrade.active = true;
+            magazineUpgrade.active = true;
+            fireRateUpgrade.active = true;
+        }
+        else
+        {
+            damageUpgrade.active = false;
+            magazineUpgrade.active = false;
+            fireRateUpgrade.active = false;
+        }
+    }
+    
 }
