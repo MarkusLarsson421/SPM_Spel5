@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 //Martin Wallmark
 public class CraftingSystem : MonoBehaviour
 {
@@ -12,9 +13,12 @@ public class CraftingSystem : MonoBehaviour
     private Text infoText;
     private bool isToggled;
     private Button upgradeButton;
+    
     private GameObject damageUpgrade;
     private GameObject magazineUpgrade;
     private GameObject fireRateUpgrade;
+
+    private bool hasUpgradedDamage;
 
     private void Start()
     {
@@ -28,9 +32,9 @@ public class CraftingSystem : MonoBehaviour
         damageUpgrade = GameObject.Find("DamageUpgrade");
         magazineUpgrade = GameObject.Find("MagazineUpgrade");
         fireRateUpgrade = GameObject.Find("fireRateUpgrade");
-        damageUpgrade.active = false;
-        magazineUpgrade.active = false;
-        fireRateUpgrade.active = false;
+        damageUpgrade.SetActive(false);
+        magazineUpgrade.SetActive(false);
+        fireRateUpgrade.SetActive(false);
 
     }
 
@@ -63,9 +67,14 @@ public class CraftingSystem : MonoBehaviour
     
     public void DamageUpgrade()
     {
-        //player.GetComponent<Weapon>().SetDamage(player.GetComponent<Weapon>().getDamage() + 5);
-        //Ska göra så pistolen gör mer skada
-        Debug.Log("+1");
+        if (!hasUpgradedDamage)
+        {
+            player.GetComponent<Weapon>().setDamage(player.GetComponent<Weapon>().getDamage() + 5);
+            //Ska göra så pistolen gör mer skada
+            print("HEYO");
+            hasUpgradedDamage = true;
+        }
+        
     }
 
     private void flashLightUpgrade()
@@ -77,15 +86,19 @@ public class CraftingSystem : MonoBehaviour
     {
         if (!isToggled)
         {
-            damageUpgrade.active = true;
-            magazineUpgrade.active = true;
-            fireRateUpgrade.active = true;
+            if (!hasUpgradedDamage)
+            {
+                damageUpgrade.SetActive(true);
+            }
+            
+            magazineUpgrade.SetActive(true);
+            fireRateUpgrade.SetActive(true);
         }
         else
         {
-            damageUpgrade.active = false;
-            magazineUpgrade.active = false;
-            fireRateUpgrade.active = false;
+            damageUpgrade.SetActive(false);
+            magazineUpgrade.SetActive(false);
+            fireRateUpgrade.SetActive(false);
         }
     }
     
