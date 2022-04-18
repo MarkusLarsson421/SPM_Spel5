@@ -7,7 +7,7 @@ using System;
 public class UIHandler : MonoBehaviour
 {
     public RM rm;
-    [SerializeField] private TMP_Text ammoText;
+    [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private TMP_Text batteryText;
     [SerializeField] private TMP_Text scrapText;
 
@@ -28,8 +28,8 @@ public class UIHandler : MonoBehaviour
     
     private void UpdateAmmoText()
     {
-        ammoText.gameObject.SetActive(false);
-        ammoText.text = rm.GetTotalAmmo() + " / " + rm.GetTotalAmmo();
-        ammoText.gameObject.SetActive(true);
+        
+        ammoText.text = rm.GetTotalAmmo().ToString() + " / " + rm.GetTotalAmmo().ToString();
+        
     }
 }
