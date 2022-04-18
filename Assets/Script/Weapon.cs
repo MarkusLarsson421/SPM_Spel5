@@ -23,9 +23,16 @@ public class Weapon : MonoBehaviour {
 
 	private int ammo = 32; //extra ammo
 	public int getAmmo() { return ammo; }
+
+	public int getDamage() { return damage; }
 	public void setAmmo(int newAmmo)
     {
 		ammo += newAmmo;
+    }
+
+	public void setDamage(int newDamage)
+    {
+		damage = newDamage;
     }
 
 	public void resetAmmo()

@@ -59,14 +59,7 @@ public class CraftingSystem : MonoBehaviour
         
         
     }
-    /*
-    public void CreateButton(Transform panel, Vector3 position, Vector2 size, UnityEngine.Events.UnityAction action)
-    {
-        GameObject button = new GameObject();
-
-
-    }
-    */
+  
     
     public void DamageUpgrade()
     {
