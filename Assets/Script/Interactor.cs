@@ -16,7 +16,7 @@ public class Interactor : MonoBehaviour
     public Vector2 defaultInteractionIconSize;
 
     Interactable interactable;
-    Weapon wpn;
+    
     
     void Update()
     {
@@ -42,7 +42,7 @@ public class Interactor : MonoBehaviour
                     interactable.onInteract.Invoke();
                 }
 
-                if (interactable.gameObject.CompareTag("Ammo") && Input.GetKeyDown(KeyCode.E))
+                if (interactable.gameObject.CompareTag("Ammo") && Input.GetKeyDown(KeyCode.E)) // den här raden borde inte vara här /Simon
                 {
                     rM.PickUp(interactable.gameObject);
                 }
