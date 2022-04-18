@@ -767,6 +767,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1555586264518437387, guid: b49be5c1964bad14b9cc5fe46a1be1f5, type: 3}
+      propertyPath: fpsCamera
+      value: 
+      objectReference: {fileID: 1931147490}
     - target: {fileID: 3085997579580629145, guid: b49be5c1964bad14b9cc5fe46a1be1f5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1308,7 +1312,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1265981446}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 143359371}
+        m_TargetAssemblyTypeName: CraftingSystem, Assembly-CSharp
+        m_MethodName: IncreaseMagazineSize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1265981446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1430,13 +1446,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 143359370}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 143359371}
+        m_TargetAssemblyTypeName: CraftingSystem, Assembly-CSharp
+        m_MethodName: DamageUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1981,6 +1997,11 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7577167074781349484, guid: 8e30eac164ac8364591bb9c30a73fb9c, type: 3}
   m_PrefabInstance: {fileID: 7577167076164148846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1931147490 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3085997580443032870, guid: b49be5c1964bad14b9cc5fe46a1be1f5, type: 3}
+  m_PrefabInstance: {fileID: 574008834}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1941956898
 GameObject:
@@ -2710,6 +2731,10 @@ PrefabInstance:
       propertyPath: interactIcon
       value: 
       objectReference: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1719810379302933032, guid: e3a2bba56a66ab944846118003d52e38, type: 3}
+      propertyPath: fuel
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1719810379302933032, guid: e3a2bba56a66ab944846118003d52e38, type: 3}
       propertyPath: lights.Array.data[0]
       value: 
