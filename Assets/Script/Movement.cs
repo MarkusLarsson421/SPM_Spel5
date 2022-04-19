@@ -54,7 +54,7 @@ public class Movement : MonoBehaviour
     }
 
     /**
-     * @author Markus Larsson
+     * @Author Markus Larsson
      * 
      * Opens or closes the door the user is looking at.
      * Shoots raycast from the main camera.

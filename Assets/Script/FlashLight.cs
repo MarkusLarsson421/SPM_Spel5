@@ -24,7 +24,7 @@ public class FlashLight : MonoBehaviour{
 		}
 
 		if(Input.GetKeyDown(KeyCode.R)){
-			Recharge(); //TODO make it actually consume batteries! Temporary for playtest.
+			Recharge();
 		}
 	}
 	
