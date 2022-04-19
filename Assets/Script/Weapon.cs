@@ -90,7 +90,7 @@ public class Weapon : MonoBehaviour {
 		currentMag = magCapacity;
 		ammo -= magCapacity;
 		
-		Debug.Log("Reloaded.");
+		Debug.Log("Reloaded!");
 		isReloading = false;
 	}
 	
