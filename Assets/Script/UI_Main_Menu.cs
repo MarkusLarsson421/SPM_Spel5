@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UI_Main_Menu : MonoBehaviour
+public class UI_Main_Menu : MonoBehaviour //Khaled Alraas
 {
-        [SerializeField] private GameObject MenuCanvas;
+       [SerializeField] private GameObject MenuCanvas;
     [SerializeField] private GameObject OptionsCanvas;
     [SerializeField] private GameObject ExitConfirmationCanvas;
     [SerializeField] private Button StartButton;
@@ -27,13 +27,16 @@ public class UI_Main_Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ListenToButtons();
+    }
+    void ListenToButtons()
+    {
         StartButton.onClick.AddListener(LoadNextLevel);
         ExitButton.onClick.AddListener(OpenExitConfirmationCanvas);
         NoExitButton.onClick.AddListener(CloseExitConfirmationCanvas);
         YesExitButton.onClick.AddListener(Exit);
         OptionsButton.onClick.AddListener(ChangeMenuCanvasToOptionsCanvas);
         OptionsBackButton.onClick.AddListener(BackToMenuCanvas);
-
     }
 
     void ChangeMenuCanvasToOptionsCanvas()
