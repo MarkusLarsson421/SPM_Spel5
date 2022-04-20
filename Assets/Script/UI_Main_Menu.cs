@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,14 @@ using UnityEngine.UI;
 
 public class UI_Main_Menu : MonoBehaviour
 {
+        [SerializeField] private GameObject MenuCanvas;
+    [SerializeField] private GameObject OptionsCanvas;
+    [SerializeField] private GameObject ExitConfirmationCanvas;
     [SerializeField] private Button StartButton;
     [SerializeField] private int sceneToIndex;
     [SerializeField] private Button OptionsButton;
+    [SerializeField] private Button OptionsBackButton;
     [SerializeField] private Button ExitButton;
-    [SerializeField] private GameObject ExitConfirmationCanvas;
     [SerializeField] private Button YesExitButton;
     [SerializeField] private Button NoExitButton;
 
@@ -24,13 +28,32 @@ public class UI_Main_Menu : MonoBehaviour
     void Update()
     {
         StartButton.onClick.AddListener(LoadNextLevel);
-        ExitButton.onClick.AddListener(Exit);
+        ExitButton.onClick.AddListener(OpenExitConfirmationCanvas);
+        NoExitButton.onClick.AddListener(CloseExitConfirmationCanvas);
+        YesExitButton.onClick.AddListener(Exit);
+        OptionsButton.onClick.AddListener(ChangeMenuCanvasToOptionsCanvas);
+        OptionsBackButton.onClick.AddListener(BackToMenuCanvas);
 
     }
-    void ChangeCanvas()
+
+    void ChangeMenuCanvasToOptionsCanvas()
+    {
+        MenuCanvas.SetActive(false);
+        OptionsCanvas.SetActive(true);
+    }
+    private void BackToMenuCanvas()
+    {
+        MenuCanvas.SetActive(true);
+        OptionsCanvas.SetActive(false);
+    }
+
+    void OpenExitConfirmationCanvas()
     {
         ExitConfirmationCanvas.SetActive(true);
-        LoadNextLevel();
+    }
+    void CloseExitConfirmationCanvas()
+    {
+        ExitConfirmationCanvas.SetActive(false);
     }
     void LoadNextLevel()
     {
