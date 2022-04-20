@@ -45,30 +45,18 @@ public class PlayerStats : MonoBehaviour
         Debug.Log(health);
 
     }
-
     private void PlayerDeath()
     {
         //Mest till för att testa, inte bestämt vad som ska hända när man dör
         Debug.Log("dead");
         GetComponent<Movement>().enabled = false;
-        //Kanske respawn??
     }
-
-    void DisableCanvas()
+    
+    void DisableCanvas() //khaled
     {
+        //tar bort player Stats canvas och visar death Canvas
         CanvasObject.SetActive(false);
         deathCanvasObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-        tryAgainButton.onClick.AddListener(TaskOnClick);
     }
-    void TaskOnClick()
-    {
-        RestartGame();
-    }
-    public void RestartGame()
-    {
-        Debug.Log("restart");
-        SceneManager.LoadScene("Whitebox");
-    }
-
 }
