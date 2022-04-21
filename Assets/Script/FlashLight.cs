@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class FlashLight : MonoBehaviour{
 	[SerializeField] [Range(1, 100)] private double batteryCharge = 100.0;

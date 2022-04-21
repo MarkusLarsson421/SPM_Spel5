@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class Holster : MonoBehaviour
 {
-    [SerializeField] private int selectedWeapon;
+	[SerializeField] private int selectedWeapon;
 
-    private ArrayList weapons = new ArrayList();
-    
+	//Weapons
+	private ArrayList weapons = new ArrayList();
+
     private void Start()
     {
         SelectWeapon();
@@ -36,10 +37,9 @@ public class Holster : MonoBehaviour
     {
         foreach(GameObject weapon in weapons)
         {
-            if (weapon.name.Equals(name))
-            {
-                weapons.Remove(weapon);
-            }
+			if(weapon.name.Equals(name)){
+				weapons.Remove(weapon);
+			}
         }
     }
 
@@ -61,8 +61,7 @@ public class Holster : MonoBehaviour
             {
                 selectedWeapon++;
             }
-
-            SelectWeapon();
+			SelectWeapon();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0.0f)
         {
@@ -74,8 +73,7 @@ public class Holster : MonoBehaviour
             {
                 selectedWeapon--;
             }
-
-            SelectWeapon();
+			SelectWeapon();
         }
 
         //Weapon select using numbers at the top.

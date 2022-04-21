@@ -7,7 +7,7 @@ using UnityEngine;
  */
 public class Item : MonoBehaviour
 {
-    [SerializeField] private string name = "Unnamed Item";
+    [SerializeField] private string displayName = "Unnamed Item";
     [SerializeField] private Mesh mesh;
     [SerializeField] private Material material;
     [SerializeField] private ItemType itemType = ItemType.Random;
@@ -17,10 +17,10 @@ public class Item : MonoBehaviour
         gameObject.AddComponent<MeshFilter>().mesh = mesh;
         gameObject.AddComponent<MeshRenderer>().material = material;
 
-        gameObject.name = name;
+        name = displayName;
     }
 
-    public ItemType GetType()
+    public ItemType GetItemType()
     {
         return itemType;
     }

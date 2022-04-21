@@ -4,12 +4,13 @@ using UnityEngine;
 public class SingleDoor : MonoBehaviour
 {
 	[SerializeField] private bool blocked = true;
+	
 	private bool open;
-	private Animator animation;
+	private Animator ani;
 
 	private void Awake()
 	{
-		animation = gameObject.GetComponent<Animator>();
+		ani = gameObject.GetComponent<Animator>();
 	}
 
 	/**
@@ -40,7 +41,7 @@ public class SingleDoor : MonoBehaviour
 	 */
 	private void Close(){
 		open = false;
-		animation.Play("Close", 0, 0.0f);
+		ani.Play("Close", 0, 0.0f);
 		Debug.Log("Closing!");
 	}
 	
@@ -51,7 +52,7 @@ public class SingleDoor : MonoBehaviour
 	 */
 	private void Open(){
 		open = true;
-		animation.Play("Open", 0, 0.0f);
+		ani.Play("Open", 0, 0.0f);
 		Debug.Log("Opening!");
 
 	}
