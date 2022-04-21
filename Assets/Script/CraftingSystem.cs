@@ -26,7 +26,7 @@ public class CraftingSystem : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         infoText = canvas.AddComponent<Text>();
         upgradeButton = canvas.AddComponent<Button>();
-        upgradeButton.enabled = false;
+        upgradeButton.enabled = true;
         infoText.font = font;
         infoText.enabled = false;
 
