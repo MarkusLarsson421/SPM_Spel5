@@ -9,7 +9,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.None; //varför finns detta i canvas handler?
+        //Cursor.lockState = CursorLockMode.None; //varför finns detta i canvas handler?
         tryAgainButton.onClick.AddListener(TaskOnClick);
 
     }
