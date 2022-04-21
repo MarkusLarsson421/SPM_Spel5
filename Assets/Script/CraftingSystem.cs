@@ -70,8 +70,8 @@ public class CraftingSystem : MonoBehaviour
     {
         if (!hasUpgradedDamage)
         {
-            player.GetComponent<Weapon>().setDamage(player.GetComponent<Weapon>().getDamage() + 5);
-            //Ska göra så pistolen gör mer skada
+            player.GetComponent<Weapon>().SetDamage(player.GetComponent<Weapon>().GetDamage() + 5);
+            //Ska gÃ¶ra sÃ¥ pistolen gÃ¶r mer skada
             print("HEYO");
             hasUpgradedDamage = true;
         }
@@ -82,13 +82,13 @@ public class CraftingSystem : MonoBehaviour
     {
         if (!hasMagazineSizeUpgrade)
         {
-            player.GetComponent<Weapon>().setMagCapacity(12);
+            player.GetComponent<Weapon>().SetMagCapacity(12);
         }
     }
 
     private void flashLightUpgrade()
     {
-        //ska göra så ficklampans batterie räcker längre(eller nåt)
+        //ska gÃ¶ra sÃ¥ ficklampans batterie rÃ¤cker lÃ¤ngre(eller nÃ¥t)
     }
 
     private void toggleButtons()

@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 //Axel Sterner
 
 public class ResourceManager : MonoBehaviour
 {
-    private int scrapCount, batteryCount;
+    private int scrapCount;
+    private int batteryCount;
     private int ammoCap = 100;
     private int scrapCap = 10;
     private int batteryCap = 3; //maxantal
@@ -34,7 +33,7 @@ public class ResourceManager : MonoBehaviour
         switch (itemTag)
         {
             case "Ammo":
-                if(wpn.getAmmo() == 100)
+                if(wpn.GetAmmo() == 100)
                 {
                     return;
                 }
@@ -69,16 +68,16 @@ public class ResourceManager : MonoBehaviour
     {
         PickUpQuant = Random.Range(MINAMMOPICKUP, MAXAMMOPICKUP);
         Debug.Log("Antal: " + PickUpQuant);
-        int currentAmmo = wpn.getAmmo();
+        int currentAmmo = wpn.GetAmmo();
         if(currentAmmo + PickUpQuant > 100)
         {
-            wpn.resetAmmo();
-            Debug.Log(wpn.getAmmo());
+            wpn.ResetAmmo();
+            Debug.Log(wpn.GetAmmo());
         }
         else
         {
-            wpn.setAmmo(PickUpQuant);
-            Debug.Log("Total ammo: " + wpn.getAmmo());
+            wpn.SetAmmo(PickUpQuant);
+            Debug.Log("Total ammo: " + wpn.GetAmmo());
         }
 
     }
