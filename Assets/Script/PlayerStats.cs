@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-
+        health = 100;
     }
 
     void Update()
@@ -27,7 +27,7 @@ public class PlayerStats : MonoBehaviour
         {
             health = 0;
             PlayerDeath();
-            DisableCanvas();
+            //DisableCanvas();
         }
     }
 
