@@ -22,12 +22,10 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         setHealthtext();
-        //setStaminaText();
         if (health <= 0)
         {
             health = 0;
             PlayerDeath();
-            //DisableCanvas();
         }
     }
 
@@ -50,13 +48,5 @@ public class PlayerStats : MonoBehaviour
         //Mest till för att testa, inte bestämt vad som ska hända när man dör
         Debug.Log("dead");
         GetComponent<Movement>().enabled = false;
-    }
-    
-    void DisableCanvas() //khaled
-    {
-        //tar bort player Stats canvas och visar death Canvas
-        CanvasObject.SetActive(false);
-        deathCanvasObject.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
     }
 }
