@@ -1,11 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 //Axel Sterner
 
-public class ResourceManager : MonoBehaviour
-{
-    private int scrapCount, batteryCount;
+public class ResourceManager : MonoBehaviour{
+	private Dictionary<string, int> inventory = new Dictionary<string, int>();
+	
     private int ammoCap = 100;
     private int scrapCap = 10;
     private int batteryCap = 3; //maxantal
@@ -18,23 +19,25 @@ public class ResourceManager : MonoBehaviour
     private int MINSCRAPPICKUP = 3;
     private int MAXSCRAPPICKUP = 6;
     
-    void Start()
-    {
-        
-    }
+    void Start(){
+		inventory.Add("Scrap", 0);
+	}
 
     void Update()
     {
         
     }
 
+	/**
+	 * @Author Axel Sterner and Markus Larsson
+	 */
     public void PickUp(GameObject g)
     {
         itemTag = g.tag;
         switch (itemTag)
         {
             case "Ammo":
-                if(wpn.getAmmo() == 100)
+                if(wpn.GetAmmo() == 100)
                 {
                     return;
                 }
@@ -47,13 +50,13 @@ public class ResourceManager : MonoBehaviour
 
             case "Scrap":
                 ItemHandler(g);
-                scrapCount += PickUpQuant;
+                inventory["Scrap"] += PickUpQuant;
                 Debug.Log("Quantity: " + PickUpQuant);
                 break;
 
             case "Battery":
                 ItemHandler(g);
-                batteryCount += PickUpQuant;
+                inventory["Battery"] += PickUpQuant;
                 Debug.Log("Quantity: " + PickUpQuant);
                 break;
         }
@@ -69,16 +72,16 @@ public class ResourceManager : MonoBehaviour
     {
         PickUpQuant = Random.Range(MINAMMOPICKUP, MAXAMMOPICKUP);
         Debug.Log("Antal: " + PickUpQuant);
-        int currentAmmo = wpn.getAmmo();
+        int currentAmmo = wpn.GetAmmo();
         if(currentAmmo + PickUpQuant > 100)
         {
-            wpn.resetAmmo();
-            Debug.Log(wpn.getAmmo());
+            wpn.ResetAmmo();
+            Debug.Log(wpn.GetAmmo());
         }
         else
         {
-            wpn.setAmmo(PickUpQuant);
-            Debug.Log("Total ammo: " + wpn.getAmmo());
+            wpn.SetAmmo(PickUpQuant);
+            Debug.Log("Total ammo: " + wpn.GetAmmo());
         }
 
     }

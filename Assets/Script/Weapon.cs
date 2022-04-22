@@ -5,62 +5,93 @@ using TMPro;
 
 
 public class Weapon : MonoBehaviour {
-	//Fire
+	//Shooting
 	[SerializeField] private int damage = 20;
 	[SerializeField] private float range = 100.0f;
 	[SerializeField] private float fireRate = 5.0f;
 	[SerializeField] private TextMeshProUGUI ammoText; // ammo Text UI; @Khaled Alraas
 	private float nextTimeToFire;
 
-	[SerializeField] private Camera fpsCamera;
-
 	//Ammo
-	[SerializeField] private int maxAmmo = 100;
+	[SerializeField] private int totalAmmo;
 	[SerializeField] private int magCapacity = 8;
 	[SerializeField] private float reloadTime = 2.0f;
 	private int currentMag;
 	private bool isReloading;
+	
+	[SerializeField] private Camera fpsCamera;
 
-	private int ammo = 32; //extra ammo
-	public int getAmmo() { return ammo; }
-
-	public int getDamage() { return damage; }
-	public void setAmmo(int newAmmo)
-    {
-		ammo += newAmmo;
-    }
-
-	public void setDamage(int newDamage)
-    {
-		damage = newDamage;
-    }
-
-	public void setMagCapacity(int newMagCapacity)
-    {
-		magCapacity = newMagCapacity;
-    }
-
-	public void resetAmmo()
-    {
-		ammo = 100;
-    }
-
-	private void Start(){
+	void Start()
+	{
+		totalAmmo = magCapacity * 2;
 		currentMag = magCapacity;
 	}
 
-	void Update(){
-		if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && !isReloading){
+	void Update()
+	{
+		UserInput();
+	}
+	
+	/**
+	 * @Author Axel Sterner
+	 */
+	public int GetAmmo() { return totalAmmo; }
+
+	/**
+	 * @Author Axel Sterner
+	 */
+	public void SetAmmo(int newAmmo)
+	{
+		totalAmmo += newAmmo;
+	}
+	
+	/**
+	 * @Author Axel Sterner
+	 */
+	public void ResetAmmo()
+	{
+		totalAmmo = 100;
+	}
+
+	/**
+	 * @Author Axel Sterner
+	 */
+	public int GetDamage()
+	{
+		return damage;
+	}
+
+	/**
+	 * @Author Martin Wallmark
+	 */
+	public void SetDamage(int newDamage)
+	{
+		damage = newDamage;
+	}
+	
+	/**
+	 * @Author Martin Wallmark
+	 */
+	public void SetMagCapacity(int newMagCapacity)
+	{
+		magCapacity = newMagCapacity;
+	}
+
+	/**
+	 * @Author Markus Larsson and Khaled Alrass
+	 */
+	private void UserInput()
+	{
+		if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && !isReloading && currentMag > 0){
 			nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
-			SetAmmoText(); // show ammo text;  @Khaled Alraas
+			SetAmmoText();
 		}
 		else if(Input.GetKeyDown(KeyCode.R) && !isReloading){
 			StartCoroutine(Reload());
-			SetAmmoText(); // show ammo text; @Khaled Alraas
+			SetAmmoText();
 		}
 	}
-
 	
 	/**
 	 * @Author Markus Larsson
@@ -69,12 +100,12 @@ public class Weapon : MonoBehaviour {
 	 */
 	private void Fire(){
 		currentMag--;
-		ammo--;
+		totalAmmo--;
 
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
 			Target target = hit.transform.GetComponent<Target>();
-			Debug.Log("Hit: " + hit.transform.name + ", Remaining ammo: " + ammo);
+			Debug.Log("Hit: " + hit.transform.name + ", Remaining ammo: " + totalAmmo);
 			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
 			if(target != null){
 				target.TakeDamage(damage);
@@ -82,20 +113,29 @@ public class Weapon : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * @Author Markus Larsson
+	 *
+	 * Reloads the current magazine.
+	 */
 	IEnumerator Reload(){
 		isReloading = true;
 		Debug.Log("Reloading...");
 
 		yield return new WaitForSeconds(reloadTime);
 		currentMag = magCapacity;
-		ammo -= magCapacity;
+		totalAmmo -= magCapacity;
 		
 		Debug.Log("Reloaded!");
 		isReloading = false;
 	}
 	
+	/**
+	 * @Author Khaled Alraas
+	 */
 	private void SetAmmoText()
-	{  // set ammo Text UI; @Khaled Alraas
-		ammoText.text = ammo.ToString();
+	{
+		// set ammo Text UI
+		ammoText.text = totalAmmo.ToString();
 	}
 }
