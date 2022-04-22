@@ -39,6 +39,8 @@ public class CraftingSystem : MonoBehaviour
 
     }
 
+   
+
     public void ToggleCraftingBench()
     {
         toggleButtons();
@@ -68,9 +70,10 @@ public class CraftingSystem : MonoBehaviour
     
     public void DamageUpgrade()
     {
+
         if (!hasUpgradedDamage)
         {
-            player.GetComponent<Weapon>().SetDamage(player.GetComponent<Weapon>().GetDamage() + 5);
+        player.GetComponentInChildren<Weapon>().SetDamage(30);
             //Ska göra så pistolen gör mer skada
             print("HEYO");
             hasUpgradedDamage = true;
@@ -108,6 +111,14 @@ public class CraftingSystem : MonoBehaviour
             damageUpgrade.SetActive(false);
             magazineUpgrade.SetActive(false);
             fireRateUpgrade.SetActive(false);
+        }
+    }
+
+    private void voidChooseUpgrade()
+    {
+        if (Input.GetKeyDown("1"))
+        {
+            DamageUpgrade();
         }
     }
     
