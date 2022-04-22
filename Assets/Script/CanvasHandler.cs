@@ -21,20 +21,20 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         tryAgainButton.onClick.AddListener(ReastartLevel);
         ExitToMaiinMenuButton.onClick.AddListener(GoTOMainMenu);
     }
-    public GameObject playerStats ;
+    GameObject player;
     private void Awake()
     {
-        playerStats = GetComponent<GameObject>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (playerStats.GetComponent<PlayerStats>().getHealth() <= 0)
+        
+        if (player.GetComponent<PlayerStats>().getHealth() <= 0)
         {
             ChangeCanvasToDeathCanvas();
         }
-        */
+        
     }
     void ReastartLevel()
     {
