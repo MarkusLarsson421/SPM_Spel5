@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class CanvasHandler : MonoBehaviour // @Khaled Alraas
 {
     [SerializeField] private Button tryAgainButton;
-    [SerializeField] private Button ExitToMaiinMenuButton;
+    [SerializeField] private Button LoseExitToMainMenuButton;
+    [SerializeField] private Button RestartButton;
+    [SerializeField] private Button WinExitToMainMenuButton;
     [SerializeField] private GameObject CanvasObject;
     [SerializeField] private GameObject deathCanvasObject;
     [SerializeField] private int sceneToIndex;
@@ -19,7 +21,9 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     {
         //Cursor.lockState = CursorLockMode.None; //varför finns detta i canvas handler?
         tryAgainButton.onClick.AddListener(ReastartLevel);
-        ExitToMaiinMenuButton.onClick.AddListener(GoTOMainMenu);
+        LoseExitToMainMenuButton.onClick.AddListener(GoTOMainMenu);
+        RestartButton.onClick.AddListener(ReastartLevel);
+        WinExitToMainMenuButton.onClick.AddListener(GoTOMainMenu);
     }
     GameObject player;
     private void Awake()
