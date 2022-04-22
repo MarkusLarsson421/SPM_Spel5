@@ -12,8 +12,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     [SerializeField] private GameObject CanvasObject;
     [SerializeField] private GameObject deathCanvasObject;
     [SerializeField] private int sceneToIndex;
-    //[SerializeField] private GameObject player;
-    static private int MainMenusceneToIndex = 0;
+    static private int MainMenuSceneIsIndex = 0;
 
 
     // Start is called before the first frame update
@@ -48,7 +47,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     void GoTOMainMenu()
     {
         Debug.Log("You have clicked the ExitToMaiinMenuButton!");
-        SceneManager.LoadScene(MainMenusceneToIndex);
+        SceneManager.LoadScene(MainMenuSceneIsIndex);
     }
     void ChangeCanvasToDeathCanvas() //khaled
     {
