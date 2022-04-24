@@ -135,16 +135,12 @@ public class Generator : MonoBehaviour
         }
     }
 
+    //When generator is half full the light intensity will lerp from 2 to 1 before shutting off
     private void LerpingLights()
     {
         foreach(Light light in lights){
             float lerpTimer = Time.deltaTime / 3f;
-            light.intensity = Mathf.Lerp(light.intensity, 0.5f, lerpTimer);
-        }
-        foreach (Light light in lights)
-        {
-            float lerpTimer = Time.deltaTime / 3f;
-            light.intensity = Mathf.Lerp(light.intensity, 1.5f, lerpTimer);
+            light.intensity = Mathf.Lerp(light.intensity, 1f, lerpTimer);
         }
         
     }

@@ -35,37 +35,11 @@ public class ZombieSpawnSystem : MonoBehaviour
     {
         if (ongoingWave)
         {
-            waveTimer += Time.deltaTime;
-
-            if (waveTimer >= second)
-            {
-                waveDuration++;
-                waveTimer = 0;
-            }
-            if(waveDuration >= waveLength)
-            {
-                ongoingWave = false;
-                Debug.Log("wave over");
-                waitDuration = 0;
-            }
+            DuringWaveTimer();
         }
-        else if(!ongoingWave)
+        else
         {
-            waveTimer += Time.deltaTime;
-
-            if(waveTimer >= second)
-            {
-                waitDuration++;
-                Debug.Log(waitDuration);
-                waveTimer = 0;
-            }
-
-            if(waitDuration >= timeBetweenWaves)
-            {
-                waveSpawn();
-                ongoingWave = true;
-                waitDuration = 0;
-            }
+            BetweenWaveTimer();
         }
     }
     // The spawn method of every spawnPoints gets called when the wave begins
@@ -84,5 +58,41 @@ public class ZombieSpawnSystem : MonoBehaviour
         }
 
 
+    }
+
+    private void BetweenWaveTimer()
+    {
+        waveTimer += Time.deltaTime;
+
+        if (waveTimer >= second)
+        {
+            waitDuration++;
+            Debug.Log(waitDuration);
+            waveTimer = 0;
+        }
+
+        if (waitDuration >= timeBetweenWaves)
+        {
+            waveSpawn();
+            ongoingWave = true;
+            waitDuration = 0;
+        }
+    }
+
+    private void DuringWaveTimer()
+    {
+        waveTimer += Time.deltaTime;
+
+        if (waveTimer >= second)
+        {
+            waveDuration++;
+            waveTimer = 0;
+        }
+        if (waveDuration >= waveLength)
+        {
+            ongoingWave = false;
+            Debug.Log("wave over");
+            waitDuration = 0;
+        }
     }
 }

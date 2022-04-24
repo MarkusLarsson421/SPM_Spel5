@@ -17,23 +17,16 @@ public class ZombieSpawnPoint : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        //spawnStopper = gameObject.GetComponent<BoxCollider>();
-        canSpawn = true;
-        
     }
 
     public void Spawn()
     {
-        //if (canSpawn)
-        //{
-            NrOfZombies();
-            for (int i = 0; i < randomAmountOfZombies; i++)
-            {
-                GameObject go = Instantiate(zombie, this.transform);
-                go.GetComponent<Zombie>().SetTarget(target);
-            }
-        //}
-        
+        NrOfZombies();
+        for (int i = 0; i < randomAmountOfZombies; i++)
+        {
+            GameObject go = Instantiate(zombie, this.transform);
+            go.GetComponent<Zombie>().SetTarget(target);
+        }
 
     }
 
