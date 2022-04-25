@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class ChangeSceneButtonV2 : MonoBehaviour
 {
-    public void changeScene(string sceneName)
+    LevelLoaderV2 levelLoader;
+    private void Start()
+    {
+        levelLoader = GetComponent<LevelLoaderV2>();
+    }
+    public void ChangeScene(string sceneName)
     {
         LevelLoaderV2.Instance.LoadScene(sceneName);
     }

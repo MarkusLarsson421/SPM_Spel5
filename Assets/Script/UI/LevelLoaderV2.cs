@@ -10,6 +10,12 @@ public class LevelLoaderV2 : MonoBehaviour
     public static LevelLoaderV2 Instance;
     [SerializeField]private GameObject _loaderCanvas;
     [SerializeField] private Image _progressBar;
+
+    public Animator anim;
+    public float transitionTime = 1f;
+    public int sceneToIndex;
+    public bool doTransitionOnStart = true;
+
     private void Awake()
     {
         if (Instance == null)
@@ -23,8 +29,18 @@ public class LevelLoaderV2 : MonoBehaviour
         }
 
     }
+    void Start()
+    {
+        if (doTransitionOnStart)
+        {
+            anim.SetTrigger("StartTransition");
+        }
+    }
+
     public async void LoadScene(string sceneName)
     {
+        Debug.Log(sceneName);
+
         var scene = SceneManager.LoadSceneAsync(sceneName);
         scene.allowSceneActivation = false;
         _loaderCanvas.SetActive(true);
@@ -36,15 +52,17 @@ public class LevelLoaderV2 : MonoBehaviour
         scene.allowSceneActivation = true;
         _loaderCanvas.SetActive(false);
     }
-    // Start is called before the first frame update
-    void Start()
+    public void LoadNextLevel()
     {
-        
+        StartCoroutine(LoadLevel());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator LoadLevel()
     {
-        
+        anim.SetTrigger("EndTransition");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(sceneToIndex);
     }
 }
