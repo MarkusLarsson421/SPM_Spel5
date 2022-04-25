@@ -7,14 +7,14 @@ public class DynamicMovementController : MonoBehaviour
 {
     // Start is called before the first frame update
     private InputSystem controls;
-    private float speed = 8f;
+    private float speed = 9f;
 
     private Vector3 velocity;
 
-    private float gravity = 10f;
+    private float gravity = 9.82f;
 
     private Vector2 move;
-    private float collisionMargin = 0.4f;
+    private float collisionMargin = 0.1f;
     private CapsuleCollider collider;
 
 
@@ -27,6 +27,7 @@ public class DynamicMovementController : MonoBehaviour
     {
         controls = new InputSystem();
         collider = GetComponent<CapsuleCollider>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
