@@ -68,7 +68,7 @@ public class ResourceManager : MonoBehaviour{
                 {
                     batteryCount += pickUpQuant;
                     Debug.Log(batteryCount);
-                    Destory(g);
+                    Destroy(g);
                 }
                 Debug.Log("Quantity: " + pickUpQuant);
                 break;
@@ -78,7 +78,6 @@ public class ResourceManager : MonoBehaviour{
     private void ItemHandler(GameObject g)
     {
         pickUpQuant = 3;
-       
     }
 
     private void AmmoHandler(GameObject g)
