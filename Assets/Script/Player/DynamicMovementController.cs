@@ -49,6 +49,7 @@ public class DynamicMovementController : MonoBehaviour
     private void Movement()
     {
         move = controls.Gameplay.Move.ReadValue<Vector2>();
+        //move = controls.Gameplay.Move.Bi.
 
         Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
         velocity += movement * speed * Time.deltaTime;
