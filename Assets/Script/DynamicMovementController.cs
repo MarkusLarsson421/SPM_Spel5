@@ -52,16 +52,6 @@ public class DynamicMovementController : MonoBehaviour
         velocity += movement * speed * Time.deltaTime;
     }
 
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-
     //Khaled Alraas
     void UpdateVelocity()
     {
@@ -119,6 +109,16 @@ public class DynamicMovementController : MonoBehaviour
             velocity -= velocity.normalized * normalForce.magnitude * kineticFloatCoefficent;
         }
 
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 
 }
