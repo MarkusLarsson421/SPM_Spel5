@@ -16,8 +16,8 @@ public class Interactor : MonoBehaviour
     public Vector2 defaultInteractionIconSize;
 
     Interactable interactable;
-    
-    
+
+
     void Update()
     {
         interactHandler();
@@ -41,43 +41,38 @@ public class Interactor : MonoBehaviour
                 {
                     interactable.onInteract.Invoke();
                 }
-
-                if (interactable.gameObject.CompareTag("Ammo") && Input.GetKeyDown(KeyCode.E)) // den här raden borde inte vara här /Simon
-                {
-                    Debug.Log("pickup");
-                    rM.PickUp(interactable.gameObject);
-                }
-            }
-        }
-        else
-        {
-            if (interactImage.sprite != defaultIcon)
-            {
-                interactImage.sprite = defaultIcon;
-                interactImage.rectTransform.sizeDelta = defaultIconSize;
-            }
-        }
-    }
-
-
-    void ChangeInteractionIcon()
-    { //also makes it possible to change the size.
-        if (interactable.interactIcon != null)
-        {
-            interactImage.sprite = interactable.interactIcon;
-            if (interactable.iconSize == Vector2.zero)
-            {
-                interactImage.rectTransform.sizeDelta = defaultInteractionIconSize;
             }
             else
             {
-                interactImage.rectTransform.sizeDelta = interactable.iconSize;
+                if (interactImage.sprite != defaultIcon)
+                {
+                    interactImage.sprite = defaultIcon;
+                    interactImage.rectTransform.sizeDelta = defaultIconSize;
+                }
             }
         }
-        else
-        {
-            interactImage.sprite = defaultInteractionIcon;
-            interactImage.rectTransform.sizeDelta = defaultInteractionIconSize;
+
+
+        void ChangeInteractionIcon()
+        { //also makes it possible to change the size.
+            if (interactable.interactIcon != null)
+            {
+                interactImage.sprite = interactable.interactIcon;
+                if (interactable.iconSize == Vector2.zero)
+                {
+                    interactImage.rectTransform.sizeDelta = defaultInteractionIconSize;
+                }
+                else
+                {
+                    interactImage.rectTransform.sizeDelta = interactable.iconSize;
+                }
+            }
+            else
+            {
+                interactImage.sprite = defaultInteractionIcon;
+                interactImage.rectTransform.sizeDelta = defaultInteractionIconSize;
+            }
         }
     }
+
 }

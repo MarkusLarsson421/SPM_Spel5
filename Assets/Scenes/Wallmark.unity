@@ -359,7 +359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &184198559
 Transform:
   m_ObjectHideFlags: 0
@@ -412,6 +412,17 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &200963209 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -752147081225894367, guid: c7ed4980fd2f461449ef8bca150b1457, type: 3}
+  m_PrefabInstance: {fileID: 1588605491932530767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200963207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &345216144 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7577167074781349487, guid: 8e30eac164ac8364591bb9c30a73fb9c, type: 3}
@@ -531,9 +542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0aa448b548fb04782282827c84d28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move: {x: 0, y: 0, z: 0}
-  rotate: {x: 0, y: 0, z: 0}
-  playerCamera: {fileID: 2020600975}
 --- !u!54 &402175686
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1314,6 +1322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1289372252}
   - component: {fileID: 1289372251}
+  - component: {fileID: 1289372253}
   m_Layer: 0
   m_Name: LocalCo-opManager
   m_TagString: Untagged
@@ -1334,27 +1343,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 2
-  m_MaxPlayerCount: 2
+  m_MaxPlayerCount: 3
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1289372253}
+        m_TargetAssemblyTypeName: PlayerSpawnManager, Assembly-CSharp
+        m_MethodName: OnPlayerJoined
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 200963209}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
   m_JoinAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
-      m_Name: 
+      m_Name: Join
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: ab7e44b6-550b-475d-a8e4-faacb2812b5b
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 3231853700506099295, guid: add0e2cf70f1f634bb65d3a268fd9104, type: 3}
   m_PlayerPrefab: {fileID: 1588605492037811400, guid: c7ed4980fd2f461449ef8bca150b1457, type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
@@ -1379,6 +1401,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1289372253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289372250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bbd6e0dc58f6c408c499ee8a5a6d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1439188656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,11 +2287,6 @@ Transform:
   m_Father: {fileID: 873157348}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!20 &2020600975 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1588605492332094656, guid: c7ed4980fd2f461449ef8bca150b1457, type: 3}
-  m_PrefabInstance: {fileID: 1588605491932530767}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2061083211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,7 +2395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 690377402665677893, guid: 5d1c856338ad6fd4f975eb19b4f7807b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 690377402665677894, guid: 5d1c856338ad6fd4f975eb19b4f7807b, type: 3}
       propertyPath: waveLength
@@ -2441,6 +2470,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -752147081225894367, guid: c7ed4980fd2f461449ef8bca150b1457, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1588605492037811395, guid: c7ed4980fd2f461449ef8bca150b1457, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -2491,7 +2524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1588605492037811400, guid: c7ed4980fd2f461449ef8bca150b1457, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7ed4980fd2f461449ef8bca150b1457, type: 3}
