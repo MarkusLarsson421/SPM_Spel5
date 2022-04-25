@@ -13,7 +13,6 @@ public class LevelLoaderV2 : MonoBehaviour
 
     public Animator anim;
     public float transitionTime = 1f;
-    public int sceneToIndex;
     public bool doTransitionOnStart = true;
 
     private void Awake()
@@ -46,7 +45,7 @@ public class LevelLoaderV2 : MonoBehaviour
         _loaderCanvas.SetActive(true);
         do
         {
-            await Task.Delay(100);
+            await Task.Delay(1000);
             _progressBar.fillAmount = scene.progress;
         } while (scene.progress < 0.9f);
         scene.allowSceneActivation = true;
@@ -62,7 +61,5 @@ public class LevelLoaderV2 : MonoBehaviour
         anim.SetTrigger("EndTransition");
 
         yield return new WaitForSeconds(transitionTime);
-
-        SceneManager.LoadScene(sceneToIndex);
     }
 }
