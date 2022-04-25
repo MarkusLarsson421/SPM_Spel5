@@ -52,14 +52,6 @@ public class Weapon : MonoBehaviour {
 	}
 
 	/**
-	 * @Author Axel Sterner
-	 */
-	public int GetDamage()
-	{
-		return damage;
-	}
-
-	/**
 	 * @Author Martin Wallmark
 	 */
 	public void SetDamage(int newDamage)
