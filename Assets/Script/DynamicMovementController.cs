@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+//Martin Wallmark
 public class DynamicMovementController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -42,7 +42,6 @@ public class DynamicMovementController : MonoBehaviour
 
     private void ForceDown()
     {
-        Debug.Log("Force down!");
         Vector3 forceDown = Vector3.down * gravity * Time.deltaTime;
         velocity += forceDown;
     }
