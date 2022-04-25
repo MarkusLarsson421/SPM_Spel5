@@ -41,13 +41,6 @@ public class Interactor : MonoBehaviour
                 {
                     interactable.onInteract.Invoke();
                 }
-
-                if (interactable.gameObject.CompareTag("Ammo") && Input.GetKeyDown(KeyCode.E)) // den här raden borde inte vara här /Simon
-                {
-                    Debug.Log("pickup");
-                    rM.PickUp(interactable.gameObject);
-                }
-            }
         }
         else
         {
