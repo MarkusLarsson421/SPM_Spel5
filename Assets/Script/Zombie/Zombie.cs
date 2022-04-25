@@ -9,6 +9,8 @@ public class Zombie : MonoBehaviour //khal6952
     [SerializeField] private NavMeshAgent agent = null;
     [SerializeField] private Transform target;
 
+    private int health = 100;
+
 	private void Start()
     {
         GetReferences();
@@ -17,16 +19,44 @@ public class Zombie : MonoBehaviour //khal6952
     {
         MoveToTarget();
     }
-    private void MoveToTarget() // sets the detination to the target
+    
+    /**
+     * @Author Khaled Alraas
+     *
+     * Sets the detination to the target
+     */
+    private void MoveToTarget()
     {
         agent.SetDestination(target.position);
     }
-    private void GetReferences() // gets the Navigation Mesh Agent
+    
+    /**
+     * @Author Khaled Alraas
+     *
+     * Gets the Navigation Mesh Agent
+     */
+    private void GetReferences()
     {
         agent.GetComponent<NavMeshAgent>();
     }
-    public void SetTarget(Transform newTarget) // Used in the zombieSpawnPosition script the set the target
+    
+    /**
+     * @Author Khaled Alraas
+     *
+     * Used in the zombieSpawnPosition script the set the target
+     */
+    public void SetTarget(Transform newTarget)
     {
         target = newTarget;
+    }
+    
+    /**
+     * @Author Markus Larsson
+     *
+     * Removes health from this Zombie.
+     */
+    public void TakeDamage(int damage){
+        health -= damage;
+        if(health <= 0){Destroy(gameObject);}
     }
 }

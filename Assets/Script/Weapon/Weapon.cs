@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
@@ -104,7 +103,7 @@ public class Weapon : MonoBehaviour {
 
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
-			Target target = hit.transform.GetComponent<Target>();
+			Zombie target = hit.transform.GetComponent<Zombie>();
 			Debug.Log("Hit: " + hit.transform.name + ", Remaining ammo: " + totalAmmo);
 			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
 			if(target != null){
