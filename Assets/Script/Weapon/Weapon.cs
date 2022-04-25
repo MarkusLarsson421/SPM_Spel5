@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-
 public class Weapon : MonoBehaviour {
 	//Shooting
 	[SerializeField] private int damage = 20;
