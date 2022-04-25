@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class UI_Main_Menu : MonoBehaviour //Khaled Alraas
 {
-       [SerializeField] private GameObject MenuCanvas;
+    [SerializeField] private GameObject MenuCanvas;
     [SerializeField] private GameObject OptionsCanvas;
     [SerializeField] private GameObject ExitConfirmationCanvas;
     [SerializeField] private Button StartButton;
@@ -60,11 +60,17 @@ public class UI_Main_Menu : MonoBehaviour //Khaled Alraas
     }
     void LoadNextLevel()
     {
-        SceneManager.LoadScene(sceneToIndex);
+        StartCoroutine(LoadLevel());
+        //SceneManager.LoadScene(sceneToIndex);
     }
     private void Exit()
     {
         Debug.Log("exit");
         Application.Quit();
+    }
+    IEnumerator LoadLevel()
+    {
+        yield return null;
+        SceneManager.LoadScene(sceneToIndex);
     }
 }

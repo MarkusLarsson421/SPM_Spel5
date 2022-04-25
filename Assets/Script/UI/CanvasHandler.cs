@@ -24,7 +24,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         RestartButton.onClick.AddListener(ReastartLevel);
         WinExitToMainMenuButton.onClick.AddListener(GoTOMainMenu);
     }
-    GameObject player;
+    [SerializeField] GameObject player;
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");

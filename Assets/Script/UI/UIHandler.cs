@@ -6,30 +6,30 @@ using TMPro;
 using System;
 public class UIHandler : MonoBehaviour
 {
-    public RM rm;
-    [SerializeField] private TextMeshProUGUI ammoText;
-    [SerializeField] private TMP_Text batteryText;
-    [SerializeField] private TMP_Text scrapText;
+    //public RM rm;
+    //[SerializeField] private TextMeshProUGUI ammoText;
+    //[SerializeField] private TMP_Text batteryText;
+    //[SerializeField] private TMP_Text scrapText;
 
-    private int maxAmmo = 100; //detta bör flyttas. Annars finns maxAmmo i både AmmoPickUpHandler och UIHandler
-    void Start()
-    {
+    //private int maxAmmo = 100; //detta bör flyttas. Annars finns maxAmmo i både AmmoPickUpHandler och UIHandler
+    //void Start()
+    //{
         
-    }
+    //}
 
-    // Update is called once per frame
-    void Update()
-    {
+    //// Update is called once per frame
+    //void Update()
+    //{
 
-        UpdateAmmoText();
-    }
+    //    UpdateAmmoText();
+    //}
 
 
     
-    private void UpdateAmmoText()
-    {
+    //private void UpdateAmmoText()
+    //{
         
-        ammoText.text = rm.GetTotalAmmo().ToString() + " / " + rm.GetTotalAmmo().ToString();
+    //    ammoText.text = rm.GetTotalAmmo().ToString() + " / " + rm.GetTotalAmmo().ToString();
         
-    }
+    //}
 }
