@@ -5,12 +5,14 @@ using Random = UnityEngine.Random;
 //Axel Sterner
 
 public class ResourceManager : MonoBehaviour{
-	private Dictionary<string, int> inventory = new Dictionary<string, int>();
+    //private Dictionary<string, int> inventory = new Dictionary<string, int>();
 	
     private int ammoCap = 100;
     private int scrapCap = 10;
     private int batteryCap = 3; //maxantal
-    private int PickUpQuant;
+    private int pickUpQuant;
+    private int scrapCount = 0;
+    private int batteryCount = 0;
     private string itemTag;
     public Weapon wpn;
 
@@ -20,12 +22,12 @@ public class ResourceManager : MonoBehaviour{
     private int MAXSCRAPPICKUP = 6;
     
     void Start(){
-		inventory.Add("Scrap", 0);
-	}
+        
+    }
 
     void Update()
     {
-        
+
     }
 
 	/**
@@ -52,37 +54,41 @@ public class ResourceManager : MonoBehaviour{
 
             case "Scrap":
                 ItemHandler(g);
-                inventory["Scrap"] += PickUpQuant;
-                Debug.Log("Quantity: " + PickUpQuant);
+                if(scrapCount < scrapCap - pickUpQuant)
+                {
+                    scrapCount += pickUpQuant;
+                    Debug.Log(scrapCount);
+                    Destroy(g);
+                }
                 break;
 
             case "Battery":
                 ItemHandler(g);
-                inventory["Battery"] += PickUpQuant;
-                Debug.Log("Quantity: " + PickUpQuant);
+                
+                Debug.Log("Quantity: " + pickUpQuant);
                 break;
         }
     }
    
     private void ItemHandler(GameObject g)
     {
-        PickUpQuant = Random.Range(1, 15);//ändra vid behov
+        pickUpQuant = 6;
        
     }
 
     private void AmmoHandler(GameObject g)
     {
-        PickUpQuant = Random.Range(MINAMMOPICKUP, MAXAMMOPICKUP);
-        Debug.Log("Antal: " + PickUpQuant);
+        pickUpQuant = Random.Range(MINAMMOPICKUP, MAXAMMOPICKUP);
+        Debug.Log("Antal: " + pickUpQuant);
         int currentAmmo = wpn.GetAmmo();
-        if(currentAmmo + PickUpQuant > 100)
+        if(currentAmmo + pickUpQuant > 100)
         {
             wpn.ResetAmmo();
             Debug.Log(wpn.GetAmmo());
         }
         else
         {
-            wpn.SetAmmo(PickUpQuant);
+            wpn.SetAmmo(pickUpQuant);
             Debug.Log("Total ammo: " + wpn.GetAmmo());
         }
 
@@ -90,7 +96,7 @@ public class ResourceManager : MonoBehaviour{
 
     private void ScrapHandler(GameObject g)
     {
-        PickUpQuant = Random.Range(MINSCRAPPICKUP, MAXSCRAPPICKUP);
+        pickUpQuant = Random.Range(MINSCRAPPICKUP, MAXSCRAPPICKUP);
     }
     /*
      * 
