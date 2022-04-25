@@ -52,7 +52,6 @@ public class Interactor : MonoBehaviour
             }
         }
 
-
         void ChangeInteractionIcon()
         { //also makes it possible to change the size.
             if (interactable.interactIcon != null)

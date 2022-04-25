@@ -64,7 +64,12 @@ public class ResourceManager : MonoBehaviour{
 
             case "Battery":
                 ItemHandler(g);
-                
+                if(batteryCount < batteryCap - pickUpQuant)
+                {
+                    batteryCount += pickUpQuant;
+                    Debug.Log(batteryCount);
+                    Destory(g);
+                }
                 Debug.Log("Quantity: " + pickUpQuant);
                 break;
         }
@@ -72,7 +77,7 @@ public class ResourceManager : MonoBehaviour{
    
     private void ItemHandler(GameObject g)
     {
-        pickUpQuant = 6;
+        pickUpQuant = 3;
        
     }
 
