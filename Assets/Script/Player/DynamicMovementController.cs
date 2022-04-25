@@ -76,7 +76,7 @@ public class DynamicMovementController : MonoBehaviour
                 velocity += normalForce;
                 FrictionCalculator(normalForce);
                 temp++;
-                Debug.Log(temp);
+                //Debug.Log(temp);
             }
         } while (hit.collider && temp < 3);
 
