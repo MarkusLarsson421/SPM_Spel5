@@ -30,6 +30,8 @@ public class ResourceManager : MonoBehaviour{
 
 	/**
 	 * @Author Axel Sterner and Markus Larsson
+	 * 
+	 * 
 	 */
     public void PickUp(GameObject g)
     {
