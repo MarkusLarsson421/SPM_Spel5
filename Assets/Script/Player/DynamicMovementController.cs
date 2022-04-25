@@ -17,6 +17,8 @@ public class DynamicMovementController : MonoBehaviour
     private float collisionMargin = 0.1f;
     private CapsuleCollider collider;
 
+    private PlayerInput playerInput;
+
 
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] float staticFrictionCoefficient;
@@ -28,7 +30,7 @@ public class DynamicMovementController : MonoBehaviour
         controls = new InputSystem();
         collider = GetComponent<CapsuleCollider>();
         Cursor.lockState = CursorLockMode.Locked;
-    }
+        playerInput = GetComponent<PlayerInput>();    }
 
     void Update()
     {
@@ -48,7 +50,7 @@ public class DynamicMovementController : MonoBehaviour
 
     private void Movement()
     {
-        move = controls.Gameplay.Move.ReadValue<Vector2>();
+         move = controls.Gameplay.Move.ReadValue<Vector2>();
         //move = controls.Gameplay.Move.Bi.
 
         Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
