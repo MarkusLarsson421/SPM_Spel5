@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerSpawnManager : MonoBehaviour
 {
    
-    void OnPlayerJoined(PlayerInput playerInput)
+    public void OnPlayerJoined()
     {
-        Debug.Log("Player joined "+ playerInput.playerIndex);
+        Debug.Log("Player joined ");
     }
 }
