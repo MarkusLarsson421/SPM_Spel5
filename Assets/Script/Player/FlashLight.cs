@@ -16,7 +16,15 @@ public class FlashLight : MonoBehaviour{
 		if(batteryCharge == 0){
 			SetState(false);
 		}
+		
+		UserInput();
+	}
 
+	/**
+	 * @Author Markus Larsson
+	 */
+	private void UserInput()
+	{
 		if(Input.GetKeyDown(KeyCode.F)){
 			Toggle();
 		}
@@ -25,11 +33,10 @@ public class FlashLight : MonoBehaviour{
 			Recharge();
 		}
 	}
-	
-	private void Toggle(){
-		SetState(!flashLightState);
-	}
-	
+
+	/**
+	 * @Author Markus Larsson
+	 */
 	private void SetState(bool desiredState){
 		if(desiredState && batteryCharge > 0){
 			//Turn on flash light (if it has battery)
@@ -40,6 +47,10 @@ public class FlashLight : MonoBehaviour{
 			gameObject.transform.GetChild(0).gameObject.SetActive(false);
 			flashLightState = false;
 		}
+	}
+	
+	private void Toggle(){
+		SetState(!flashLightState);
 	}
 
 	private void Recharge(){
