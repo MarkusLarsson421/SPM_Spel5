@@ -68,7 +68,7 @@ public class ResourceManager : MonoBehaviour{
                 {
                     batteryCount += pickUpQuant;
                     Debug.Log(batteryCount);
-                    Destory(g);
+                    //Destory(g);
                 }
                 Debug.Log("Quantity: " + pickUpQuant);
                 break;

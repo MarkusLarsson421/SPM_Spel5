@@ -31,7 +31,7 @@ public class UI_Main_Menu : MonoBehaviour //Khaled Alraas
     }
     void ListenToButtons()
     {
-        StartButton.onClick.AddListener(LoadNextLevel);
+        //StartButton.onClick.AddListener(LoadNextLevel);
         ExitButton.onClick.AddListener(OpenExitConfirmationCanvas);
         NoExitButton.onClick.AddListener(CloseExitConfirmationCanvas);
         YesExitButton.onClick.AddListener(Exit);
