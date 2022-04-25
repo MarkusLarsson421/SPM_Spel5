@@ -19,8 +19,8 @@ public class DynamicMovementController : MonoBehaviour
 
 
     [SerializeField] private LayerMask collisionMask;
-    [SerializeField] float staticFrictionCoefficient = 0.6f;
-    [SerializeField] float kineticFloatCoefficent = 0.2f;
+    [SerializeField] float staticFrictionCoefficient;
+    [SerializeField] float kineticFloatCoefficent;
 
 
     void Awake()
@@ -35,6 +35,9 @@ public class DynamicMovementController : MonoBehaviour
         ForceDown();
         Movement();
         UpdateVelocity();
+
+        //Open door
+        if (Input.GetKeyDown(KeyCode.E)) { Interact(); }
     }
 
     private void ForceDown()
@@ -52,7 +55,12 @@ public class DynamicMovementController : MonoBehaviour
         velocity += movement * speed * Time.deltaTime;
     }
 
-    //Khaled Alraas
+    
+
+    /**
+     * @Author Khaled Alraas
+     * Handles collisions and updates the velocity of the player
+     */
     void UpdateVelocity()
     {
         RaycastHit hit;
@@ -109,6 +117,23 @@ public class DynamicMovementController : MonoBehaviour
             velocity -= velocity.normalized * normalForce.magnitude * kineticFloatCoefficent;
         }
 
+    }
+
+    /**
+    * @Author Markus Larsson
+    * 
+    * Opens or closes the door the user is looking at.
+    * Shoots raycast from the main camera.
+    */
+    private void Interact()
+    {
+        RaycastHit hit;
+        //Possibly replace Camera.main.transform with a reference to the camera.
+        Transform cameraTransform = Camera.main.transform;
+        if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward * 2, out hit, 10)) { return; }
+        SingleDoor singleDoor = hit.transform.gameObject.GetComponent<SingleDoor>();
+        if (singleDoor == null) { return; }
+        singleDoor.ToggleOpen();
     }
 
     private void OnEnable()
