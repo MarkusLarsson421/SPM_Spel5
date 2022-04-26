@@ -66,7 +66,10 @@ public class Weapon : MonoBehaviour {
 	{
 		magCapacity = newMagCapacity;
 	}
-
+	/**
+	 * @Author Simon Hessling Oscarson
+	 */
+	public int GetCurrentMag() { return currentMag; }
 	/**
 	 * @Author Markus Larsson and Khaled Alrass
 	 */
