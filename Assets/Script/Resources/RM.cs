@@ -15,29 +15,52 @@ public class RM : MonoBehaviour
 
     private int totalAmmo;
     private int currentBatteries;
-    private int maxBatteries = 3;
     private int currentScraps;
-    private int maxScraps = 10;
-    // Start is called before the first frame update
-    
+   
+    //AMMO -------------------------------------------------------
+    public int GetTotalAmmo()
+    {
+        return totalAmmo;
+    }
+    public void SetTotalAmmo(int a)
+    {
+        totalAmmo = a;
+    }
     public void AddTotalAmmo(int ammo)
     {
         totalAmmo += ammo;
     }
-    public void SetTotalAmmo(int ammo)
+   
+
+    //AMMO -------------------------------------------------------
+
+    //BATTERIES---------------------------------------------------
+    public int GetCurrentBatteries()
     {
-        totalAmmo = ammo;
+        return currentBatteries;
     }
-    public int GetTotalAmmo()
+    public void SetCurrentBatteries(int b)
     {
-        return totalAmmo;
+        currentBatteries = b;
     }
     public void PickUpBatteries()
     {
         currentBatteries++;
     }
+    //BATTERIES---------------------------------------------------
+
+    //SCRAPS------------------------------------------------------
+    public int GetCurrentScraps()
+    {
+        return currentScraps;
+    }
+    public void SetCurrentScrap(int s)
+    {
+        currentScraps = s;
+    }
     public void PickUpScraps()
     {
         currentScraps++;
     }
+    //SCRAPS------------------------------------------------------
 }
