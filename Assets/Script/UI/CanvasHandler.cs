@@ -49,7 +49,12 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         Debug.Log("You have clicked the ExitToMaiinMenuButton!");
         SceneManager.LoadScene(MainMenuSceneIsIndex);
     }
-    void ChangeCanvasToDeathCanvas() //khaled
+    /**
+     * khaled Ahlraas
+	 * @Simon Hessling Oscarson - gjorde public.
+	 * 
+	 */
+    public void ChangeCanvasToDeathCanvas()
     {
         CanvasObject.SetActive(false);
         deathCanvasObject.SetActive(true);

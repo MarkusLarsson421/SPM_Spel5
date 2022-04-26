@@ -5,6 +5,7 @@ using UnityEngine;
 public class WinGame_SimonPrototype : MonoBehaviour
 {
     public RM rm;
+    public CanvasHandler ch;
     private int scrapsInCar;
     private int scrapsNeededToFixCar = 4;
     void Start()
@@ -26,6 +27,7 @@ public class WinGame_SimonPrototype : MonoBehaviour
         Debug.Log("rm scraps = " + rm.GetCurrentScraps() + " scrapsInCar = " + scrapsInCar);
         if (scrapsInCar >= scrapsNeededToFixCar)
         {
+            ch.ChangeCanvasToDeathCanvas();
             Debug.Log("u won the game");
         }
     }
