@@ -35,7 +35,7 @@ public class GamePadCamera : MonoBehaviour
 
     private void LookAround()
     {
-        
+        //look = input.Gameplay.Rotate.ReadValue<Vector2>();
 
         float xAxis = look.x * sensitity * Time.deltaTime;
         float yAxis = look.y * sensitity * Time.deltaTime;
