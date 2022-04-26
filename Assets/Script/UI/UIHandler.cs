@@ -11,14 +11,6 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private TMP_Text batteryText;
     [SerializeField] private TMP_Text scrapText;
-
-    private int maxAmmo = 100; //detta bör flyttas. Annars finns maxAmmo i både AmmoPickUpHandler och UIHandler
-    //void Start()
-    //{
-        
-    //}
-
-    //// Update is called once per frame
     void Update()
     {
 
@@ -28,19 +20,27 @@ public class UIHandler : MonoBehaviour
     }
 
 
-    
+    /**
+	 * @Author Simon Hessling Oscarson
+	 */
     private void UpdateAmmoText()
     {
         
         ammoText.text = weapon.GetCurrentMag() + " / " + rm.GetTotalAmmo().ToString();
         
     }
+    /**
+	 * @Author Simon Hessling Oscarson
+	 */
     private void UpdateBatteryText()
     {
 
         batteryText.text ="batteries "+ rm.GetCurrentBatteries() + " / 5";
 
     }
+    /**
+	 * @Author Simon Hessling Oscarson
+	 */
     private void UpdateScrapsText()
     {
 
