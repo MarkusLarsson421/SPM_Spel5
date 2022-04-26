@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 //testscript för att få till handkontrollern
 //Martin Wallmark
 public class GamePadCamera : MonoBehaviour
@@ -21,7 +22,10 @@ public class GamePadCamera : MonoBehaviour
 
     }
 
-
+    public void OnRotate(InputAction.CallbackContext callback)
+    {
+        look = callback.ReadValue<Vector2>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -31,7 +35,7 @@ public class GamePadCamera : MonoBehaviour
 
     private void LookAround()
     {
-        look = input.Gameplay.Rotate.ReadValue<Vector2>();
+        
 
         float xAxis = look.x * sensitity * Time.deltaTime;
         float yAxis = look.y * sensitity * Time.deltaTime;

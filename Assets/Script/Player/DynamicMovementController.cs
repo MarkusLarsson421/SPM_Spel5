@@ -24,7 +24,11 @@ public class DynamicMovementController : MonoBehaviour
     [SerializeField] float staticFrictionCoefficient;
     [SerializeField] float kineticFloatCoefficent;
 
-
+    public void OnMove(InputAction.CallbackContext callback)
+    {
+        move = callback.ReadValue<Vector2>();
+        
+    }
     void Awake()
     {
         controls = new InputSystem();
@@ -50,7 +54,7 @@ public class DynamicMovementController : MonoBehaviour
 
     private void Movement()
     {
-        move = controls.Gameplay.Move.ReadValue<Vector2>();
+        //move = controls.Gameplay.Move.ReadValue<Vector2>();
 
         Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
         velocity += movement * speed * Time.deltaTime;
