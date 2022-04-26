@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class FlashLight : MonoBehaviour{
+	public RM rm;
 	[SerializeField] [Range(1, 100)] private double batteryCharge = 100.0;
 	[SerializeField] private double batteryDrainMultiplier = 0.1;
 	
@@ -30,6 +31,7 @@ public class FlashLight : MonoBehaviour{
 		}
 
 		if(Input.GetKeyDown(KeyCode.R)){
+			
 			Recharge();
 		}
 	}
@@ -52,11 +54,22 @@ public class FlashLight : MonoBehaviour{
 	private void Toggle(){
 		SetState(!flashLightState);
 	}
-
+	/**
+	 * @Simon Hessling Oscarson
+	 * 
+	 */
 	private void Recharge(){
-		Recharge(100);
+		if (rm.GetCurrentBatteries() != 0)
+		{
+			rm.SetCurrentBatteries(rm.GetCurrentBatteries() - 1);
+			RechargeAmount(100);
+		}
 	}
-	private void Recharge(byte setCharge){
+	/**
+	 * @Simon Hessling Oscarson
+	 * 
+	 */
+	private void RechargeAmount(byte setCharge){
 		batteryCharge = setCharge;
 	}
 }
