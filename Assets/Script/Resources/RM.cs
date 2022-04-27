@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RM : MonoBehaviour
@@ -12,12 +10,32 @@ public class RM : MonoBehaviour
      * 
      */
 
+	/*public enum ItemType{
+		Batteries,
+		Scrap,
+		Ammo,
+	}*/
 
-    private int totalAmmo;
+	private int totalAmmo;
     private int currentBatteries;
     private int currentScraps;
-   
-    //AMMO -------------------------------------------------------
+
+	/**
+	 * @Author Markus Larsson
+	 */
+	/*public int Get(ItemType type){
+		switch(type){
+			case ItemType.Batteries:
+				return currentBatteries;
+			case ItemType.Scrap:
+				return currentScraps;
+			case ItemType.Ammo:
+				return totalAmmo;
+		}
+		return 0;
+	}*/
+
+	//AMMO -------------------------------------------------------
     public int GetTotalAmmo()
     {
         return totalAmmo;
