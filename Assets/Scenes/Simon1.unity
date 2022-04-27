@@ -7604,8 +7604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa888fb4155c224fb355ce6bc0518a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rm: {fileID: 1184121021}
-  ch: {fileID: 420239245}
+  rm: {fileID: 0}
+  ch: {fileID: 0}
 --- !u!114 &648653252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7633,8 +7633,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  interactIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  iconSize: {x: 50, y: 50}
+  interactIcon: {fileID: 0}
+  iconSize: {x: 0, y: 0}
   ID: 0
 --- !u!65 &648653253
 BoxCollider:
@@ -7706,8 +7706,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648653250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.14, y: 9.31, z: -10.76}
-  m_LocalScale: {x: 5.3942, y: 1.9035, z: 2.469}
+  m_LocalPosition: {x: 7.98, y: 9.31, z: -1.94}
+  m_LocalScale: {x: 3.2814596, y: 1.1579581, z: 1.5019696}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 20
@@ -28700,6 +28700,8 @@ GameObject:
   - component: {fileID: 7088370365524358433}
   - component: {fileID: 1470673747327807047}
   - component: {fileID: 2214792366238039446}
+  - component: {fileID: 6250957121772551180}
+  - component: {fileID: 6250957121772551179}
   m_Layer: 0
   m_Name: Bil
   m_TagString: Untagged
@@ -28707,6 +28709,50 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!114 &6250957121772551179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250957121772551178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf15f4fcdab6924cbb7dc773fe31d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6250957121772551180}
+        m_TargetAssemblyTypeName: WinGame_SimonPrototype, Assembly-CSharp
+        m_MethodName: AddScrapsToCar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  iconSize: {x: 50, y: 50}
+  ID: 0
+--- !u!114 &6250957121772551180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250957121772551178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa888fb4155c224fb355ce6bc0518a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rm: {fileID: 1184121021}
+  ch: {fileID: 420239245}
 --- !u!1001 &6368411924331025666
 PrefabInstance:
   m_ObjectHideFlags: 0
