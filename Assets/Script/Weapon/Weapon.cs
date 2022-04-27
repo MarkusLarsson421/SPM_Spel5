@@ -154,22 +154,20 @@ public class Weapon : MonoBehaviour {
 			isReloading = true;
 			Debug.Log("Reloading...");
 			yield return new WaitForSeconds(reloadTime);
-			rm.SubTotalAmmo(magCapacity - currentMag);
+			int tempSubSize = magCapacity - currentMag;
 			if (currentMag + rm.GetTotalAmmo() >= magCapacity)//gör så det inte går att få mer än magCapacity i magget
 			{
-				currentMag = magCapacity;
+				currentMag = magCapacity;	
 			}
 			else
 			{
-				
-				
-				
-				int tempMagSize = currentMag;
-				rm.AddTotalAmmo(tempMagSize - magCapacity);
 				currentMag += rm.GetTotalAmmo();
-
-
-			}	
+			}
+			rm.SubTotalAmmo(tempSubSize);
+			if (rm.GetTotalAmmo() < 0)
+            {
+				rm.SetTotalAmmo(0);
+            }
 			Debug.Log("Reloaded!");
 			isReloading = false;
 		}
