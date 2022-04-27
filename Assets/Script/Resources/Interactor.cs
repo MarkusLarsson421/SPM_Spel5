@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 //Simon Hessling Oscarson
 //Axel Sterner
 public class Interactor : MonoBehaviour
@@ -21,6 +22,18 @@ public class Interactor : MonoBehaviour
     void Update()
     {
         interactHandler();
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+
+        }
+        if (context.canceled)
+        {
+
+        }
     }
 
     void interactHandler()
