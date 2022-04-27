@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour {
 	private bool isReloading;
 
 	private bool isFiring;
+	private bool isReloadPressed;
 	
 	[SerializeField] private Camera fpsCamera;
 
@@ -33,6 +34,9 @@ public class Weapon : MonoBehaviour {
 		UserInput();
 	}
 
+	/**
+	 * @Author Martin Wallmark
+	 */
 	public void OnFire(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -45,6 +49,19 @@ public class Weapon : MonoBehaviour {
 			isFiring = false;
         }
     }
+
+	public void OnReload(InputAction.CallbackContext context)
+    {
+		if (context.performed)
+		{
+			isFiring = true;
+		}
+
+		if (context.canceled)
+		{
+			isFiring = false;
+		}
+	}
 	
 	/**
 	 * @Author Axel Sterner
@@ -91,7 +108,7 @@ public class Weapon : MonoBehaviour {
 	 */
 	private void UserInput()
 	{
-		if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && !isReloading && currentMag > 0){
+		if (isFiring || Input.GetKeyDown(KeyCode.Mouse1) && Time.time >= nextTimeToFire && !isReloading && currentMag > 0){
 			nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
 			SetAmmoText();
