@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class Holster : MonoBehaviour
 {
-	[SerializeField] private int selectedWeapon;
-
 	//Weapons
 	private ArrayList weapons = new ArrayList();
+	private int selectedWeapon;
 
     private void Start()
     {
-        SelectWeapon();
+		SelectWeapon();
     }
 
     void Update()
