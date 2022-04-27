@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour {
 	//Shooting
@@ -16,6 +17,8 @@ public class Weapon : MonoBehaviour {
 	[SerializeField] private float reloadTime = 2.0f;
 	private int currentMag;
 	private bool isReloading;
+
+	private bool isFiring;
 	
 	[SerializeField] private Camera fpsCamera;
 
@@ -29,6 +32,19 @@ public class Weapon : MonoBehaviour {
 	{
 		UserInput();
 	}
+
+	public void OnFire(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+			isFiring = true;
+        }
+
+        if (context.canceled)
+        {
+			isFiring = false;
+        }
+    }
 	
 	/**
 	 * @Author Axel Sterner
