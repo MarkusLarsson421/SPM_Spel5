@@ -30,7 +30,11 @@ public class RM : MonoBehaviour
     {
         totalAmmo += ammo;
     }
-   
+    public void SubTotalAmmo(int ammo)
+    {
+        totalAmmo -= ammo;
+    }
+
 
     //AMMO -------------------------------------------------------
 

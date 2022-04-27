@@ -4,11 +4,12 @@ using TMPro;
 using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour {
+	public RM rm;
 	//Shooting
 	[SerializeField] private int damage = 20;
 	[SerializeField] private float range = 100.0f;
 	[SerializeField] private float fireRate = 5.0f;
-	[SerializeField] private TextMeshProUGUI ammoText; // ammo Text UI; @Khaled Alraas
+	//[SerializeField] private TextMeshProUGUI ammoText; // ammo Text UI; @Khaled Alraas //bör ej finnas här Simon.
 	private float nextTimeToFire;
 
 	//Ammo
@@ -25,7 +26,7 @@ public class Weapon : MonoBehaviour {
 
 	void Start()
 	{
-		totalAmmo = magCapacity * 2;
+		totalAmmo = rm.GetTotalAmmo();// var 100. Uppdaterat av Simon till rm.GetTotalAmmo()
 		currentMag = magCapacity;
 	}
 
@@ -65,6 +66,7 @@ public class Weapon : MonoBehaviour {
 	
 	/**
 	 * @Author Axel Sterner
+	 * @Simon Hessling Oscarson finns i RM.
 	 */
 	public int GetAmmo() { return totalAmmo; }
 
@@ -78,6 +80,7 @@ public class Weapon : MonoBehaviour {
 	
 	/**
 	 * @Author Axel Sterner
+	 * 
 	 */
 	public void ResetAmmo()
 	{
@@ -118,15 +121,16 @@ public class Weapon : MonoBehaviour {
 			SetAmmoText();
 		}
 	}
-	
+
 	/**
 	 * @Author Markus Larsson
-	 *
+	 * 
 	 * Shoots from the referenced camera 10 units forward.
+	 * @Author Simon Hessling Oscarson. Minskar inte total ammo längre.
 	 */
 	private void Fire(){
 		currentMag--;
-		totalAmmo--;
+		//totalAmmo--;
 
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
@@ -141,27 +145,43 @@ public class Weapon : MonoBehaviour {
 
 	/**
 	 * @Author Markus Larsson
-	 *
+	 * @Simon Hessling Oscarson
 	 * Reloads the current magazine.
 	 */
 	IEnumerator Reload(){
-		isReloading = true;
-		Debug.Log("Reloading...");
+		if (rm.GetTotalAmmo() != 0) // ifall man har något extra ammo
+		{
+			isReloading = true;
+			Debug.Log("Reloading...");
+			yield return new WaitForSeconds(reloadTime);
+			rm.SubTotalAmmo(magCapacity - currentMag);
+			if (currentMag + rm.GetTotalAmmo() >= magCapacity)//gör så det inte går att få mer än magCapacity i magget
+			{
+				currentMag = magCapacity;
+			}
+			else
+			{
+				
+				
+				
+				int tempMagSize = currentMag;
+				rm.AddTotalAmmo(tempMagSize - magCapacity);
+				currentMag += rm.GetTotalAmmo();
 
-		yield return new WaitForSeconds(reloadTime);
-		currentMag = magCapacity;
-		totalAmmo -= magCapacity;
-		
-		Debug.Log("Reloaded!");
-		isReloading = false;
+
+			}	
+			Debug.Log("Reloaded!");
+			isReloading = false;
+		}
 	}
 	
 	/**
 	 * @Author Khaled Alraas
+	 * @Simon Hessling Oscarson. Tagit bort texten.
 	 */
 	private void SetAmmoText()
 	{
 		// set ammo Text UI
-		ammoText.text = totalAmmo.ToString();
+		//ammoText.text = totalAmmo.ToString();
 	}
 }
