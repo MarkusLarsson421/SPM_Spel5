@@ -71,7 +71,7 @@ public class Generator : MonoBehaviour
 
     public void Refill()
     {
-        Debug.Log("yo");
+        //Debug.Log("yo");
         fuel = maxFuel;
         fuelLevelIndicator.color = fullGeneratorColor;
         isEmpty = false;

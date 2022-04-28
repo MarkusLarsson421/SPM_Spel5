@@ -18,10 +18,14 @@ public class PlayerSpawnManager : MonoBehaviour
         if(playerInput.gameObject.GetComponent<PlayerStartInfo>().playerID == 1)
         {
             playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerOneSpawnPoint.position;
+            playerInput.gameObject.tag = "Player1";
+
+
         }
         else
         {
             playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerTwoSpawnPoint.position;
+            playerInput.gameObject.tag = "Player2";
         }
 
         
