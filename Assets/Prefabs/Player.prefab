@@ -255,7 +255,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Rotate[/XInputControllerWindows/rightStick,/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1454571855}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
         m_MethodName: OnInteract
         m_Mode: 0
@@ -348,8 +348,8 @@ GameObject:
   - component: {fileID: 3085997580443032867}
   - component: {fileID: 3085997580443032870}
   - component: {fileID: 3085997580443032868}
-  - component: {fileID: 1454571855}
   - component: {fileID: 1878358202733342846}
+  - component: {fileID: 677102341}
   m_Layer: 0
   m_Name: First Person Camera
   m_TagString: MainCamera
@@ -447,7 +447,20 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &1454571855
+--- !u!114 &1878358202733342846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3085997580443032866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbc5b78a48b13949bf7eca7f566dc89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitity: 88.33
+--- !u!114 &677102341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -463,24 +476,12 @@ MonoBehaviour:
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  interactImage: {fileID: 1485051899191021955, guid: 129184dd80d617b489722e798a0d33a5, type: 3}
+  interactImage: {fileID: 0}
   defaultIcon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   defaultIconSize: {x: 15, y: 15}
   defaultInteractionIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   defaultInteractionIconSize: {x: 15, y: 15}
---- !u!114 &1878358202733342846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3085997580443032866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cbc5b78a48b13949bf7eca7f566dc89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitity: 100
+  playerCamera: {fileID: 3085997580443032870}
 --- !u!1 &7064351888204197227
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,6 +534,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9035916838037990557}
     m_Modifications:
+    - target: {fileID: 5864590559140632169, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+      propertyPath: batteryCharge
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+      propertyPath: m_Range
+      value: 41.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+      propertyPath: m_Color.b
+      value: 0.23918656
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+      propertyPath: m_Color.r
+      value: 0.30671477
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+      propertyPath: m_Intensity
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+      propertyPath: m_SpotAngle
+      value: 35.27051
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 1.2873065
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6262694501724369284, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -543,11 +580,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6262694501724369284, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.642
+      value: 0.41
       objectReference: {fileID: 0}
     - target: {fileID: 6262694501724369284, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.536
+      value: 0.459
       objectReference: {fileID: 0}
     - target: {fileID: 6262694501724369284, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
       propertyPath: m_LocalRotation.w

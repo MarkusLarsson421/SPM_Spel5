@@ -15,7 +15,7 @@ public class Interactor : MonoBehaviour
     public Vector2 defaultIconSize;
     public Sprite defaultInteractionIcon;
     public Vector2 defaultInteractionIconSize;
-
+    [SerializeField] private Camera playerCamera;
     Interactable interactable;
 
     private bool isInteractPressed;
@@ -41,7 +41,7 @@ public class Interactor : MonoBehaviour
     void interactHandler()
     {
         RaycastHit hit; //man lägger till vad som händer i onInteract Måste ha Layermask Interactable.
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 2, interactableLayerMask))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 2, interactableLayerMask))
         {
             if (hit.collider.GetComponent<Interactable>() != false) //makes u interact Only Once. Doesnt update every frame.
             {
