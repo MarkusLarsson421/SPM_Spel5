@@ -14,6 +14,7 @@ public class ZombieSpawnPoint : MonoBehaviour
     private float timer;
 
     private bool canSpawn;
+    private bool targetIsSet;
 
     private void Start()
     {
@@ -22,12 +23,19 @@ public class ZombieSpawnPoint : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= 20)
+        if (!targetIsSet)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+
+            timer += Time.deltaTime;
+
+            if (timer >= 20)
+            {
+                player = GameObject.FindGameObjectWithTag("Player1");
+                targetIsSet = true;
+            }
+
         }
+      
     }
 
     public void Spawn()
@@ -37,7 +45,7 @@ public class ZombieSpawnPoint : MonoBehaviour
         for (int i = 0; i < randomAmountOfZombies; i++)
         {
             GameObject go = Instantiate(zombie, this.transform);
-            go.GetComponent<Zombie>().SetTarget(target);
+            go.GetComponent<Zombie>().SetTarget(player.transform);
         }
 
     }
