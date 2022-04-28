@@ -18,6 +18,8 @@ public class Interactor : MonoBehaviour
 
     Interactable interactable;
 
+    private bool isInteractPressed;
+
 
     void Update()
     {
@@ -28,11 +30,11 @@ public class Interactor : MonoBehaviour
     {
         if (context.performed)
         {
-
+            isInteractPressed = true;
         }
         if (context.canceled)
         {
-
+            isInteractPressed = false;
         }
     }
 
@@ -50,7 +52,7 @@ public class Interactor : MonoBehaviour
                 }
                 ChangeInteractionIcon();
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (isInteractPressed || Input.GetKeyDown(KeyCode.E))
                 {
                     interactable.onInteract.Invoke();
                 }
