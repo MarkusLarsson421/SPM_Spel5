@@ -55,12 +55,12 @@ public class Weapon : MonoBehaviour {
     {
 		if (context.performed)
 		{
-			isFiring = true;
+			isReloadPressed = true;
 		}
 
 		if (context.canceled)
 		{
-			isFiring = false;
+			isReloadPressed = false;
 		}
 	}
 	
@@ -116,7 +116,7 @@ public class Weapon : MonoBehaviour {
 			Fire();
 			SetAmmoText();
 		}
-		else if(Input.GetKeyDown(KeyCode.R) && !isReloading){
+		else if(isReloadPressed || Input.GetKeyDown(KeyCode.R) && !isReloading){
 			StartCoroutine(Reload());
 			SetAmmoText();
 		}

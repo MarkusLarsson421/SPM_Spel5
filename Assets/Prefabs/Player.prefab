@@ -58,6 +58,8 @@ GameObject:
   - component: {fileID: 3085997579580629147}
   - component: {fileID: 3085997579580629146}
   - component: {fileID: -5678602186933262917}
+  - component: {fileID: 4075965575175922090}
+  - component: {fileID: 8082899960131896220}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -152,7 +154,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3085997579580629145}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f7fe97dff5a5134a8198cf3bd430411, type: 3}
   m_Name: 
@@ -193,6 +195,117 @@ MonoBehaviour:
   CanvasObject: {fileID: 0}
   deathCanvasObject: {fileID: 0}
   tryAgainButton: {fileID: 0}
+--- !u!114 &4075965575175922090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3085997579580629145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: add0e2cf70f1f634bb65d3a268fd9104, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8082899960131896220}
+        m_TargetAssemblyTypeName: DynamicMovementController, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 320e6e17-8ef1-4b3d-a7a1-1bbe3d01ce63
+    m_ActionName: Gameplay/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1878358202733342846}
+        m_TargetAssemblyTypeName: GamePadCamera, Assembly-CSharp
+        m_MethodName: OnRotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ecac3a67-2ed2-41e2-b179-5817e2cb8378
+    m_ActionName: Gameplay/Rotate[/XInputControllerWindows/rightStick,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1878358202733342846}
+        m_TargetAssemblyTypeName: GamePadCamera, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 693fb1bc-8816-408b-a785-565f56a6333c
+    m_ActionName: Gameplay/Interact[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8774569386923257108}
+        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
+        m_MethodName: OnFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 110d9818-1fcc-4778-8e1d-953266d43655
+    m_ActionName: Gameplay/Shoot[/XInputControllerWindows/rightTrigger]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 3085997580443032870}
+--- !u!114 &8082899960131896220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3085997579580629145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33c54e67255f1f54e94001f174694912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  staticFrictionCoefficient: 0.8
+  kineticFloatCoefficent: 0.5
 --- !u!1 &3085997580443032866
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +318,7 @@ GameObject:
   - component: {fileID: 3085997580443032870}
   - component: {fileID: 3085997580443032868}
   - component: {fileID: 1454571855}
+  - component: {fileID: 1878358202733342846}
   m_Layer: 0
   m_Name: First Person Camera
   m_TagString: MainCamera
@@ -323,6 +437,19 @@ MonoBehaviour:
   defaultIconSize: {x: 15, y: 15}
   defaultInteractionIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   defaultInteractionIconSize: {x: 15, y: 15}
+--- !u!114 &1878358202733342846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3085997580443032866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbc5b78a48b13949bf7eca7f566dc89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitity: 100
 --- !u!1 &7064351888204197227
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,3 +623,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5166397037108450692, guid: 65e48cb55406893459321dd80ebc4cd3, type: 3}
   m_PrefabInstance: {fileID: 7081554801226390677}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8774569386923257108 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1982486313162273153, guid: 65e48cb55406893459321dd80ebc4cd3, type: 3}
+  m_PrefabInstance: {fileID: 7081554801226390677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80bc4a078cb3224cb1aa8a4752bda0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
