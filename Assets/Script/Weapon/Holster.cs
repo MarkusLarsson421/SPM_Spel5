@@ -1,11 +1,18 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Holster : MonoBehaviour
 {
 	//Weapons
 	private ArrayList weapons = new ArrayList();
 	private int selectedWeapon;
+
+    private bool isSwitched;
+
+    private float switchTimer;
+
+    private bool canSwitch;
 
     private void Start()
     {
@@ -14,7 +21,18 @@ public class Holster : MonoBehaviour
 
     void Update()
     {
-        UserInput();
+        if (canSwitch)
+        {
+            UserInput();
+        }
+
+        switchTimer += Time.deltaTime;
+
+        if(switchTimer >= 0.2f)
+        {
+            canSwitch = true;
+        }
+        
     }
     
     /**
@@ -25,6 +43,18 @@ public class Holster : MonoBehaviour
     public void Add(GameObject weaponGO)
     {
         weapons.Add(weaponGO);
+    }
+
+    public void OnSwitch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isSwitched = true;
+        }
+        if(context.canceled)
+        {
+            isSwitched = false;
+        }
     }
 
     /**
@@ -50,7 +80,7 @@ public class Holster : MonoBehaviour
     private void UserInput()
     {
         //Scroll through weapons.
-        if (Input.GetAxis("Mouse ScrollWheel") > 0.0f)
+        if (isSwitched || Input.GetAxis("Mouse ScrollWheel") > 0.0f)
         {
             if (selectedWeapon >= transform.childCount - 1)
             {
@@ -86,6 +116,8 @@ public class Holster : MonoBehaviour
             selectedWeapon = 1;
             SelectWeapon();
         }
+        switchTimer = 0;
+        canSwitch = false;
     }
 
     /**

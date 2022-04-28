@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FlashLight : MonoBehaviour{
 	public RM rm;
@@ -7,6 +8,12 @@ public class FlashLight : MonoBehaviour{
 	
 	private bool flashLightState;
 
+	private bool isToggled;
+
+
+	private float switchTimer;
+
+	private bool canSwitch;
 	private void Start(){
 		gameObject.transform.GetChild(0).gameObject.SetActive(false);
 	}
@@ -17,16 +24,43 @@ public class FlashLight : MonoBehaviour{
 		if(batteryCharge == 0){
 			SetState(false);
 		}
+
+
+		switchTimer += Time.deltaTime;
+
+		if (switchTimer >= 0.2f)
+		{
+			canSwitch = true;
+		}
+
+        if (canSwitch)
+        {
+			UserInput();
+		}
 		
-		UserInput();
 	}
 
-	/**
-	 * @Author Markus Larsson
-	 */
-	private void UserInput()
+	public void OnFire(InputAction.CallbackContext context)
 	{
-		if(Input.GetKeyDown(KeyCode.F)){
+		if (context.performed)
+		{
+			isToggled = true;
+		}
+
+		if (context.canceled)
+		{
+			isToggled = false;
+		}
+
+	}
+
+
+		/**
+		 * @Author Markus Larsson
+		 */
+		private void UserInput()
+	{
+		if(isToggled || Input.GetKeyDown(KeyCode.F)){
 			Toggle();
 		}
 
@@ -34,6 +68,8 @@ public class FlashLight : MonoBehaviour{
 			
 			Recharge();
 		}
+		canSwitch = false;
+		switchTimer = 0;
 	}
 
 	/**

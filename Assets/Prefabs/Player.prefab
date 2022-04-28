@@ -283,6 +283,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7304379499468882848}
+        m_TargetAssemblyTypeName: FlashLight, Assembly-CSharp
+        m_MethodName: OnFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 110d9818-1fcc-4778-8e1d-953266d43655
     m_ActionName: Gameplay/Shoot[/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
@@ -301,6 +313,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ac9fda07-636b-45a1-8e5f-c2f038d8f686
     m_ActionName: Gameplay/Reload[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5101186077775275520}
+        m_TargetAssemblyTypeName: Holster, Assembly-CSharp
+        m_MethodName: OnSwitch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 78c6383f-8e65-4897-8853-f3f1033d3d80
+    m_ActionName: Gameplay/Switch[/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -322,7 +350,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   staticFrictionCoefficient: 0.8
-  kineticFloatCoefficent: 0.5
+  kineticFloatCoefficent: 0.7
 --- !u!114 &-6232889383313603450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,7 +424,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 26.991467
+  field of view: 50.67
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -544,15 +572,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
       propertyPath: m_Color.b
-      value: 0.23918656
+      value: 0.3668095
       objectReference: {fileID: 0}
     - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
       propertyPath: m_Color.g
-      value: 0.4056604
+      value: 0.40392157
       objectReference: {fileID: 0}
     - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
       propertyPath: m_Color.r
-      value: 0.30671477
+      value: 0.23921569
       objectReference: {fileID: 0}
     - target: {fileID: 5864590560538193704, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
       propertyPath: m_Intensity
@@ -625,6 +653,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6262694501724369284, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
   m_PrefabInstance: {fileID: 3764279758168446409}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7304379499468882848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5864590559140632169, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+  m_PrefabInstance: {fileID: 3764279758168446409}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44be4c11dd9318479307f9e612a716c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7081554801226390677
 PrefabInstance:
   m_ObjectHideFlags: 0

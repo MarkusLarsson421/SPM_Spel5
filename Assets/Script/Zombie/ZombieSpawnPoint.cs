@@ -10,7 +10,8 @@ public class ZombieSpawnPoint : MonoBehaviour
     [SerializeField] private int maxAmountAtSpawnPoint;
     private int randomAmountOfZombies;
     private GameObject player;
-    
+
+    private float timer;
 
     private bool canSpawn;
 
@@ -19,8 +20,19 @@ public class ZombieSpawnPoint : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    private void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= 20)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+    }
+
     public void Spawn()
     {
+      
         NrOfZombies();
         for (int i = 0; i < randomAmountOfZombies; i++)
         {
