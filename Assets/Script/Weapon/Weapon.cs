@@ -21,17 +21,40 @@ public class Weapon : MonoBehaviour {
 
 	private bool isFiring;
 	private bool isReloadPressed;
-	
+
+	private float timer;
+	private bool targetIsSet;
+
 	[SerializeField] private Camera fpsCamera;
 
 	void Start()
 	{
+
+		totalAmmo = rm.GetTotalAmmo();// var 100. Uppdaterat av Simon till rm.GetTotalAmmo()
+		currentMag = magCapacity;
+	}
+	void Awake()
+	{
+
 		totalAmmo = rm.GetTotalAmmo();// var 100. Uppdaterat av Simon till rm.GetTotalAmmo()
 		currentMag = magCapacity;
 	}
 
 	void Update()
 	{
+		/*if (!targetIsSet)
+		{
+
+			timer += Time.deltaTime;
+
+			if (timer >= 20)
+			{
+				totalAmmo = rm.GetTotalAmmo();// var 100. Uppdaterat av Simon till rm.GetTotalAmmo()
+				currentMag = magCapacity;
+				targetIsSet = true;
+			}
+
+		}*/
 		UserInput();
 	}
 

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 //Axel Sterner
 public class Interactor : MonoBehaviour
 {
-    public ResourceManager rM;
+   
     // om det behövs mer instruktioner: https://www.youtube.com/watch?v=lZThP8KG1W0&t=21&ab_channel=JTAGames
     public LayerMask interactableLayerMask = 7;
     public Image interactImage;
