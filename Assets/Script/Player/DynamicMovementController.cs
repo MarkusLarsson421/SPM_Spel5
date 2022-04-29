@@ -7,7 +7,7 @@ public class DynamicMovementController : MonoBehaviour
 {
     // Start is called before the first frame update
     private InputSystem controls;
-    private float speed = 9f;
+    [SerializeField] private float speed = 9f;
 
     private Vector3 velocity;
 
