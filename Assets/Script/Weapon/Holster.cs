@@ -1,74 +1,26 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Holster : MonoBehaviour
 {
-	//Weapons
-	private ArrayList weapons = new ArrayList();
-	private int selectedWeapon;
-
-    private bool isSwitched;
-
+    private int selectedWeapon;
     private float switchTimer;
-
+    private bool isSwitched;
     private bool canSwitch;
 
     private void Start()
     {
-		SelectWeapon();
+        SelectWeapon();
     }
 
-    void Update()
+    private void Update()
     {
-        if (canSwitch)
-        {
-            UserInput();
-        }
+        if (canSwitch){UserInput();}
 
         switchTimer += Time.deltaTime;
 
-        if(switchTimer >= 0.2f)
+        if (switchTimer >= 0.2f)
         {
             canSwitch = true;
-        }
-        
-    }
-    
-    /**
-     * @Author Markus Larsson
-     *
-     * Add weapon to player.
-     */
-    public void Add(GameObject weaponGO)
-    {
-        weapons.Add(weaponGO);
-    }
-
-    public void OnSwitch(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            isSwitched = true;
-        }
-        if(context.canceled)
-        {
-            isSwitched = false;
-        }
-    }
-
-    /**
-     * @Author Markus Larsson
-     *
-     * Remove weapon from player.
-     */
-    public void Remove(string name)
-    {
-        foreach(GameObject weapon in weapons)
-        {
-			if(weapon.name.Equals(name)){
-				weapons.Remove(weapon);
-			}
         }
     }
 
@@ -90,7 +42,8 @@ public class Holster : MonoBehaviour
             {
                 selectedWeapon++;
             }
-			SelectWeapon();
+
+            SelectWeapon();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0.0f)
         {
@@ -102,7 +55,8 @@ public class Holster : MonoBehaviour
             {
                 selectedWeapon--;
             }
-			SelectWeapon();
+
+            SelectWeapon();
         }
 
         //Weapon select using numbers at the top.
@@ -116,6 +70,7 @@ public class Holster : MonoBehaviour
             selectedWeapon = 1;
             SelectWeapon();
         }
+
         switchTimer = 0;
         canSwitch = false;
     }
