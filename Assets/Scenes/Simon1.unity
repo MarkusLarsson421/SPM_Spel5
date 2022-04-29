@@ -1775,7 +1775,7 @@ GameObject:
   - component: {fileID: 98159560}
   - component: {fileID: 98159559}
   m_Layer: 0
-  m_Name: Image (1)
+  m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1790,7 +1790,7 @@ RectTransform:
   m_GameObject: {fileID: 98159557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.13515, y: 0.13515, z: 0.13515}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 322609563}
   m_RootOrder: 8
@@ -1820,7 +1820,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17475,6 +17475,10 @@ PrefabInstance:
       value: 127.41998
       objectReference: {fileID: 0}
     - target: {fileID: 1408164137127981261, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1408164137127981261, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -17548,19 +17552,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5416312476646654359, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.13515
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5416312476646654359, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.13515
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5416312476646654359, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.13515
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5416312476646654359, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 501
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722731448952210758, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
+      propertyPath: m_Name
+      value: Crosshair
       objectReference: {fileID: 0}
     - target: {fileID: 6109896117961396370, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
       propertyPath: m_Name
