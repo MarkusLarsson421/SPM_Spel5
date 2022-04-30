@@ -8,6 +8,7 @@ public class DynamicMovementController : MonoBehaviour
     // Start is called before the first frame update
     private InputSystem controls;
     [SerializeField] private float speed = 9f;
+    [SerializeField] private float maxSpeed;
 
     private Vector3 velocity;
 
@@ -58,6 +59,7 @@ public class DynamicMovementController : MonoBehaviour
 
         Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
         velocity += movement * speed * Time.deltaTime;
+        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
     }
 
     

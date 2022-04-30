@@ -118,11 +118,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c54e67255f1f54e94001f174694912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 9
+  maxSpeed: 4
   collisionMask:
     serializedVersion: 2
     m_Bits: 4294967295
   staticFrictionCoefficient: 0.8
-  kineticFloatCoefficent: 0.5
+  kineticFloatCoefficent: 0.6
 --- !u!114 &-752147081225894367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +206,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ac9fda07-636b-45a1-8e5f-c2f038d8f686
     m_ActionName: Gameplay/Reload[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 78c6383f-8e65-4897-8853-f3f1033d3d80
+    m_ActionName: Gameplay/Switch
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -248,6 +254,7 @@ MonoBehaviour:
   defaultIconSize: {x: 0, y: 0}
   defaultInteractionIcon: {fileID: 0}
   defaultInteractionIconSize: {x: 0, y: 0}
+  playerCamera: {fileID: 0}
 --- !u!114 &675833581088752025
 MonoBehaviour:
   m_ObjectHideFlags: 0
