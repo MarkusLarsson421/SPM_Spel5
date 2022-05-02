@@ -73,7 +73,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Switch"",
+                    ""name"": ""FlashLight"",
                     ""type"": ""Button"",
                     ""id"": ""78c6383f-8e65-4897-8853-f3f1033d3d80"",
                     ""expectedControlType"": ""Button"",
@@ -211,7 +211,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Switch"",
+                    ""action"": ""FlashLight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -227,7 +227,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Shoot = m_Gameplay.FindAction("Shoot", throwIfNotFound: true);
         m_Gameplay_Reload = m_Gameplay.FindAction("Reload", throwIfNotFound: true);
-        m_Gameplay_Switch = m_Gameplay.FindAction("Switch", throwIfNotFound: true);
+        m_Gameplay_FlashLight = m_Gameplay.FindAction("FlashLight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -292,7 +292,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Shoot;
     private readonly InputAction m_Gameplay_Reload;
-    private readonly InputAction m_Gameplay_Switch;
+    private readonly InputAction m_Gameplay_FlashLight;
     public struct GameplayActions
     {
         private @InputSystem m_Wrapper;
@@ -302,7 +302,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @Shoot => m_Wrapper.m_Gameplay_Shoot;
         public InputAction @Reload => m_Wrapper.m_Gameplay_Reload;
-        public InputAction @Switch => m_Wrapper.m_Gameplay_Switch;
+        public InputAction @FlashLight => m_Wrapper.m_Gameplay_FlashLight;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,9 +327,9 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 @Reload.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnReload;
-                @Switch.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitch;
-                @Switch.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitch;
-                @Switch.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitch;
+                @FlashLight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFlashLight;
+                @FlashLight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFlashLight;
+                @FlashLight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFlashLight;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -349,9 +349,9 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
-                @Switch.started += instance.OnSwitch;
-                @Switch.performed += instance.OnSwitch;
-                @Switch.canceled += instance.OnSwitch;
+                @FlashLight.started += instance.OnFlashLight;
+                @FlashLight.performed += instance.OnFlashLight;
+                @FlashLight.canceled += instance.OnFlashLight;
             }
         }
     }
@@ -363,6 +363,6 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
-        void OnSwitch(InputAction.CallbackContext context);
+        void OnFlashLight(InputAction.CallbackContext context);
     }
 }

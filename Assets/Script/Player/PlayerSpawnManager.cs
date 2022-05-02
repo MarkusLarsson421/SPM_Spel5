@@ -8,6 +8,16 @@ public class PlayerSpawnManager : MonoBehaviour
 
     [SerializeField] private Transform playerOneSpawnPoint;
     [SerializeField] private Transform playerTwoSpawnPoint;
+    [SerializeField] private PlayerInputManager playerInputManager;
+
+    /*
+    private void Awake()
+    {
+        playerInputManager.JoinPlayer();
+        playerInputManager.JoinPlayer();
+    }
+    */
+    
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
