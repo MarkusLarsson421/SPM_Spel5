@@ -9,6 +9,7 @@ public class CraftingSystem : MonoBehaviour
     [SerializeField] private int scrapAmountNeeded;
     [SerializeField] private GameObject canvas;
     [SerializeField] private Font font;
+    [SerializeField] private EventSystem eventSystem;
     private GameObject player;
     private Text infoText;
     private bool isToggled;
@@ -51,7 +52,7 @@ public class CraftingSystem : MonoBehaviour
             Debug.Log("toggled");
             infoText.enabled = true;
             upgradeButton.enabled = true;
-
+            eventSystem.firstSelectedGameObject = magazineUpgrade;
 
             infoText.text = "Craft hehe";
             
@@ -70,10 +71,10 @@ public class CraftingSystem : MonoBehaviour
     
     public void DamageUpgrade()
     {
-
+        Debug.Log("hawt");
         if (!hasUpgradedDamage)
         {
-        player.GetComponentInChildren<Weapon>().SetDamage(30);
+            GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(30);
             //Ska göra så pistolen gör mer skada
             print("HEYO");
             hasUpgradedDamage = true;

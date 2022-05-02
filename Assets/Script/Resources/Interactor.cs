@@ -73,7 +73,7 @@ public class Interactor : MonoBehaviour
                 if (isInteractPressed || Input.GetKeyDown(KeyCode.E))
                 {
                     interactable.onInteract.Invoke();
-                    Debug.Log("Interact");
+                    //Debug.Log("Interact");
                 }
             }
             else

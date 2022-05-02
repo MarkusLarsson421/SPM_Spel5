@@ -50,7 +50,7 @@ public class Weapon : MonoBehaviour {
 		if (timer >= 0.4f)
 		{
 			canFire = true;
-			Debug.Log("can fire" + canFire);
+			
 
 		}
 
