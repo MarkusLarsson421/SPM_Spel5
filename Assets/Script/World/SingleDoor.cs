@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 
 public class SingleDoor : MonoBehaviour
 {
 	[SerializeField] private bool blocked = true;
+	[SerializeField] private bool playerCanOpen;
 	
 	private bool open;
 	private Animator ani;
@@ -39,9 +39,11 @@ public class SingleDoor : MonoBehaviour
 	 *
 	 * Close the door.
 	 */
-	private void Close(){
+	public void Close()
+	{
+		if(blocked){return;}
 		open = false;
-		ani.Play("Close", 0, 0.0f);
+		ani.SetBool("isOpen", false);
 		Debug.Log("Closing!");
 	}
 	
@@ -50,10 +52,11 @@ public class SingleDoor : MonoBehaviour
 	 *
 	 * Open the door.
 	 */
-	private void Open(){
+	public void Open()
+	{
+		if(blocked){return;}
 		open = true;
-		ani.Play("Open", 0, 0.0f);
+		ani.SetBool("isOpen", true);
 		Debug.Log("Opening!");
-
 	}
 }
