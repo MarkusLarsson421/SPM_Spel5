@@ -10,7 +10,7 @@ public class SingleDoor : MonoBehaviour
 
 	private void Awake()
 	{
-		ani = gameObject.GetComponent<Animator>();
+		ani = gameObject.transform.GetChild(0).GetComponent<Animator>();
 	}
 
 	/**
