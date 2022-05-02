@@ -36,17 +36,15 @@ public class APU_SimonPrototype : MonoBehaviour
         if (ammoLimit)
         {
             currentAmmo = Random.Range(MINPICKUP, MAXPICKUP);
-            rm.AddTotalAmmo(currentAmmo);
-            if (rm.GetTotalAmmo() >= maxAmmo)
+            rm.Add(ResourceManager.ItemType.Ammo, currentAmmo);
+            if (rm.Get(ResourceManager.ItemType.Ammo) > maxAmmo)
             {
-                Debug.Log("current ammo = 100");
-                rm.SetTotalAmmo(100);
-
+                rm.SetTotal(ResourceManager.ItemType.Ammo, maxAmmo);
             }
 
             Destroy(gameObject);
             Debug.Log("current ammo =" + currentAmmo);
-            Debug.Log("total ammo =" + rm.GetTotalAmmo());
+            Debug.Log("total ammo =" + rm.Get(ResourceManager.ItemType.Ammo));
         }
         else
         {
@@ -55,7 +53,7 @@ public class APU_SimonPrototype : MonoBehaviour
     }
     private void AmmoLimitReached() //kontrollerar ifall man har max antal ammo.
     {
-        if (rm.GetTotalAmmo() == maxAmmo)
+        if (rm.Get(ResourceManager.ItemType.Ammo) == maxAmmo)
         {
             Debug.Log("ammo limit reached");
             ammoLimit = false;

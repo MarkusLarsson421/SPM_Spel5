@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour {
 	//Ammo
 	[SerializeField] private int magCapacity = 8;
 	[SerializeField] private float reloadTime = 2.0f;
-	[SerializeField] private RM rm;
+	[SerializeField] private ResourceManager rm;
 	private int currentMag;
 	private bool isReloading;
 
@@ -74,7 +74,7 @@ public class Weapon : MonoBehaviour {
 			Fire();
 		}
 		else if(isReloadPressed || Input.GetKeyDown(KeyCode.R) && !isReloading){
-			if(rm.GetTotalAmmo() != 0)
+			if(rm.Get(ResourceManager.ItemType.Ammo) != 0)
 			{
 				StartCoroutine(Reload());
 			}
@@ -111,19 +111,19 @@ public class Weapon : MonoBehaviour {
 		Debug.Log("Reloading...");
 		yield return new WaitForSeconds(reloadTime);
 		int tempSubSize = magCapacity - currentMag;
-		if(currentMag + rm.GetTotalAmmo() >= magCapacity) //gör så det inte går att få mer än magCapacity i magget
+		if(currentMag + rm.Get(ResourceManager.ItemType.Ammo) >= magCapacity) //gör så det inte går att få mer än magCapacity i magget
 		{
 			currentMag = magCapacity;
 		}
 		else
 		{
-			currentMag += rm.GetTotalAmmo();
+			currentMag += rm.Get(ResourceManager.ItemType.Ammo);
 		}
 		
-		rm.SubTotalAmmo(tempSubSize);
-		if (rm.GetTotalAmmo() < 0)
+		rm.Subtract(ResourceManager.ItemType.Ammo, tempSubSize);
+		if (rm.Get(ResourceManager.ItemType.Ammo) < 0)
         {
-			rm.SetTotalAmmo(0);
+			rm.SetTotal(ResourceManager.ItemType.Ammo, 0);
         }
 		Debug.Log("Reloaded!");
 		isReloading = false;

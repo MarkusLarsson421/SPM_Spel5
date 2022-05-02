@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class FlashLight : MonoBehaviour
 {
-    public RM rm;
+    public ResourceManager rm;
     [SerializeField] [Range(1, 100)] private double batteryCharge = 100.0;
     [SerializeField] private double batteryDrainMultiplier = 0.1;
 
@@ -102,9 +102,9 @@ public class FlashLight : MonoBehaviour
 	 */
     private void Recharge()
     {
-        if (rm.GetCurrentBatteries() != 0)
+        if (rm.Get(ResourceManager.ItemType.Batteries) != 0)
         {
-            rm.SetCurrentBatteries(rm.GetCurrentBatteries() - 1);
+            rm.Subtract(ResourceManager.ItemType.Batteries, -1);
             RechargeAmount(100);
         }
     }
