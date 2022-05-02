@@ -19,6 +19,9 @@ public class Weapon : MonoBehaviour {
 
 	private bool isFiring;
 	private bool isReloadPressed;
+	private bool canFire = true;
+
+	private float timer;
 
 	private ParticleSystem muzzleFlash;
 	
@@ -32,7 +35,28 @@ public class Weapon : MonoBehaviour {
 
 	void Update()
 	{
-		UserInput();
+		timer += Time.deltaTime;
+
+		if (canFire)
+		{
+			
+			UserInput();
+			
+
+			
+
+		}
+
+		if (timer >= 0.4f)
+		{
+			canFire = true;
+			Debug.Log("can fire" + canFire);
+
+		}
+
+
+
+		//UserInput();
 	}
 
 	/**
@@ -40,9 +64,10 @@ public class Weapon : MonoBehaviour {
 	 */
 	public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && canFire)
         {
 			isFiring = true;
+			//canFire = false ;
         }
 
         if (context.canceled)
@@ -72,6 +97,8 @@ public class Weapon : MonoBehaviour {
 		if (isFiring || Input.GetKeyDown(KeyCode.Mouse1) && Time.time >= nextTimeToFire && !isReloading && currentMag > 0){
 			nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
+			canFire = false;
+			
 		}
 		else if(isReloadPressed || Input.GetKeyDown(KeyCode.R) && !isReloading){
 			if(rm.Get(ResourceManager.ItemType.Ammo) != 0)
@@ -79,6 +106,7 @@ public class Weapon : MonoBehaviour {
 				StartCoroutine(Reload());
 			}
 		}
+		timer = 0;
 	}
 
 	/**

@@ -20,21 +20,39 @@ public class Interactor : MonoBehaviour
 
     private bool isInteractPressed;
 
+    private bool canInteract = true;
+    private float timer;
 
     void Update()
     {
+
+        if (canInteract) 
+        {
+            interactHandler();
+        }
+
+        timer += Time.deltaTime;
+
+        if (timer >= 0.2f)
+        {
+            canInteract = true;
+        }
         interactHandler();
+        
+        
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started && canInteract)
         {
             isInteractPressed = true;
+            canInteract = false;
         }
         if (context.canceled)
         {
             isInteractPressed = false;
+            canInteract = true;
         }
     }
 
@@ -55,6 +73,7 @@ public class Interactor : MonoBehaviour
                 if (isInteractPressed || Input.GetKeyDown(KeyCode.E))
                 {
                     interactable.onInteract.Invoke();
+                    Debug.Log("Interact");
                 }
             }
             else
