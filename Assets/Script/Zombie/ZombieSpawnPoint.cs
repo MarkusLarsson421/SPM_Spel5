@@ -18,6 +18,9 @@ public class ZombieSpawnPoint : MonoBehaviour
     private bool canSpawn;
     private bool targetIsSet;
 
+    private float distanceToPlayer1;
+    private float distanceToPlayer2;
+
     private void Start()
     {
         player1 = GameObject.FindGameObjectWithTag("Player1");
@@ -75,10 +78,16 @@ public class ZombieSpawnPoint : MonoBehaviour
 
     public void setCanSpawn()
     {
-        float distanceToPlayer1 = Vector3.Distance(player1.transform.position, transform.position);
-        float distanceToPlayer2 = Vector3.Distance(player2.transform.position, transform.position);
+        distanceToPlayer1 = Vector3.Distance(player1.transform.position, transform.position);
+        /*
+        if(player2 != null)
+        {
+            distanceToPlayer2 = Vector3.Distance(player2.transform.position, transform.position);
+        }
+        */
+        
         //Debug.Log(distanceToPlayer);
-        if(distanceToPlayer1 <= minimunDistanceToPlayer || distanceToPlayer2 <= minimunDistanceToPlayer)
+        if(distanceToPlayer1 <= minimunDistanceToPlayer /*|| distanceToPlayer2 <= minimunDistanceToPlayer*/)
         {
             canSpawn = false;
         }
