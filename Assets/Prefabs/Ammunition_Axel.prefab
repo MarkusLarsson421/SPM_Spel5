@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3337820477307909071}
   - component: {fileID: 7161467115002635536}
   - component: {fileID: 362077841803667988}
-  - component: {fileID: 1046961733}
+  - component: {fileID: 750663006125240979}
   m_Layer: 7
   m_Name: Ammunition_Axel
   m_TagString: Ammo
@@ -113,8 +113,8 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1046961733}
-        m_TargetAssemblyTypeName: AmmoPickUpHandler, Assembly-CSharp
+      - m_Target: {fileID: 750663006125240979}
+        m_TargetAssemblyTypeName: APU_SimonPrototype, Assembly-CSharp
         m_MethodName: PickUpAmmo
         m_Mode: 1
         m_Arguments:
@@ -128,7 +128,7 @@ MonoBehaviour:
   interactIcon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   iconSize: {x: 25, y: 25}
   ID: 0
---- !u!114 &1046961733
+--- !u!114 &750663006125240979
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7191338239713041058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a27da7fc5f3bb7d459c75e26d0713e37, type: 3}
+  m_Script: {fileID: 11500000, guid: edc8bf84d4f83384b8d8e90672fd5144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rm: {fileID: 0}
+  rm: {fileID: 7060519444527971777, guid: 1f6c72c2b0e7a3942b64a45ee5f77e58, type: 3}
