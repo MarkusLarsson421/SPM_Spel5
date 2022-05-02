@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class DisableDoor_SimonPrototype : MonoBehaviour
 {
-    public GameObject door1;
-    public GameObject door2;
-  
-
-    public void DisableDoors()
+	public void DisableDoors()
     {
-        Destroy(door1);
-        Destroy(door2);
-        
+	    for(int i = 0; i < transform.childCount; i++)
+	    {
+		    Destroy(transform.GetChild(i));
+	    }
     }
 }
