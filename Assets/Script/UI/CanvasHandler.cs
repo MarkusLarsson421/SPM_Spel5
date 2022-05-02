@@ -7,6 +7,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
 {
     [SerializeField] private GameObject CanvasObject;
     [SerializeField] private GameObject deathCanvasObject;
+    [SerializeField] private GameObject tookDamgeCanvasObject;
     [SerializeField] private int sceneToIndex;
     static private int MainMenuSceneIsIndex = 0;
     [SerializeField] GameObject player;
@@ -20,7 +21,9 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     {
         player = GameObject.FindGameObjectWithTag("Player");
         currentHealth = player.GetComponent<PlayerStats>().getHealth();
+        tookDamgeCanvasObject.SetActive(true);
         tookDamgeCanvas.alpha = 0;
+
     }
     // Update is called once per frame
     void Update()
