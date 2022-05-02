@@ -21,6 +21,16 @@ public class GamePadCamera : MonoBehaviour
     void Awake()
     {
         player = transform.parent;
+        if (transform.parent.tag == "Player1")
+        {
+            //transform.position = new Vector2(0, 1);
+            this.GetComponent<Camera>().rect = new Rect(0f, 0.5f, 1f, 0.5f);
+        }
+        else if(transform.parent.tag == "Player2")
+        {
+            //transform.position = new Vector2(0, -1);
+            this.GetComponent<Camera>().rect = new Rect(0f, 0f, 1f, 0.5f);
+        }
 
         input = new InputSystem();
 

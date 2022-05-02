@@ -882,7 +882,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683549141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.2883067, y: 1.7, z: -14.77}
+  m_LocalPosition: {x: 5.2883067, y: 2.97, z: -14.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2153,6 +2153,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7577167074781349484, guid: 8e30eac164ac8364591bb9c30a73fb9c, type: 3}
   m_PrefabInstance: {fileID: 164235858}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1835425133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1246783944924373843, guid: fe3e8d746afb03c468a684d064146f3a, type: 3}
+  m_PrefabInstance: {fileID: 1246783943906877704}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1863422863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2695,9 +2706,25 @@ PrefabInstance:
       value: LocalCo-opManager
       objectReference: {fileID: 0}
     - target: {fileID: 1246783944924373843, guid: fe3e8d746afb03c468a684d064146f3a, type: 3}
+      propertyPath: m_SplitScreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246783944924373843, guid: fe3e8d746afb03c468a684d064146f3a, type: 3}
+      propertyPath: m_AllowJoining
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246783944924373843, guid: fe3e8d746afb03c468a684d064146f3a, type: 3}
+      propertyPath: m_JoinBehavior
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246783944924373843, guid: fe3e8d746afb03c468a684d064146f3a, type: 3}
       propertyPath: m_PlayerPrefab
       value: 
       objectReference: {fileID: 3085997579580629145, guid: b49be5c1964bad14b9cc5fe46a1be1f5, type: 3}
+    - target: {fileID: 1246783944924373843, guid: fe3e8d746afb03c468a684d064146f3a, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1246783944924373844, guid: fe3e8d746afb03c468a684d064146f3a, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -2742,6 +2769,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1246783944924373845, guid: fe3e8d746afb03c468a684d064146f3a, type: 3}
+      propertyPath: playerInputManager
+      value: 
+      objectReference: {fileID: 1835425133}
     - target: {fileID: 1246783944924373845, guid: fe3e8d746afb03c468a684d064146f3a, type: 3}
       propertyPath: playerOneSpawnPoint
       value: 
