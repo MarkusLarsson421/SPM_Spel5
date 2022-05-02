@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour {
-	public RM rm;
 	//Shooting
 	[SerializeField] private int damage = 20;
 	[SerializeField] private float range = 100.0f;
@@ -12,9 +11,9 @@ public class Weapon : MonoBehaviour {
 	private float nextTimeToFire;
 
 	//Ammo
-	[SerializeField] private int totalAmmo;
 	[SerializeField] private int magCapacity = 8;
 	[SerializeField] private float reloadTime = 2.0f;
+	[SerializeField] private RM rm;
 	private int currentMag;
 	private bool isReloading;
 
@@ -27,7 +26,6 @@ public class Weapon : MonoBehaviour {
 
 	void Start()
 	{
-		totalAmmo = rm.GetTotalAmmo();// var 100. Uppdaterat av Simon till rm.GetTotalAmmo()
 		currentMag = magCapacity;
 		muzzleFlash = transform.GetChild(0).GetComponent<ParticleSystem>();
 	}
@@ -91,6 +89,7 @@ public class Weapon : MonoBehaviour {
 	private void Fire(){
 		currentMag--;
 		muzzleFlash.Play();
+		Debug.Log("FIRE!");
 
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
@@ -130,18 +129,6 @@ public class Weapon : MonoBehaviour {
 		isReloading = false;
 	}
 
-	public int GetAmmo()
-	{
-		return totalAmmo;
-	}
-	public void SetAmmo(int newAmmo)
-	{
-		totalAmmo += newAmmo;
-	}
-	public void ResetAmmo()
-	{
-		totalAmmo = 100;
-	}
 	public void SetDamage(int newDamage)
 	{
 		damage = newDamage;
