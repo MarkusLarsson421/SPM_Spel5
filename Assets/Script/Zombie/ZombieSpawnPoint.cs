@@ -20,8 +20,8 @@ public class ZombieSpawnPoint : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player1");
-        player = GameObject.FindGameObjectWithTag("Player2");
+        player1 = GameObject.FindGameObjectWithTag("Player1");
+        player2 = GameObject.FindGameObjectWithTag("Player2");
     }
 
     private void Update()
@@ -33,7 +33,9 @@ public class ZombieSpawnPoint : MonoBehaviour
 
             if (timer >= 20)
             {
-                player = GameObject.FindGameObjectWithTag("Player1");
+                //player = GameObject.FindGameObjectWithTag("Player1");
+                player1 = GameObject.FindGameObjectWithTag("Player1");
+                player2 = GameObject.FindGameObjectWithTag("Player2");
                 targetIsSet = true;
             }
 
@@ -48,7 +50,7 @@ public class ZombieSpawnPoint : MonoBehaviour
         for (int i = 0; i < randomAmountOfZombies; i++)
         {
             GameObject go = Instantiate(zombie, this.transform);
-            go.GetComponent<Zombie>().SetTarget(player.transform);
+            go.GetComponent<Zombie>().SetTarget(player1.transform);
         }
 
     }
