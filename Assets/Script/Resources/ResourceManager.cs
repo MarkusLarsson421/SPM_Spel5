@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
@@ -7,31 +8,22 @@ public class ResourceManager : MonoBehaviour
 	 * 
 	 * @Author Simon Hessling and Markus Larsson
 	 */
-
-	public enum ItemType{
-		Batteries,
-		Scrap,
-		Ammo,
-	}
-
+	
 	private int ammo;
-    private int batteries;
-    private int scrap;
+	private int batteries;
+	private int scrap;
 
-    /**
+	/**
 	 * @Author Markus Larsson
 	 */
-    public int Get(ItemType type){
+    public int Get(MyItem.Type type){
 	    switch(type){
-		    case ItemType.Batteries:
+		    case MyItem.Type.Batteries:
 			    return batteries;
-			    break;
-		    case ItemType.Scrap:
+		    case MyItem.Type.Scrap:
 			    return scrap;
-			    break;
-		    case ItemType.Ammo:
+		    case MyItem.Type.Ammo:
 			    return ammo;
-			    break;
 	    }
 	    return 0;
     }
@@ -39,16 +31,16 @@ public class ResourceManager : MonoBehaviour
     /**
 	 * @Author Markus Larsson
 	 */
-    public void SetTotal(ItemType type, int amount)
+    public void SetTotal(MyItem.Type type, int amount)
     {
 	    switch(type){
-		    case ItemType.Batteries:
+		    case MyItem.Type.Batteries:
 			    batteries = amount;
 			    break;
-		    case ItemType.Scrap:
+		    case MyItem.Type.Scrap:
 			    scrap = amount;
 			    break;
-		    case ItemType.Ammo:
+		    case MyItem.Type.Ammo:
 			    ammo = amount;
 			    break;
 	    }
@@ -57,35 +49,17 @@ public class ResourceManager : MonoBehaviour
     /**
 	 * @Author Markus Larsson
 	 */
-    public void Add(ItemType type, int amount)
+    public void Offset(MyItem.Type type, int amount)
     {
 	    switch(type){
-		    case ItemType.Batteries:
+		    case MyItem.Type.Batteries:
 			    batteries += amount;
 			    break;
-		    case ItemType.Scrap:
+		    case MyItem.Type.Scrap:
 			    scrap += amount;
 			    break;
-		    case ItemType.Ammo:
+		    case MyItem.Type.Ammo:
 			    ammo += amount;
-			    break;
-	    }
-    }
-
-    /**
-	 * @Author Markus Larsson
-	 */
-    public void Subtract(ItemType type, int amount)
-    {
-	    switch(type){
-		    case ItemType.Batteries:
-			    batteries -= amount;
-			    break;
-		    case ItemType.Scrap:
-			    scrap -= amount;
-			    break;
-		    case ItemType.Ammo:
-			    ammo -= amount;
 			    break;
 	    }
     }

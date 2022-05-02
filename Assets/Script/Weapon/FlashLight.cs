@@ -102,9 +102,9 @@ public class FlashLight : MonoBehaviour
 	 */
     private void Recharge()
     {
-        if (rm.Get(ResourceManager.ItemType.Batteries) != 0)
+        if (rm.Get(MyItem.Type.Batteries) != 0)
         {
-            rm.Subtract(ResourceManager.ItemType.Batteries, -1);
+            rm.Offset(MyItem.Type.Batteries, -1);
             RechargeAmount(100);
         }
     }
