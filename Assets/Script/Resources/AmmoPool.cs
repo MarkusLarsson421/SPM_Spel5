@@ -35,7 +35,6 @@ public class AmmoPool : MonoBehaviour
             APU_SimonPrototype ammo = Instantiate(ammoPrefab);
             ammo.gameObject.SetActive(false);
             ammoContainer.Enqueue(ammo);
-            Debug.Log(ammoContainer.Count);
         }
     }
 

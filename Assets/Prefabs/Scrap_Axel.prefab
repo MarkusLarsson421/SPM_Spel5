@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3337820477307909071}
   - component: {fileID: 7161467115002635536}
   - component: {fileID: 3841868272510865606}
+  - component: {fileID: 9087481450868311100}
   m_Layer: 7
   m_Name: Scrap_Axel
   m_TagString: Scrap
@@ -112,13 +113,13 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 2d344003c722b9d49a53d6d473912f8b, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 9087481450868311100}
+        m_TargetAssemblyTypeName: SPU_SimonPrototype, Assembly-CSharp
+        m_MethodName: PickUpScrap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -127,3 +128,16 @@ MonoBehaviour:
   interactIcon: {fileID: 0}
   iconSize: {x: 0, y: 0}
   ID: 0
+--- !u!114 &9087481450868311100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191338239713041058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56128aca01ddc8c4fa0c2dd6094480c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rm: {fileID: 3691956083927448618, guid: 1f6c72c2b0e7a3942b64a45ee5f77e58, type: 3}

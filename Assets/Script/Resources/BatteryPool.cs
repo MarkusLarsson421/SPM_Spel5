@@ -33,7 +33,6 @@ public class BatteryPool : MonoBehaviour
             BPU_SimonPrototype batt = Instantiate(batteryPrefab);
             batt.gameObject.SetActive(false);
             batteryContainer.Enqueue(batt);
-            Debug.Log(batteryContainer.Count);
         }
     }
 
