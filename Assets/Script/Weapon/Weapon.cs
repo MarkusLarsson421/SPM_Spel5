@@ -75,11 +75,12 @@ public class Weapon : MonoBehaviour {
 		if (isFiring || Input.GetKeyDown(KeyCode.Mouse1) && Time.time >= nextTimeToFire && !isReloading && currentMag > 0){
 			nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
-			SetAmmoText();
 		}
 		else if(isReloadPressed || Input.GetKeyDown(KeyCode.R) && !isReloading){
-			StartCoroutine(Reload());
-			SetAmmoText();
+			if(rm.GetTotalAmmo() != 0)
+			{
+				StartCoroutine(Reload());
+			}
 		}
 	}
 
@@ -90,13 +91,11 @@ public class Weapon : MonoBehaviour {
 	 */
 	private void Fire(){
 		currentMag--;
-
 		muzzleFlash.Play();
 
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
 			Zombie target = hit.transform.GetComponent<Zombie>();
-			Debug.Log("Hit: " + hit.transform.name + ", Remaining ammo: " + totalAmmo);
 			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
 			if(target != null){
 				target.TakeDamage(damage);
@@ -105,45 +104,33 @@ public class Weapon : MonoBehaviour {
 	}
 
 	/**
-	 * @Author Markus Larsson
-	 * @Simon Hessling Oscarson
 	 * Reloads the current magazine.
+	 *
+	 * @Author Markus Larsson and Simon Hessling Oscarson
 	 */
-	IEnumerator Reload(){
-		if (rm.GetTotalAmmo() != 0) // ifall man har något extra ammo
+	private IEnumerator Reload(){
+		isReloading = true;
+		Debug.Log("Reloading...");
+		yield return new WaitForSeconds(reloadTime);
+		int tempSubSize = magCapacity - currentMag;
+		if(currentMag + rm.GetTotalAmmo() >= magCapacity) //gör så det inte går att få mer än magCapacity i magget
 		{
-			isReloading = true;
-			Debug.Log("Reloading...");
-			yield return new WaitForSeconds(reloadTime);
-			int tempSubSize = magCapacity - currentMag;
-			if (currentMag + rm.GetTotalAmmo() >= magCapacity)//gör så det inte går att få mer än magCapacity i magget
-			{
-				currentMag = magCapacity;	
-			}
-			else
-			{
-				currentMag += rm.GetTotalAmmo();
-			}
-			rm.SubTotalAmmo(tempSubSize);
-			if (rm.GetTotalAmmo() < 0)
-            {
-				rm.SetTotalAmmo(0);
-            }
-			Debug.Log("Reloaded!");
-			isReloading = false;
+			currentMag = magCapacity;
 		}
+		else
+		{
+			currentMag += rm.GetTotalAmmo();
+		}
+		
+		rm.SubTotalAmmo(tempSubSize);
+		if (rm.GetTotalAmmo() < 0)
+        {
+			rm.SetTotalAmmo(0);
+        }
+		Debug.Log("Reloaded!");
+		isReloading = false;
 	}
-	
-	/**
-	 * @Author Khaled Alraas
-	 * @Simon Hessling Oscarson. Tagit bort texten.
-	 */
-	private void SetAmmoText()
-	{
-		// set ammo Text UI
-		//ammoText.text = totalAmmo.ToString();
-	}
-	
+
 	public int GetAmmo()
 	{
 		return totalAmmo;
