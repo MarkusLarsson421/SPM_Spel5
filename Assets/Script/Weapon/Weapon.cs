@@ -21,6 +21,8 @@ public class Weapon : MonoBehaviour {
 
 	private bool isFiring;
 	private bool isReloadPressed;
+
+	private ParticleSystem muzzleFlash;
 	
 	[SerializeField] private Camera fpsCamera;
 
@@ -28,6 +30,7 @@ public class Weapon : MonoBehaviour {
 	{
 		totalAmmo = rm.GetTotalAmmo();// var 100. Uppdaterat av Simon till rm.GetTotalAmmo()
 		currentMag = magCapacity;
+		muzzleFlash = transform.GetChild(0).GetComponent<ParticleSystem>();
 	}
 
 	void Update()
@@ -63,49 +66,7 @@ public class Weapon : MonoBehaviour {
 			isReloadPressed = false;
 		}
 	}
-	
-	/**
-	 * @Author Axel Sterner
-	 * @Simon Hessling Oscarson finns i RM.
-	 */
-	public int GetAmmo() { return totalAmmo; }
 
-	/**
-	 * @Author Axel Sterner
-	 */
-	public void SetAmmo(int newAmmo)
-	{
-		totalAmmo += newAmmo;
-	}
-	
-	/**
-	 * @Author Axel Sterner
-	 * 
-	 */
-	public void ResetAmmo()
-	{
-		totalAmmo = 100;
-	}
-
-	/**
-	 * @Author Martin Wallmark
-	 */
-	public void SetDamage(int newDamage)
-	{
-		damage = newDamage;
-	}
-	
-	/**
-	 * @Author Martin Wallmark
-	 */
-	public void SetMagCapacity(int newMagCapacity)
-	{
-		magCapacity = newMagCapacity;
-	}
-	/**
-	 * @Author Simon Hessling Oscarson
-	 */
-	public int GetCurrentMag() { return currentMag; }
 	/**
 	 * @Author Markus Larsson and Khaled Alrass
 	 */
@@ -123,14 +84,14 @@ public class Weapon : MonoBehaviour {
 	}
 
 	/**
-	 * @Author Markus Larsson
-	 * 
 	 * Shoots from the referenced camera 10 units forward.
-	 * @Author Simon Hessling Oscarson. Minskar inte total ammo längre.
+	 * 
+	 * @Author Markus Larsson and Simon Hessling Oscarson
 	 */
 	private void Fire(){
 		currentMag--;
-		//totalAmmo--;
+
+		muzzleFlash.Play();
 
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
@@ -181,5 +142,31 @@ public class Weapon : MonoBehaviour {
 	{
 		// set ammo Text UI
 		//ammoText.text = totalAmmo.ToString();
+	}
+	
+	public int GetAmmo()
+	{
+		return totalAmmo;
+	}
+	public void SetAmmo(int newAmmo)
+	{
+		totalAmmo += newAmmo;
+	}
+	public void ResetAmmo()
+	{
+		totalAmmo = 100;
+	}
+	public void SetDamage(int newDamage)
+	{
+		damage = newDamage;
+	}
+	public void SetMagCapacity(int newMagCapacity)
+	{
+		magCapacity = newMagCapacity;
+	}
+
+	public int GetCurrentMag()
+	{
+		return currentMag;
 	}
 }
