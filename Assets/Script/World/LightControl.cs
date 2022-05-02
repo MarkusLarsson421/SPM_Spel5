@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,10 +14,16 @@ public class LightControl : MonoBehaviour
 
     private void Update()
     {
-        if (isOn && isRunning)
+        if (isOn && isRunning == false)
         {
             isRunning = true;
             StartCoroutine(Blink());
+        }
+
+        if (isOn == false && isRunning)
+        {
+	        isRunning = false;
+	        StopCoroutine(Blink());
         }
     }
 
@@ -25,8 +32,20 @@ public class LightControl : MonoBehaviour
         isOn = !isOn;
     }
 
-    private static IEnumerator Blink()
+    private IEnumerator Blink()
     {
+	    SetLightState(true);
+	    
         yield return new WaitForSeconds(2.0f);
+        
+        SetLightState(false);
+    }
+
+    private void SetLightState(bool setState)
+    {
+	    foreach(GameObject go in lights)
+	    {
+		    go.gameObject.transform.GetChild(0).gameObject.SetActive(setState);
+	    }
     }
 }
