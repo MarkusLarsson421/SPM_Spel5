@@ -22,7 +22,7 @@ public class AmmoPool : MonoBehaviour
     {
         if(ammoContainer.Count == 0)
         {
-            //lägg till 1 ammo
+            AddShots(1);
         }
 
         return ammoContainer.Dequeue();
@@ -35,6 +35,7 @@ public class AmmoPool : MonoBehaviour
             APU_SimonPrototype ammo = Instantiate(ammoPrefab);
             ammo.gameObject.SetActive(false);
             ammoContainer.Enqueue(ammo);
+            Debug.Log(ammoContainer.Count);
         }
     }
 
