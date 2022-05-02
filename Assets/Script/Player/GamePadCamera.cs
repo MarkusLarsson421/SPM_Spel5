@@ -12,6 +12,10 @@ public class GamePadCamera : MonoBehaviour
     private Vector2 look;
     private float xRotation = 0f;
 
+    private float xAxis;
+    private float yAxis;
+    private float smallRotationInput = 0.07f;
+
     private Transform player;
     // Start is called before the first frame update
     void Awake()
@@ -36,9 +40,20 @@ public class GamePadCamera : MonoBehaviour
     private void LookAround()
     {
         //look = input.Gameplay.Rotate.ReadValue<Vector2>();
-
-        float xAxis = look.x * sensitity * Time.deltaTime;
-        float yAxis = look.y * sensitity * Time.deltaTime;
+        if(look.magnitude > smallRotationInput)
+        {
+            xAxis = look.x * sensitity * Time.deltaTime;
+            yAxis = look.y * sensitity * Time.deltaTime;
+        }
+       
+        else
+        {
+            xAxis = 0 * sensitity * Time.deltaTime;
+            yAxis = 0 * sensitity * Time.deltaTime;
+        }
+       
+        Debug.Log(look.magnitude);
+        
 
         xRotation -= yAxis;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
