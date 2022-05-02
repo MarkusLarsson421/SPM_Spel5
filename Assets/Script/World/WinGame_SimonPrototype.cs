@@ -11,10 +11,10 @@ public class WinGame_SimonPrototype : MonoBehaviour
 
     public void AddScrapsToCar()
     {
-       scrapsInCar += rm.Get(ResourceManager.ItemType.Scrap);
+       scrapsInCar += rm.Get(MyItem.Type.Scrap);
       
-       rm.SetTotal(ResourceManager.ItemType.Scrap, 0);
-        Debug.Log("rm scraps = " + rm.Get(ResourceManager.ItemType.Scrap) + " scrapsInCar = " + scrapsInCar);
+       rm.SetTotal(MyItem.Type.Scrap, 0);
+        Debug.Log("rm scraps = " + rm.Get(MyItem.Type.Scrap) + " scrapsInCar = " + scrapsInCar);
         if (scrapsInCar >= scrapsNeededToFixCar)
         {
             ch.ChangeCanvasToDeathCanvas();
