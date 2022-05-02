@@ -6,10 +6,10 @@ public class APU_SimonPrototype : MonoBehaviour
 {
 
     //Skapat av SIMON HESSLING TA EJ BORT OM DET INTE FINNS ALTERNATIV SOM FUNKAR FÖR PICK UP TACK.
-    /*AddAmmo() l�gger till ammo. Tar sedan bort Ammo pickUpen genom att g�ra Destroy(gameObject).
-    * AmmoPickUpHandler klassen skall d�rf�r ligga p� ammo objektet f�r att fungera korrekt.
-    * Modifieras h�gst upp i klassen. 
-    * Sammarbetar med klassen RM f�r att uppdatera m�ngden ammo man har
+    /*AddAmmo() lägger till ammo. Tar sedan bort Ammo pickUpen genom att göra Destroy(gameObject).
+    * AmmoPickUpHandler klassen skall därför ligga på ammo objektet för att fungera korrekt.
+    * Modifieras högst upp i klassen. 
+    * Sammarbetar med klassen RM för att uppdatera mängden ammo man har
     */
     public ResourceManager rm;
     private int MINPICKUP = 5;
@@ -22,7 +22,6 @@ public class APU_SimonPrototype : MonoBehaviour
     {
         return maxAmmo;
     }
-
 
     public void PickUpAmmo()
     {
@@ -41,8 +40,10 @@ public class APU_SimonPrototype : MonoBehaviour
             {
                 rm.SetTotal(ResourceManager.ItemType.Ammo, maxAmmo);
             }
-
-            Destroy(gameObject);
+            /*@Author Axel Sterner
+             * Lägger tillbaka ammo-objektet i poolen när den plockas upp
+             */
+            AmmoPool.Instance.ReturnToPool(this);
             Debug.Log("current ammo =" + currentAmmo);
             Debug.Log("total ammo =" + rm.Get(ResourceManager.ItemType.Ammo));
         }
