@@ -159,6 +159,7 @@ MonoBehaviour:
   scrapAmountNeeded: 0
   canvas: {fileID: 1631363947}
   font: {fileID: 12800000, guid: b9c5ffd05ad732d41b780985d30608d7, type: 3}
+  eventSystem: {fileID: 1491301871}
 --- !u!65 &143359372
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -512,7 +513,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &402175685
 MonoBehaviour:
@@ -685,12 +686,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 1439188658}
+    m_SelectOnRight: {fileID: 1265981445}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1482,12 +1483,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 480555719}
+    m_SelectOnRight: {fileID: 1439188658}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1617,6 +1618,10 @@ PrefabInstance:
     - target: {fileID: 2979776025397200163, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
       propertyPath: m_Name
       value: Zombie (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979776025397200163, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
@@ -2074,6 +2079,10 @@ PrefabInstance:
     - target: {fileID: 2979776025397200163, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
       propertyPath: m_Name
       value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979776025397200163, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
@@ -2740,7 +2749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246783944924373844, guid: fe3e8d746afb03c468a684d064146f3a, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1246783944924373844, guid: fe3e8d746afb03c468a684d064146f3a, type: 3}
       propertyPath: m_LocalPosition.x
