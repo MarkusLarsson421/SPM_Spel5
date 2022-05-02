@@ -33,7 +33,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     void Update()
     {
         
-        if (player.GetComponent<PlayerStats>().getHealth() <= 0)
+        if (player.GetComponent<PlayerStats>().GetHealth() <= 0)
         {
             ChangeCanvasToDeathCanvas();
         }

@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        setHealthtext();
+        SetHealthText();
         if (health <= 0)
         {
             health = 0;
@@ -26,9 +26,9 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public int getHealth()  { return health; }
-    public int getStamina() { return stamina; }
-    private void setHealthtext() { healthText.text = health.ToString(); }
+    public int GetHealth()  { return health; }
+    public int GetStamina() { return stamina; }
+    private void SetHealthText() { healthText.text = health.ToString(); }
     //private void setStaminaText() { staminaText.text = stamina.ToString(); }
 
 
