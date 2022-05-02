@@ -51,9 +51,7 @@ public class GamePadCamera : MonoBehaviour
             xAxis = 0 * sensitity * Time.deltaTime;
             yAxis = 0 * sensitity * Time.deltaTime;
         }
-       
-        Debug.Log(look.magnitude);
-        
+
 
         xRotation -= yAxis;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

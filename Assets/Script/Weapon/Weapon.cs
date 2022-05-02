@@ -9,7 +9,6 @@ public class Weapon : MonoBehaviour {
 	[SerializeField] private int damage = 20;
 	[SerializeField] private float range = 100.0f;
 	[SerializeField] private float fireRate = 5.0f;
-	//[SerializeField] private TextMeshProUGUI ammoText; // ammo Text UI; @Khaled Alraas //bör ej finnas här Simon.
 	private float nextTimeToFire;
 
 	//Ammo
