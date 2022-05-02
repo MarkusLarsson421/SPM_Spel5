@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+//https://www.youtube.com/watch?v=tF9RMjF9wDc
 public class CanvasHandler : MonoBehaviour // @Khaled Alraas
 {
     [SerializeField] private GameObject CanvasObject;
