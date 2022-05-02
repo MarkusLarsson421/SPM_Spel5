@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SPU_SimonPrototype : MonoBehaviour
 {
-    public RM rm;
+    public ResourceManager rm;
 
     void Start()
     {

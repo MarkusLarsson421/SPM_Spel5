@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BPU_SimonPrototype : MonoBehaviour
 {
-    public RM rm;
+    public ResourceManager rm;
     private int maxBatteries = 5;
     
     public void PickUpBatteries()

@@ -11,7 +11,7 @@ public class APU_SimonPrototype : MonoBehaviour
     * Modifieras h�gst upp i klassen. 
     * Sammarbetar med klassen RM f�r att uppdatera m�ngden ammo man har
     */
-    public RM rm;
+    public ResourceManager rm;
     private int MINPICKUP = 5;
     private int MAXPICKUP = 15;
     private int currentAmmo = 0;
