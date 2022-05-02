@@ -41,8 +41,13 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     }
     void ReastartLevel()
     {
+        LoadLevel(sceneToIndex);
+        
+    }
+    void LoadLevel(int sceneIndexToLoad)
+    {
         Debug.Log("You have clicked the tryAgainButton!");
-        SceneManager.LoadScene(sceneToIndex);
+        SceneManager.LoadScene(sceneIndexToLoad);
     }
     void GoTOMainMenu()
     {
