@@ -9,7 +9,9 @@ public class ZombieSpawnPoint : MonoBehaviour
     [SerializeField] private GameObject zombie;
     [SerializeField] private int maxAmountAtSpawnPoint;
     private int randomAmountOfZombies;
-    private GameObject player;
+    private GameObject player1;
+
+    private GameObject player2;
 
     private float timer;
 
@@ -18,7 +20,8 @@ public class ZombieSpawnPoint : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player1");
+        player = GameObject.FindGameObjectWithTag("Player2");
     }
 
     private void Update()
@@ -70,9 +73,10 @@ public class ZombieSpawnPoint : MonoBehaviour
 
     public void setCanSpawn()
     {
-        float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-        Debug.Log(distanceToPlayer);
-        if(distanceToPlayer <= minimunDistanceToPlayer)
+        float distanceToPlayer1 = Vector3.Distance(player1.transform.position, transform.position);
+        float distanceToPlayer2 = Vector3.Distance(player2.transform.position, transform.position);
+        //Debug.Log(distanceToPlayer);
+        if(distanceToPlayer1 <= minimunDistanceToPlayer || distanceToPlayer2 <= minimunDistanceToPlayer)
         {
             canSpawn = false;
         }
