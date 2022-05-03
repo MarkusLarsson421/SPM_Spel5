@@ -53,6 +53,11 @@ public class FlashLight : MonoBehaviour
         }
     }
 
+    public void SetDrainMultiplier(double nDrainMultiplier)
+    {
+        batteryDrainMultiplier = nDrainMultiplier;
+    }
+
 
     /**
      * @Author Markus Larsson
