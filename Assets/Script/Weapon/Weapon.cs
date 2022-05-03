@@ -157,7 +157,7 @@ public class Weapon : MonoBehaviour {
 
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
-			EnemyAI target = hit.transform.GetComponent<EnemyAI>(); //Khaled ändrat typen från Zombie till EnemyAI
+			EnemyAI target = hit.collider.GetComponent<EnemyAI>(); //Khaled ändrat typen från Zombie till EnemyAI
 			Debug.Log("Hit: " + hit.transform.name + ", Remaining ammo: " + totalAmmo);
 			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
 			if(target != null){

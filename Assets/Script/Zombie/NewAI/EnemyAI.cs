@@ -7,8 +7,8 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float startingHealth;
-    [SerializeField] private float lowHealthThreshold;
-    [SerializeField] private float healthRestoreRate;
+    //[SerializeField] private float lowHealthThreshold;
+    //[SerializeField] private float healthRestoreRate;
 
     [SerializeField] private float chasingRange;
     [SerializeField] private float shootingRange;
@@ -80,13 +80,15 @@ public class EnemyAI : MonoBehaviour
             SetColor(Color.red);
             agent.isStopped = true;
         }
-        currentHealth += Time.deltaTime * healthRestoreRate;
+        //currentHealth += Time.deltaTime * healthRestoreRate;
     }
 
 
     public void TakeDamage(float damage)
     {
+        Debug.Log("ouch");
         currentHealth -= damage;
+        if (_currentHealth <= 0) { Destroy(gameObject); }
     }
 
     public void SetColor(Color color)
@@ -103,10 +105,9 @@ public class EnemyAI : MonoBehaviour
     {
         return bestCoverSpot;
     }
-    public void TakeDamage(int damage)
-    {
-        _currentHealth -= damage;
-        if (_currentHealth <= 0) { Destroy(gameObject); }
-    }
+    //public void TakeDamage(int damage)
+    //{
+    //    _currentHealth -= damage;
+    //}
 
 }

@@ -43,7 +43,7 @@ public class PlayerStats : MonoBehaviour
         else
         {
             int randomNr = Random.Range(15, 26);
-            health -= randomNr;
+            //health -= randomNr;
             temp = 0;
         }
         // Hur mycket skada man tar av en zombie varierar
