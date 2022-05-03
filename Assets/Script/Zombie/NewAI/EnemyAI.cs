@@ -99,6 +99,10 @@ public class EnemyAI : MonoBehaviour
     {
         return bestCoverSpot;
     }
-
+    public void TakeDamage(int damage)
+    {
+        _currentHealth -= damage;
+        if (_currentHealth <= 0) { Destroy(gameObject); }
+    }
 
 }
