@@ -49,7 +49,6 @@ public class PlayerStats : MonoBehaviour
         int randomNr = Random.Range(15, 26);
         yield return new WaitForSeconds(1);
         health -= randomNr;
-        StartCoroutine(Timer());
     }
 
 }

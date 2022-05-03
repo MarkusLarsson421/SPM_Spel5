@@ -38,6 +38,7 @@ public class AttackNode : Node
         // Hur mycket skada man tar av en zombie varierar
         PlayerStats playerStats =  player.GetComponent<PlayerStats>();
         playerStats.HitByZombie();
+        //System.Threading.Thread.Sleep(1000);
         //int currentHealth = playerStats.getHealth();
         //int randomNr = Random.Range(15, 26);
         //currentHealth-= randomNr;
