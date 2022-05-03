@@ -38,13 +38,8 @@ public class Weapon : MonoBehaviour {
 		timer += Time.deltaTime;
 
 		if (canFire)
-		{
-			
+		{	
 			UserInput();
-			
-
-			
-
 		}
 
 		if (timer >= 0.4f)

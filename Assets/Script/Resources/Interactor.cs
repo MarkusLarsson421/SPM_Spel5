@@ -25,19 +25,20 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
+        timer += Time.deltaTime;
 
         if (canInteract) 
         {
             interactHandler();
         }
 
-        timer += Time.deltaTime;
+       
 
         if (timer >= 0.2f)
         {
             canInteract = true;
         }
-        interactHandler();
+        //interactHandler();
         
         
     }
@@ -47,12 +48,12 @@ public class Interactor : MonoBehaviour
         if (context.started && canInteract)
         {
             isInteractPressed = true;
-            canInteract = false;
+            
         }
         if (context.canceled)
         {
             isInteractPressed = false;
-            canInteract = true;
+  
         }
     }
 
@@ -73,6 +74,7 @@ public class Interactor : MonoBehaviour
                 if (isInteractPressed || Input.GetKeyDown(KeyCode.E))
                 {
                     interactable.onInteract.Invoke();
+                    canInteract = false;
                     //Debug.Log("Interact");
                 }
             }
@@ -84,6 +86,8 @@ public class Interactor : MonoBehaviour
                     interactImage.rectTransform.sizeDelta = defaultIconSize;
                 }
             }
+            
+            timer = 0;
         }
 
         void ChangeInteractionIcon()

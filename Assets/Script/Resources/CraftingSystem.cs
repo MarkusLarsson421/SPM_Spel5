@@ -49,7 +49,7 @@ public class CraftingSystem : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             isToggled = true;
-            Debug.Log("toggled");
+            //Debug.Log("toggled");
             infoText.enabled = true;
             upgradeButton.enabled = true;
             eventSystem.firstSelectedGameObject = magazineUpgrade;
