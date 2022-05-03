@@ -10,10 +10,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int health; // set the amount of health in unity
     [SerializeField] private int stamina; //set the stamina of health in unity
     [SerializeField] private TextMeshProUGUI healthText;
-    [SerializeField] private GameObject CanvasObject;
-    [SerializeField] private GameObject deathCanvasObject;
-    [SerializeField] private Button tryAgainButton;
-
     void Start()
     {
         health = 100;
@@ -30,6 +26,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     public int getHealth()  { return health; }
+    public int setHealth(int healthAmount) { return healthAmount; }
     public int getStamina() { return stamina; }
     private void setHealthtext() { healthText.text = health.ToString(); }
     //private void setStaminaText() { staminaText.text = stamina.ToString(); }
@@ -37,11 +34,9 @@ public class PlayerStats : MonoBehaviour
 
     public void HitByZombie()
     {
+        Debug.Log("HitByZombie");
         // Hur mycket skada man tar av en zombie varierar
-        int randomNr = Random.Range(15, 26);
-        health -= randomNr;
-        Debug.Log(health);
-
+        StartCoroutine(Timer());
     }
     private void PlayerDeath()
     {
@@ -49,4 +44,12 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("dead");
         GetComponent<Movement>().enabled = false;
     }
+    IEnumerator Timer()
+    {
+        int randomNr = Random.Range(15, 26);
+        yield return new WaitForSeconds(1);
+        health -= randomNr;
+        StartCoroutine(Timer());
+    }
+
 }

@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour
 
   
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private GameObject player;
     [SerializeField] private Cover[] avaliableCovers;
 
    
@@ -53,7 +54,7 @@ public class EnemyAI : MonoBehaviour
         ChaseNode chaseNode = new ChaseNode(playerTransform, agent, this);
         ChasingInRangeNode chasingInRangeNode = new ChasingInRangeNode(chasingRange, playerTransform, transform);
         RangeNode shootingRangeNode = new RangeNode(shootingRange, playerTransform, transform);
-        AttackNode shootNode = new AttackNode(agent, this, playerTransform);
+        AttackNode shootNode = new AttackNode(agent, this, playerTransform, player);
 
         Sequence chaseSequence = new Sequence(new List<Node> { chasingInRangeNode, chaseNode });
         Sequence shootSequence = new Sequence(new List<Node> { shootingRangeNode, shootNode });
