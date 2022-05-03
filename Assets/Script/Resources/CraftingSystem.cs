@@ -17,12 +17,13 @@ public class CraftingSystem : MonoBehaviour
     
     private GameObject damageUpgrade;
     private GameObject magazineUpgrade;
-    private GameObject fireRateUpgrade;
+    private GameObject flashlightUpgrade;
 
     
 
     private bool hasUpgradedDamage;
     private bool hasMagazineSizeUpgrade;
+    private bool hasFlashlightUpgrade;
 
     private void Start()
     {
@@ -34,16 +35,11 @@ public class CraftingSystem : MonoBehaviour
 
         damageUpgrade = GameObject.Find("DamageUpgrade");
         magazineUpgrade = GameObject.Find("MagazineUpgrade");
-        fireRateUpgrade = GameObject.Find("fireRateUpgrade");
+        flashlightUpgrade = GameObject.Find("fireRateUpgrade");
         damageUpgrade.SetActive(false);
         magazineUpgrade.SetActive(false);
-        fireRateUpgrade.SetActive(false);
-
-        
-
+        flashlightUpgrade.SetActive(false);
     }
-
-   
 
     public void ToggleCraftingBench()
     {
@@ -54,7 +50,8 @@ public class CraftingSystem : MonoBehaviour
             isToggled = true;
             //Debug.Log("toggled");
             infoText.enabled = true;
-            eventSystem.firstSelectedGameObject = magazineUpgrade;
+            //eventSystem.firstSelectedGameObject = magazineUpgrade;
+            chooseSelectedButton();
 
             infoText.text = "Craft hehe";
             
@@ -66,11 +63,7 @@ public class CraftingSystem : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
 
         }
-        
-        
     }
-  
-    
     public void DamageUpgrade()
     {
 
@@ -91,12 +84,18 @@ public class CraftingSystem : MonoBehaviour
         if (!hasMagazineSizeUpgrade)
         {
             GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetMagCapacity(12);
+            hasMagazineSizeUpgrade = true;
             Debug.Log("mhm");
         }
     }
 
-    private void flashLightUpgrade()
+    public void flashLightUpgrade()
     {
+        if (!hasFlashlightUpgrade)
+        {
+            GameObject.FindWithTag("Flashlight").GetComponent<FlashLight>().SetDrainMultiplier(0.05);
+            hasFlashlightUpgrade = true;
+        }
         //ska göra så ficklampans batterie räcker längre(eller nåt)
     }
 
@@ -108,15 +107,20 @@ public class CraftingSystem : MonoBehaviour
             {
                 damageUpgrade.SetActive(true);
             }
-            
-            magazineUpgrade.SetActive(true);
-            fireRateUpgrade.SetActive(true);
+            if (!hasMagazineSizeUpgrade)
+            {
+                magazineUpgrade.SetActive(true);
+            }
+            if (!hasFlashlightUpgrade)
+            {
+                flashlightUpgrade.SetActive(true);
+            }
         }
         else
         {
             damageUpgrade.SetActive(false);
             magazineUpgrade.SetActive(false);
-            fireRateUpgrade.SetActive(false);
+            flashlightUpgrade.SetActive(false);
         }
     }
 
@@ -128,6 +132,17 @@ public class CraftingSystem : MonoBehaviour
         }
     }
 
-    
-    
+    private void chooseSelectedButton()
+    {
+        if(hasMagazineSizeUpgrade && !hasUpgradedDamage)
+        {
+            eventSystem.SetSelectedGameObject(damageUpgrade);
+        }
+        if (hasMagazineSizeUpgrade && hasUpgradedDamage)
+        {
+            eventSystem.SetSelectedGameObject(magazineUpgrade);
+        }
+        else
+            eventSystem.SetSelectedGameObject(magazineUpgrade);
+    }
 }
