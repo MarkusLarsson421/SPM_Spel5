@@ -62,8 +62,6 @@ public class CraftingSystem : MonoBehaviour
             {
                 infoText.text = "Craft hehe";
             }
-            
-            
         }
         else
         {
@@ -74,17 +72,15 @@ public class CraftingSystem : MonoBehaviour
     }
     public void DamageUpgrade()
     {
-        player = GameObject.FindGameObjectWithTag("Player1");
-        if(inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 2)
+        if(!hasUpgradedDamage && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Scrap) >= 2)
         {
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Batteries, 2);
-            if (!hasUpgradedDamage)
-            {
-                //Gör så pistoler gör mer skada
-                GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(35);
-                print("HEYO");
-                hasUpgradedDamage = true;
-            }
+            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Scrap, 2);
+            //Gör så pistoler gör mer skada
+            GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(35);
+            print("HEYO");
+            hasUpgradedDamage = true;
+            
         }
         else
         {
@@ -98,25 +94,37 @@ public class CraftingSystem : MonoBehaviour
     public void IncreaseMagazineSize()
     {
         //Gör så att vapnets magasin kan ha fler patroner
-        if (!hasMagazineSizeUpgrade)
+        if (!hasMagazineSizeUpgrade && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 1 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Scrap) >= 3)
         {
+            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Batteries, 1);
+            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Scrap, 3);
             GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetMagCapacity(12);
             hasMagazineSizeUpgrade = true;
             Debug.Log("mhm");
             Debug.Log(inter.interactingGameObject.transform.parent.tag);
+        }
+        else
+        {
+            Debug.Log("Need more items pal");
         }
     }
 
     public void flashLightUpgrade()
     {
         //gör så att ficklampans batterie räcker längre
-        if (!hasFlashlightUpgrade)
+        if (!hasFlashlightUpgrade && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 3 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Scrap) >= 1)
         {
+            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Batteries, 3);
+            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Scrap, 1);
             GameObject.FindWithTag("Flashlight").GetComponent<FlashLight>().SetDrainMultiplier(0.05);
             hasFlashlightUpgrade = true;
             flashlightUpgrade.SetActive(false);
             chooseSelectedButton();
             Debug.Log(inter.interactingGameObject.transform.parent.tag);
+        }
+        else
+        {
+            Debug.Log("Need more items pal");
         }
         
     }
