@@ -12,11 +12,17 @@ public class CraftingSystem : MonoBehaviour
     [SerializeField] private Font font;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Interactable inter; //TEST
+
+    [SerializeField] private string playah;
     private GameObject player;
     private Text infoText;
     private bool isToggled;
-    
-    
+
+    [SerializeField] private List<string> damageUpgradedPlayers = new List<string>();
+    private List<string> MagazineUpgradedPlayers = new List<string>();
+    private List<string> flashLightUpgradedPlayers = new List<string>();
+
+
     private GameObject damageUpgrade;
     private GameObject magazineUpgrade;
     private GameObject flashlightUpgrade;
@@ -46,6 +52,7 @@ public class CraftingSystem : MonoBehaviour
 
     public void ToggleCraftingBench()
     {
+        
         toggleButtons();
         if (!isToggled)
         {
@@ -53,6 +60,7 @@ public class CraftingSystem : MonoBehaviour
             isToggled = true;
             infoText.enabled = true;
             chooseSelectedButton();
+            Debug.Log(damageUpgradedPlayers.Count);
 
             if(hasFlashlightUpgrade && hasMagazineSizeUpgrade && hasUpgradedDamage)
             {
@@ -72,23 +80,28 @@ public class CraftingSystem : MonoBehaviour
     }
     public void DamageUpgrade()
     {
-        if(!hasUpgradedDamage && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Scrap) >= 2)
+        if(inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Scrap) >= 2)
         {
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Batteries, 2);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Scrap, 2);
             //Gör så pistoler gör mer skada
             GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(35);
             print("HEYO");
-            hasUpgradedDamage = true;
+            //hasUpgradedDamage = true;
+            damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
+            Debug.Log(damageUpgradedPlayers.Contains("Player1"));
             
         }
         else
         {
             Debug.Log("Too few batteries pal");
             Debug.Log(inter.interactingGameObject.transform.parent.tag);
+            
         }
-      
-        
+        playah = inter.interactingGameObject.transform.parent.tag;
+
+
+
     }
 
     public void IncreaseMagazineSize()
@@ -131,9 +144,10 @@ public class CraftingSystem : MonoBehaviour
 
     private void toggleButtons()
     {
+       // string key = inter.interactingGameObject.transform.parent.tag;
         if (!isToggled)
         {
-            if (!hasUpgradedDamage)
+            if (damageUpgradedPlayers.Count==0 || !damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
             {
                 damageUpgrade.SetActive(true);
             }
