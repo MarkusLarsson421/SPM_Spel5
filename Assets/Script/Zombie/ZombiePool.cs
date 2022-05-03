@@ -7,18 +7,23 @@ using UnityEngine;
  */
 public class ZombiePool : MonoBehaviour
 {
+    /*Linjär ökning av zombies varje runda. Första rundan: 7 zombies.
+     * När sista zombien i rundan dör får spelaren ca 15 sekunder innan nästa runda börjar.
+     * Börja med att 7 zombies ska spawna varje runda och när sista zombien dör börjar nästa runda efter 15 sekunder.
+     */
     [SerializeField] private Zombie zPrefab;
-
-    private Queue<Zombie> zombieContainer = new Queue<Zombie>();
+    public int amountOfZombiesSpawned; //@Author Simon Hessling Oscarsson, görs ++ varje gång en zombie spawnar.
+    private Queue<Zombie> zombieContainer = new Queue<Zombie>(10);
     public static ZombiePool Instance { get; private set; }
     private void Awake()
     {
+        Debug.Log(amountOfZombiesSpawned);
         Instance = this;
     }
 
     public Zombie Get()
     {
-        if (zombieContainer.Count == 0)
+        if(zombieContainer.Count == 0)
         {
             AddZombies(1);
         }
@@ -30,14 +35,19 @@ public class ZombiePool : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             Zombie zo = Instantiate(zPrefab);
-            zo.gameObject.SetActive(false);
+            zo.gameObject.SetActive(true);
             zombieContainer.Enqueue(zo);
+            amountOfZombiesSpawned++;
         }
     }
 
     public void ReturnToPool(Zombie zo)
     {
         zo.gameObject.SetActive(false);
+        amountOfZombiesSpawned--;
         zombieContainer.Enqueue(zo);
     }
+    /*Håll koll på hur många zombies som finns här. 
+     */
+     
 }

@@ -8,11 +8,18 @@ public class Zombie : MonoBehaviour //khal6952
     // instruktion är här https://www.youtube.com/watch?v=LIn2jOyOTKQ&t=294s
     [SerializeField] private NavMeshAgent agent = null;
     [SerializeField] private Transform target;
+    /*@Author Axel Sterner
+     * Variabel för att lägga tillbaka prefaben i poolen
+     */
+    private Zombie zReference;
+    private ZombiePool zP;
 
     private int health = 100;
 
 	private void Start()
     {
+        zReference = this;
+        zP = ZombiePool.Instance;
         GetReferences();
     }
     private void Update()
@@ -57,6 +64,9 @@ public class Zombie : MonoBehaviour //khal6952
      */
     public void TakeDamage(int damage){
         health -= damage;
-        if(health <= 0){Destroy(gameObject);}
+        if(health <= 0)
+        {
+            zP.ReturnToPool(zReference);
+        }
     }
 }
