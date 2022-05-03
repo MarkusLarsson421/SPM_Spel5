@@ -148,15 +148,15 @@ public class CraftingSystem : MonoBehaviour
 
     private void chooseSelectedButton()
     {
-        if(hasMagazineSizeUpgrade && !hasUpgradedDamage)
+        if(hasMagazineSizeUpgrade && !hasUpgradedDamage && !hasFlashlightUpgrade)
         {
             eventSystem.SetSelectedGameObject(damageUpgrade);
         }
-        if (hasMagazineSizeUpgrade && hasUpgradedDamage)
+        else if (hasMagazineSizeUpgrade && hasUpgradedDamage)
         {
             eventSystem.SetSelectedGameObject(flashlightUpgrade);
         }
-        if(hasMagazineSizeUpgrade && hasFlashlightUpgrade)
+        else if(hasMagazineSizeUpgrade && hasFlashlightUpgrade)
         {
             eventSystem.SetSelectedGameObject(damageUpgrade);
         }
