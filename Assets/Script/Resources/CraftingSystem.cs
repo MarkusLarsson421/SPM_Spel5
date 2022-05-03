@@ -36,6 +36,7 @@ public class CraftingSystem : MonoBehaviour
         damageUpgrade = GameObject.Find("DamageUpgrade");
         magazineUpgrade = GameObject.Find("MagazineUpgrade");
         flashlightUpgrade = GameObject.Find("fireRateUpgrade");
+        
         damageUpgrade.SetActive(false);
         magazineUpgrade.SetActive(false);
         flashlightUpgrade.SetActive(false);
@@ -48,9 +49,7 @@ public class CraftingSystem : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             isToggled = true;
-            //Debug.Log("toggled");
             infoText.enabled = true;
-            //eventSystem.firstSelectedGameObject = magazineUpgrade;
             chooseSelectedButton();
 
             infoText.text = "Craft hehe";
@@ -61,17 +60,14 @@ public class CraftingSystem : MonoBehaviour
             isToggled = false;
             infoText.enabled = false;
             Cursor.lockState = CursorLockMode.Locked;
-
         }
     }
     public void DamageUpgrade()
     {
-
-        Debug.Log("hawt");
         if (!hasUpgradedDamage)
         {
 
-            //Ska göra så pistolen gör mer skada
+            //Gör så pistoler gör mer skada
             GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(35);
             print("HEYO");
             hasUpgradedDamage = true;
@@ -81,6 +77,7 @@ public class CraftingSystem : MonoBehaviour
 
     public void IncreaseMagazineSize()
     {
+        //Gör så att vapnets magasin kan ha fler patroner
         if (!hasMagazineSizeUpgrade)
         {
             GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetMagCapacity(12);
@@ -91,12 +88,13 @@ public class CraftingSystem : MonoBehaviour
 
     public void flashLightUpgrade()
     {
+        //gör så att ficklampans batterie räcker längre
         if (!hasFlashlightUpgrade)
         {
             GameObject.FindWithTag("Flashlight").GetComponent<FlashLight>().SetDrainMultiplier(0.05);
             hasFlashlightUpgrade = true;
         }
-        //ska göra så ficklampans batterie räcker längre(eller nåt)
+        
     }
 
     private void toggleButtons()
@@ -124,14 +122,6 @@ public class CraftingSystem : MonoBehaviour
         }
     }
 
-    private void voidChooseUpgrade()
-    {
-        if (Input.GetKeyDown("1"))
-        {
-            DamageUpgrade();
-        }
-    }
-
     private void chooseSelectedButton()
     {
         if(hasMagazineSizeUpgrade && !hasUpgradedDamage)
@@ -140,7 +130,7 @@ public class CraftingSystem : MonoBehaviour
         }
         if (hasMagazineSizeUpgrade && hasUpgradedDamage)
         {
-            eventSystem.SetSelectedGameObject(magazineUpgrade);
+            eventSystem.SetSelectedGameObject(flashlightUpgrade);
         }
         else
             eventSystem.SetSelectedGameObject(magazineUpgrade);
