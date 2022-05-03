@@ -13,23 +13,24 @@ public class CraftingSystem : MonoBehaviour
     private GameObject player;
     private Text infoText;
     private bool isToggled;
-    private Button upgradeButton;
+    
     
     private GameObject damageUpgrade;
     private GameObject magazineUpgrade;
     private GameObject fireRateUpgrade;
+
+    
 
     private bool hasUpgradedDamage;
     private bool hasMagazineSizeUpgrade;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        
         infoText = canvas.AddComponent<Text>();
-        upgradeButton = canvas.AddComponent<Button>();
-        upgradeButton.enabled = false;
         infoText.font = font;
         infoText.enabled = false;
+       
 
         damageUpgrade = GameObject.Find("DamageUpgrade");
         magazineUpgrade = GameObject.Find("MagazineUpgrade");
@@ -37,6 +38,8 @@ public class CraftingSystem : MonoBehaviour
         damageUpgrade.SetActive(false);
         magazineUpgrade.SetActive(false);
         fireRateUpgrade.SetActive(false);
+
+        
 
     }
 
@@ -51,7 +54,6 @@ public class CraftingSystem : MonoBehaviour
             isToggled = true;
             //Debug.Log("toggled");
             infoText.enabled = true;
-            upgradeButton.enabled = true;
             eventSystem.firstSelectedGameObject = magazineUpgrade;
 
             infoText.text = "Craft hehe";
@@ -71,11 +73,13 @@ public class CraftingSystem : MonoBehaviour
     
     public void DamageUpgrade()
     {
+
         Debug.Log("hawt");
         if (!hasUpgradedDamage)
         {
-            GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(30);
+
             //Ska göra så pistolen gör mer skada
+            GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(35);
             print("HEYO");
             hasUpgradedDamage = true;
         }
@@ -86,7 +90,8 @@ public class CraftingSystem : MonoBehaviour
     {
         if (!hasMagazineSizeUpgrade)
         {
-            player.GetComponent<Weapon>().SetMagCapacity(12);
+            GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetMagCapacity(12);
+            Debug.Log("mhm");
         }
     }
 
@@ -122,5 +127,7 @@ public class CraftingSystem : MonoBehaviour
             DamageUpgrade();
         }
     }
+
+    
     
 }

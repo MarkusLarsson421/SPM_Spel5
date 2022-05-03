@@ -244,9 +244,18 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
             ""id"": ""333c63de-880a-4c42-b204-a821dcc58622"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
+                    ""name"": ""Navigate"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""6ee3cba5-f210-44f0-9262-581da16f5619"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Click Button"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd2b1289-b9b3-4e6b-81a0-81993780e25b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -257,11 +266,88 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8c45253a-1cd1-4c81-88cf-022a11fbfab2"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/dpad"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""KeyBoard"",
+                    ""id"": ""bbb029eb-3c65-4bd2-aff9-b08340d4dce7"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""1cc97d95-e548-42db-8f93-9a607566f1f7"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6dd25bf5-009e-4df9-ae8f-7c614fefd9a5"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""eb660e39-f5d5-4315-a077-b7b52f449dfb"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""55d6c8ab-0919-42da-b139-dfd548966301"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1677ab14-d484-4f12-b9a5-2d44666b3d1b"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click Button"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc548f87-045a-4201-bfc5-7314df4bf370"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click Button"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -280,7 +366,8 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         m_Gameplay_FlashLight = m_Gameplay.FindAction("FlashLight", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
+        m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_ClickButton = m_UI.FindAction("Click Button", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -413,12 +500,14 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_Newaction;
+    private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_ClickButton;
     public struct UIActions
     {
         private @InputSystem m_Wrapper;
         public UIActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_UI_Newaction;
+        public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        public InputAction @ClickButton => m_Wrapper.m_UI_ClickButton;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -428,16 +517,22 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNewaction;
+                @Navigate.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                @Navigate.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                @Navigate.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                @ClickButton.started -= m_Wrapper.m_UIActionsCallbackInterface.OnClickButton;
+                @ClickButton.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnClickButton;
+                @ClickButton.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnClickButton;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Navigate.started += instance.OnNavigate;
+                @Navigate.performed += instance.OnNavigate;
+                @Navigate.canceled += instance.OnNavigate;
+                @ClickButton.started += instance.OnClickButton;
+                @ClickButton.performed += instance.OnClickButton;
+                @ClickButton.canceled += instance.OnClickButton;
             }
         }
     }
@@ -453,6 +548,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
     }
     public interface IUIActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnNavigate(InputAction.CallbackContext context);
+        void OnClickButton(InputAction.CallbackContext context);
     }
 }

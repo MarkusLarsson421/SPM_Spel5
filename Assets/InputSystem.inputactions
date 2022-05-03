@@ -222,9 +222,18 @@
             "id": "333c63de-880a-4c42-b204-a821dcc58622",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
+                    "name": "Navigate",
+                    "type": "PassThrough",
                     "id": "6ee3cba5-f210-44f0-9262-581da16f5619",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Click Button",
+                    "type": "Button",
+                    "id": "bd2b1289-b9b3-4e6b-81a0-81993780e25b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -235,11 +244,88 @@
                 {
                     "name": "",
                     "id": "8c45253a-1cd1-4c81-88cf-022a11fbfab2",
-                    "path": "",
+                    "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "KeyBoard",
+                    "id": "bbb029eb-3c65-4bd2-aff9-b08340d4dce7",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "1cc97d95-e548-42db-8f93-9a607566f1f7",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "6dd25bf5-009e-4df9-ae8f-7c614fefd9a5",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "eb660e39-f5d5-4315-a077-b7b52f449dfb",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "55d6c8ab-0919-42da-b139-dfd548966301",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1677ab14-d484-4f12-b9a5-2d44666b3d1b",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc548f87-045a-4201-bfc5-7314df4bf370",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
