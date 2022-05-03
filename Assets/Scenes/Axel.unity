@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmmoPool
       objectReference: {fileID: 0}
+    - target: {fileID: 1476195427246133520, guid: b5ab2608523c7a344b86fd684b014e70, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3875407641451200526, guid: b5ab2608523c7a344b86fd684b014e70, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -5286,6 +5290,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitity: 88.33
+--- !u!1001 &336462682
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3724325477153448425, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724325477153448425, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724325477153448425, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724325477153448425, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724325477153448425, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724325477153448425, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724325477153448425, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724325477153448425, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724325477153448425, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724325477153448425, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724325477153448425, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5782968376875347498, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
+      propertyPath: m_Name
+      value: ScrapPool
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 01c9fc5b7445b704080bce71fe7b42e0, type: 3}
 --- !u!1 &469342433
 GameObject:
   m_ObjectHideFlags: 0
@@ -5723,6 +5784,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmmoSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 7228957359432991834, guid: 69bc7685b28970b409d86974b03381de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9207482742559212745, guid: 69bc7685b28970b409d86974b03381de, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -6029,8 +6094,69 @@ PrefabInstance:
       propertyPath: m_Name
       value: BatterySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 4464385417931699207, guid: c8f2d9e422373ff409be11a58042cf21, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8f2d9e422373ff409be11a58042cf21, type: 3}
+--- !u!1001 &1439079571
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 45209240714013065, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_Name
+      value: ScrapSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031212172223692716, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031212172223692716, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031212172223692716, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031212172223692716, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031212172223692716, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031212172223692716, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031212172223692716, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031212172223692716, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031212172223692716, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031212172223692716, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031212172223692716, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4fa401225aa53204b8a28293c5cfc4e5, type: 3}
 --- !u!1001 &1498200073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6085,6 +6211,10 @@ PrefabInstance:
     - target: {fileID: 5249832680836149258, guid: 96d83139860fa384f8f690db88381df7, type: 3}
       propertyPath: m_Name
       value: BatteryPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 5249832680836149258, guid: 96d83139860fa384f8f690db88381df7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d83139860fa384f8f690db88381df7, type: 3}
