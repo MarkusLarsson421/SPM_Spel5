@@ -9,7 +9,7 @@ public class ResourceManager : MonoBehaviour
 	 */
 	
 	private int ammo;
-	private int batteries;
+	[SerializeField]private int batteries; //är serialized bara för att testa
 	private int scrap;
 
 	private int aP1;
@@ -65,5 +65,25 @@ public class ResourceManager : MonoBehaviour
 			    break;
 	    }
     }
+
+	/**
+	 * @Author Martin Wallmark
+	 */
+	public void DecreaseItem(MyItem.Type type, int amount)
+	{
+		switch (type)
+		{
+			case MyItem.Type.Batteries:
+				batteries -= amount;
+				break;
+			case MyItem.Type.Scrap:
+				scrap -= amount;
+				break;
+			case MyItem.Type.Ammo:
+				ammo -= amount;
+				break;
+		}
+
+	}
 	
 }

@@ -77,7 +77,7 @@ public class CraftingSystem : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player1");
         if(inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 2)
         {
-            
+            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Batteries, 2);
             if (!hasUpgradedDamage)
             {
                 //Gör så pistoler gör mer skada
