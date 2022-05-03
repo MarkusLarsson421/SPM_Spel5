@@ -10,10 +10,7 @@ public class ZombieObjectPooled : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            SpawnZombie();
-        }  
+        
     }
 
     private void SpawnZombie()
