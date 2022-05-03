@@ -15,10 +15,9 @@ public class EnemyAI : MonoBehaviour
 
   
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private GameObject player;
     [SerializeField] private Cover[] avaliableCovers;
+    private GameObject player;
 
-   
 
     private Material material;
     private Transform bestCoverSpot;
@@ -37,6 +36,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Start()
@@ -54,17 +54,20 @@ public class EnemyAI : MonoBehaviour
         ChaseNode chaseNode = new ChaseNode(playerTransform, agent, this);
         ChasingInRangeNode chasingInRangeNode = new ChasingInRangeNode(chasingRange, playerTransform, transform);
         RangeNode shootingRangeNode = new RangeNode(shootingRange, playerTransform, transform);
-        AttackNode shootNode = new AttackNode(agent, this, playerTransform, player);
+        AttackNode attackNode = new AttackNode(agent, this, playerTransform, player);
+
+        IsPlayerDeadNode isPlayerDeadNode = new IsPlayerDeadNode(player);
+        Sequence playerDeathSequence = new Sequence(new List<Node> { isPlayerDeadNode });
 
         Sequence chaseSequence = new Sequence(new List<Node> { chasingInRangeNode, chaseNode });
-        Sequence shootSequence = new Sequence(new List<Node> { shootingRangeNode, shootNode });
+        Sequence shootSequence = new Sequence(new List<Node> { shootingRangeNode, attackNode });
 
         Sequence goToCoverSequence = new Sequence(new List<Node> { coverAvaliableNode, goToCoverNode });
         Selector findCoverSelector = new Selector(new List<Node> { goToCoverSequence, chaseSequence });
         Selector mainCoverSequence = new Selector(new List<Node> { isCoveredNode, findCoverSelector });
         //Sequence mainCoverSequence = new Sequence(new List<Node> { healthNode, tryToTakeCoverSelector });
 
-        topNode = new Selector(new List<Node> { shootSequence, chaseSequence, mainCoverSequence });
+        topNode = new Selector(new List<Node> { playerDeathSequence, shootSequence, chaseSequence, mainCoverSequence });
 
 
     }

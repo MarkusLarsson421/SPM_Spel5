@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int health; // set the amount of health in unity
     [SerializeField] private int stamina; //set the stamina of health in unity
     [SerializeField] private TextMeshProUGUI healthText;
+    private bool isDead = false;
     void Start()
     {
         health = 100;
@@ -31,24 +32,28 @@ public class PlayerStats : MonoBehaviour
     private void setHealthtext() { healthText.text = health.ToString(); }
     //private void setStaminaText() { staminaText.text = stamina.ToString(); }
 
+    float temp = 0;
 
     public void HitByZombie()
     {
-        Debug.Log("HitByZombie");
+        if(temp < 1)
+        {
+            temp += Time.deltaTime;
+        }
+        else
+        {
+            int randomNr = Random.Range(15, 26);
+            health -= randomNr;
+            temp = 0;
+        }
         // Hur mycket skada man tar av en zombie varierar
-        StartCoroutine(Timer());
     }
     private void PlayerDeath()
     {
         //Mest till för att testa, inte bestämt vad som ska hända när man dör
-        Debug.Log("dead");
         GetComponent<Movement>().enabled = false;
+        isDead = true;
     }
-    IEnumerator Timer()
-    {
-        int randomNr = Random.Range(15, 26);
-        yield return new WaitForSeconds(1);
-        health -= randomNr;
-    }
+    public bool IsDead() { return isDead; }
 
 }

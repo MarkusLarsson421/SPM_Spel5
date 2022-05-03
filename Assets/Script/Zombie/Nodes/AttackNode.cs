@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -30,19 +31,9 @@ public class AttackNode : Node
         Vector3 currentDirection = Vector3.SmoothDamp(ai.transform.forward, direction, ref currentVelocity, smoothDamp);
         Quaternion rotation = Quaternion.LookRotation(currentDirection, Vector3.up);
         ai.transform.rotation = rotation;
-        HitBySmartZombie();
-        return NodeState.RUNNING;
-    }
-    public void HitBySmartZombie()
-    {
-        // Hur mycket skada man tar av en zombie varierar
-        PlayerStats playerStats =  player.GetComponent<PlayerStats>();
+        PlayerStats playerStats = player.GetComponent<PlayerStats>();
         playerStats.HitByZombie();
-        //System.Threading.Thread.Sleep(1000);
-        //int currentHealth = playerStats.getHealth();
-        //int randomNr = Random.Range(15, 26);
-        //currentHealth-= randomNr;
-        //playerStats.setHealth(currentHealth);
+        return NodeState.RUNNING;
     }
 
 
