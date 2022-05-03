@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour
     public UnityEvent onInteract; //Vad som händer när man interagerar med något.
     public Sprite interactIcon; //vilken Ikon ska man ha på interaktionen.
     public Vector2 iconSize; // vilken storlek har ikonen.
+    public GameObject interactingGameObject;
     public int ID;
 
     void Start()

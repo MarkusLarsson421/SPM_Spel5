@@ -6,10 +6,12 @@ using UnityEngine.EventSystems;
 //Martin Wallmark
 public class CraftingSystem : MonoBehaviour
 {
+    public ResourceManager rm;
     [SerializeField] private int scrapAmountNeeded;
     [SerializeField] private GameObject canvas;
     [SerializeField] private Font font;
     [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private Interactable inter; //TEST
     private GameObject player;
     private Text infoText;
     private bool isToggled;
@@ -52,7 +54,15 @@ public class CraftingSystem : MonoBehaviour
             infoText.enabled = true;
             chooseSelectedButton();
 
-            infoText.text = "Craft hehe";
+            if(hasFlashlightUpgrade && hasMagazineSizeUpgrade && hasUpgradedDamage)
+            {
+                infoText.text = "No more upgrades available :(";
+            }
+            else
+            {
+                infoText.text = "Craft hehe";
+            }
+            
             
         }
         else
@@ -64,14 +74,24 @@ public class CraftingSystem : MonoBehaviour
     }
     public void DamageUpgrade()
     {
-        if (!hasUpgradedDamage)
+        player = GameObject.FindGameObjectWithTag("Player1");
+        if(inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 2)
         {
-
-            //Gör så pistoler gör mer skada
-            GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(35);
-            print("HEYO");
-            hasUpgradedDamage = true;
+            
+            if (!hasUpgradedDamage)
+            {
+                //Gör så pistoler gör mer skada
+                GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(35);
+                print("HEYO");
+                hasUpgradedDamage = true;
+            }
         }
+        else
+        {
+            Debug.Log("Too few batteries pal");
+            Debug.Log(inter.interactingGameObject.transform.parent.tag);
+        }
+      
         
     }
 
@@ -83,6 +103,7 @@ public class CraftingSystem : MonoBehaviour
             GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetMagCapacity(12);
             hasMagazineSizeUpgrade = true;
             Debug.Log("mhm");
+            Debug.Log(inter.interactingGameObject.transform.parent.tag);
         }
     }
 
@@ -93,6 +114,9 @@ public class CraftingSystem : MonoBehaviour
         {
             GameObject.FindWithTag("Flashlight").GetComponent<FlashLight>().SetDrainMultiplier(0.05);
             hasFlashlightUpgrade = true;
+            flashlightUpgrade.SetActive(false);
+            chooseSelectedButton();
+            Debug.Log(inter.interactingGameObject.transform.parent.tag);
         }
         
     }
@@ -132,7 +156,13 @@ public class CraftingSystem : MonoBehaviour
         {
             eventSystem.SetSelectedGameObject(flashlightUpgrade);
         }
+        if(hasMagazineSizeUpgrade && hasFlashlightUpgrade)
+        {
+            eventSystem.SetSelectedGameObject(damageUpgrade);
+        }
         else
             eventSystem.SetSelectedGameObject(magazineUpgrade);
     }
+
+
 }

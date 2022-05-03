@@ -12,6 +12,8 @@ public class ResourceManager : MonoBehaviour
 	private int batteries;
 	private int scrap;
 
+	private int aP1;
+	private int aP2;
 	/**
 	 * @Author Markus Larsson
 	 */
@@ -24,6 +26,7 @@ public class ResourceManager : MonoBehaviour
 		    case MyItem.Type.Ammo:
 			    return ammo;
 	    }
+		Debug.Log(gameObject.tag);
 	    return 0;
     }
 
@@ -62,4 +65,5 @@ public class ResourceManager : MonoBehaviour
 			    break;
 	    }
     }
+	
 }

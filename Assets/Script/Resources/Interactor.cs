@@ -74,6 +74,7 @@ public class Interactor : MonoBehaviour
                 if (isInteractPressed || Input.GetKeyDown(KeyCode.E))
                 {
                     interactable.onInteract.Invoke();
+                    interactable.interactingGameObject = this.gameObject; //TEST
                     canInteract = false;
                     //Debug.Log("Interact");
                 }
