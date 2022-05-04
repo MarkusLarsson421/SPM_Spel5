@@ -14,7 +14,7 @@ public class ZombiePool : MonoBehaviour
     [SerializeField] private EnemyAI zPrefab;
     public int amountOfZombiesSpawned; //@Author Simon Hessling Oscarsson, görs ++ varje gång en zombie spawnar.
     private Queue<EnemyAI> zombieContainer = new Queue<EnemyAI>(10);
-    private int zombieQty = 2;
+    private int zombieQty = 1;
     private System.Random rnd = new System.Random();
     [SerializeField] private LayerMask zombieLayer;
 
