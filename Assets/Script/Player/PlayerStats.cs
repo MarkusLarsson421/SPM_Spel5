@@ -3,12 +3,12 @@ using EventCallbacks;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] private int health; // set the amount of health in unity
+    [SerializeField] private int health = 100; // set the amount of health in unity
     [SerializeField] private int stamina; //set the stamina of health in unity
     private bool isDead = false;
     void Start()
     {
-        //UpdatePlayerStatsCnvas();
+        UpdatePlayerStatsCnvas();
     }
 
     void Update()

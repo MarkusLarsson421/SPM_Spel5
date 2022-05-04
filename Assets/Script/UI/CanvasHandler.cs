@@ -27,17 +27,12 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     void Update()
     {
         EnemyAttackedMe();
-
     }
     public void ReastartLevel()
     {
         int y = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(y);
 
-    }
-    void LoadLevel()
-    {
-        SceneManager.LoadScene(sceneToIndex);
     }
     public void GoToMainMenu()
     {
