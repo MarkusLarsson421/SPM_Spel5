@@ -8,10 +8,10 @@ namespace EventCallbacks
     {
         void Start()
         {
-            EventSystem.Current.RegisterListener<PlayerGetHitByZombie>(ShowTookDamgeCanvas);
+            EventSystem.Current.RegisterListener<PlayerGetHitByZombieEvent>(ShowTookDamgeCanvas);
         }
 
-        void ShowTookDamgeCanvas(PlayerGetHitByZombie playerGetHitByZombieInfo)
+        void ShowTookDamgeCanvas(PlayerGetHitByZombieEvent playerGetHitByZombieInfo)
         {
             CanvasHandler tookDamgeCanvas = GameObject.FindGameObjectWithTag("UI").GetComponent<CanvasHandler>();
             tookDamgeCanvas.setFadeIn(true);

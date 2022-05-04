@@ -28,7 +28,7 @@ namespace EventCallbacks
         Could be a struct, read only, etc...
         */
     }
-    public class PlayerGetHitByZombie : Event
+    public class PlayerGetHitByZombieEvent : Event
     {
         public GameObject UnitGO;
         /*
@@ -36,5 +36,13 @@ namespace EventCallbacks
         Could be a struct, read only, etc...
         */
     }
-    
+    public class PlayerHealthChangeEvent : Event
+    {
+        public GameObject UnitGO;
+        /*
+        Info about cause of death, our killer, etc...
+        Could be a struct, read only, etc...
+        */
+    }
+
 }

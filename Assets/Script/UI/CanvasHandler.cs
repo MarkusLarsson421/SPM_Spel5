@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using TMPro;
 
 //https://www.youtube.com/watch?v=tF9RMjF9wDc
 public class CanvasHandler : MonoBehaviour // @Khaled Alraas
@@ -13,6 +13,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     [SerializeField] private int sceneToIndex;
     static private int MainMenuSceneIsIndex = 0;
     [SerializeField] private CanvasGroup tookDamgeCanvas;
+    [SerializeField] private TextMeshProUGUI playerHealthText;
     private bool fadeIn = false;
     private bool fadeOut = false;
 
@@ -94,6 +95,11 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     public void setFadeIn(bool value)
     {
         fadeIn = value;
+    }
+
+    public void UpdatePlayerStats(int playerHealth)
+    {
+        playerHealthText.text = playerHealth.ToString();
     }
 
 }

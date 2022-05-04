@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         health = 100;
+        UpdatePlayerStatsCnvas();
     }
 
     void Update()
@@ -37,7 +38,8 @@ public class PlayerStats : MonoBehaviour
             int randomNr = Random.Range(15, 26);
             health -= randomNr;
             temp = 0;
-            PlayerGetHitByZombie playerGetHitByZombie = new PlayerGetHitByZombie();
+            UpdatePlayerStatsCnvas();
+            PlayerGetHitByZombieEvent playerGetHitByZombie = new PlayerGetHitByZombieEvent();
             playerGetHitByZombie.UnitGO = gameObject;
             EventSystem.Current.FireEvent(playerGetHitByZombie);
         }
@@ -54,5 +56,12 @@ public class PlayerStats : MonoBehaviour
 
     }
     public bool IsDead() { return isDead; }
+
+    void UpdatePlayerStatsCnvas()
+    {
+        PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
+        playerHealthChange.UnitGO = gameObject;
+        EventSystem.Current.FireEvent(playerHealthChange);
+    }
 
 }
