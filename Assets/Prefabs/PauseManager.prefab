@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4883527132802102726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4883527132802102729}
+  - component: {fileID: 4883527132802102728}
+  - component: {fileID: 4883527132802102727}
+  m_Layer: 0
+  m_Name: PauseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4883527132802102729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4883527132802102726}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 151.07657, y: 68.19706, z: -34.25659}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4883527132802102728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4883527132802102726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3460c89db294f6c458910263661130f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4883527132802102727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4883527132802102726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: add0e2cf70f1f634bb65d3a268fd9104, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 320e6e17-8ef1-4b3d-a7a1-1bbe3d01ce63
+    m_ActionName: Gameplay/Move[/XInputControllerWindows/leftStick,/XInputControllerWindows1/leftStick,/XInputControllerWindows2/leftStick,/XInputControllerWindows3/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ecac3a67-2ed2-41e2-b179-5817e2cb8378
+    m_ActionName: Gameplay/Rotate[/XInputControllerWindows/rightStick,/XInputControllerWindows1/rightStick,/XInputControllerWindows2/rightStick,/XInputControllerWindows3/rightStick,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 693fb1bc-8816-408b-a785-565f56a6333c
+    m_ActionName: Gameplay/Interact[/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth,/XInputControllerWindows2/buttonSouth,/XInputControllerWindows3/buttonSouth,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 110d9818-1fcc-4778-8e1d-953266d43655
+    m_ActionName: Gameplay/Shoot[/XInputControllerWindows/rightTrigger,/XInputControllerWindows1/rightTrigger,/XInputControllerWindows2/rightTrigger,/XInputControllerWindows3/rightTrigger,/Mouse/press]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ac9fda07-636b-45a1-8e5f-c2f038d8f686
+    m_ActionName: Gameplay/Reload[/XInputControllerWindows/buttonWest,/XInputControllerWindows1/buttonWest,/XInputControllerWindows2/buttonWest,/XInputControllerWindows3/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 78c6383f-8e65-4897-8853-f3f1033d3d80
+    m_ActionName: Gameplay/FlashLight[/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth,/XInputControllerWindows2/buttonNorth,/XInputControllerWindows3/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d655b10-3278-4a4c-bf87-31a9c6b6c66d
+    m_ActionName: Gameplay/Sprint[/XInputControllerWindows/leftStickPress,/XInputControllerWindows1/leftStickPress,/XInputControllerWindows2/leftStickPress,/XInputControllerWindows3/leftStickPress,/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ee3cba5-f210-44f0-9262-581da16f5619
+    m_ActionName: UI/Navigate[/XInputControllerWindows/dpad,/XInputControllerWindows1/dpad,/XInputControllerWindows2/dpad,/XInputControllerWindows3/dpad,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bd2b1289-b9b3-4e6b-81a0-81993780e25b
+    m_ActionName: UI/Click Button[/XInputControllerWindows/rightTrigger,/XInputControllerWindows1/rightTrigger,/XInputControllerWindows2/rightTrigger,/XInputControllerWindows3/rightTrigger,/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4883527132802102728}
+        m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 880bf149-cdfe-49b0-b721-3975d49699ab
+    m_ActionName: Gameplay/PauseGame[/Keyboard/p,/XInputControllerWindows/start,/XInputControllerWindows1/start,/XInputControllerWindows2/start,/XInputControllerWindows3/start]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

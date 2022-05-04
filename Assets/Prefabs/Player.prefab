@@ -499,6 +499,7 @@ GameObject:
   - component: {fileID: 4075965575175922090}
   - component: {fileID: 8082899960131896220}
   - component: {fileID: -6232889383313603450}
+  - component: {fileID: 303014418408053359}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -776,6 +777,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5d655b10-3278-4a4c-bf87-31a9c6b6c66d
     m_ActionName: Gameplay/Sprint[/XInputControllerWindows/leftStickPress,/XInputControllerWindows1/leftStickPress]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 303014418408053359}
+        m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 880bf149-cdfe-49b0-b721-3975d49699ab
+    m_ActionName: Gameplay/PauseGame[/Keyboard/p,/XInputControllerWindows/start,/XInputControllerWindows1/start,/XInputControllerWindows2/start,/XInputControllerWindows3/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -815,6 +832,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 0
   startPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &303014418408053359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3085997579580629145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3460c89db294f6c458910263661130f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3085997580443032866
 GameObject:
   m_ObjectHideFlags: 0

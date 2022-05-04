@@ -89,6 +89,15 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""880bf149-cdfe-49b0-b721-3975d49699ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -267,6 +276,28 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09d21f3f-501d-4014-ba95-29445435f25a"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34ecea02-80ac-4fe4-ad34-93ba060230d6"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -396,6 +427,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         m_Gameplay_Reload = m_Gameplay.FindAction("Reload", throwIfNotFound: true);
         m_Gameplay_FlashLight = m_Gameplay.FindAction("FlashLight", throwIfNotFound: true);
         m_Gameplay_Sprint = m_Gameplay.FindAction("Sprint", throwIfNotFound: true);
+        m_Gameplay_PauseGame = m_Gameplay.FindAction("PauseGame", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -466,6 +498,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Reload;
     private readonly InputAction m_Gameplay_FlashLight;
     private readonly InputAction m_Gameplay_Sprint;
+    private readonly InputAction m_Gameplay_PauseGame;
     public struct GameplayActions
     {
         private @InputSystem m_Wrapper;
@@ -477,6 +510,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         public InputAction @Reload => m_Wrapper.m_Gameplay_Reload;
         public InputAction @FlashLight => m_Wrapper.m_Gameplay_FlashLight;
         public InputAction @Sprint => m_Wrapper.m_Gameplay_Sprint;
+        public InputAction @PauseGame => m_Wrapper.m_Gameplay_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -507,6 +541,9 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSprint;
+                @PauseGame.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -532,6 +569,9 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
             }
         }
     }
@@ -586,6 +626,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         void OnReload(InputAction.CallbackContext context);
         void OnFlashLight(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
