@@ -183,10 +183,7 @@ public class CraftingSystem : MonoBehaviour
         }
     }
 
-    public void exitCrafting()
-    {
-        ToggleCraftingBench();
-    }
+   
 
     
 
