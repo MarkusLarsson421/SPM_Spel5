@@ -15,12 +15,15 @@ public class DynamicMovementController : MonoBehaviour
 
     private float gravity = 9.82f;
 
+    private float stamina = 7;
+    private float timer;
+
     private Vector2 move;
     private float collisionMargin = 0.1f;
     private CapsuleCollider collider;
 
-   
 
+    private bool isSprinting;
 
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] float staticFrictionCoefficient;
@@ -36,13 +39,20 @@ public class DynamicMovementController : MonoBehaviour
     {
         if (callback.performed)
         {
-            maxSpeed += sprintSpeedAddition;
+            
+            if(stamina >= 0)
+            {
+                isSprinting = true;
+                maxSpeed += sprintSpeedAddition;
+            }
+            
         }
 
         if (callback.canceled)
         {
-            maxSpeed -= sprintSpeedAddition;
-;        }
+            isSprinting = false;
+            maxSpeed = 5;
+;       }
     }
     void Awake()
     {
@@ -56,6 +66,11 @@ public class DynamicMovementController : MonoBehaviour
         ForceDown();
         Movement();
         UpdateVelocity();
+
+        if (isSprinting || stamina < 7)
+        {
+            handleSprint();
+        }
         //Open door
         if (Input.GetKeyDown(KeyCode.E)) { Interact(); }
     }
@@ -139,6 +154,24 @@ public class DynamicMovementController : MonoBehaviour
 
     }
 
+    private void handleSprint()
+    {
+        
+        timer += Time.deltaTime;
+        if(timer >= 1)
+        {
+            if (isSprinting)
+            {
+                stamina--;
+            }
+            else
+            {
+                stamina++;
+            }
+            timer = 0;
+        }
+    }
+
     /**
     * @Author Markus Larsson
     * 
@@ -154,6 +187,14 @@ public class DynamicMovementController : MonoBehaviour
         SingleDoor singleDoor = hit.transform.gameObject.GetComponent<SingleDoor>();
         if (singleDoor == null) { return; }
         singleDoor.ToggleOpen();
+    }
+
+    private void checkSprint()
+    {
+        if(stamina > 7)
+        {
+
+        }
     }
 
     private void OnEnable()
