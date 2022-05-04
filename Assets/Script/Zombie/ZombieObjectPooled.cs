@@ -17,18 +17,13 @@ public class ZombieObjectPooled : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            SpawnZombie();
-            Debug.Log("spawna");
-        }
-        /*cooldown -= Time.deltaTime;
-        if (cooldown <= 0 && zps.amountOfZombiesSpawned <= 0) 
+        cooldown -= Time.deltaTime;
+        if(cooldown <= 0 && zps.amountOfZombiesSpawned <= 0)
         {
             Debug.Log($"{zps.amountOfZombiesSpawned} {cooldown}");
             SpawnZombie();
             cooldown = 5;
-        }*/
+        }
     }
 
     private void SpawnZombie()

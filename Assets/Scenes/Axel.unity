@@ -194,15 +194,31 @@ PrefabInstance:
     - target: {fileID: 3501333646180268072, guid: 31c69852090b09946ac9d02ca7132456, type: 3}
       propertyPath: zPrefab
       value: 
-      objectReference: {fileID: 2979776025397200154, guid: fa62b6693f40701418d7b72350aa3cda, type: 3}
+      objectReference: {fileID: 8360870753106494007, guid: 7051a5f0354a1e146b55e65c405401f6, type: 3}
     - target: {fileID: 3501333646180268072, guid: 31c69852090b09946ac9d02ca7132456, type: 3}
       propertyPath: spawnPos
       value: 
       objectReference: {fileID: 2026978387}
     - target: {fileID: 3501333646180268072, guid: 31c69852090b09946ac9d02ca7132456, type: 3}
+      propertyPath: spawnObjects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3501333646180268072, guid: 31c69852090b09946ac9d02ca7132456, type: 3}
       propertyPath: spawnLocations.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3501333646180268072, guid: 31c69852090b09946ac9d02ca7132456, type: 3}
+      propertyPath: spawnObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 2026978387}
+    - target: {fileID: 3501333646180268072, guid: 31c69852090b09946ac9d02ca7132456, type: 3}
+      propertyPath: spawnObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1334135322}
+    - target: {fileID: 3501333646180268072, guid: 31c69852090b09946ac9d02ca7132456, type: 3}
+      propertyPath: spawnObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 1984282621}
     - target: {fileID: 3501333646180268072, guid: 31c69852090b09946ac9d02ca7132456, type: 3}
       propertyPath: spawnLocations.Array.data[0]
       value: 
@@ -5692,10 +5708,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   stamina: 100
-  healthText: {fileID: 0}
-  CanvasObject: {fileID: 0}
-  deathCanvasObject: {fileID: 0}
-  tryAgainButton: {fileID: 0}
 --- !u!114 &515636004
 MonoBehaviour:
   m_ObjectHideFlags: 0

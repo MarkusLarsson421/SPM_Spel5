@@ -99,7 +99,10 @@ public class EnemyAI : MonoBehaviour
     {
         Debug.Log("ouch");
         currentHealth -= damage;
-        if (_currentHealth <= 0) { Destroy(gameObject); }
+        if (_currentHealth <= 0)
+        {
+            zP.ReturnToPool(zReference);
+        }
     }
 
     public void SetColor(Color color)
