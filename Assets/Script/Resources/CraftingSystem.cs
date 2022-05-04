@@ -78,22 +78,16 @@ public class CraftingSystem : MonoBehaviour
             {
                 infoText.text = "Craft here! \n" + "Upgrade damage: 2 Batteries, 2 Scraps \n" + "Upgrade magazine: 1 Battery, 3 Scraps \n" + "Upgrade flashlight: 3 Batteries, 1 Scrap";
             }
-            /*
-            if (inter.interactingGameObject.transform.parent.tag == "Player1")
+            /*if (inter.interactingGameObject.transform.parent.tag == "Player1")
             {
                 playah = "Player1";
-                GameObject.FindGameObjectWithTag("Player1").GetComponent<DynamicMovementController>().enabled = false;
-                GameObject.FindGameObjectWithTag("Player1").GetComponentInChildren<GamePadCamera>().enabled = false;
-            }
-            */
+            }*/
         }
         else
         {
             isToggled = false;
             infoText.enabled = false;
             Cursor.lockState = CursorLockMode.Locked;
-            GameObject.FindGameObjectWithTag(playah).GetComponent<DynamicMovementController>().enabled = true;
-            GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<GamePadCamera>().enabled = true;
         }
         
     }
@@ -120,7 +114,6 @@ public class CraftingSystem : MonoBehaviour
             Debug.Log(inter.interactingGameObject.transform.parent.tag);
             
         }
-        ToggleCraftingBench();
         
 
 
@@ -146,7 +139,6 @@ public class CraftingSystem : MonoBehaviour
         {
             Debug.Log("Need more items pal");
         }
-        ToggleCraftingBench();
     }
 
     public void flashLightUpgrade()
@@ -168,8 +160,7 @@ public class CraftingSystem : MonoBehaviour
         {
             Debug.Log("Need more items pal");
         }
-        ToggleCraftingBench();
-
+        
     }
 
     private void toggleButtons()
