@@ -13521,8 +13521,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuel: 20
-  secondDelay: 1
-  fuelLevelIndicator: {fileID: 1139562868}
+  maxFuel: 0
+  fuelDrainMultiplier: 1
   lights:
   - {fileID: 2056543604}
   - {fileID: 1921044032}
@@ -15469,8 +15469,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuel: 0
-  secondDelay: 0
-  fuelLevelIndicator: {fileID: 0}
+  maxFuel: 0
+  fuelDrainMultiplier: 1
   lights: []
   doors: []
 --- !u!65 &1187866955
@@ -17577,6 +17577,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7189343450603718858, guid: cf05bdbc350a74e4dad6666463da35f4, type: 3}
+      propertyPath: isOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189343450603718858, guid: cf05bdbc350a74e4dad6666463da35f4, type: 3}
+      propertyPath: activeColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189343450603718858, guid: cf05bdbc350a74e4dad6666463da35f4, type: 3}
+      propertyPath: activeColour.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189343450603718858, guid: cf05bdbc350a74e4dad6666463da35f4, type: 3}
+      propertyPath: activeColour.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189343450603718858, guid: cf05bdbc350a74e4dad6666463da35f4, type: 3}
+      propertyPath: activeColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189343450603718858, guid: cf05bdbc350a74e4dad6666463da35f4, type: 3}
+      propertyPath: inactiveColour.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
     - target: {fileID: 7482878609264739801, guid: cf05bdbc350a74e4dad6666463da35f4, type: 3}
       propertyPath: m_Name
       value: Lamp
@@ -19012,8 +19036,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuel: 0
-  secondDelay: 0
-  fuelLevelIndicator: {fileID: 0}
+  maxFuel: 0
+  fuelDrainMultiplier: 1
   lights: []
   doors: []
 --- !u!114 &1650160581
