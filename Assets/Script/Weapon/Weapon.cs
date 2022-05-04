@@ -61,7 +61,7 @@ public class Weapon : MonoBehaviour {
 	 */
 	public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed /*&& /*canFire*/)
+        if (context.performed && !isReloading && currentMag > 0 /*&& /*canFire*/)
         {
 			Fire();
 			isFiring = true;
@@ -111,7 +111,8 @@ public class Weapon : MonoBehaviour {
 	/**
 	 * Shoots from the referenced camera 10 units forward.
 	 * 
-	 * @Author Markus Larsson and Simon Hessling Oscarson
+	 * @Author Markus Larsson 
+	 * @Simon Hessling Oscarson
 	 */
 	private void Fire(){
 		currentMag--;

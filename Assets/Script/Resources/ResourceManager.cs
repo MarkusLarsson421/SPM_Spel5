@@ -9,8 +9,8 @@ public class ResourceManager : MonoBehaviour
 	 */
 	
 	private int ammo;
-	[SerializeField]private int batteries; //är serialized bara för att testa
-	[SerializeField]private int scrap;
+	private int batteries = 2; 
+	private int scrap;
 
 	private int aP1;
 	private int aP2;
