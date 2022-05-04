@@ -1,15 +1,10 @@
-    using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using EventCallbacks;
 
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int health; // set the amount of health in unity
     [SerializeField] private int stamina; //set the stamina of health in unity
-    [SerializeField] private TextMeshProUGUI healthText;
     private bool isDead = false;
     void Start()
     {
@@ -18,8 +13,7 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        setHealthtext();
-        if (health <= 0)
+        if (health <= 0 && !isDead)
         {
             health = 0;
             PlayerDeath();
@@ -29,8 +23,6 @@ public class PlayerStats : MonoBehaviour
     public int getHealth()  { return health; }
     public int setHealth(int healthAmount) { return healthAmount; }
     public int getStamina() { return stamina; }
-    private void setHealthtext() { healthText.text = health.ToString(); }
-    //private void setStaminaText() { staminaText.text = stamina.ToString(); }
 
     float temp = 0;
 
@@ -43,16 +35,23 @@ public class PlayerStats : MonoBehaviour
         else
         {
             int randomNr = Random.Range(15, 26);
-            //health -= randomNr;
+            health -= randomNr;
             temp = 0;
+            PlayerGetHitByZombie playerGetHitByZombie = new PlayerGetHitByZombie();
+            playerGetHitByZombie.UnitGO = gameObject;
+            EventSystem.Current.FireEvent(playerGetHitByZombie);
         }
         // Hur mycket skada man tar av en zombie varierar
+
     }
     private void PlayerDeath()
     {
-        //Mest till för att testa, inte bestämt vad som ska hända när man dör
-        GetComponent<Movement>().enabled = false;
+        PlayerDieEvent udei = new PlayerDieEvent();
+        udei.EventDescription = "Unit " + gameObject.name + " has died.";
+        udei.UnitGO = gameObject;
+        EventSystem.Current.FireEvent(udei);
         isDead = true;
+
     }
     public bool IsDead() { return isDead; }
 

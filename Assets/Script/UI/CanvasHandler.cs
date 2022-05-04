@@ -12,29 +12,20 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     [SerializeField] private GameObject tookDamgeCanvasObject;
     [SerializeField] private int sceneToIndex;
     static private int MainMenuSceneIsIndex = 0;
-    [SerializeField] GameObject player;
     [SerializeField] private CanvasGroup tookDamgeCanvas;
-    private int currentHealth;
     private bool fadeIn = false;
     private bool fadeOut = false;
 
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        currentHealth = player.GetComponent<PlayerStats>().getHealth();
         tookDamgeCanvasObject.SetActive(true);
         tookDamgeCanvas.alpha = 0;
 
     }
-    // Update is called once per frame
     void Update()
     {
         EnemyAttackedMe();
-        if (player.GetComponent<PlayerStats>().getHealth() <= 0)
-        {
-            ChangeCanvasToDeathCanvas();
-        }
         
     }
     public void ReastartLevel()
@@ -52,7 +43,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         SceneManager.LoadScene(MainMenuSceneIsIndex);
     }
     /**
-     * khaled Ahlraas
+     * khaled Alraas
 	 * @Simon Hessling Oscarson - gjorde public.
 	 * 
 	 */
@@ -63,19 +54,8 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         Cursor.lockState = CursorLockMode.None;
     }
 
-    void EnemyAttackedMe()
+    public void EnemyAttackedMe()
     {
-        if(player.GetComponent<PlayerStats>().getHealth()!= currentHealth)
-        {
-            //Script to write....
-            // see witch side the zombie attacked and based on it show the correct canvas
-            //Tips...
-            //1- get zombie that attacked object 
-            //2- get the Dot product from it
-            //3- show the correct canvas
-            fadeIn = true;
-            currentHealth = player.GetComponent<PlayerStats>().getHealth();
-        }
         if (fadeIn)
         {
             showTookDamgeCanavs();
@@ -98,7 +78,6 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
                 fadeOut = true;
             }
         }
-        //tookDamgeCanvas.alpha = 1;
     }
 
     void hideTookDamgeCanvas()
@@ -111,6 +90,10 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
                 fadeOut = false;
             }
         }
+    }
+    public void setFadeIn(bool value)
+    {
+        fadeIn = value;
     }
 
 }
