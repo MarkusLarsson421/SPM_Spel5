@@ -43,8 +43,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerTransform = player.transform;
+
     }
 
     private void Start()
@@ -84,6 +83,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = player.transform;
         topNode.Evaluate();
         if(topNode.nodeState == NodeState.FAILURE)
         {
