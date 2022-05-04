@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] private Cover[] avaliableCovers;
     private GameObject player;
-    private Transform playerTransform;
+    [SerializeField] private Transform playerTransform;
 
 
     private Material material;
