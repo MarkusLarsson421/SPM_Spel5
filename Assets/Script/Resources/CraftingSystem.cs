@@ -14,7 +14,6 @@ public class CraftingSystem : MonoBehaviour
     [SerializeField] private Interactable inter; //TEST
 
     [SerializeField] private string playah;
-    private GameObject player;
     private Text infoText;
     private bool isToggled;
 
@@ -28,8 +27,7 @@ public class CraftingSystem : MonoBehaviour
     private GameObject flashlightUpgrade;
     private GameObject cancelButton;
 
-    private GameObject choiceYes;
-    private GameObject choiceNo;
+   
 
     
 
@@ -49,15 +47,13 @@ public class CraftingSystem : MonoBehaviour
         magazineUpgrade = GameObject.Find("MagazineUpgrade");
         flashlightUpgrade = GameObject.Find("fireRateUpgrade");
         cancelButton = GameObject.Find("CancelButton");
-        choiceYes = GameObject.Find("choiceYes");
-        choiceNo = GameObject.Find("choiceNo");
+        
         
         damageUpgrade.SetActive(false);
         magazineUpgrade.SetActive(false);
         flashlightUpgrade.SetActive(false);
         cancelButton.SetActive(false);
-        choiceYes.SetActive(false);
-        choiceNo.SetActive(false);
+        
     }
 
     public void ToggleCraftingBench()
@@ -66,15 +62,10 @@ public class CraftingSystem : MonoBehaviour
         toggleButtons();
         if (!isToggled)
         {
-            //choiceNo.SetActive(true);
-            //choiceYes.SetActive(true);
-            //eventSystem.SetSelectedGameObject(choiceNo);
-            //playah = inter.interactingGameObject.transform.parent.tag;
             
             Cursor.lockState = CursorLockMode.None;
             isToggled = true;
             infoText.enabled = true;
-            //chooseSelectedButton();
             eventSystem.SetSelectedGameObject(cancelButton);
             Debug.Log(damageUpgradedPlayers.Count);
 
@@ -106,7 +97,6 @@ public class CraftingSystem : MonoBehaviour
             //Gör så pistoler gör mer skada
             GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(35);
             print("HEYO");
-            //hasUpgradedDamage = true;
             damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
             Debug.Log(damageUpgradedPlayers.Contains("Player1"));
             
@@ -135,7 +125,6 @@ public class CraftingSystem : MonoBehaviour
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Batteries, 1);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Scrap, 3);
             GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetMagCapacity(12);
-            //hasMagazineSizeUpgrade = true;
             MagazineUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
             
         }
@@ -157,8 +146,6 @@ public class CraftingSystem : MonoBehaviour
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Batteries, 3);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Scrap, 1);
             GameObject.FindWithTag("Flashlight").GetComponent<FlashLight>().SetDrainMultiplier(0.05);
-            //hasFlashlightUpgrade = true;
-            //flashlightUpgrade.SetActive(false);
             flashLightUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
             Debug.Log(inter.interactingGameObject.transform.parent.tag);
         }
@@ -171,7 +158,7 @@ public class CraftingSystem : MonoBehaviour
 
     private void toggleButtons()
     {
-       // string key = inter.interactingGameObject.transform.parent.tag;
+       
         if (!isToggled)
         {
             cancelButton.SetActive(true);
@@ -195,30 +182,12 @@ public class CraftingSystem : MonoBehaviour
         }
     }
 
-    private void chooseSelectedButton()
-    {
-        if(hasMagazineSizeUpgrade && !hasUpgradedDamage && !hasFlashlightUpgrade)
-        {
-            eventSystem.SetSelectedGameObject(damageUpgrade);
-        }
-        else if (hasMagazineSizeUpgrade && hasUpgradedDamage)
-        {
-            eventSystem.SetSelectedGameObject(flashlightUpgrade);
-        }
-        else if(hasMagazineSizeUpgrade && hasFlashlightUpgrade)
-        {
-            eventSystem.SetSelectedGameObject(damageUpgrade);
-        }
-        else
-            eventSystem.SetSelectedGameObject(magazineUpgrade);
-    }
-
     public void exitCrafting()
     {
         ToggleCraftingBench();
     }
 
-    //private void ShowUpgradeButtons()
+    
 
 
 }
