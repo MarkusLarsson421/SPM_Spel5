@@ -9,17 +9,21 @@ public class DynamicMovementController : MonoBehaviour
     private InputSystem controls;
     [SerializeField] private float speed = 9f;
     [SerializeField] private float maxSpeed;
+    [SerializeField] private float sprintSpeedAddition;
 
     private Vector3 velocity;
 
     private float gravity = 9.82f;
 
+    private float stamina = 7;
+    private float timer;
+
     private Vector2 move;
     private float collisionMargin = 0.1f;
     private CapsuleCollider collider;
 
-    private PlayerInput playerInput;
 
+    private bool isSprinting;
 
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] float staticFrictionCoefficient;
@@ -30,12 +34,32 @@ public class DynamicMovementController : MonoBehaviour
         move = callback.ReadValue<Vector2>();
         
     }
+
+    public void OnSprint(InputAction.CallbackContext callback)
+    {
+        if (callback.performed)
+        {
+            
+            if(stamina >= 0)
+            {
+                isSprinting = true;
+                maxSpeed += sprintSpeedAddition;
+            }
+            
+        }
+
+        if (callback.canceled)
+        {
+            isSprinting = false;
+            maxSpeed = 5;
+;       }
+    }
     void Awake()
     {
         controls = new InputSystem();
         collider = GetComponent<CapsuleCollider>();
         Cursor.lockState = CursorLockMode.Locked;
-        playerInput = GetComponent<PlayerInput>();    }
+    }
 
     void Update()
     {
@@ -43,6 +67,10 @@ public class DynamicMovementController : MonoBehaviour
         Movement();
         UpdateVelocity();
 
+        if (isSprinting || stamina < 7)
+        {
+            handleSprint();
+        }
         //Open door
         if (Input.GetKeyDown(KeyCode.E)) { Interact(); }
     }
@@ -126,6 +154,24 @@ public class DynamicMovementController : MonoBehaviour
 
     }
 
+    private void handleSprint()
+    {
+        
+        timer += Time.deltaTime;
+        if(timer >= 1)
+        {
+            if (isSprinting)
+            {
+                stamina--;
+            }
+            else
+            {
+                stamina++;
+            }
+            timer = 0;
+        }
+    }
+
     /**
     * @Author Markus Larsson
     * 
@@ -141,6 +187,14 @@ public class DynamicMovementController : MonoBehaviour
         Door door = hit.transform.gameObject.GetComponent<Door>();
         if (door == null) { return; }
         door.ToggleState();
+    }
+
+    private void checkSprint()
+    {
+        if(stamina > 7)
+        {
+
+        }
     }
 
     private void OnEnable()
