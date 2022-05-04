@@ -43,7 +43,7 @@ public class Lamp : MonoBehaviour{
 	 * @param State the desired state of the light.
 	 */
 	public void SetState(bool desiredState){
-		if(isOn){
+		if(desiredState){
 			TurnOn();
 		} else{
 			TurnOff();
@@ -91,7 +91,7 @@ public class Lamp : MonoBehaviour{
 		//Gets the array and replaces the material index with the desired state material.
 		//Unity requires the entire array to be replaced.
 		//sharedMaterials is required as otherwise it might
-		//leak materials into the scenes according to Unity.
+		//	leak materials into the scenes according to Unity.
 		Material[] materials = meshRenderer.sharedMaterials;
 		materials[index] = material;
 		meshRenderer.materials = materials;

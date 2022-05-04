@@ -45,7 +45,7 @@ public class Door : MonoBehaviour{
 	 */
 	public void Close(){
 		isOpen = false;
- 		ani.SetBool("isOpen", false);
+		ani.SetBool("isOpen", false);
 	}
 
 	/**
@@ -57,9 +57,6 @@ public class Door : MonoBehaviour{
 	}
 
 	public void SetCanOpen(bool desiredState){
-		//If it already is the same state and the desired state, yeet.
-		if(desiredState && playerCanOpen){return;}
-
 		playerCanOpen = desiredState;
 	}
 
@@ -71,7 +68,6 @@ public class Door : MonoBehaviour{
 			ani = transform.GetChild(0).GetComponent<Animator>();
 		}
 		
-		Debug.Log("Noticed inspector update.");
 		SetState(isOpen);
 		SetCanOpen(playerCanOpen);
 	}

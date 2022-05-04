@@ -27,10 +27,33 @@ public class LightControl : MonoBehaviour
         }
     }
 
-    public void Toggle()
-    {
-        isOn = !isOn;
-    }
+    public void Toggle(){
+		SetState(!isOn);
+	}
+
+	public void SetState(bool desiredState){
+		if(desiredState){
+			TurnOn();
+		} else{
+			TurnOff();
+		}
+	}
+
+	public void TurnOn(){
+		isOn = true;
+		SetLightState(true);
+	}
+	
+	public void TurnOff(){
+		isOn = false;
+		SetLightState(false);
+	}
+
+	private void SetLightState(bool desiredState){
+		foreach(GameObject go in lights){
+			go.GetComponent<Lamp>().SetState(desiredState);
+		}
+	}
 
     private IEnumerator Blink()
     {
@@ -39,13 +62,5 @@ public class LightControl : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         
         SetLightState(false);
-    }
-
-    private void SetLightState(bool setState)
-    {
-	    foreach(GameObject go in lights)
-	    {
-		    go.gameObject.transform.GetChild(0).gameObject.SetActive(setState);
-	    }
     }
 }

@@ -111,10 +111,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuel: 10
-  secondDelay: 1
-  fuelLevelIndicator: {fileID: 1719810379710283756}
+  maxFuel: 100
+  fuelDrainMultiplier: 1
+  fuelIndicatorColours:
+  - {r: 0.015686274, g: 1, b: 0.08499534, a: 0}
+  - {r: 1, g: 0.9878479, b: 0, a: 0}
+  - {r: 1, g: 0, b: 0, a: 0}
   lights: []
-  singleDoors: []
+  doors: []
 --- !u!114 &1719810379302933031
 MonoBehaviour:
   m_ObjectHideFlags: 0

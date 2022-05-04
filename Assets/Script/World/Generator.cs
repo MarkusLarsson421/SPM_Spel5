@@ -1,73 +1,128 @@
+using System;
 using UnityEngine;
 
 public class Generator : MonoBehaviour{
+	//Whether or not the fuel is on.
+	[SerializeField] private bool isOn;
+	
+	//Fuel
+	[Header("Fuel settings")]
 	[SerializeField] private float fuel;
 	[SerializeField] private float maxFuel = 100.0f;
 	[SerializeField] private float fuelDrainMultiplier = 1.0f;
-	private bool isOn;
 
-	private Color[] materials;
+	//Colours to display the current fuel stage to the player.
+	[SerializeField] private Color[] fuelIndicatorColours;
 
-	//colors for the fuelLevelIndicator
-	private Color fullGeneratorColor = new Color(0, 133, 0, 255);
-	private Color halfEmptyGeneratorColor = new Color(188, 174, 0, 255);
-	private Color emptyGeneratorColor = new Color(188, 0, 0, 255);
-
-	[SerializeField] private Light[] lights;
+	[Header("Generator interactions")]
+	[SerializeField] private GameObject[] lights;
 	[SerializeField] private Door[] doors;
+	[SerializeField] private GameObject[] emergencyLights;
+
+	private Light fuelIndicator;
 
 	private void Start(){
+		fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
 		isOn = true;
 		fuel = maxFuel;
 	}
 
 	private void Update(){
 		DrainFuel();
-
 		FuelIndicator();
 	}
 
+	/**
+	 * Drains fuel each frame.
+	 *
+	 * @Author Markus Larsson and Martin Wallmark
+	 */
 	private void DrainFuel(){
 		if(isOn){
 			fuel -= fuelDrainMultiplier * Time.deltaTime;
 		}
+		if(fuel <= 0){
+			fuel = 0;
+			TurnOff();
+		}
 	}
 
+	/**
+	 * @Author Martin Wallmark and Markus Larsson
+	 */
+	private void RefillFuel(float amount){
+		if(fuel + amount > maxFuel){
+			amount = maxFuel - fuel;
+		}
+		fuel += amount;
+	}
+	
 	private void FuelIndicator(){
-		
-	}
-
-	/*
-	 * @Author Martin Wallmark
-	 */
-	public void Refill(){
-		fuel = maxFuel;
-		ToggleLights();
-		OpenDoor();
-	}
-
-	/*
-	 * @Author Martin Wallmark
-	 */
-	private void ToggleGenerator(){
-		isOn = !isOn;
-	}
-
-	/*
-	 * @Author Martin Wallmark
-	 */
-	private void ToggleLights(){
-		foreach(var l in lights){
-			l.intensity = !isOn ? 0 : 2;
+		float fuelRatio = fuel / maxFuel;
+		if(fuelRatio < 0.95f){
+			fuelIndicator.color = fuelIndicatorColours[0];
+		}else if(fuelRatio < 0.5f){
+			fuelIndicator.color = fuelIndicatorColours[1];
+		} else if(fuelRatio < 0.25f){
+			fuelIndicator.color = fuelIndicatorColours[2];
 		}
 	}
 
 	/*
-	 * @Author Martin Wallmark
+	 * Toggles the state of the generator.
 	 */
-	private void OpenDoor(){
+	private void ToggleGenerator(){
+		SetState(!isOn);
+	}
+
+	private void SetState(bool desiredState){
+		if(desiredState){
+			TurnOn();
+		} else{
+			TurnOff();
+		}
+	}
+
+	private void TurnOn(){
+		if(fuel <= 0){return;}
+		isOn = true;
+		SetLightState(true);
+		SetDoorState(true);
+	}
+	
+	private void TurnOff(){
+		isOn = false;
+		SetLightState(false);
+		SetDoorState(false);
+	}
+
+	/*
+	 * @Author Martin Wallmark and Markus Larsson
+	 */
+	private void SetLightState(bool desiredState){
+		foreach(GameObject go in lights){
+			go.GetComponent<Lamp>().SetState(desiredState);
+		}
+	}
+	
+	/*
+	 * @Author Markus Larsson
+	 */
+	private void SetEmergencyLightState(bool desiredState){
+		foreach(GameObject go in lights){
+			go.GetComponent<EmergencyLight>().SetState(desiredState);
+		}
+	}
+
+	/*
+	 * Tells the door to either open or close depending on the parameter.
+	 *
+	 * @Param desiredState What state the door is desired to be in.
+	 * @Author Martin Wallmark and Markus Larsson
+	 */
+	private void SetDoorState(bool desiredState){
 		foreach(Door door in doors){
-			door.ToggleState();
+			door.SetState(desiredState);
 		}
 	}
 
@@ -77,9 +132,16 @@ public class Generator : MonoBehaviour{
 	 * @Author Martin Wallmark
 	 */
 	private void LerpingLights(){
-		foreach(Light light in lights){
+		/*foreach(Light light in lights){
 			float lerpTimer = Time.deltaTime / 3f;
 			light.intensity = Mathf.Lerp(light.intensity, 1f, lerpTimer);
+		}*/
+	}
+
+	private void OnValidate(){
+		if(fuel <= 0){
+			isOn = false;
 		}
+		SetState(isOn);
 	}
 }
