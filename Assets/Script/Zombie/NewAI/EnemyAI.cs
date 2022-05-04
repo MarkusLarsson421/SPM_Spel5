@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] private Cover[] avaliableCovers;
     private GameObject player;
+    private GameObject playerTwo;
     [SerializeField] private Transform playerTransform;
 
 
@@ -43,12 +44,13 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player1");
+        playerTwo = GameObject.FindGameObjectWithTag("Player2");
 
     }
     public void FixPlayerTransform()
     {
-        if(player != null)
+        if(player != null || playerTwo != null)
         {
             playerTransform = player.transform;
         }
@@ -72,7 +74,7 @@ public class EnemyAI : MonoBehaviour
         ChasingInRangeNode chasingInRangeNode = new ChasingInRangeNode(chasingRange, playerTransform, transform);
         RangeNode shootingRangeNode = new RangeNode(shootingRange, playerTransform, transform);
         AttackNode attackNode = new AttackNode(agent, this, playerTransform, player);
-        IsThereAnyPlayer isThereAnyPlayer = new IsThereAnyPlayer(player);
+        IsThereAnyPlayer isThereAnyPlayer = new IsThereAnyPlayer(player, playerTwo);
         IsPlayerDeadNode isPlayerDeadNode = new IsPlayerDeadNode(player);
         Sequence playerDeathSequence = new Sequence(new List<Node> { isPlayerDeadNode });
 
@@ -92,7 +94,6 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        FixPlayerTransform();
         topNode.Evaluate();
         if(topNode.nodeState == NodeState.FAILURE)
         {
