@@ -16,15 +16,15 @@ public class Generator : MonoBehaviour{
 	private Color emptyGeneratorColor = new Color(188, 0, 0, 255);
 
 	[SerializeField] private Light[] lights;
-	[SerializeField] private SingleDoor[] singleDoors;
+	[SerializeField] private Door[] doors;
 
-	void Start(){
+	private void Start(){
 		isTurnedOn = true;
 		maxFuel = fuel;
 		fuelLevelIndicator.color = fullGeneratorColor;
 	}
 
-	void Update(){
+	private void Update(){
 		if(Input.GetKeyDown("p")){
 			GeneratorOnOff();
 		}
@@ -106,12 +106,12 @@ public class Generator : MonoBehaviour{
 	 * @Author Martin Wallmark
 	 */
 	private void OpenDoor(){
-		if(singleDoors.Length == 0 && doorsDisabled){
+		if(doors.Length == 0 && doorsDisabled){
 			return;
 		}
 
-		for(int i = 0; i < singleDoors.Length; i++){
-			singleDoors[i].ToggleOpen();
+		foreach(Door door in doors){
+			door.ToggleState();
 			doorsDisabled = true;
 		}
 	}

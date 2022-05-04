@@ -138,9 +138,9 @@ public class DynamicMovementController : MonoBehaviour
         //Possibly replace Camera.main.transform with a reference to the camera.
         Transform cameraTransform = Camera.main.transform;
         if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward * 2, out hit, 10)) { return; }
-        SingleDoor singleDoor = hit.transform.gameObject.GetComponent<SingleDoor>();
-        if (singleDoor == null) { return; }
-        singleDoor.ToggleOpen();
+        Door door = hit.transform.gameObject.GetComponent<Door>();
+        if (door == null) { return; }
+        door.ToggleState();
     }
 
     private void OnEnable()
