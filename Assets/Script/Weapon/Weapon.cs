@@ -35,6 +35,7 @@ public class Weapon : MonoBehaviour {
 
 	void Update()
 	{
+		/*
 		timer += Time.deltaTime;
 
 		if (canFire)
@@ -48,6 +49,7 @@ public class Weapon : MonoBehaviour {
 			
 
 		}
+		*/
 
 
 
@@ -59,8 +61,9 @@ public class Weapon : MonoBehaviour {
 	 */
 	public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed && canFire)
+        if (context.performed /*&& /*canFire*/)
         {
+			Fire();
 			isFiring = true;
 			//canFire = false ;
         }
@@ -75,6 +78,7 @@ public class Weapon : MonoBehaviour {
     {
 		if (context.performed)
 		{
+			Reload();
 			isReloadPressed = true;
 		}
 

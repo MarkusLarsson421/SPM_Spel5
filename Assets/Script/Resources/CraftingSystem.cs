@@ -98,7 +98,7 @@ public class CraftingSystem : MonoBehaviour
             Debug.Log(inter.interactingGameObject.transform.parent.tag);
             
         }
-        playah = inter.interactingGameObject.transform.parent.tag;
+        
 
 
 

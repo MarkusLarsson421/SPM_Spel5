@@ -60,7 +60,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""id"": ""110d9818-1fcc-4778-8e1d-953266d43655"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -197,7 +197,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""19f1cea9-1eb7-440b-92e6-19c44ad81391"",
                     ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shoot"",
