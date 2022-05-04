@@ -7,7 +7,7 @@ public class UI_Main_Menu : MonoBehaviour //Khaled Alraas
     [SerializeField] private GameObject MenuCanvas;
     [SerializeField] private GameObject OptionsCanvas;
     [SerializeField] private GameObject ExitConfirmationCanvas;
-    [SerializeField] private int sceneToIndex;
+    [SerializeField] private string sceneNameToLoad;
 
     public void ChangeMenuCanvasToOptionsCanvas()
     {
@@ -40,6 +40,6 @@ public class UI_Main_Menu : MonoBehaviour //Khaled Alraas
     IEnumerator LoadLevel()
     {
         yield return null;
-        SceneManager.LoadScene(sceneToIndex);
+        SceneManager.LoadScene(sceneNameToLoad);
     }
 }
