@@ -26,7 +26,18 @@ public class Zombie : MonoBehaviour //khal6952
     {
         MoveToTarget();
     }
+
+    //@Author Axel Sterner
+    public int GetHealth()
+    {
+        return health;
+    }
     
+    public int SetHealth(int newHp)
+    {
+        return health = newHp;
+    }
+
     /**
      * @Author Khaled Alraas
      *

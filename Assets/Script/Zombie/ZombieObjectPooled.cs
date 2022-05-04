@@ -17,23 +17,18 @@ public class ZombieObjectPooled : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(zps.amountOfZombiesSpawned);
+        // Debug.Log(zps.amountOfZombiesSpawned);
         /*
          * cooldown ska räknas ner. när cd är <= 15, anropa SpawnZombie och återställ cooldown.
          * cooldown-nedräkning måste nog ligga i ett villkor. problemet: hur håller jag koll på antal zombies för att veta när nästa våg kommer?
          */
-        if (zps.amountOfZombiesSpawned == 0)//om inga zombies finns kvar, starta cooldown o räkna ner
+        cooldown -= Time.deltaTime;
+        if (cooldown <= 0 && zps.amountOfZombiesSpawned <= 0)//om inga zombies finns kvar, starta cooldown o räkna ner
         {
-            Debug.Log("funkar");
-            cooldown -= Time.deltaTime;
-            if (cooldown <= 0)
-            {
-                Debug.Log("funkar2");
-                SpawnZombie();
-                cooldown = 5;
-            }
+            Debug.Log($"{zps.amountOfZombiesSpawned} {cooldown}");
+            SpawnZombie();
+            cooldown = 5;
         }
-
     }
 
     private void SpawnZombie()
