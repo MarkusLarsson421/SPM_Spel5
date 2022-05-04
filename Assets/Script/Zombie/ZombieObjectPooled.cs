@@ -17,13 +17,17 @@ public class ZombieObjectPooled : MonoBehaviour
 
     void Update()
     {
-        cooldown -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            SpawnZombie();
+        }
+        /*cooldown -= Time.deltaTime;
         if (cooldown <= 0 && zps.amountOfZombiesSpawned <= 0) 
         {
             Debug.Log($"{zps.amountOfZombiesSpawned} {cooldown}");
             SpawnZombie();
             cooldown = 5;
-        }
+        }*/
     }
 
     private void SpawnZombie()
@@ -38,6 +42,7 @@ public class ZombieObjectPooled : MonoBehaviour
 /*ATT GÖRA
  * Zombier ska komma i vågor. 
  * - Fixa så zombies inte spawnar inuti varandra. Använd OverlapSphere eller raycast för att kolla ifall zombies spawnar inuti varandra.
+ * Eller Vector3.Distance()
  * - Fixa så att spawners som är långt ifrån spelaren blir avaktiverade
  * - 
  */

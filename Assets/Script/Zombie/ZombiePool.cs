@@ -16,11 +16,21 @@ public class ZombiePool : MonoBehaviour
     private Queue<Zombie> zombieContainer = new Queue<Zombie>(10);
     private int zombieQty = 4;
     private System.Random rnd = new System.Random();
+    [SerializeField] private LayerMask zombieLayer;
 
     public static ZombiePool Instance { get; private set; }
     private void Awake()
     {
         Instance = this;
+    }
+
+    private int CheckCollisionOnSpawn()
+    {
+        int maxColliders = 10;
+        Collider[] hitColliders = new Collider[maxColliders];
+        int numColliders = Physics.OverlapSphereNonAlloc(transform.position, 10.0f, hitColliders, zombieLayer);
+        return numColliders;
+        //om returvärdet <= 0 så uppstår ingen kollision
     }
 
     public Zombie Get()
@@ -38,13 +48,18 @@ public class ZombiePool : MonoBehaviour
     private void AddZombies(int count)
     {
         for (int i = 0; i < count; i++)
-        {
-            float randomXValue = (float)rnd.NextDouble() % 4;
-            Vector3 distCorrection = new Vector3(randomXValue, 2.4f);
-            Zombie zo = Instantiate(zPrefab, distCorrection, Quaternion.identity);
-            zo.gameObject.SetActive(true);//false
-            zombieContainer.Enqueue(zo);
+        {//if isColliding <= 0, kör Instantiate och allt. Annars vänta med att instansiera
+            InstantiateZombie();
         }
+    }
+
+    private void InstantiateZombie()
+    {
+        float randomXValue = (float)rnd.NextDouble() % 4;
+        Vector3 distCorrection = new Vector3(randomXValue, 2.4f);
+        Zombie zo = Instantiate(zPrefab, distCorrection, Quaternion.identity);
+        zo.gameObject.SetActive(true);//false
+        zombieContainer.Enqueue(zo);
     }
 
     public void ReturnToPool(Zombie zo)
