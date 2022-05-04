@@ -90,7 +90,7 @@ public class Lamp : MonoBehaviour{
 	private void ChangeMaterial(int index, Material material){
 		//Gets the array and replaces the material index with the desired state material.
 		//Unity requires the entire array to be replaced.
-		Material[] materials = meshRenderer.materials;
+		Material[] materials = meshRenderer.sharedMaterials;
 		materials[index] = material;
 		meshRenderer.materials = materials;
 	}
@@ -99,6 +99,8 @@ public class Lamp : MonoBehaviour{
 	 * Updates the light if the inspectorState value has been updated.
 	 */
 	private void OnValidate(){
+		meshRenderer = GetComponent<Renderer>();
+		
 		SetState(isOn);
 	}
 }

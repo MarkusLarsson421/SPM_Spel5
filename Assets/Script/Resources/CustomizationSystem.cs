@@ -13,12 +13,19 @@ public class CustomizationSystem : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Interactable inter;
 
+    private GameObject greenColorButton;
+    private GameObject whiteColorButton;
+
 
     private
     // Start is called before the first frame update
     void Start()
     {
-        
+        greenColorButton = GameObject.Find("GreenColorButton");
+        whiteColorButton = GameObject.Find("WhiteColorButton"); 
+
+        greenColorButton.SetActive(false);
+        whiteColorButton.SetActive(false);
     }
 
     // Update is called once per frame

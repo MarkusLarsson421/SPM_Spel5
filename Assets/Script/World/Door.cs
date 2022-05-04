@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 /**
@@ -34,8 +33,6 @@ public class Door : MonoBehaviour{
 	 * @param State the desired state of the door.
 	 */
 	public void SetState(bool desiredOpen){
-		Debug.Log("Setting state to: " + desiredOpen + "!");
-
 		if(desiredOpen){
 			Open();
 		} else{
@@ -49,7 +46,6 @@ public class Door : MonoBehaviour{
 	public void Close(){
 		isOpen = false;
 		ani.SetBool("isOpen", false);
-		Debug.Log("Closing!");
 	}
 
 	/**
@@ -58,7 +54,6 @@ public class Door : MonoBehaviour{
 	public void Open(){
 		isOpen = true;
 		ani.SetBool("isOpen", true);
-		Debug.Log("Opening!");
 	}
 
 	public void SetCanOpen(bool desiredState){
@@ -72,6 +67,8 @@ public class Door : MonoBehaviour{
 	 * Updates the light if the inspectorState value has been updated.
 	 */
 	private void OnValidate(){
+		ani = transform.GetChild(0).GetComponent<Animator>();
+		
 		Debug.Log("Noticed inspector update.");
 		SetState(isOpen);
 		SetCanOpen(playerCanOpen);
