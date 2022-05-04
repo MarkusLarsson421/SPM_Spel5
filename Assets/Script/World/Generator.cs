@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-//Martin Wallmark
+
 public class Generator : MonoBehaviour
 {
     [SerializeField] private float fuel;
@@ -69,9 +67,11 @@ public class Generator : MonoBehaviour
 
     }
 
+	/*
+	 * @Author Martin Wallmark
+	 */
     public void Refill()
     {
-        //Debug.Log("yo");
         fuel = maxFuel;
         fuelLevelIndicator.color = fullGeneratorColor;
         isEmpty = false;
@@ -79,14 +79,19 @@ public class Generator : MonoBehaviour
         OpenDoor();
     }
 
-    //script for testing
+	/*
+	 * @Author Martin Wallmark
+	 */
     private void SetEmpty()
     {
         fuel = 0;
         fuelLevelIndicator.color = emptyGeneratorColor;
         isEmpty = true;
     }
-
+	
+	/*
+	 * @Author Martin Wallmark
+	 */
     private void DecreaseFuelLevel()
     {
         fuel--;
@@ -97,7 +102,10 @@ public class Generator : MonoBehaviour
             ToggleLights();
         }
     }
-
+	
+	/*
+	 * @Author Martin Wallmark
+	 */
     private void GeneratorOnOff()
     {
         if (isTurnedOn)
@@ -108,6 +116,9 @@ public class Generator : MonoBehaviour
             isTurnedOn = true;
     }
 
+	/*
+	 * @Author Martin Wallmark
+	 */
     private void ToggleLights()
     {
 
@@ -125,6 +136,9 @@ public class Generator : MonoBehaviour
         }
     }
 
+	/*
+	 * @Author Martin Wallmark
+	 */
     private void OpenDoor()
     {
         if (singleDoors.Length == 0 && doorsDisabled) { return; }
@@ -133,10 +147,14 @@ public class Generator : MonoBehaviour
             singleDoors[i].ToggleOpen();
             doorsDisabled = true;
         }
-    }
+	}
 
-    //When generator is half full the light intensity will lerp from 2 to 1 before shutting off
-    private void LerpingLights()
+	/*
+	 * When generator is half full the light intensity will lerp from 2 to 1 before shutting off
+	 * 
+	 * @Author Martin Wallmark
+	 */
+	private void LerpingLights()
     {
         foreach(Light light in lights){
             float lerpTimer = Time.deltaTime / 3f;

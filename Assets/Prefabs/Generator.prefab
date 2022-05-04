@@ -113,10 +113,7 @@ MonoBehaviour:
   fuel: 10
   secondDelay: 1
   fuelLevelIndicator: {fileID: 1719810379710283756}
-  lights:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  lights: []
   singleDoors: []
 --- !u!114 &1719810379302933031
 MonoBehaviour:
@@ -147,6 +144,7 @@ MonoBehaviour:
         m_CallState: 2
   interactIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   iconSize: {x: 0, y: 0}
+  interactingGameObject: {fileID: 0}
   ID: 0
 --- !u!1 &1719810379710283757
 GameObject:
