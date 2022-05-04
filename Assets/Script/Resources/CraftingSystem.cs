@@ -40,6 +40,7 @@ public class CraftingSystem : MonoBehaviour
         
         infoText = canvas.AddComponent<Text>();
         infoText.font = font;
+        infoText.fontSize = 32;
         infoText.enabled = false;
        
 
@@ -75,7 +76,7 @@ public class CraftingSystem : MonoBehaviour
             }
             else
             {
-                infoText.text = "Craft hehe";
+                infoText.text = "Craft here! \n" + "Upgrade damage: 2 Batteries, 2 Scraps \n" + "Upgrade magazine: 1 Battery, 3 Scraps \n" + "Upgrade flashlight: 3 Batteries, 1 Scrap";
             }
         }
         else
