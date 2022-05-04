@@ -17,7 +17,6 @@ public class ZombiePool : MonoBehaviour
     public static ZombiePool Instance { get; private set; }
     private void Awake()
     {
-        Debug.Log(amountOfZombiesSpawned);
         Instance = this;
     }
 
@@ -27,6 +26,10 @@ public class ZombiePool : MonoBehaviour
         {
             AddZombies(1);
         }
+        zombieContainer.Peek().SetHealth(100);
+        Debug.Log("Zombie hp: " + zombieContainer.Peek().GetHealth());
+        amountOfZombiesSpawned++;
+
         return zombieContainer.Dequeue();
     }
 
@@ -35,14 +38,15 @@ public class ZombiePool : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             Zombie zo = Instantiate(zPrefab);
-            zo.gameObject.SetActive(true);
+            zo.gameObject.SetActive(false);
             zombieContainer.Enqueue(zo);
-            amountOfZombiesSpawned++;
+            //amountOfZombiesSpawned++;
         }
     }
 
     public void ReturnToPool(Zombie zo)
     {
+       // Debug.Log(amountOfZombiesSpawned);
         zo.gameObject.SetActive(false);
         amountOfZombiesSpawned--;
         zombieContainer.Enqueue(zo);
