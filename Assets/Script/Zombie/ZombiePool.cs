@@ -14,6 +14,9 @@ public class ZombiePool : MonoBehaviour
     [SerializeField] private Zombie zPrefab;
     public int amountOfZombiesSpawned; //@Author Simon Hessling Oscarsson, görs ++ varje gång en zombie spawnar.
     private Queue<Zombie> zombieContainer = new Queue<Zombie>(10);
+    private int zombieQty = 4;
+    private System.Random rnd = new System.Random();
+
     public static ZombiePool Instance { get; private set; }
     private void Awake()
     {
@@ -24,10 +27,9 @@ public class ZombiePool : MonoBehaviour
     {
         if(zombieContainer.Count == 0)
         {
-            AddZombies(1);
+            AddZombies(zombieQty);
         }
         zombieContainer.Peek().SetHealth(100);
-        Debug.Log("Zombie hp: " + zombieContainer.Peek().GetHealth());
         amountOfZombiesSpawned++;
 
         return zombieContainer.Dequeue();
@@ -37,19 +39,21 @@ public class ZombiePool : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            Zombie zo = Instantiate(zPrefab);
-            zo.gameObject.SetActive(false);
+            float randomXValue = (float)rnd.NextDouble() % 4;
+            Vector3 distCorrection = new Vector3(randomXValue, 2.4f);
+            Zombie zo = Instantiate(zPrefab, distCorrection, Quaternion.identity);
+            zo.gameObject.SetActive(true);//false
             zombieContainer.Enqueue(zo);
-            //amountOfZombiesSpawned++;
         }
     }
 
     public void ReturnToPool(Zombie zo)
     {
-       // Debug.Log(amountOfZombiesSpawned);
+        Debug.Log(zombieQty);
         zo.gameObject.SetActive(false);
         amountOfZombiesSpawned--;
         zombieContainer.Enqueue(zo);
+        //zombieQty += 3;
     }
     /*Håll koll på hur många zombies som finns här. 
      */
