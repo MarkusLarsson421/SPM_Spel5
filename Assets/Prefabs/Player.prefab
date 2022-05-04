@@ -279,6 +279,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: bd2b1289-b9b3-4e6b-81a0-81993780e25b
     m_ActionName: UI/Click Button[/XInputControllerWindows1/rightTrigger,/XInputControllerWindows/rightTrigger,/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8082899960131896220}
+        m_TargetAssemblyTypeName: DynamicMovementController, Assembly-CSharp
+        m_MethodName: OnSprint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5d655b10-3278-4a4c-bf87-31a9c6b6c66d
+    m_ActionName: Gameplay/Sprint[/XInputControllerWindows/leftStickPress,/XInputControllerWindows1/leftStickPress]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -298,6 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   maxSpeed: 4
+  sprintSpeedAddition: 2
   collisionMask:
     serializedVersion: 2
     m_Bits: 4294967295

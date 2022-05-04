@@ -9,6 +9,7 @@ public class DynamicMovementController : MonoBehaviour
     private InputSystem controls;
     [SerializeField] private float speed = 9f;
     [SerializeField] private float maxSpeed;
+    [SerializeField] private float sprintSpeedAddition;
 
     private Vector3 velocity;
 
@@ -18,7 +19,7 @@ public class DynamicMovementController : MonoBehaviour
     private float collisionMargin = 0.1f;
     private CapsuleCollider collider;
 
-    private PlayerInput playerInput;
+   
 
 
     [SerializeField] private LayerMask collisionMask;
@@ -30,19 +31,31 @@ public class DynamicMovementController : MonoBehaviour
         move = callback.ReadValue<Vector2>();
         
     }
+
+    public void OnSprint(InputAction.CallbackContext callback)
+    {
+        if (callback.performed)
+        {
+            maxSpeed += sprintSpeedAddition;
+        }
+
+        if (callback.canceled)
+        {
+            maxSpeed -= sprintSpeedAddition;
+;        }
+    }
     void Awake()
     {
         controls = new InputSystem();
         collider = GetComponent<CapsuleCollider>();
         Cursor.lockState = CursorLockMode.Locked;
-        playerInput = GetComponent<PlayerInput>();    }
+    }
 
     void Update()
     {
         ForceDown();
         Movement();
         UpdateVelocity();
-
         //Open door
         if (Input.GetKeyDown(KeyCode.E)) { Interact(); }
     }
