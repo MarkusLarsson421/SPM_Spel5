@@ -26,6 +26,10 @@ public class CraftingSystem : MonoBehaviour
     private GameObject damageUpgrade;
     private GameObject magazineUpgrade;
     private GameObject flashlightUpgrade;
+    private GameObject cancelButton;
+
+    private GameObject choiceYes;
+    private GameObject choiceNo;
 
     
 
@@ -44,22 +48,34 @@ public class CraftingSystem : MonoBehaviour
         damageUpgrade = GameObject.Find("DamageUpgrade");
         magazineUpgrade = GameObject.Find("MagazineUpgrade");
         flashlightUpgrade = GameObject.Find("fireRateUpgrade");
+        cancelButton = GameObject.Find("CancelButton");
+        choiceYes = GameObject.Find("choiceYes");
+        choiceNo = GameObject.Find("choiceNo");
         
         damageUpgrade.SetActive(false);
         magazineUpgrade.SetActive(false);
         flashlightUpgrade.SetActive(false);
+        cancelButton.SetActive(false);
+        choiceYes.SetActive(false);
+        choiceNo.SetActive(false);
     }
 
     public void ToggleCraftingBench()
     {
-        
+
         toggleButtons();
         if (!isToggled)
         {
+            //choiceNo.SetActive(true);
+            //choiceYes.SetActive(true);
+            //eventSystem.SetSelectedGameObject(choiceNo);
+            //playah = inter.interactingGameObject.transform.parent.tag;
+            
             Cursor.lockState = CursorLockMode.None;
             isToggled = true;
             infoText.enabled = true;
-            chooseSelectedButton();
+            //chooseSelectedButton();
+            eventSystem.SetSelectedGameObject(cancelButton);
             Debug.Log(damageUpgradedPlayers.Count);
 
             if(hasFlashlightUpgrade && hasMagazineSizeUpgrade && hasUpgradedDamage)
@@ -80,7 +96,10 @@ public class CraftingSystem : MonoBehaviour
     }
     public void DamageUpgrade()
     {
-        if(inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Scrap) >= 2)
+        if (damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag)){
+            Debug.Log("You already have this upgrade!");
+        }
+        else if(inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Scrap) >= 2)
         {
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Batteries, 2);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Scrap, 2);
@@ -107,14 +126,18 @@ public class CraftingSystem : MonoBehaviour
     public void IncreaseMagazineSize()
     {
         //Gör så att vapnets magasin kan ha fler patroner
-        if (!hasMagazineSizeUpgrade && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 1 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Scrap) >= 3)
+        if (MagazineUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
+        {
+            Debug.Log("You already have this upgrade!");
+        }
+        else if (!hasMagazineSizeUpgrade && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 1 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Scrap) >= 3)
         {
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Batteries, 1);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Scrap, 3);
             GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetMagCapacity(12);
-            hasMagazineSizeUpgrade = true;
-            Debug.Log("mhm");
-            Debug.Log(inter.interactingGameObject.transform.parent.tag);
+            //hasMagazineSizeUpgrade = true;
+            MagazineUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
+            
         }
         else
         {
@@ -124,15 +147,19 @@ public class CraftingSystem : MonoBehaviour
 
     public void flashLightUpgrade()
     {
+        if (flashLightUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
+        {
+            Debug.Log("You already have this upgrade!");
+        }
         //gör så att ficklampans batterie räcker längre
-        if (!hasFlashlightUpgrade && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 3 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Scrap) >= 1)
+        else if (!hasFlashlightUpgrade && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Batteries) >= 3 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(MyItem.Type.Scrap) >= 1)
         {
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Batteries, 3);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().DecreaseItem(MyItem.Type.Scrap, 1);
             GameObject.FindWithTag("Flashlight").GetComponent<FlashLight>().SetDrainMultiplier(0.05);
-            hasFlashlightUpgrade = true;
-            flashlightUpgrade.SetActive(false);
-            chooseSelectedButton();
+            //hasFlashlightUpgrade = true;
+            //flashlightUpgrade.SetActive(false);
+            flashLightUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
             Debug.Log(inter.interactingGameObject.transform.parent.tag);
         }
         else
@@ -147,24 +174,24 @@ public class CraftingSystem : MonoBehaviour
        // string key = inter.interactingGameObject.transform.parent.tag;
         if (!isToggled)
         {
+            cancelButton.SetActive(true);
+            damageUpgrade.SetActive(true);
+            /*
             if (damageUpgradedPlayers.Count==0 || !damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
             {
-                damageUpgrade.SetActive(true);
+                
             }
-            if (!hasMagazineSizeUpgrade)
-            {
-                magazineUpgrade.SetActive(true);
-            }
-            if (!hasFlashlightUpgrade)
-            {
-                flashlightUpgrade.SetActive(true);
-            }
+            */
+            magazineUpgrade.SetActive(true);
+            flashlightUpgrade.SetActive(true);
+            
         }
         else
         {
             damageUpgrade.SetActive(false);
             magazineUpgrade.SetActive(false);
             flashlightUpgrade.SetActive(false);
+            cancelButton.SetActive(false);
         }
     }
 
@@ -185,6 +212,13 @@ public class CraftingSystem : MonoBehaviour
         else
             eventSystem.SetSelectedGameObject(magazineUpgrade);
     }
+
+    public void exitCrafting()
+    {
+        ToggleCraftingBench();
+    }
+
+    //private void ShowUpgradeButtons()
 
 
 }
