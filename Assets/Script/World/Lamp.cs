@@ -71,7 +71,7 @@ public class Lamp : MonoBehaviour{
 	}
 
 	/**
-	 * Loops through all child objects and disables them.
+	 * Loops through all child objects and either enables or disabled them.
 	 *
 	 * @Param desiredState What the state of the children is desired.
 	 */
