@@ -13,11 +13,17 @@ public class IsPlayerDeadNode : Node
 
     public override NodeState Evaluate()
     {
-        PlayerStats playerStats = player.GetComponent<PlayerStats>();
-        if (playerStats.IsDead())
+        PlayerStats playerStats;
+        if (player != null)
         {
-            return NodeState.SUCCESS;
+            playerStats = player.GetComponent<PlayerStats>();
+            if (playerStats.IsDead() || playerStats == null)
+            {
+                return NodeState.SUCCESS;
+            }
         }
+         
+
         return NodeState.FAILURE;
     }
 }

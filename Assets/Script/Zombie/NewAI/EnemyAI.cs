@@ -44,13 +44,19 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
         player = GameObject.FindGameObjectWithTag("Player");
-        playerTransform = player.transform;
 
     }
-
+    public void FixPlayerTransform()
+    {
+        if(player != null)
+        {
+            playerTransform = player.transform;
+        }
+    }
     private void Start()
     {
         _currentHealth = startingHealth;
+        FixPlayerTransform();
         ConstructBehahaviourTree();
         zReference = this;
         zP = ZombiePool.Instance;
@@ -85,6 +91,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        FixPlayerTransform();
         topNode.Evaluate();
         if(topNode.nodeState == NodeState.FAILURE)
         {
