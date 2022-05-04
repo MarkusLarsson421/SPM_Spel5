@@ -1,49 +1,67 @@
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
+using EventCallbacks;
 
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int health; // set the amount of health in unity
     [SerializeField] private int stamina; //set the stamina of health in unity
-    [SerializeField] private TextMeshProUGUI healthText;
-    [SerializeField] private GameObject CanvasObject;
-    [SerializeField] private GameObject deathCanvasObject;
-    [SerializeField] private Button tryAgainButton;
-
+    private bool isDead = false;
     void Start()
     {
         health = 100;
+        UpdatePlayerStatsCnvas();
     }
 
     void Update()
     {
-        SetHealthText();
-        if (health <= 0)
+        if (health <= 0 && !isDead)
         {
             health = 0;
             PlayerDeath();
         }
     }
 
-    public int GetHealth()  { return health; }
-    public int GetStamina() { return stamina; }
-    private void SetHealthText() { healthText.text = health.ToString(); }
-    //private void setStaminaText() { staminaText.text = stamina.ToString(); }
+    public int getHealth() { return health; }
+    public int setHealth(int healthAmount) { return healthAmount; }
+    public int getStamina() { return stamina; }
 
+    float temp = 0;
 
     public void HitByZombie()
     {
+        if (temp < 1)
+        {
+            temp += Time.deltaTime;
+        }
+        else
+        {
+            int randomNr = Random.Range(15, 26);
+            health -= randomNr;
+            temp = 0;
+            UpdatePlayerStatsCnvas();
+            PlayerGetHitByZombieEvent playerGetHitByZombie = new PlayerGetHitByZombieEvent();
+            playerGetHitByZombie.UnitGO = gameObject;
+            EventSystem.Current.FireEvent(playerGetHitByZombie);
+        }
         // Hur mycket skada man tar av en zombie varierar
-        int randomNr = Random.Range(15, 26);
-        health -= randomNr;
-        Debug.Log(health);
 
     }
     private void PlayerDeath()
     {
-        //Mest till för att testa, inte bestämt vad som ska hända när man dör
-        Debug.Log("dead");
-        GetComponent<Movement>().enabled = false;
+        PlayerDieEvent udei = new PlayerDieEvent();
+        udei.EventDescription = "Unit " + gameObject.name + " has died.";
+        udei.UnitGO = gameObject;
+        EventSystem.Current.FireEvent(udei);
+        isDead = true;
+
     }
+    public bool IsDead() { return isDead; }
+
+    void UpdatePlayerStatsCnvas()
+    {
+        PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
+        playerHealthChange.UnitGO = gameObject;
+        EventSystem.Current.FireEvent(playerHealthChange);
+    }
+
 }
