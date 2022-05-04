@@ -13,11 +13,11 @@ public class IsThereAnyPlayer : Node
 
     public override NodeState Evaluate()
     {
-        PlayerStats playerStats = player.GetComponent<PlayerStats>();
-        if (playerStats.IsDead())
+        if (player != null)
         {
             return NodeState.SUCCESS;
         }
+
         return NodeState.FAILURE;
     }
 }
