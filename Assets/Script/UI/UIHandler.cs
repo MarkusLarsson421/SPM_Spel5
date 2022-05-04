@@ -21,7 +21,7 @@ public class UIHandler : MonoBehaviour
 	 */
     private void UpdateAmmoText()
     {
-        ammoText.text = weapon.GetCurrentMag() + " / " + rm.Get(MyItem.Type.Ammo);
+        ammoText.text = weapon.GetCurrentMag() + " / " + rm.Get(MyItem.Type.Ammo).ToString();
     }
     
     /**

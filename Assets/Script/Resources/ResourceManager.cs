@@ -8,10 +8,12 @@ public class ResourceManager : MonoBehaviour
 	 * @Author Simon Hessling and Markus Larsson
 	 */
 	
-	private int ammo = 16;
+	private int ammo;
 	private int batteries = 2; 
 	private int scrap;
 
+	private int aP1;
+	private int aP2;
 	/**
 	 * @Author Markus Larsson
 	 */

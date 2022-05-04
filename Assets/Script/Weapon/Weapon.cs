@@ -78,8 +78,7 @@ public class Weapon : MonoBehaviour {
     {
 		if (context.performed)
 		{
-			Debug.Log("kommer hit");
-			StartCoroutine(Reload());
+			Reload();
 			isReloadPressed = true;
 		}
 
