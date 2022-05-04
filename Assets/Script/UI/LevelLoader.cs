@@ -5,36 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    public Animator anim;
+    //public Animator anim;
+
+    //public float transitionTime = 1f;
+    //public int sceneToIndex;
+
+    //public bool doTransitionOnStart = true;
+
+    //private void Start()
+    //{
+    //    if (doTransitionOnStart)
+    //    {
+    //        anim.SetTrigger("StartTransition");
+    //    }
+    //}
 
 
+    //public void LoadNextLevel()
+    //{
+    //    StartCoroutine(LoadLevel());
+    //}
 
-    public float transitionTime = 1f;
-    public int sceneToIndex;
+    //IEnumerator LoadLevel()
+    //{
+    //    anim.SetTrigger("EndTransition");
 
-    public bool doTransitionOnStart = true;
+    //    yield return new WaitForSeconds(transitionTime);
 
-    private void Start()
-    {
-        if (doTransitionOnStart)
-        {
-            anim.SetTrigger("StartTransition");
-        }
-    }
-
-
-    public void LoadNextLevel()
-    {
-        StartCoroutine(LoadLevel());
-    }
-
-    IEnumerator LoadLevel()
-    {
-        anim.SetTrigger("EndTransition");
-
-        yield return new WaitForSeconds(transitionTime);
-
-        SceneManager.LoadScene(sceneToIndex);
-    }
+    //    SceneManager.LoadScene(sceneToIndex);
+    //}
 
 }
