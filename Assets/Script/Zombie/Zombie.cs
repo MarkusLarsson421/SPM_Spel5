@@ -77,7 +77,7 @@ public class Zombie : MonoBehaviour //khal6952
         health -= damage;
         if(health <= 0)
         {
-            zP.ReturnToPool(zReference);
+            Debug.Log("död");
         }
     }
 }

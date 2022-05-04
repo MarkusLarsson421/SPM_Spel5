@@ -11,12 +11,14 @@ public class ZombiePool : MonoBehaviour
      * När sista zombien i rundan dör får spelaren ca 15 sekunder innan nästa runda börjar.
      * Börja med att 7 zombies ska spawna varje runda och när sista zombien dör börjar nästa runda efter 15 sekunder.
      */
-    [SerializeField] private Zombie zPrefab;
+    [SerializeField] private EnemyAI zPrefab;
     public int amountOfZombiesSpawned; //@Author Simon Hessling Oscarsson, görs ++ varje gång en zombie spawnar.
-    private Queue<Zombie> zombieContainer = new Queue<Zombie>(10);
-    private int zombieQty = 4;
+    private Queue<EnemyAI> zombieContainer = new Queue<EnemyAI>(10);
+    private int zombieQty = 2;
     private System.Random rnd = new System.Random();
     [SerializeField] private LayerMask zombieLayer;
+
+    [SerializeField] private GameObject[] spawnObjects;
 
     public static ZombiePool Instance { get; private set; }
     private void Awake()
@@ -33,13 +35,13 @@ public class ZombiePool : MonoBehaviour
         //om returvärdet <= 0 så uppstår ingen kollision
     }
 
-    public Zombie Get()
+    public EnemyAI Get()
     {
         if(zombieContainer.Count == 0)
         {
             AddZombies(zombieQty);
         }
-        zombieContainer.Peek().SetHealth(100);
+        zombieContainer.Peek().SetHealth();
         amountOfZombiesSpawned++;
 
         return zombieContainer.Dequeue();
@@ -55,20 +57,23 @@ public class ZombiePool : MonoBehaviour
 
     private void InstantiateZombie()
     {
-        float randomXValue = (float)rnd.NextDouble() % 4;
-        Vector3 distCorrection = new Vector3(randomXValue, 2.4f);
-        Zombie zo = Instantiate(zPrefab, distCorrection, Quaternion.identity);
-        zo.gameObject.SetActive(true);//false
-        zombieContainer.Enqueue(zo);
+        /*float randomXValue = (float)rnd.NextDouble() % 4;
+        Vector3 distCorrection = new Vector3(randomXValue, 2.4f);*/
+        for(int i = 0; i < spawnObjects.Length; i++)
+        {
+            EnemyAI zo = Instantiate(zPrefab, spawnObjects[i].transform.position, Quaternion.identity);
+            zo.gameObject.SetActive(true);//false
+            zombieContainer.Enqueue(zo);
+        }
+        
     }
 
-    public void ReturnToPool(Zombie zo)
+    public void ReturnToPool(EnemyAI zo)
     {
         Debug.Log(zombieQty);
         zo.gameObject.SetActive(false);
         amountOfZombiesSpawned--;
         zombieContainer.Enqueue(zo);
-        //zombieQty += 3;
     }
     /*Håll koll på hur många zombies som finns här. 
      */

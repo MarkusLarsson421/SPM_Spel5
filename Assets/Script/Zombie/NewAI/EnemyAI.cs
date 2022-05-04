@@ -13,10 +13,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float chasingRange;
     [SerializeField] private float shootingRange;
 
-  
-    [SerializeField] private Transform playerTransform;
+    private EnemyAI zReference;
+    private ZombiePool zP;
+
     [SerializeField] private Cover[] avaliableCovers;
     private GameObject player;
+    private Transform playerTransform;
 
 
     private Material material;
@@ -32,17 +34,25 @@ public class EnemyAI : MonoBehaviour
         set { _currentHealth = Mathf.Clamp(value, 0, startingHealth); }
     }
 
+    public float SetHealth()
+    {
+        return currentHealth = startingHealth;
+    }
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
         player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = player.transform;
     }
 
     private void Start()
     {
         _currentHealth = startingHealth;
         ConstructBehahaviourTree();
+        zReference = this;
+        zP = ZombiePool.Instance;
     }
 
     private void ConstructBehahaviourTree()
