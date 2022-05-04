@@ -59,7 +59,7 @@ public class CraftingSystem : MonoBehaviour
 
     public void ToggleCraftingBench()
     {
-
+        
         toggleButtons();
         if (!isToggled)
         {
@@ -69,8 +69,8 @@ public class CraftingSystem : MonoBehaviour
             infoText.enabled = true;
             eventSystem.SetSelectedGameObject(cancelButton);
             Debug.Log(damageUpgradedPlayers.Count);
-
-            if(hasFlashlightUpgrade && hasMagazineSizeUpgrade && hasUpgradedDamage)
+            
+            if (hasFlashlightUpgrade && hasMagazineSizeUpgrade && hasUpgradedDamage)
             {
                 infoText.text = "No more upgrades available :(";
             }
@@ -78,6 +78,10 @@ public class CraftingSystem : MonoBehaviour
             {
                 infoText.text = "Craft here! \n" + "Upgrade damage: 2 Batteries, 2 Scraps \n" + "Upgrade magazine: 1 Battery, 3 Scraps \n" + "Upgrade flashlight: 3 Batteries, 1 Scrap";
             }
+            /*if (inter.interactingGameObject.transform.parent.tag == "Player1")
+            {
+                playah = "Player1";
+            }*/
         }
         else
         {
@@ -85,9 +89,11 @@ public class CraftingSystem : MonoBehaviour
             infoText.enabled = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+        
     }
     public void DamageUpgrade()
     {
+        playah = inter.interactingGameObject.transform.parent.tag;
         if (damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag)){
             Debug.Log("You already have this upgrade!");
         }
