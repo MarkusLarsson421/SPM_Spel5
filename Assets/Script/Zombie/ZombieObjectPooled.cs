@@ -11,19 +11,14 @@ public class ZombieObjectPooled : MonoBehaviour
     public ZombiePool zps;
     private void Start()
     {
-        SpawnZombie();
+        //SpawnZombie();
         //första waven. kan behöva justeras
     }
 
     void Update()
     {
-        // Debug.Log(zps.amountOfZombiesSpawned);
-        /*
-         * cooldown ska räknas ner. när cd är <= 15, anropa SpawnZombie och återställ cooldown.
-         * cooldown-nedräkning måste nog ligga i ett villkor. problemet: hur håller jag koll på antal zombies för att veta när nästa våg kommer?
-         */
         cooldown -= Time.deltaTime;
-        if (cooldown <= 0 && zps.amountOfZombiesSpawned <= 0)//om inga zombies finns kvar, starta cooldown o räkna ner
+        if (cooldown <= 0 && zps.amountOfZombiesSpawned <= 0) 
         {
             Debug.Log($"{zps.amountOfZombiesSpawned} {cooldown}");
             SpawnZombie();
@@ -34,10 +29,15 @@ public class ZombieObjectPooled : MonoBehaviour
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();
-        zombie.transform.position = transform.position;
-        zombie.transform.rotation = transform.rotation;
+       /* float randomXValue = Random.Range(1, 4);
+        Vector3 distCorrection = new Vector3(randomXValue, 2.4f);
+        zombie.transform.SetPositionAndRotation(distCorrection, transform.rotation);*/
         zombie.gameObject.SetActive(true);
     }
 }
-/*Håll koll på cooldown och instansiering av waves här.
+/*ATT GÖRA
+ * Zombier ska komma i vågor. 
+ * - Fixa så zombies inte spawnar inuti varandra. Använd OverlapSphere eller raycast för att kolla ifall zombies spawnar inuti varandra.
+ * - Fixa så att spawners som är långt ifrån spelaren blir avaktiverade
+ * - 
  */
