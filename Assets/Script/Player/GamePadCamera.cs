@@ -23,12 +23,12 @@ public class GamePadCamera : MonoBehaviour
         player = transform.parent;
         if (transform.parent.tag == "Player1")
         {
-            GetComponent<Camera>().rect = new Rect(0f, 0.5f, 1f, 0.5f);
+            //GetComponent<Camera>().rect = new Rect(0f, 0.5f, 1f, 0.5f);
         }
         else if(transform.parent.tag == "Player2")
         {
             //transform.position = new Vector2(0, -1);
-            //GameObject.FindWithTag("Player1").GetComponent<Camera>().rect = new Rect(0f, 0.5f, 1f, 0.5f);
+            GameObject.FindWithTag("Player1").GetComponentInChildren<Camera>().rect = new Rect(0f, 0.5f, 1f, 0.5f);
             GetComponent<Camera>().rect = new Rect(0f, 0f, 1f, 0.5f);
         }
 
