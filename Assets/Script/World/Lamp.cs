@@ -90,6 +90,8 @@ public class Lamp : MonoBehaviour{
 	private void ChangeMaterial(int index, Material material){
 		//Gets the array and replaces the material index with the desired state material.
 		//Unity requires the entire array to be replaced.
+		//sharedMaterials is required as otherwise it might
+		//leak materials into the scenes according to Unity.
 		Material[] materials = meshRenderer.sharedMaterials;
 		materials[index] = material;
 		meshRenderer.materials = materials;

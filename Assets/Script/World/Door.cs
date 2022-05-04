@@ -45,7 +45,7 @@ public class Door : MonoBehaviour{
 	 */
 	public void Close(){
 		isOpen = false;
-		ani.SetBool("isOpen", false);
+ 		ani.SetBool("isOpen", false);
 	}
 
 	/**
@@ -67,7 +67,9 @@ public class Door : MonoBehaviour{
 	 * Updates the light if the inspectorState value has been updated.
 	 */
 	private void OnValidate(){
-		ani = transform.GetChild(0).GetComponent<Animator>();
+		if(ani == null){
+			ani = transform.GetChild(0).GetComponent<Animator>();
+		}
 		
 		Debug.Log("Noticed inspector update.");
 		SetState(isOpen);
