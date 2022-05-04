@@ -8,8 +8,7 @@ public class PlayerStats : MonoBehaviour
     private bool isDead = false;
     void Start()
     {
-        health = 100;
-        UpdatePlayerStatsCnvas();
+        //UpdatePlayerStatsCnvas();
     }
 
     void Update()
