@@ -14,9 +14,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float shootingRange;
 
   
-    [SerializeField] private Transform playerTransform;
     [SerializeField] private Cover[] avaliableCovers;
     private GameObject player;
+    private Transform playerTransform;
 
 
     private Material material;
@@ -37,6 +37,7 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
         player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = player.transform;
     }
 
     private void Start()
