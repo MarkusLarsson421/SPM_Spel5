@@ -11,16 +11,23 @@ public class DynamicMovementController : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float sprintSpeedAddition;
 
+    private float acceleration = 2f;
+    private float deceleration = 1f;
+
     private Vector3 velocity;
 
-    private float gravity = 9.82f;
+    private float gravity = 15f;
+    //private float airGravity = 150f;
 
     private float stamina = 7;
     private float timer;
 
     private Vector2 move;
     private float collisionMargin = 0.1f;
+    private float groundCheckDistance = 0.3f;
     private CapsuleCollider collider;
+
+    
 
 
     private bool isSprinting;
@@ -63,10 +70,14 @@ public class DynamicMovementController : MonoBehaviour
 
     void Update()
     {
-        ForceDown();
-        Movement();
+        
+        
+        if (IsGrounded())
+        {
+            Movement();
+        }
         UpdateVelocity();
-
+        ForceDown();
         if (isSprinting || stamina < 7)
         {
             handleSprint();
@@ -77,8 +88,9 @@ public class DynamicMovementController : MonoBehaviour
 
     private void ForceDown()
     {
-        Vector3 forceDown = Vector3.down * gravity * Time.deltaTime;
-        velocity += forceDown;
+            Vector3 forceDown = Vector3.down * gravity * Time.deltaTime;
+            velocity += forceDown;
+   
     }
 
     private void Movement()
@@ -88,9 +100,39 @@ public class DynamicMovementController : MonoBehaviour
         Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
         velocity += movement * speed * Time.deltaTime;
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+
+        if (move.magnitude > float.Epsilon)
+        {
+            //print("accelerate!");
+            Accelerate(move);
+        }
+        else
+        {
+            Decelerate();
+            //print("stahp!");
+        }
     }
 
-    
+
+    void Accelerate(Vector2 move)
+    {
+        velocity += (Vector3)move * acceleration * Time.deltaTime;
+
+        if (velocity.magnitude > Mathf.Abs(maxSpeed))
+        {
+            velocity = velocity.normalized * maxSpeed;
+        }
+
+
+    }
+
+    void Decelerate()
+    {
+        Vector3 projection = new Vector3(velocity.x, 0.0f).normalized;
+        velocity -= projection * deceleration * Time.deltaTime;
+
+    }
+
 
     /**
      * @Author Khaled Alraas
@@ -194,6 +236,23 @@ public class DynamicMovementController : MonoBehaviour
         if(stamina > 7)
         {
 
+        }
+    }
+
+    bool IsGrounded()
+    {
+        Vector3 down = velocity.normalized * groundCheckDistance;
+        Vector3 centerOfSphere1 = transform.position + Vector3.up * (collider.height / 2 - collider.radius);
+        Vector3 centerOfSphere2 = transform.position + Vector3.down * (collider.height / 2 - collider.radius);
+        RaycastHit hit;
+        bool isGrounded = Physics.CapsuleCast(centerOfSphere1, centerOfSphere2, collider.radius, velocity.normalized, out hit, down.magnitude + collisionMargin, collisionMask);
+        if (isGrounded)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
