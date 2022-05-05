@@ -102,7 +102,7 @@ public class Lamp : MonoBehaviour{
 	 * Updates the light if the inspectorState value has been updated.
 	 */
 	private void OnValidate(){
-		meshRenderer = GetComponent<Renderer>();
+		Start();
 		
 		SetState(isOn);
 	}

@@ -31,6 +31,37 @@ public class Generator : MonoBehaviour{
 		DrainFuel();
 		FuelIndicator();
 	}
+	
+	/**
+	 * @Author Martin Wallmark and Markus Larsson
+	 */
+	public void RefillFuel(float amount){
+		if(fuel + amount > maxFuel){
+			amount = maxFuel - fuel;
+		}
+		fuel += amount;
+	}
+	
+	public void SetState(bool desiredState){
+		if(desiredState){
+			TurnOn();
+		} else{
+			TurnOff();
+		}
+	}
+
+	public void TurnOn(){
+		if(fuel <= 0){return;}
+		isOn = true;
+		SetLightState(true);
+		SetDoorState(true);
+	}
+	
+	public void TurnOff(){
+		isOn = false;
+		SetLightState(false);
+		SetDoorState(false);
+	}
 
 	/**
 	 * Drains fuel each frame.
@@ -47,16 +78,6 @@ public class Generator : MonoBehaviour{
 		}
 	}
 
-	/**
-	 * @Author Martin Wallmark and Markus Larsson
-	 */
-	private void RefillFuel(float amount){
-		if(fuel + amount > maxFuel){
-			amount = maxFuel - fuel;
-		}
-		fuel += amount;
-	}
-	
 	private void FuelIndicator(){
 		float fuelRatio = fuel / maxFuel;
 		if(fuelRatio < 0.95f){
@@ -73,27 +94,6 @@ public class Generator : MonoBehaviour{
 	 */
 	private void ToggleGenerator(){
 		SetState(!isOn);
-	}
-
-	private void SetState(bool desiredState){
-		if(desiredState){
-			TurnOn();
-		} else{
-			TurnOff();
-		}
-	}
-
-	private void TurnOn(){
-		if(fuel <= 0){return;}
-		isOn = true;
-		SetLightState(true);
-		SetDoorState(true);
-	}
-	
-	private void TurnOff(){
-		isOn = false;
-		SetLightState(false);
-		SetDoorState(false);
 	}
 
 	/*
