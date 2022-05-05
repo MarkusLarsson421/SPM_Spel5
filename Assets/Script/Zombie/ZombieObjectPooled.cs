@@ -1,33 +1,96 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-/*@Author Axel Sterner
+using TMPro;
+/*@Author Axel Sterner 
+ *@Simon Hessling Oscarson
  * Klass som instansierar zombie-objekt ur poolen. Läggs på en prefab som agerar spawner
  */
 public class ZombieObjectPooled : MonoBehaviour
 {
+    [SerializeField] private TMP_Text waveText;
     private int amtSpawners;
+    private static int zombiesNextWave = 10;
+    private static int zombieAmount;
+    private int currentWave;
+    private int betweenWaves = 4;
     public static int amountOfZombiesSpawned;
     private float cooldownTime = 5.0f;
 
     private void Start()
     {
+        
+        NoMoreZombies();
+
         //amtSpawners = zPool.GetArraySize();
     }
-
+    
+        
+    
     void Update()
     {
-        cooldownTime -= Time.deltaTime;
-        if (amountOfZombiesSpawned <= 0 && cooldownTime <= 0)
-        {
-            for(int i = 0; i < 5; i++)
-            {
-                SpawnZombie();
-            }//spawna en zombie i varje spawner
-            cooldownTime = 5.0f;
+
+
+    }
+    /*
+     * @ AuthorSimon Hessling Oscarson
+     * 
+     * 
+     */
+    private void SimpleWaveIncreaser()
+    {
+        zombiesNextWave++;
+        currentWave++;
+        waveText.text = currentWave.ToString();
+    }
+    /*
+    * @ AuthorSimon Hessling Oscarson
+    * 
+    * 
+    */
+    private void NoMoreZombies()
+    {
+        { 
+            InvokeRepeating("DoIT", 0, betweenWaves);
         }
     }
+    /*
+    * @ AuthorSimon Hessling Oscarson
+    * 
+    * 
+    */
+    private void DoIT()
+    {
+        int debug = 0;
+        Debug.Log(zombieAmount);
+        //if(zombieAmount < 0)
+        //{
+        //    zombieAmount = 0;
+        //}
+        if (zombieAmount == 0)
+        {
+            Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
+            for (int i = 0; i < zombiesNextWave; i++) // nu spawnas HUUUR MÅNGA ZOMBIES MAN VILL 
+            {
+                Debug.Log(zombieAmount);
+                SpawnZombie();
+                zombieAmount++;
+
+                debug++;
+                
+            }//spawna en zombie i varje spawner
+            SimpleWaveIncreaser();
+        }
+        
+        Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
+    }
+
+    public void DecreaseZombies()
+    {
+        zombieAmount--;
+    }
+
+
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();

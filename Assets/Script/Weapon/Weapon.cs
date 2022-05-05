@@ -64,14 +64,15 @@ public class Weapon : MonoBehaviour {
         if (context.performed && !isReloading && currentMag > 0 /*&& /*canFire*/)
         {
 			Fire();
-			isFiring = true;
+			Debug.Log("FIRE!!!!!!!!!!!!!!!!!!");
+			//isFiring = true;
 			//canFire = false ;
         }
 
-        if (context.canceled)
-        {
-			isFiring = false;
-        }
+        //if (context.canceled)
+        //{
+			//isFiring = false;
+        //}
     }
 
 	public void OnReload(InputAction.CallbackContext context)
