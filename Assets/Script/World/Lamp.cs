@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using Unity.Collections;
 using UnityEngine;
 
 /**
@@ -6,11 +9,24 @@ using UnityEngine;
 public class Lamp : MonoBehaviour{
 	//Changing the state inside the inspector.
 	[SerializeField] private bool isOn;
+	
+	//Array filled with the children which has light components.
+	private Light[] lights;
 
 	//Materials to be used for the light bulb when active and or inactive.
 	[SerializeField] private Color colour;
 	[SerializeField] private int materialIndex = -1;
 	private Renderer meshRenderer;
+	
+	//Blinking variables
+	[Header("Blinking variables")]
+	[Tooltip("Whether or not the current lamp is flickering.")]
+	[SerializeField] private bool isFlickering;
+	[Tooltip("How long the light will be off.")]
+	[SerializeField] private float blinkInterval = 5.0f;
+	[Tooltip("How long the light will be on.")]
+	[SerializeField] private float blinkLength = 5.0f;
+	private bool currentlyFlickering;
 
 	private void Start(){
 		if(materialIndex < 0){
@@ -19,15 +35,31 @@ public class Lamp : MonoBehaviour{
 
 		//Reference to render.
 		meshRenderer = GetComponent<Renderer>();
-		
+
 		//Set the inspector state to the current state.
 		SetState(isOn);
-		
+
+		int index = 0;
 		for(int i = 0; i < transform.childCount; i++){
 			Light comp = transform.GetChild(i).gameObject.GetComponent<Light>();
 			if(comp != null){
-				comp.color = colour;
+				lights = new Light[index + 1];
+				lights[index] = comp;
+				index++;
 			}
+		}
+
+		if(lights.Length <= 0){
+			Debug.LogWarning(
+				name + " has no children with light objects. Did you put this script on the light source? \n" + 
+				"This object needs children with light objects.");
+		}
+	}
+
+	private void Update(){
+		if(currentlyFlickering == false && isFlickering){
+			currentlyFlickering = true;
+			StartCoroutine(Flickering());
 		}
 	}
 
@@ -75,13 +107,29 @@ public class Lamp : MonoBehaviour{
 	}
 
 	/**
+	 * Flickers the lights until isFlickering is set to 'false'.
+	 */
+	private IEnumerator Flickering(){
+		while(isFlickering){
+			//Lights on.
+			TurnOff();
+			yield return new WaitForSeconds(blinkInterval);
+			
+			//Lights off.
+			TurnOn();
+			yield return new WaitForSeconds(blinkLength);
+		}
+		currentlyFlickering = false;
+	}
+
+	/**
 	 * Loops through all child objects and either enables or disabled them.
 	 *
 	 * @Param desiredState What the state of the children is desired.
 	 */
 	private void SetChildState(bool desiredState){
-		for(int i = 0; i < transform.childCount; i++){
-			transform.GetChild(i).gameObject.SetActive(desiredState);
+		foreach(Light l in lights){
+			l.enabled = desiredState;
 		}
 	}
 
