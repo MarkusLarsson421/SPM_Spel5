@@ -16,8 +16,7 @@ public class ZombiePool : MonoBehaviour
     public static int zombieQty = 1;
     private System.Random rnd = new System.Random();
     [SerializeField] private LayerMask zombieLayer;
-
-    [SerializeField] public GameObject[] spawnObjects;
+    [SerializeField] private GameObject[] spawnObjects;
 
     public static ZombiePool Instance { get; private set; }
     private void Awake()
@@ -31,14 +30,14 @@ public class ZombiePool : MonoBehaviour
         return spawnObjects.Length;
     }
 
-    private int CheckCollisionOnSpawn()
+    /*private int CheckCollisionOnSpawn()
     {
         int maxColliders = 10;
         Collider[] hitColliders = new Collider[maxColliders];
         int numColliders = Physics.OverlapSphereNonAlloc(transform.position, 10.0f, hitColliders, zombieLayer);
         return numColliders;
         //om returvärdet <= 0 så uppstår ingen kollision
-    }
+    }*/
 
     public EnemyAI Get()
     {
@@ -50,7 +49,7 @@ public class ZombiePool : MonoBehaviour
         ZombieObjectPooled.amountOfZombiesSpawned++;
         return zombieContainer.Dequeue();
     }
-
+    
     private void AddZombies(int count)
     {
         for (int i = 0; i < count; i++)
