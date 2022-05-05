@@ -9,16 +9,23 @@ public class ZombieObjectPooled : MonoBehaviour
 {
     private float cooldown = 5.0f;
     private float nextSpawn;
+    private int amtSpawners;
+    ZombiePool zPool;
     public static int amountOfZombiesSpawned;
-    private int amtSpawners = 4;
+
+    private void Start()
+    {
+        amtSpawners = zPool.GetArraySize();
+        Debug.Log(amtSpawners);
+    }
     void Update()
     {
         if (amountOfZombiesSpawned <= 0)
         {
-            for(int i = 0; i < amtSpawners; i++)
+            for(int i = 0; i < 4; i++)
             {   
                 SpawnZombie();
-            }
+            }//spawna en zombie i varje spawner
         }
     }
 

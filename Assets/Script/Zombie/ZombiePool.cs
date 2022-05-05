@@ -25,6 +25,11 @@ public class ZombiePool : MonoBehaviour
         Instance = this;
     }
 
+    public int GetArraySize()
+    {
+        return spawnObjects.Length;
+    }
+
     private int CheckCollisionOnSpawn()
     {
         int maxColliders = 10;
