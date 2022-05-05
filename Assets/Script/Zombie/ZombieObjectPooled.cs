@@ -8,14 +8,20 @@ using UnityEngine;
 public class ZombieObjectPooled : MonoBehaviour
 {
     private float cooldown = 5.0f;
-    public ZombiePool zps;
+    private float nextSpawn;
+    public static int amountOfZombiesSpawned;
+    private int amtSpawners = 4;
     void Update()
     {
-        if (zps.amountOfZombiesSpawned <= 0)
+        if (amountOfZombiesSpawned <= 0)
         {
-            SpawnZombie();
+            for(int i = 0; i < amtSpawners; i++)
+            {   
+                SpawnZombie();
+            }
         }
     }
+
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();
@@ -27,7 +33,7 @@ public class ZombieObjectPooled : MonoBehaviour
 }
 /*ATT GÖRA
  * Zombier ska komma i vågor. 
- * - Fixa så att zombies respawnar som de ska (alla zombies ska respawna när den sista har dött)
+ * 
  * slå ihop InstantiateZombie och AddZombies, försök att undvika två for-loopar
  * - Fixa så zombies inte spawnar inuti varandra. Använd OverlapSphere eller raycast för att kolla ifall zombies spawnar inuti varandra.
  * Eller Vector3.Distance()

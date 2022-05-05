@@ -12,9 +12,8 @@ public class ZombiePool : MonoBehaviour
      * Börja med att 7 zombies ska spawna varje runda och när sista zombien dör börjar nästa runda efter 15 sekunder.
      */
     [SerializeField] private EnemyAI zPrefab;
-    public int amountOfZombiesSpawned; //@Author Simon Hessling Oscarsson, görs ++ varje gång en zombie spawnar.
     private Queue<EnemyAI> zombieContainer = new Queue<EnemyAI>(10);
-    private int zombieQty = 1;
+    public static int zombieQty = 1;
     private System.Random rnd = new System.Random();
     [SerializeField] private LayerMask zombieLayer;
 
@@ -42,7 +41,7 @@ public class ZombiePool : MonoBehaviour
             AddZombies(zombieQty);
         }
         zombieContainer.Peek().SetHealth();
-        amountOfZombiesSpawned++;
+        ZombieObjectPooled.amountOfZombiesSpawned++;
         return zombieContainer.Dequeue();
     }
 
@@ -53,7 +52,6 @@ public class ZombiePool : MonoBehaviour
             InstantiateZombie();
         }
     }
-
     private void InstantiateZombie()
     {
         /*float randomXValue = (float)rnd.NextDouble() % 4;
@@ -64,16 +62,11 @@ public class ZombiePool : MonoBehaviour
             zo.gameObject.SetActive(true);
             zombieContainer.Enqueue(zo);
         }
-        
     }
-
     public void ReturnToPool(EnemyAI zo)
     {
         zo.gameObject.SetActive(false);
         zombieContainer.Enqueue(zo);
-        amountOfZombiesSpawned--;
+        ZombieObjectPooled.amountOfZombiesSpawned--;
     }
-    /*Håll koll på hur många zombies som finns här. 
-     */
-     
 }
