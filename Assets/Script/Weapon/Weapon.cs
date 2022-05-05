@@ -135,22 +135,18 @@ public class Weapon : MonoBehaviour {
 	 */
 	private IEnumerator Reload(){
 		isReloading = true;
-		Debug.Log("Reloading...");
 		yield return new WaitForSeconds(reloadTime);
-		Debug.Log("tihi");
 		int tempSubSize = magCapacity - currentMag;
-		Debug.Log("tihi1.1");
+		
 		if (currentMag + rm.Get(MyItem.Type.Ammo) >= magCapacity) //gör så det inte går att få mer än magCapacity i magget
 		{
-			currentMag = magCapacity;
-			Debug.Log("tihi1.2");
+			currentMag = magCapacity;	
 		}
 		else
 		{
-			currentMag += rm.Get(MyItem.Type.Ammo);
-			Debug.Log("tihi1.3");
+			currentMag += rm.Get(MyItem.Type.Ammo);	
 		}
-		Debug.Log("tihi2");
+		
 		rm.Offset(MyItem.Type.Ammo, -tempSubSize);
 		if (rm.Get(MyItem.Type.Ammo) < 0)
         {
