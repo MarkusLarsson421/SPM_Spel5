@@ -29,11 +29,25 @@ public class AttackNodeTwo : Node
         agent.isStopped = true;
         ai.SetColor(Color.green);
         Vector3 direction = target.position - ai.transform.position;
+        Vector3 directionTwo = targetTwo.position - ai.transform.position;
         Vector3 currentDirection = Vector3.SmoothDamp(ai.transform.forward, direction, ref currentVelocity, smoothDamp);
+        Vector3 currentDirectionTwo = Vector3.SmoothDamp(ai.transform.forward, directionTwo, ref currentVelocity, smoothDamp);
         Quaternion rotation = Quaternion.LookRotation(currentDirection, Vector3.up);
-        ai.transform.rotation = rotation;
+        Quaternion rotationTwo = Quaternion.LookRotation(currentDirectionTwo, Vector3.up);
+
         PlayerStats playerStats = player.GetComponent<PlayerStats>();
-        playerStats.HitByZombie();
+        PlayerStats playerStatsTwo = playerTwo.GetComponent<PlayerStats>();
+        if (!playerStats.IsDead())
+        {
+            ai.transform.rotation = rotation;
+            playerStats.HitByZombie();
+        }
+        else
+        {
+            ai.transform.rotation = rotationTwo;
+            playerStatsTwo.HitByZombie();
+
+        }
         return NodeState.RUNNING;
     }
 
