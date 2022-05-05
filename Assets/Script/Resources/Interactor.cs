@@ -68,19 +68,22 @@ public class Interactor : MonoBehaviour
     void interactHandler()
     {
         RaycastHit hit; //man lägger till vad som händer i onInteract Måste ha Layermask Interactable.
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 2, interactableLayerMask))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 5, interactableLayerMask))
         {
+            
             if (hit.collider.GetComponent<Interactable>() != false) //makes u interact Only Once. Doesnt update every frame.
             {
+                
                 if (interactable == null || interactable.ID != hit.collider.GetComponent<Interactable>().ID)
                 {
                     interactable = hit.collider.GetComponent<Interactable>();
                     Debug.Log("interaction Done Once");
                 }
-                ChangeInteractionIcon();
 
+                ChangeInteractionIcon();
                 if (isInteractPressed || Input.GetKeyDown(KeyCode.E))
                 {
+                    
                     interactable.onInteract.Invoke();
                     interactable.interactingGameObject = this.gameObject; //TEST
                     //Experiment
@@ -124,18 +127,22 @@ public class Interactor : MonoBehaviour
         { //also makes it possible to change the size.
             if (interactable.interactIcon != null)
             {
+                Debug.Log("1");
                 interactImage.sprite = interactable.interactIcon;
                 if (interactable.iconSize == Vector2.zero)
                 {
+                    Debug.Log("2");
                     interactImage.rectTransform.sizeDelta = defaultInteractionIconSize;
                 }
                 else
                 {
+                    Debug.Log("3");
                     interactImage.rectTransform.sizeDelta = interactable.iconSize;
                 }
             }
             else
             {
+                Debug.Log("4");
                 interactImage.sprite = defaultInteractionIcon;
                 interactImage.rectTransform.sizeDelta = defaultInteractionIconSize;
             }
