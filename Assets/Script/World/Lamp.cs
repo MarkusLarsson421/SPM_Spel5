@@ -15,8 +15,7 @@ public class Lamp : MonoBehaviour{
 
 	private void Start(){
 		if(materialIndex < 0){
-			Debug.LogWarning("Material Index for " + name + " is not set!" + "\n" + "Setting index to 0.");
-			materialIndex = 0;
+			Debug.LogWarning("Material Index for " + name + " is not set!");
 		}
 
 		if(activeMaterial == null || inactiveMaterial == null){
