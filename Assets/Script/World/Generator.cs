@@ -108,11 +108,11 @@ public class Generator : MonoBehaviour{
 	/*
 	 * @Author Markus Larsson
 	 */
-	private void SetEmergencyLightState(bool desiredState){
+	/*private void SetEmergencyLightState(bool desiredState){
 		foreach(GameObject go in lights){
-			go.GetComponent<EmergencyLight>().SetState(desiredState);
+			go.GetComponent<Lamp>().SetState(desiredState);
 		}
-	}
+	}*/
 
 	/*
 	 * Tells the door to either open or close depending on the parameter.

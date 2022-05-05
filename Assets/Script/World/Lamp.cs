@@ -88,6 +88,7 @@ public class Lamp : MonoBehaviour{
 	 * @Param material What material to replace the given index with.
 	 */
 	private void ChangeMaterial(int index, Material material){
+		if(index < 0){return;}
 		//Gets the array and replaces the material index with the desired state material.
 		//Unity requires the entire array to be replaced.
 		//sharedMaterials is required as otherwise it might
