@@ -44,7 +44,7 @@ public class APU_SimonPrototype : MonoBehaviour
              * Lägger tillbaka ammo-objektet i poolen när den plockas upp
              */
             // AmmoPool.Instance.ReturnToPool(this);
-            //Destroy(gameObject);
+            Destroy(gameObject);
             Debug.Log("current ammo =" + currentAmmo);
             Debug.Log("total ammo =" + rm.Get(MyItem.Type.Ammo));
         }

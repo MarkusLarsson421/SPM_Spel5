@@ -10,7 +10,6 @@ public class AttackNode : Node
     private EnemyAI ai;
     private Transform target;
     private GameObject player;
-
     private Vector3 currentVelocity;
     private float smoothDamp;
 
