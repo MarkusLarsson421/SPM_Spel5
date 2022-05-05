@@ -77,8 +77,8 @@ public class Weapon : MonoBehaviour {
 	public void OnReload(InputAction.CallbackContext context)
     {
 		if (context.performed){
-			StartCoroutine(Reload());
 			isReloadPressed = true;
+			StartCoroutine(Reload());
 		}
 
 		if (context.canceled)
