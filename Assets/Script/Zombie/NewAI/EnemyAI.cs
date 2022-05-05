@@ -13,13 +13,21 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float chasingRange;
     [SerializeField] private float shootingRange;
 
+    public ZombieObjectPooled zOP;
     private EnemyAI zReference;
     private ZombiePool zP;
-
+    
+    
     [SerializeField] private Cover[] avaliableCovers;
     private GameObject player;
     private GameObject playerTwo;
+    private GameObject target1;
+    private GameObject target2;
+    private float distance1;
+    private float distance2;
     [SerializeField] private Transform playerTransform;
+
+    ChaseNode chaseNode;
 
 
     private Material material;
@@ -27,6 +35,9 @@ public class EnemyAI : MonoBehaviour
     private NavMeshAgent agent;
 
     private Node topNode;
+
+
+    
 
     private float _currentHealth;
 	public float currentHealth
@@ -44,9 +55,10 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
+        
         player = GameObject.FindGameObjectWithTag("Player");
         playerTwo = GameObject.FindGameObjectWithTag("Player2");
-
+        //ClosestPlayer();
     }
     public void FixPlayerTransform()
     {
@@ -57,11 +69,43 @@ public class EnemyAI : MonoBehaviour
     }
     private void Start()
     {
+        //ClosestPlayer();
         _currentHealth = startingHealth;
         FixPlayerTransform();
         ConstructBehahaviourTree();
         zReference = this;
         zP = ZombiePool.Instance;
+    }
+    private void Update()
+    {
+        ///ClosestPlayer();
+        topNode.Evaluate();
+        if (topNode.nodeState == NodeState.FAILURE)
+        {
+            SetColor(Color.red);
+            agent.isStopped = true;
+        }
+        //currentHealth += Time.deltaTime * healthRestoreRate;
+    }
+
+    private void ClosestPlayer()
+    {
+        target1 = GameObject.FindGameObjectWithTag("Player1");
+        target2 = GameObject.FindGameObjectWithTag("Player2");
+        distance1 = Vector3.Distance(transform.position, target1.transform.position);
+        distance2 = Vector3.Distance(transform.position, target2.transform.position);
+        if (distance1 < distance2)
+        {
+            Debug.Log("ett är närmast");
+            player = target1;
+            
+        }
+        else
+        {
+            Debug.Log("två är närmast");
+            player = target2;
+          
+        }
     }
 
     private void ConstructBehahaviourTree()
@@ -70,7 +114,7 @@ public class EnemyAI : MonoBehaviour
         GoToHidingPlaceNode goToCoverNode = new GoToHidingPlaceNode(agent, this);
         //HealthNode healthNode = new HealthNode(this, lowHealthThreshold);
         IsHidingNode isCoveredNode = new IsHidingNode(playerTransform, transform);
-        ChaseNode chaseNode = new ChaseNode(playerTransform, agent, this);
+        chaseNode = new ChaseNode(playerTransform, agent, this);
         ChasingInRangeNode chasingInRangeNode = new ChasingInRangeNode(chasingRange, playerTransform, transform);
         RangeNode shootingRangeNode = new RangeNode(shootingRange, playerTransform, transform);
         AttackNode attackNode = new AttackNode(agent, this, playerTransform, player);
@@ -92,16 +136,7 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        topNode.Evaluate();
-        if(topNode.nodeState == NodeState.FAILURE)
-        {
-            SetColor(Color.red);
-            agent.isStopped = true;
-        }
-        //currentHealth += Time.deltaTime * healthRestoreRate;
-    }
+   
 
 
     public void TakeDamage(float damage)
@@ -110,6 +145,9 @@ public class EnemyAI : MonoBehaviour
         currentHealth -= damage;
         if (_currentHealth <= 0)
         {
+            Debug.Log("returned");
+            zOP.DecreaseZombies();
+            
             zP.ReturnToPool(zReference);
         }
     }

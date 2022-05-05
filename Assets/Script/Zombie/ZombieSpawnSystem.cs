@@ -67,7 +67,7 @@ public class ZombieSpawnSystem : MonoBehaviour
         if (waveTimer >= second)
         {
             waitDuration++;
-            Debug.Log(waitDuration);
+            //Debug.Log(waitDuration);
             waveTimer = 0;
         }
 

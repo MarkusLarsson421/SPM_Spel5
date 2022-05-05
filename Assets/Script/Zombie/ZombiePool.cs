@@ -12,7 +12,7 @@ public class ZombiePool : MonoBehaviour
      * Börja med att 7 zombies ska spawna varje runda och när sista zombien dör börjar nästa runda efter 15 sekunder.
      */
     [SerializeField] private EnemyAI zPrefab;
-    private Queue<EnemyAI> zombieContainer = new Queue<EnemyAI>(10);
+    private Queue<EnemyAI> zombieContainer = new Queue<EnemyAI>(100);
     public static int zombieQty = 1;
     private System.Random rnd = new System.Random();
     [SerializeField] private LayerMask zombieLayer;
