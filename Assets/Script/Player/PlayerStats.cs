@@ -3,7 +3,8 @@ using EventCallbacks;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] private int health = 100; // set the amount of health in unity
+    PlayerStats instance;
+    [SerializeField] private int health = 100; 
     [SerializeField] private int stamina; //set the stamina of health in unity
     private bool isDead = false;
     void Start()
@@ -21,22 +22,22 @@ public class PlayerStats : MonoBehaviour
     }
 
     public int getHealth() { return health; }
-    public int setHealth(int healthAmount) { return healthAmount; }
-    public int getStamina() { return stamina; }
+    //public int setHealth(int healthAmount) { return healthAmount; } Delete me
+    //public int getStamina() { return stamina; } Delete me
 
-    float temp = 0;
+    float Timer = 0;
 
     public void HitByZombie()
     {
-        if (temp < 1)
+        if (Timer < 1)
         {
-            temp += Time.deltaTime;
+            Timer += Time.deltaTime;
         }
         else
         {
             int randomNr = Random.Range(15, 26);
             health -= randomNr;
-            temp = 0;
+            Timer = 0;
             UpdatePlayerStatsCnvas();
             PlayerGetHitByZombieEvent playerGetHitByZombie = new PlayerGetHitByZombieEvent();
             playerGetHitByZombie.UnitGO = gameObject;
@@ -48,7 +49,6 @@ public class PlayerStats : MonoBehaviour
     private void PlayerDeath()
     {
         PlayerDieEvent udei = new PlayerDieEvent();
-        udei.EventDescription = "Unit " + gameObject.name + " has died.";
         udei.UnitGO = gameObject;
         EventSystem.Current.FireEvent(udei);
         isDead = true;
@@ -60,6 +60,7 @@ public class PlayerStats : MonoBehaviour
     {
         PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
         playerHealthChange.UnitGO = gameObject;
+        playerHealthChange.PlayerStats = instance;
         EventSystem.Current.FireEvent(playerHealthChange);
     }
 
