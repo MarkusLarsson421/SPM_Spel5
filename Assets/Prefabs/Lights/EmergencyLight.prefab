@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3768444222574582997
 Transform:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.005606967, g: 0.3962264, b: 0.074414335, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_Intensity: 25
   m_Range: 10
   m_SpotAngle: 179
@@ -190,7 +190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec8411e93aad6144bc6f0fd5441cd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 0
-  activeMaterial: {fileID: 0}
-  inactiveMaterial: {fileID: 0}
-  materialIndex: -1
+  isOn: 1
+  colour: {r: 1, g: 0, b: 0, a: 0}
+  materialIndex: 1

@@ -8,8 +8,7 @@ public class Lamp : MonoBehaviour{
 	[SerializeField] private bool isOn;
 
 	//Materials to be used for the light bulb when active and or inactive.
-	[SerializeField] private Material activeMaterial;
-	[SerializeField] private Material inactiveMaterial;
+	[SerializeField] private Color colour;
 	[SerializeField] private int materialIndex = -1;
 	private Renderer meshRenderer;
 
@@ -18,15 +17,18 @@ public class Lamp : MonoBehaviour{
 			Debug.LogWarning("Material Index for " + name + " is not set!");
 		}
 
-		if(activeMaterial == null || inactiveMaterial == null){
-			Debug.LogWarning("Active and inactive material for " + name + " is not set!");
-		}
-		
 		//Reference to render.
 		meshRenderer = GetComponent<Renderer>();
 		
 		//Set the inspector state to the current state.
 		SetState(isOn);
+		
+		for(int i = 0; i < transform.childCount; i++){
+			Light comp = transform.GetChild(i).gameObject.GetComponent<Light>();
+			if(comp != null){
+				comp.color = colour;
+			}
+		}
 	}
 
 	/**
@@ -42,6 +44,9 @@ public class Lamp : MonoBehaviour{
 	 * @param State the desired state of the light.
 	 */
 	public void SetState(bool desiredState){
+		if(desiredState && isOn){
+			return;
+		}
 		if(desiredState){
 			TurnOn();
 		} else{
@@ -56,7 +61,7 @@ public class Lamp : MonoBehaviour{
 		isOn = true;
 		
 		SetChildState(isOn);
-		ChangeMaterial(materialIndex, activeMaterial);
+		ChangeColour(true);
 	}
 	
 	/**
@@ -64,9 +69,9 @@ public class Lamp : MonoBehaviour{
 	 */
 	public void TurnOff(){
 		isOn = false;
-		
+
 		SetChildState(isOn);
-		ChangeMaterial(materialIndex, inactiveMaterial);
+		ChangeColour(false);
 	}
 
 	/**
@@ -81,20 +86,30 @@ public class Lamp : MonoBehaviour{
 	}
 
 	/**
-	 * Change the material with the given index.
+	 * Change the colour of the material for the object with the given material index.
 	 *
-	 * @Param index Which material at the given index to be changed.
-	 * @Param material What material to replace the given index with.
+	 * @Param emission Whether or not emission should be turned on or not.
 	 */
-	private void ChangeMaterial(int index, Material material){
-		if(index < 0){return;}
+	private void ChangeColour(bool emission){
+		if(materialIndex < 0){return;}
+
 		//Gets the array and replaces the material index with the desired state material.
 		//Unity requires the entire array to be replaced.
-		//sharedMaterials is required as otherwise it might
-		//	leak materials into the scenes according to Unity.
+		//'sharedMaterials' is required as otherwise it might leak materials into the
+		//	scenes according to Unity.
 		Material[] materials = meshRenderer.sharedMaterials;
-		materials[index] = material;
-		meshRenderer.materials = materials;
+		Material material = materials[materialIndex];
+		
+		if(emission){
+			material.EnableKeyword("_EMISSION");
+			material.SetColor(Shader.PropertyToID("_EmissionColor"), colour);
+		} else{
+			material.DisableKeyword("_EMISSION");
+		}
+		
+		material.color = colour;
+		materials[materialIndex] = material;
+		meshRenderer.sharedMaterials = materials;
 	}
 
 	/**

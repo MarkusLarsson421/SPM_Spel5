@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 5e9a72ab21a49e44596da097f8a56897, type: 2}
   - {fileID: 2100000, guid: 518689305e3ec034aa7319d3be44114d, type: 2}
   - {fileID: 2100000, guid: 9ebd8b446997447408f997e6531700c2, type: 2}
   - {fileID: 2100000, guid: 67d16c4cd21b4614b93e975584ca271e, type: 2}
@@ -99,9 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec8411e93aad6144bc6f0fd5441cd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 0
-  activeMaterial: {fileID: 0}
-  inactiveMaterial: {fileID: 0}
+  isOn: 1
+  colour: {r: 1, g: 0.930127, b: 0.2971698, a: 0}
   materialIndex: 0
 --- !u!1 &7717462920417712087
 GameObject:
@@ -119,7 +118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7717462920417712086
 Transform:
   m_ObjectHideFlags: 0
@@ -145,7 +144,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0.8797745, b: 0.5518868, a: 1}
+  m_Color: {r: 1, g: 0.930127, b: 0.2971698, a: 0}
   m_Intensity: 20
   m_Range: 20
   m_SpotAngle: 140.18991
@@ -212,7 +211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7717462921312407277
 Transform:
   m_ObjectHideFlags: 0
@@ -238,7 +237,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.8784314, b: 0.5529412, a: 1}
+  m_Color: {r: 1, g: 0.930127, b: 0.2971698, a: 0}
   m_Intensity: 20
   m_Range: 10
   m_SpotAngle: 30
