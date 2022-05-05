@@ -26,7 +26,6 @@ public class EnemyAI : MonoBehaviour
     private float distance1;
     private float distance2;
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private Transform playerTwoTransform;
 
     ChaseNode chaseNode;
 
@@ -56,20 +55,24 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
-<<<<<<< HEAD
         
         player = GameObject.FindGameObjectWithTag("Player");
         playerTwo = GameObject.FindGameObjectWithTag("Player2");
         //ClosestPlayer();
-=======
-
->>>>>>> ada7993626e4c9601b1f4bcdc32b702af3a5824b
     }
-
+    public void FixPlayerTransform()
+    {
+        if(player != null || playerTwo != null)
+        {
+            playerTransform = player.transform;
+        }
+    }
     private void Start()
     {
         //ClosestPlayer();
         _currentHealth = startingHealth;
+        FixPlayerTransform();
+        ConstructBehahaviourTree();
         zReference = this;
         zP = ZombiePool.Instance;
     }
@@ -115,7 +118,7 @@ public class EnemyAI : MonoBehaviour
         ChasingInRangeNode chasingInRangeNode = new ChasingInRangeNode(chasingRange, playerTransform, transform);
         RangeNode shootingRangeNode = new RangeNode(shootingRange, playerTransform, transform);
         AttackNode attackNode = new AttackNode(agent, this, playerTransform, player);
-        IsThereAnyPlayer isThereAnyPlayer = new IsThereAnyPlayer(player);
+        IsThereAnyPlayer isThereAnyPlayer = new IsThereAnyPlayer(player, playerTwo);
         IsPlayerDeadNode isPlayerDeadNode = new IsPlayerDeadNode(player);
         Sequence playerDeathSequence = new Sequence(new List<Node> { isPlayerDeadNode });
 
@@ -127,79 +130,13 @@ public class EnemyAI : MonoBehaviour
         Selector findCoverSelector = new Selector(new List<Node> { goToCoverSequence, chaseSequence });
         Selector mainCoverSequence = new Selector(new List<Node> { isCoveredNode, findCoverSelector });
         //Sequence mainCoverSequence = new Sequence(new List<Node> { healthNode, tryToTakeCoverSelector });
+
         topNode = new Selector(new List<Node> { checkPlayerSequence, shootSequence, chaseSequence, mainCoverSequence });
 
 
     }
-    private void CheeeeeeezyConstructBehahaviourTree()
-    {
-        IsThereAnyAvaliableHidingPlaceNodetWO coverAvaliableNode = new IsThereAnyAvaliableHidingPlaceNodetWO(avaliableCovers, playerTransform, playerTwoTransform, this);
-        GoToHidingPlaceNode goToCoverNode = new GoToHidingPlaceNode(agent, this);
-        //HealthNode healthNode = new HealthNode(this, lowHealthThreshold);
-        IsHidingNodeTwo isCoveredNode = new IsHidingNodeTwo(playerTransform, playerTwoTransform, transform);
-        ChaseNodeTwo chaseNode = new ChaseNodeTwo(playerTransform, playerTwoTransform, agent, this);
-        ChasingInRangeNodeTwo chasingInRangeNode = new ChasingInRangeNodeTwo(chasingRange, playerTransform, playerTwoTransform, transform);
-        RangeNodeTwo shootingRangeNode = new RangeNodeTwo(shootingRange, playerTransform, playerTwoTransform, transform);
-        AttackNodeTwo attackNode = new AttackNodeTwo(agent, this, playerTransform, playerTwoTransform, player, playerTwo);
-        IsThereAnyPlayerTwo isThereAnyPlayer = new IsThereAnyPlayerTwo(player, playerTwo);
-        IsPlayerDeadNodeTwo isPlayerDeadNode = new IsPlayerDeadNodeTwo(player, playerTwo);
 
-<<<<<<< HEAD
    
-=======
-        Sequence playerDeathSequence = new Sequence(new List<Node> { isPlayerDeadNode });
-
-        Sequence chaseSequence = new Sequence(new List<Node> { chasingInRangeNode, chaseNode });
-        Sequence shootSequence = new Sequence(new List<Node> { shootingRangeNode, attackNode });
-        Sequence checkPlayerSequence = new Sequence(new List<Node> { isThereAnyPlayer, playerDeathSequence });
-
-        Sequence goToCoverSequence = new Sequence(new List<Node> { coverAvaliableNode, goToCoverNode });
-        Selector findCoverSelector = new Selector(new List<Node> { goToCoverSequence, chaseSequence });
-        Selector mainCoverSequence = new Selector(new List<Node> { isCoveredNode, findCoverSelector });
-        //Sequence mainCoverSequence = new Sequence(new List<Node> { healthNode, tryToTakeCoverSelector });
-        topNode = new Selector(new List<Node> { checkPlayerSequence, shootSequence, chaseSequence, mainCoverSequence });
-
-    }
-    bool temp = true;
-    bool tempTwo  = true;
-    private void Update()
-    {
-        player = GameObject.FindGameObjectWithTag("Player1");
-        playerTwo = GameObject.FindGameObjectWithTag("Player2");
-        checkPlayers();
-        //currentHealth += Time.deltaTime * healthRestoreRate;
-        if (player != null && playerTwo != null)
-        {
-            if (tempTwo)
-            {
-                playerTwoTransform = playerTwo.transform;
-                CheeeeeeezyConstructBehahaviourTree();
-                tempTwo = false;
-            }
-        }
-        if (player != null)
-        {
-            if (temp)
-            {
-                playerTransform = player.transform;
-                ConstructBehahaviourTree();
-                temp = false;
-            }
-            topNode.Evaluate();
-        }
-
-
-    }
-    private IEnumerator checkPlayers()
-    {
-        yield return new WaitForSeconds(10);
-        if (topNode.nodeState == NodeState.FAILURE)
-        {
-            SetColor(Color.red);
-            agent.isStopped = true;
-        }
-    }
->>>>>>> ada7993626e4c9601b1f4bcdc32b702af3a5824b
 
 
     public void TakeDamage(float damage)

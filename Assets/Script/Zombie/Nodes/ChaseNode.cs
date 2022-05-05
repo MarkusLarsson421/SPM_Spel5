@@ -20,8 +20,7 @@ public class ChaseNode : Node
     {
         ai.SetColor(Color.yellow);
         float distance = Vector3.Distance(target.position, agent.transform.position);
-        //float distanceTwo = Vector3.Distance(targetTwo.position, agent.transform.position);
-        if (distance > 0.2f)
+        if(distance > 0.2f)
         {
             agent.isStopped = false;
             agent.SetDestination(target.position);

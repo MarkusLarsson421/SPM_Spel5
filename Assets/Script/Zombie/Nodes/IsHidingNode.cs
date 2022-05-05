@@ -7,13 +7,11 @@ public class IsHidingNode : Node
     private Transform target;
     private Transform origin;
 
-    public IsHidingNode( Transform target, Transform origin)
+    public IsHidingNode(Transform target, Transform origin)
     {
         this.target = target;
         this.origin = origin;
     }
-
-
 
     public override NodeState Evaluate()
     {
