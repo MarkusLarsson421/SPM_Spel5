@@ -93,7 +93,17 @@ public class Interactor : MonoBehaviour
                     {
                         interactable.gameObject.GetComponent<APU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
                     }
-                    
+
+                    if (interactable.gameObject.tag == "Battery")
+                    {
+                        interactable.gameObject.GetComponent<BPU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
+                    }
+
+                    if (interactable.gameObject.tag == "Scrap")
+                    {
+                        interactable.gameObject.GetComponent<SPU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
+                    }
+
                     canInteract = false;
                     //Debug.Log("Interact");
                 }
