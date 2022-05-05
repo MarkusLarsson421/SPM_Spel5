@@ -16,7 +16,6 @@ public class ZombieObjectPooled : MonoBehaviour
     private void Start()
     {
         amtSpawners = zPool.GetArraySize();
-        Debug.Log(amtSpawners);
     }
     void Update()
     {
@@ -41,7 +40,7 @@ public class ZombieObjectPooled : MonoBehaviour
 /*ATT GÖRA
  * Zombier ska komma i vågor. 
  * 
- * slå ihop InstantiateZombie och AddZombies, försök att undvika två for-loopar
+ * 
  * - Fixa så zombies inte spawnar inuti varandra. Använd OverlapSphere eller raycast för att kolla ifall zombies spawnar inuti varandra.
  * Eller Vector3.Distance()
  * - Fixa så att spawners som är långt ifrån spelaren blir avaktiverade

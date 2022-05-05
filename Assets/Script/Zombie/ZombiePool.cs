@@ -17,7 +17,7 @@ public class ZombiePool : MonoBehaviour
     private System.Random rnd = new System.Random();
     [SerializeField] private LayerMask zombieLayer;
 
-    [SerializeField] private GameObject[] spawnObjects;
+    [SerializeField] public GameObject[] spawnObjects;
 
     public static ZombiePool Instance { get; private set; }
     private void Awake()
@@ -27,6 +27,7 @@ public class ZombiePool : MonoBehaviour
 
     public int GetArraySize()
     {
+        Debug.Log("Antal spawners: " + spawnObjects.Length);
         return spawnObjects.Length;
     }
 
