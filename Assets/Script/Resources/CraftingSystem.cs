@@ -59,9 +59,14 @@ public class CraftingSystem : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        
+    }
+
     public void ToggleCraftingBench()
     {
-        //interactingPlayer = GameObject.FindGameObjectWithTag(playah);
+        
         //canvas = interactingPlayer.Find("UI");
         toggleButtons();
         if (!isToggled)
@@ -72,7 +77,11 @@ public class CraftingSystem : MonoBehaviour
             infoText.enabled = true;
             eventSystem.SetSelectedGameObject(cancelButton);
             Debug.Log(damageUpgradedPlayers.Count);
-            
+            /*
+            GameObject.FindGameObjectWithTag(playah).GetComponent<DynamicMovementController>().enabled = false;
+            GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<GamePadCamera>().enabled = false;
+            */
+
             if (hasFlashlightUpgrade && hasMagazineSizeUpgrade && hasUpgradedDamage)
             {
                 infoText.text = "No more upgrades available :(";
@@ -87,9 +96,16 @@ public class CraftingSystem : MonoBehaviour
             isToggled = false;
             infoText.enabled = false;
             Cursor.lockState = CursorLockMode.Locked;
+            /*
+            GameObject.FindGameObjectWithTag(playah).GetComponent<DynamicMovementController>().enabled = true;
+            GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<GamePadCamera>().enabled = true;
+            */
+            
+
         }
+
         //eventSystem.GetComponent<InputMod> = GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<>
-        
+        //interactingPlayer = GameObject.FindGameObjectWithTag(playah);
     }
     public void DamageUpgrade()
     {

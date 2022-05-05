@@ -25,6 +25,7 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
+        
         timer += Time.deltaTime;
 
         if (canInteract) 
@@ -48,7 +49,14 @@ public class Interactor : MonoBehaviour
         if (context.started && canInteract)
         {
             isInteractPressed = true;
-            
+            /*
+            interactHandler();
+            if (interactable.gameObject.tag == "CraftingTable")
+            {
+                interactable.gameObject.GetComponent<CraftingSystem>().playah = this.transform.parent.tag;
+            }
+            */
+
         }
         if (context.canceled)
         {
