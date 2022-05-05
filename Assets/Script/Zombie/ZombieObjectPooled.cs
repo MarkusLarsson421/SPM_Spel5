@@ -11,12 +11,11 @@ public class ZombieObjectPooled : MonoBehaviour
     public ZombiePool zps;
     void Update()
     {
-        if(zps.amountOfZombiesSpawned <= 0)
+        if (zps.amountOfZombiesSpawned <= 0)
         {
             SpawnZombie();
         }
     }
-
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();
@@ -28,7 +27,8 @@ public class ZombieObjectPooled : MonoBehaviour
 }
 /*ATT GÖRA
  * Zombier ska komma i vågor. 
- * - Fixa så att zombies faktiskt spawnar vid spawners
+ * - Fixa så att zombies respawnar som de ska (alla zombies ska respawna när den sista har dött)
+ * slå ihop InstantiateZombie och AddZombies, försök att undvika två for-loopar
  * - Fixa så zombies inte spawnar inuti varandra. Använd OverlapSphere eller raycast för att kolla ifall zombies spawnar inuti varandra.
  * Eller Vector3.Distance()
  * - Fixa så att spawners som är långt ifrån spelaren blir avaktiverade

@@ -43,14 +43,13 @@ public class ZombiePool : MonoBehaviour
         }
         zombieContainer.Peek().SetHealth();
         amountOfZombiesSpawned++;
-
         return zombieContainer.Dequeue();
     }
 
     private void AddZombies(int count)
     {
         for (int i = 0; i < count; i++)
-        {//if isColliding <= 0, kör Instantiate och allt. Annars vänta med att instansiera
+        {
             InstantiateZombie();
         }
     }
@@ -59,10 +58,10 @@ public class ZombiePool : MonoBehaviour
     {
         /*float randomXValue = (float)rnd.NextDouble() % 4;
         Vector3 distCorrection = new Vector3(randomXValue, 2.4f);*/
-        for(int i = 0; i < spawnObjects.Length; i++)
+        for (int i = 0; i < spawnObjects.Length; i++)
         {
             EnemyAI zo = Instantiate(zPrefab, spawnObjects[i].transform.position, Quaternion.identity);
-            zo.gameObject.SetActive(true);//false
+            zo.gameObject.SetActive(true);
             zombieContainer.Enqueue(zo);
         }
         
@@ -70,10 +69,9 @@ public class ZombiePool : MonoBehaviour
 
     public void ReturnToPool(EnemyAI zo)
     {
-        Debug.Log(zombieQty);
         zo.gameObject.SetActive(false);
-        amountOfZombiesSpawned--;
         zombieContainer.Enqueue(zo);
+        amountOfZombiesSpawned--;
     }
     /*Håll koll på hur många zombies som finns här. 
      */
