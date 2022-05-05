@@ -9,20 +9,11 @@ public class ZombieObjectPooled : MonoBehaviour
 {
     private float cooldown = 5.0f;
     public ZombiePool zps;
-    private void Start()
-    {
-        //SpawnZombie();
-        //första waven. kan behöva justeras
-    }
-
     void Update()
     {
-        cooldown -= Time.deltaTime;
-        if(cooldown <= 0 && zps.amountOfZombiesSpawned <= 0)
+        if(zps.amountOfZombiesSpawned <= 0)
         {
-            Debug.Log($"{zps.amountOfZombiesSpawned} {cooldown}");
             SpawnZombie();
-            cooldown = 5;
         }
     }
 
