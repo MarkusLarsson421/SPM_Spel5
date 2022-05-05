@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IsThereAnyPlayer : Node
+public class IsThereAnyPlayerTwo : Node
 {
     private GameObject player;
+    private GameObject playerTwo;
 
-    public IsThereAnyPlayer(GameObject player)
+    public IsThereAnyPlayerTwo(GameObject player, GameObject playerTwo)
     {
         this.player = player;
+        this.playerTwo = playerTwo;
     }
 
     public override NodeState Evaluate()
@@ -16,8 +18,9 @@ public class IsThereAnyPlayer : Node
         if (player != null)
         {
             return NodeState.SUCCESS;
+        }else if (playerTwo != null){
+            return NodeState.SUCCESS;
         }
-        Debug.Log("FAILURE");
         return NodeState.FAILURE;
     }
 }

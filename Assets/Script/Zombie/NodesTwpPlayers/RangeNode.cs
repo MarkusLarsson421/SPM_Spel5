@@ -2,34 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChasingInRangeNode : Node
+public class RangeNodeTwo : Node
 {
     private float range;
     private Transform target;
+    private Transform targetTwo;
     private Transform origin;
 
-    public ChasingInRangeNode(float range, Transform target, Transform origin)
+    public RangeNodeTwo(float range, Transform target, Transform targetTwo, Transform origin)
     {
         this.range = range;
         this.target = target;
+        this.targetTwo = targetTwo;
         this.origin = origin;
     }
+
     public override NodeState Evaluate()
     {
         float distance = Vector3.Distance(target.position, origin.position);
-        RaycastHit hit;
-        if (distance <= range)
+        float distanceTwo = Vector3.Distance(targetTwo.position, origin.position);
+        if (distance <= range|| distanceTwo <= range)
         {
-            Debug.Log("SUCCESS");
             return NodeState.SUCCESS;
-        }else if (Physics.Raycast(origin.position, target.position - origin.position, out hit))
-        {
-            Debug.Log("SUCCESS");
-            if (hit.collider.transform == target)
-                return NodeState.SUCCESS;
         }
-        Debug.Log("FAILURE");
         return NodeState.FAILURE;
     }
-
 }

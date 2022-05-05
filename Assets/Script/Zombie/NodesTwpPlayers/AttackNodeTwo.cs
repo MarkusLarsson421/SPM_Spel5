@@ -1,24 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AttackNode : Node
+public class AttackNodeTwo : Node
 {
     private NavMeshAgent agent;
     private EnemyAI ai;
     private Transform target;
+    private Transform targetTwo;
     private GameObject player;
+    private GameObject playerTwo;
+
     private Vector3 currentVelocity;
     private float smoothDamp;
 
-    public AttackNode(NavMeshAgent agent, EnemyAI ai, Transform target, GameObject player)
+    public AttackNodeTwo(NavMeshAgent agent, EnemyAI ai, Transform target, Transform targetTwo, GameObject player, GameObject playerTwo)
     {
         this.agent = agent;
         this.ai = ai;
         this.target = target;
+        this.targetTwo = targetTwo;
         this.player = player;
+        this.playerTwo = playerTwo;
         smoothDamp = 1f;
     }
 

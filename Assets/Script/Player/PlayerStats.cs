@@ -60,7 +60,7 @@ public class PlayerStats : MonoBehaviour
     {
         PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
         playerHealthChange.UnitGO = gameObject;
-        playerHealthChange.PlayerStats = instance;
+        playerHealthChange.PlayerStats = gameObject.GetComponent<PlayerStats>();
         EventSystem.Current.FireEvent(playerHealthChange);
     }
 
