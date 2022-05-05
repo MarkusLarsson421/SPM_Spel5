@@ -14,7 +14,7 @@ public class APU_SimonPrototype : MonoBehaviour
     public ResourceManager rm;
     private int MINPICKUP = 5;
     private int MAXPICKUP = 15;
-    private int currentAmmo = 0;
+    private int currentAmmo;
     private int maxAmmo = 100;
     private bool ammoLimit = true;
 
@@ -43,7 +43,8 @@ public class APU_SimonPrototype : MonoBehaviour
             /*@Author Axel Sterner
              * Lägger tillbaka ammo-objektet i poolen när den plockas upp
              */
-            AmmoPool.Instance.ReturnToPool(this);
+            // AmmoPool.Instance.ReturnToPool(this);
+            //Destroy(gameObject);
             Debug.Log("current ammo =" + currentAmmo);
             Debug.Log("total ammo =" + rm.Get(MyItem.Type.Ammo));
         }

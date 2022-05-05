@@ -8,7 +8,7 @@ public class ResourceManager : MonoBehaviour
 	 * @Author Simon Hessling and Markus Larsson
 	 */
 	
-	private int ammo;
+	private int ammo  = 20;
 	private int batteries = 2; 
 	private int scrap;
 
@@ -27,7 +27,7 @@ public class ResourceManager : MonoBehaviour
 			    return ammo;
 	    }
 		Debug.Log(gameObject.tag);
-	    return 0;
+	    return 46;
     }
 
     /**
@@ -85,5 +85,9 @@ public class ResourceManager : MonoBehaviour
 		}
 
 	}
+	public int GetAmmo()
+    {
+		return ammo;
+    }
 	
 }

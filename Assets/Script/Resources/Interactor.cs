@@ -88,6 +88,12 @@ public class Interactor : MonoBehaviour
                     {
                         interactable.gameObject.GetComponent<CraftingSystem>().playah = this.transform.parent.tag;
                     }
+                    
+                    if(interactable.gameObject.tag == "Ammo")
+                    {
+                        interactable.gameObject.GetComponent<APU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
+                    }
+                    
                     canInteract = false;
                     //Debug.Log("Interact");
                 }
