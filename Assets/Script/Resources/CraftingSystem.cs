@@ -27,7 +27,7 @@ public class CraftingSystem : MonoBehaviour
     private GameObject flashlightUpgrade;
     private GameObject cancelButton;
 
-    private GameObject interactingPlayer;
+    public GameObject interactingPlayer;
 
    
     
@@ -67,10 +67,23 @@ public class CraftingSystem : MonoBehaviour
     public void ToggleCraftingBench()
     {
         
+        
+        /*
+        magazineUpgrade = GameObject.Find("MagazineUpgrade");
+        flashlightUpgrade = GameObject.Find("fireRateUpgrade");
+        cancelButton = GameObject.Find("CancelButton");
+        */
+
         //canvas = interactingPlayer.Find("UI");
         toggleButtons();
         if (!isToggled)
         {
+            /*
+            if (playah != null)
+            {
+                interactingPlayer = GameObject.FindGameObjectWithTag(playah);
+            }
+            */
             
             Cursor.lockState = CursorLockMode.None;
             isToggled = true;
@@ -106,6 +119,8 @@ public class CraftingSystem : MonoBehaviour
 
         //eventSystem.GetComponent<InputMod> = GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<>
         //interactingPlayer = GameObject.FindGameObjectWithTag(playah);
+        Debug.Log(playah + "is here");
+        //SetPlayah();
     }
     public void DamageUpgrade()
     {
@@ -203,6 +218,11 @@ public class CraftingSystem : MonoBehaviour
             flashlightUpgrade.SetActive(false);
             cancelButton.SetActive(false);
         }
+    }
+
+    private void SetPlayah()
+    {
+        interactingPlayer = GameObject.FindGameObjectWithTag(playah);
     }
 
    
