@@ -75,6 +75,11 @@ public class Interactor : MonoBehaviour
                 {
                     interactable.onInteract.Invoke();
                     interactable.interactingGameObject = this.gameObject; //TEST
+                    //Experiment
+                    if(interactable.gameObject.tag == "CraftingTable")
+                    {
+                        interactable.gameObject.GetComponent<CraftingSystem>().playah = this.transform.parent.tag;
+                    }
                     canInteract = false;
                     //Debug.Log("Interact");
                 }

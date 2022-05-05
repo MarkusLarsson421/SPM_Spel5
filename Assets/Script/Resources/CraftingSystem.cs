@@ -13,7 +13,7 @@ public class CraftingSystem : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Interactable inter; //TEST
 
-    [SerializeField] private string playah;
+    [SerializeField] public string playah;
     private Text infoText;
     private bool isToggled;
 
@@ -27,8 +27,10 @@ public class CraftingSystem : MonoBehaviour
     private GameObject flashlightUpgrade;
     private GameObject cancelButton;
 
-   
+    private GameObject interactingPlayer;
 
+   
+    
     
 
     private bool hasUpgradedDamage;
@@ -59,7 +61,8 @@ public class CraftingSystem : MonoBehaviour
 
     public void ToggleCraftingBench()
     {
-        
+        //interactingPlayer = GameObject.FindGameObjectWithTag(playah);
+        //canvas = interactingPlayer.Find("UI");
         toggleButtons();
         if (!isToggled)
         {
@@ -78,10 +81,6 @@ public class CraftingSystem : MonoBehaviour
             {
                 infoText.text = "Craft here! \n" + "Upgrade damage: 2 Batteries, 2 Scraps \n" + "Upgrade magazine: 1 Battery, 3 Scraps \n" + "Upgrade flashlight: 3 Batteries, 1 Scrap";
             }
-            /*if (inter.interactingGameObject.transform.parent.tag == "Player1")
-            {
-                playah = "Player1";
-            }*/
         }
         else
         {
@@ -89,6 +88,7 @@ public class CraftingSystem : MonoBehaviour
             infoText.enabled = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+        //eventSystem.GetComponent<InputMod> = GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<>
         
     }
     public void DamageUpgrade()
