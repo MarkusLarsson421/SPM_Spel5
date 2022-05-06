@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3260686646920654365}
   - component: {fileID: 1940931247012291000}
   - component: {fileID: 4398721501412414834}
-  - component: {fileID: 1335816313335337253}
+  - component: {fileID: -7954613988985203195}
   m_Layer: 0
   m_Name: DestroyedWall_150X150
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1335816313335337253
-MeshCollider:
+--- !u!65 &-7954613988985203195
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,7 +92,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4011090815550566673, guid: 2612b9d79e604e14a8053fac62b3344a, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 0.25}
+  m_Center: {x: -0.75, y: 0.7499999, z: 0.125}
