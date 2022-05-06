@@ -40,6 +40,7 @@ public class Generator : MonoBehaviour{
 			amount = maxFuel - fuel;
 		}
 		fuel += amount;
+		ToggleGenerator();
 	}
 	
 	public void SetState(bool desiredState){
