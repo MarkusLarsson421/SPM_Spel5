@@ -63,11 +63,11 @@ public class ZombieObjectPooled : MonoBehaviour
     {
         int debug = 0;
         Debug.Log(zombieAmount);
-        //if(zombieAmount < 0)
-        //{
-        //    zombieAmount = 0;
-        //}
-        if (zombieAmount == 0)
+        /*if(zombieAmount < 0)
+       {
+            zombieAmount = 0;
+       }*/
+        if (zombieAmount <= 0)
         {
             Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
             for (int i = 0; i < zombiesNextWave; i++) // nu spawnas HUUUR MÅNGA ZOMBIES MAN VILL 
