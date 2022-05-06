@@ -15,18 +15,13 @@ public class ZombieObjectPooled : MonoBehaviour
     private int currentWave;
     private int betweenWaves = 4;
     public static int amountOfZombiesSpawned;
-    private float cooldownTime = 5.0f;
 
     private void Start()
     {
-        
         NoMoreZombies();
-
         //amtSpawners = zPool.GetArraySize();
     }
-    
-        
-    
+
     void Update()
     {
 
@@ -75,7 +70,6 @@ public class ZombieObjectPooled : MonoBehaviour
                 Debug.Log(zombieAmount);
                 SpawnZombie();
                 zombieAmount++;
-
                 debug++;
                 
             }//spawna en zombie i varje spawner
@@ -90,7 +84,6 @@ public class ZombieObjectPooled : MonoBehaviour
         zombieAmount--;
     }
 
-
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();
@@ -102,8 +95,7 @@ public class ZombieObjectPooled : MonoBehaviour
 }
 /*ATT GÖRA
  * Zombier ska komma i vågor
- * - Gör någon form av fördröjning så nästa våg inte spawnas direkt
- * - Se över hur jag gör med AddZombies() och InstantiateZombie(), kanske slå ihop dem.
+ * - Fixa denna kod
  * - Fixa så zombies inte spawnar inuti varandra. Använd OverlapSphere eller raycast för att kolla ifall zombies spawnar inuti varandra.
  * Eller Vector3.Distance()
  * - Fixa så att spawners som är långt ifrån spelaren blir avaktiverade

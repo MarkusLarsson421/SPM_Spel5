@@ -64,7 +64,6 @@ public class Weapon : MonoBehaviour {
         if (context.performed && !isReloading && currentMag > 0 /*&& /*canFire*/)
         {
 			Fire();
-			Debug.Log("FIRE!!!!!!!!!!!!!!!!!!");
 			//isFiring = true;
 			//canFire = false ;
         }
@@ -117,7 +116,6 @@ public class Weapon : MonoBehaviour {
 	private void Fire(){
 		currentMag--;
 		muzzleFlash.Play();
-		Debug.Log("FIRE!");
 
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){

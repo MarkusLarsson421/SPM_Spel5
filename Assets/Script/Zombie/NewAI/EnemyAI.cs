@@ -58,7 +58,7 @@ public class EnemyAI : MonoBehaviour
         
         player = GameObject.FindGameObjectWithTag("Player");
         playerTwo = GameObject.FindGameObjectWithTag("Player2");
-        //ClosestPlayer();
+        ClosestPlayer();
     }
     public void FixPlayerTransform()
     {
@@ -69,7 +69,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void Start()
     {
-        //ClosestPlayer();
+        ClosestPlayer();
         _currentHealth = startingHealth;
         FixPlayerTransform();
         ConstructBehahaviourTree();
@@ -78,7 +78,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void Update()
     {
-        ///ClosestPlayer();
+        ClosestPlayer();
         topNode.Evaluate();
         if (topNode.nodeState == NodeState.FAILURE)
         {
@@ -90,8 +90,11 @@ public class EnemyAI : MonoBehaviour
 
     private void ClosestPlayer()
     {
+        
         target1 = GameObject.FindGameObjectWithTag("Player1");
         target2 = GameObject.FindGameObjectWithTag("Player2");
+        Debug.Log(target1);
+        Debug.Log(target2);
         distance1 = Vector3.Distance(transform.position, target1.transform.position);
         distance2 = Vector3.Distance(transform.position, target2.transform.position);
         if (distance1 < distance2)
