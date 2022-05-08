@@ -29,15 +29,25 @@ public class PlayerSpawnManager : MonoBehaviour
         {
             playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerOneSpawnPoint.position;
             playerInput.gameObject.tag = "Player1";
-
-
         }
         else
         {
             playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerTwoSpawnPoint.position;
             playerInput.gameObject.tag = "Player2";
         }
-
+        SetPlayerSensitivity(playerInput);
         
+    }
+
+    private void SetPlayerSensitivity(PlayerInput playerInput)
+    {
+        if (playerInput.currentControlScheme == "Keyboard+mouse")
+        {
+            playerInput.gameObject.GetComponentInChildren<GamePadCamera>().SetSensitivity(20);
+        }
+        else if (playerInput.currentControlScheme == "Gamepad")
+        {
+            playerInput.gameObject.GetComponentInChildren<GamePadCamera>().SetSensitivity(200);
+        }
     }
 }

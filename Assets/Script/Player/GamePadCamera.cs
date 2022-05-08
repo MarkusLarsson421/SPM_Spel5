@@ -21,11 +21,11 @@ public class GamePadCamera : MonoBehaviour
     void Awake()
     {
         player = transform.parent;
-        if (transform.parent.tag == "Player1")
+        if (transform.parent.tag.Equals("Player1"))
         {
             //GetComponent<Camera>().rect = new Rect(0f, 0.5f, 1f, 0.5f);
         }
-        else if(transform.parent.tag == "Player2")
+        else if(transform.parent.tag.Equals("Player2"))
         {
             //transform.position = new Vector2(0, -1);
             GameObject.FindWithTag("Player1").GetComponentInChildren<Camera>().rect = new Rect(0f, 0.5f, 1f, 0.5f);
@@ -68,6 +68,11 @@ public class GamePadCamera : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         player.Rotate(Vector3.up * xAxis);
+    }
+
+    public void SetSensitivity(float nSensitivty)
+    {
+        sensitity = nSensitivty;
     }
 
     private void OnEnable()

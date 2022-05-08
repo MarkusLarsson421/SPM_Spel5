@@ -127,22 +127,22 @@ public class Interactor : MonoBehaviour
         { //also makes it possible to change the size.
             if (interactable.interactIcon != null)
             {
-                Debug.Log("1");
+                //Debug.Log("1");
                 interactImage.sprite = interactable.interactIcon;
                 if (interactable.iconSize == Vector2.zero)
                 {
-                    Debug.Log("2");
+                    //Debug.Log("2");
                     interactImage.rectTransform.sizeDelta = defaultInteractionIconSize;
                 }
                 else
                 {
-                    Debug.Log("3");
+                    //Debug.Log("3");
                     interactImage.rectTransform.sizeDelta = interactable.iconSize;
                 }
             }
             else
             {
-                Debug.Log("4");
+                //Debug.Log("4");
                 interactImage.sprite = defaultInteractionIcon;
                 interactImage.rectTransform.sizeDelta = defaultInteractionIconSize;
             }
