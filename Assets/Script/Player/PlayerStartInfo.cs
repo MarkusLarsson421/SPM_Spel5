@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Martin Wallmark
+/*
+ * Används för att ange en spawnposition för spelare 1 och spelare 2
+ */
 public class PlayerStartInfo : MonoBehaviour
 {
     public int playerID;

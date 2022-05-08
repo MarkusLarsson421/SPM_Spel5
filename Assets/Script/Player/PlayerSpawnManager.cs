@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //Martin Wallmark
+
+/*
+ * Används av LocalCo-opManager för att kunna hantera in-spawningen av spelare samt identifiera spelarna med varsit id och tag.
+ */
 public class PlayerSpawnManager : MonoBehaviour
 {
 
@@ -18,7 +22,7 @@ public class PlayerSpawnManager : MonoBehaviour
     }
     */
     
-
+    //Metoden används av inputsystemet för att spawna in en spelare när den tar emot input från spelarens handkontroller/tangentbord
     public void OnPlayerJoined(PlayerInput playerInput)
     {
         Debug.Log("Player joined " + playerInput.playerIndex);
@@ -39,6 +43,7 @@ public class PlayerSpawnManager : MonoBehaviour
         
     }
 
+    //Anpassar sensitivity baserat på om spelaren har handkontroller eller mus
     private void SetPlayerSensitivity(PlayerInput playerInput)
     {
         if (playerInput.currentControlScheme == "Keyboard+mouse")

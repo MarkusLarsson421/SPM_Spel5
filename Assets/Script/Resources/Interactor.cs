@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 //Simon Hessling Oscarson
 //Axel Sterner
+//Martin Wallmark
 public class Interactor : MonoBehaviour
 {
     public ResourceManager rM;
@@ -87,22 +88,22 @@ public class Interactor : MonoBehaviour
                     interactable.onInteract.Invoke();
                     interactable.interactingGameObject = this.gameObject; //TEST
                     //Experiment
-                    if(interactable.gameObject.tag == "CraftingTable")
+                    if(interactable.gameObject.tag.Equals("CraftingTable"))
                     {
                         interactable.gameObject.GetComponent<CraftingSystem>().playah = this.transform.parent.tag;
                     }
                     
-                    if(interactable.gameObject.tag == "Ammo")
+                    if(interactable.gameObject.tag.Equals("Ammo"))
                     {
                         interactable.gameObject.GetComponent<APU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
                     }
 
-                    if (interactable.gameObject.tag == "Battery")
+                    if (interactable.gameObject.tag.Equals("Battery"))
                     {
                         interactable.gameObject.GetComponent<BPU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
                     }
 
-                    if (interactable.gameObject.tag == "Scrap")
+                    if (interactable.gameObject.tag.Equals("Scrap"))
                     {
                         interactable.gameObject.GetComponent<SPU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
                     }

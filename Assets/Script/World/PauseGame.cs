@@ -2,7 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-
+//Martin Wallmark
+/*
+ * Används för att kunna pausa spelet
+ */
 public class PauseGame : MonoBehaviour
 {
     // Start is called before the first frame update

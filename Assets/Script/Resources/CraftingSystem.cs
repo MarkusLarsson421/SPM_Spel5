@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 //Martin Wallmark
+/*
+ * Används för att kunna updatera vapen och ficklampan
+ */
+
 public class CraftingSystem : MonoBehaviour
 {
     public ResourceManager rm;
@@ -11,13 +15,16 @@ public class CraftingSystem : MonoBehaviour
     [SerializeField] private GameObject canvas;
     [SerializeField] private Font font;
     [SerializeField] private EventSystem eventSystem;
-    [SerializeField] private Interactable inter; //TEST
+    
+    //Används för att kunna identifiera vilken spelare det är som interagerar med craftingbordet
+    [SerializeField] private Interactable inter; 
 
     [SerializeField] public string playah;
     private Text infoText;
     private bool isToggled;
 
-    [SerializeField] private List<string> damageUpgradedPlayers = new List<string>();
+    //Listorna är till för att hålla koll på om en viss spelare redan har en uppgradering.
+    private List<string> damageUpgradedPlayers = new List<string>();
     private List<string> MagazineUpgradedPlayers = new List<string>();
     private List<string> flashLightUpgradedPlayers = new List<string>();
 
@@ -26,6 +33,7 @@ public class CraftingSystem : MonoBehaviour
     private GameObject magazineUpgrade;
     private GameObject flashlightUpgrade;
     private GameObject cancelButton;
+
 
     public GameObject interactingPlayer;
 
@@ -67,33 +75,15 @@ public class CraftingSystem : MonoBehaviour
     public void ToggleCraftingBench()
     {
         
-        
-        /*
-        magazineUpgrade = GameObject.Find("MagazineUpgrade");
-        flashlightUpgrade = GameObject.Find("fireRateUpgrade");
-        cancelButton = GameObject.Find("CancelButton");
-        */
-
-        //canvas = interactingPlayer.Find("UI");
         toggleButtons();
         if (!isToggled)
         {
-            /*
-            if (playah != null)
-            {
-                interactingPlayer = GameObject.FindGameObjectWithTag(playah);
-            }
-            */
             
             Cursor.lockState = CursorLockMode.None;
             isToggled = true;
             infoText.enabled = true;
             eventSystem.SetSelectedGameObject(cancelButton);
             Debug.Log(damageUpgradedPlayers.Count);
-            /*
-            GameObject.FindGameObjectWithTag(playah).GetComponent<DynamicMovementController>().enabled = false;
-            GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<GamePadCamera>().enabled = false;
-            */
 
             if (hasFlashlightUpgrade && hasMagazineSizeUpgrade && hasUpgradedDamage)
             {
@@ -109,18 +99,9 @@ public class CraftingSystem : MonoBehaviour
             isToggled = false;
             infoText.enabled = false;
             Cursor.lockState = CursorLockMode.Locked;
-            /*
-            GameObject.FindGameObjectWithTag(playah).GetComponent<DynamicMovementController>().enabled = true;
-            GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<GamePadCamera>().enabled = true;
-            */
-            
-
         }
-
-        //eventSystem.GetComponent<InputMod> = GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<>
-        //interactingPlayer = GameObject.FindGameObjectWithTag(playah);
         Debug.Log(playah + "is here");
-        //SetPlayah();
+        
     }
     public void DamageUpgrade()
     {
