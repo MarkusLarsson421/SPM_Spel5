@@ -5,15 +5,17 @@ public class SPU_SimonPrototype : MonoBehaviour
     public ResourceManager rm;
     public SubsScript ss;
 
-    private bool firstScrapPickedUp;
+    
 
     public void PickUpScrap()
     {
-		if (firstScrapPickedUp == false)
+		if (ss.GetFirstScrapPickUp())
         {
-			firstScrapPickedUp = true;
+            Debug.Log("funkar");
             ss.scrapPickUpLine = true;
-		}
+            ss.SetFirstScrapPickUp(false);
+            Debug.Log(ss.scrapPickUpLine);
+        }
         rm.Offset(MyItem.Type.Scrap, 1);
         Debug.Log("totalt antal scraps " + rm.Get(MyItem.Type.Scrap));
         Destroy(gameObject);
