@@ -121,6 +121,7 @@ public class CraftingSystem : MonoBehaviour
             damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
             Debug.Log(damageUpgradedPlayers.Contains("Player1"));
             
+
         }
         else
         {

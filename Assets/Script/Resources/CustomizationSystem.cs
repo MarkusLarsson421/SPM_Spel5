@@ -25,7 +25,7 @@ public class CustomizationSystem : MonoBehaviour
     {
         greenColorButton = GameObject.Find("GreenColorButton");
         whiteColorButton = GameObject.Find("WhiteColorButton");
-        cancelButton = GameObject.Find("customCancel");
+        cancelButton = GameObject.Find("CancelButton");
 
         greenColorButton.SetActive(false);
         whiteColorButton.SetActive(false);
@@ -73,17 +73,17 @@ public class CustomizationSystem : MonoBehaviour
     public void GreenLight()
     {
         Debug.Log("wadaffa");
-        GameObject interactingPlayer = inter.gameObject;
-        Debug.Log(inter.gameObject.tag);
-        interactingPlayer.GetComponentInChildren<FlashLight>().setFlashLightColor(18f, 166f, 0f);
+       // GameObject interactingPlayer = inter.gameObject;
+        //Debug.Log(inter.gameObject.tag);
+        //interactingPlayer.GetComponentInChildren<FlashLight>().setFlashLightColor(18f, 166f, 0f);
         Debug.Log("wadaffa1");
     }
 
     public void WhiteLight()
     {
         Debug.Log("click31");
-        GameObject interactingPlayer = GameObject.Find(inter.interactingGameObject.transform.parent.tag);
-        interactingPlayer.GetComponentInChildren<FlashLight>().setFlashLightColor(61f, 104f, 93f);
+        //GameObject interactingPlayer = GameObject.Find(inter.interactingGameObject.transform.parent.tag);
+        //interactingPlayer.GetComponentInChildren<FlashLight>().setFlashLightColor(61f, 104f, 93f);
     }
 
 }
