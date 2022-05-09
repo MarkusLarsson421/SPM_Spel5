@@ -52,7 +52,7 @@ public class PlayerSpawnManager : MonoBehaviour
         }
         else if (playerInput.currentControlScheme == "Gamepad")
         {
-            playerInput.gameObject.GetComponentInChildren<GamePadCamera>().SetSensitivity(200);
+            playerInput.gameObject.GetComponentInChildren<GamePadCamera>().SetSensitivity(150);
         }
     }
 }
