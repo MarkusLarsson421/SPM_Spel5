@@ -40,6 +40,7 @@ public class PlayerSpawnManager : MonoBehaviour
             playerInput.gameObject.tag = "Player2";
         }
         SetPlayerSensitivity(playerInput);
+        SetPauseManager(playerInput);
         
     }
 
@@ -54,5 +55,13 @@ public class PlayerSpawnManager : MonoBehaviour
         {
             playerInput.gameObject.GetComponentInChildren<GamePadCamera>().SetSensitivity(150);
         }
+    }
+
+
+    private void SetPauseManager(PlayerInput playerInput)
+    {
+        GameObject pauseManager = GameObject.FindGameObjectWithTag("PauseManager");
+        
+        playerInput.gameObject.GetComponent<PlayerInput>().actions.FindAction("PauseGame").AddBinding(pauseManager.GetComponent<PauseGame>().ToString());
     }
 }

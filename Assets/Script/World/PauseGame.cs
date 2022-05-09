@@ -21,6 +21,7 @@ public class PauseGame : MonoBehaviour
     }
     public void OnPause(InputAction.CallbackContext context)
     {
+        Debug.Log("WOFF");
         if (context.performed)
         {
             togglePause();
@@ -28,15 +29,24 @@ public class PauseGame : MonoBehaviour
 
     }
 
+    /*
+    public void OnPause(PlayerInput playerInput)
+    {
+        if (playerInput.actionEvents.Equals("PauseGame"))
+        {
+            togglePause();
+        }
+
+    }
+    */
     private void togglePause()
     {
-        
-            if (isPaused)
+        if (isPaused)
             {
-                Time.timeScale = 1;
-                isPaused = false;
-                resumeButton.SetActive(false);
-                menuButton.SetActive(false);
+               Time.timeScale = 1;
+               isPaused = false;
+               resumeButton.SetActive(false);
+               menuButton.SetActive(false);
             }
             else
             {
