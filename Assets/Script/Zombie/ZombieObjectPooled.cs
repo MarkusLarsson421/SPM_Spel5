@@ -8,7 +8,7 @@ using TMPro;
  */
 public class ZombieObjectPooled : MonoBehaviour
 {
-    [SerializeField] private TMP_Text waveText;
+    //[SerializeField] private TMP_Text waveText;
     private int amtSpawners;
     private static int zombiesNextWave = 10;
     private static int zombieAmount;
@@ -25,8 +25,6 @@ public class ZombieObjectPooled : MonoBehaviour
         //amtSpawners = zPool.GetArraySize();
     }
 
-
-
     void Update()
     {
 
@@ -41,7 +39,7 @@ public class ZombieObjectPooled : MonoBehaviour
     {
         zombiesNextWave++;
         currentWave++;
-        waveText.text = currentWave.ToString();
+        //waveText.text = currentWave.ToString();
     }
     /*
     * @ AuthorSimon Hessling Oscarson
@@ -72,7 +70,6 @@ public class ZombieObjectPooled : MonoBehaviour
             Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
             for (int i = 0; i < zombiesNextWave; i++) // nu spawnas HUUUR MÅNGA ZOMBIES MAN VILL 
             {
-                Debug.Log(zombieAmount);
                 SpawnZombie();
                 zombieAmount++;
 
