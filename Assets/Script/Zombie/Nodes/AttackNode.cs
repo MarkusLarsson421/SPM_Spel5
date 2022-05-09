@@ -26,7 +26,7 @@ public class AttackNode : Node
     public override NodeState Evaluate()
     {
         agent.isStopped = true;
-        ai.SetColor(Color.green);
+        ai.SetColor(Color.red);
         Vector3 direction = target.position - ai.transform.position;
         Vector3 currentDirection = Vector3.SmoothDamp(ai.transform.forward, direction, ref currentVelocity, smoothDamp);
         Quaternion rotation = Quaternion.LookRotation(currentDirection, Vector3.up);
