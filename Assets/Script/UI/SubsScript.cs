@@ -26,12 +26,13 @@ public class SubsScript : MonoBehaviour{
 	private void Update(){
         
 		if(scrapPickUpLine){
-            Debug.Log("funkar");
-			scrapPickUpLine = false;
+            Debug.Log("funkar2");
+			
 			StartCoroutine(Subtitle("We can probably use these to fix the car.", 3));
-		}
-
-		if(batteryFirstPickUp){
+            scrapPickUpLine = false;
+        }
+        
+        if (batteryFirstPickUp){
 			batteryFirstPickUp = false;
 			StartCoroutine(Subtitle("Perfect for the flashlight.", 3));
 		}
@@ -54,11 +55,12 @@ public class SubsScript : MonoBehaviour{
 
 	private IEnumerator Subtitle(string text, int seconds){
 		textBox.GetComponent<TextMeshProUGUI>().text = "";
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(0);
 		textBox.GetComponent<TextMeshProUGUI>().text = text;
 		yield return new WaitForSeconds(seconds);
 		textBox.GetComponent<TextMeshProUGUI>().text = "";
 	}
+    
     public bool GetFirstScrapPickUp()
     {
         return firstScrapPickedUp;
