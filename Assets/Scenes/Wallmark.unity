@@ -1153,7 +1153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &414245128
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1171,7 +1171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -314.4, y: 40.8}
+  m_AnchoredPosition: {x: -313, y: 40.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &414245129
@@ -2354,7 +2354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8282798334448782631, guid: cf9e45037eb9b95428eb901ab9d597f2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 41.4
+      value: 40.7
       objectReference: {fileID: 0}
     - target: {fileID: 8282798334448782631, guid: cf9e45037eb9b95428eb901ab9d597f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4555,6 +4555,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1631363951}
     m_Modifications:
+    - target: {fileID: 9065745292253905001, guid: a45cf4840120f044ba5cdbb533a3c8b5, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9065745292253905002, guid: a45cf4840120f044ba5cdbb533a3c8b5, type: 3}
       propertyPath: m_Name
       value: CancelButton
