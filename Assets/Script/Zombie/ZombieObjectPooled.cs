@@ -10,26 +10,20 @@ public class ZombieObjectPooled : MonoBehaviour
 {
     //[SerializeField] private TMP_Text waveText;
     private int amtSpawners;
-    private static int zombiesNextWave = 10;
+    private static int zombiesNextWave = 1;
     private static int zombieAmount;
     private int currentWave;
     private int betweenWaves = 4;
     public static int amountOfZombiesSpawned;
     private float cooldownTime = 5.0f;
+    public bool isAbleToSpawn = true;
 
     private void Start()
     {
-
         NoMoreZombies();
-
         //amtSpawners = zPool.GetArraySize();
     }
 
-    void Update()
-    {
-
-
-    }
     /*
      * @ AuthorSimon Hessling Oscarson
      * 
@@ -37,7 +31,7 @@ public class ZombieObjectPooled : MonoBehaviour
      */
     private void SimpleWaveIncreaser()
     {
-        zombiesNextWave++;
+        //zombiesNextWave++;
         currentWave++;
         //waveText.text = currentWave.ToString();
     }
@@ -90,16 +84,19 @@ public class ZombieObjectPooled : MonoBehaviour
 
     private void SpawnZombie()
     {
-        var zombie = ZombiePool.Instance.Get();
-        /* float randomXValue = Random.Range(1, 4);
-         Vector3 distCorrection = new Vector3(randomXValue, 2.4f);
-         zombie.transform.SetPositionAndRotation(distCorrection, transform.rotation);*/
-        zombie.gameObject.SetActive(true);
+        if(isAbleToSpawn == true)
+        {
+            var zombie = ZombiePool.Instance.Get();
+            /* float randomXValue = Random.Range(1, 4);
+             * Vector3 distCorrection = new Vector3(randomXValue, 2.4f);
+             * zombie.transform.SetPositionAndRotation(distCorrection, transform.rotation);*/
+            zombie.gameObject.SetActive(true);
+        }
+        
     }
 }
 /*ATT GÖRA
  * Zombier ska komma i vågor
- * - Gör någon form av fördröjning så nästa våg inte spawnas direkt
  * - Se över hur jag gör med AddZombies() och InstantiateZombie(), kanske slå ihop dem.
  * - Fixa så zombies inte spawnar inuti varandra. Använd OverlapSphere eller raycast för att kolla ifall zombies spawnar inuti varandra.
  * Eller Vector3.Distance()

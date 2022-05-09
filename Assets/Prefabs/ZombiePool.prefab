@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6396100218550246384}
+  - component: {fileID: 6527242377449143960}
   m_Layer: 0
   m_Name: ZombiePool
   m_TagString: Untagged
@@ -30,3 +31,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6527242377449143960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218141815930803735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c88298b0806b14eadb0a054ba1c31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zPrefab: {fileID: 0}
+  zombieLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  spawnObjects: []
+  isAbleToSpawn: 1

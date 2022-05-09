@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9055851139203405714}
   - component: {fileID: 9055851139136963616}
+  - component: {fileID: 6690576953076967985}
   m_Layer: 0
   m_Name: ZombieSpawner
   m_TagString: Untagged
@@ -43,4 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab61f0c4dac47af458b782458f634c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveText: {fileID: 0}
+  isActive: 1
+--- !u!114 &6690576953076967985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9055851139136963617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae45b5989dad1114c863aaded049dbb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
