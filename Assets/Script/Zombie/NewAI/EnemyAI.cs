@@ -19,12 +19,11 @@ public class EnemyAI : MonoBehaviour
 
 
     [SerializeField] private Cover[] avaliableCovers;
-    private GameObject player;
+    private GameObject playerOne;
     private GameObject playerTwo;
-    private GameObject target1;
-    private GameObject target2;
     private float distance1;
     private float distance2;
+    private GameObject player;
     [SerializeField] private Transform playerTransform;
 
     ChaseNode chaseNode;
@@ -55,56 +54,64 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
-
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerTwo = GameObject.FindGameObjectWithTag("Player2");
-        //ClosestPlayer();
-    }
-    public void FixPlayerTransform()
-    {
-        if (player != null || playerTwo != null)
-        {
-            playerTransform = player.transform;
-        }
     }
     private void Start()
     {
-        //ClosestPlayer();
         _currentHealth = startingHealth;
-        FixPlayerTransform();
         ConstructBehahaviourTree();
         zReference = this;
         zP = ZombiePool.Instance;
     }
     private void Update()
     {
-        ///ClosestPlayer();
-        topNode.Evaluate();
-        if (topNode.nodeState == NodeState.FAILURE)
+        ClosestPlayer();
+        if (playerOne != null || playerTwo != null)
         {
-            SetColor(Color.red);
-            agent.isStopped = true;
+            ConstructBehahaviourTree();
+            topNode.Evaluate();
+            if (topNode.nodeState == NodeState.FAILURE)
+            {
+                SetColor(Color.red);
+                agent.isStopped = true;
+            }
         }
+
         //currentHealth += Time.deltaTime * healthRestoreRate;
     }
+    bool one = true;
+    bool two = true;
 
     private void ClosestPlayer()
     {
-        target1 = GameObject.FindGameObjectWithTag("Player1");
-        target2 = GameObject.FindGameObjectWithTag("Player2");
-        distance1 = Vector3.Distance(transform.position, target1.transform.position);
-        distance2 = Vector3.Distance(transform.position, target2.transform.position);
-        if (distance1 < distance2)
+        playerOne = GameObject.FindGameObjectWithTag("Player1");
+        if (playerOne != null)
         {
-            Debug.Log("ett är närmast");
-            player = target1;
-
-        }
-        else
-        {
-            Debug.Log("två är närmast");
-            player = target2;
-
+            player = playerOne;
+            playerTransform = playerOne.transform;
+            playerTwo = GameObject.FindGameObjectWithTag("Player2");
+            if (playerTwo != null)
+            {
+                distance1 = Vector3.Distance(transform.position, playerOne.transform.position);
+                distance2 = Vector3.Distance(transform.position, playerTwo.transform.position);
+                if (distance2 < distance1)
+                {
+                    Debug.Log("två är närmast");
+                    player = playerTwo;
+                    playerTransform = playerTwo.transform;
+                    if (two)
+                    {
+                        ConstructBehahaviourTree();
+                        two = false;
+                    }
+                }
+                //else one = true;
+            }
+            else if (one)
+            {
+                ConstructBehahaviourTree();
+                one = false;
+                two = true;
+            }
         }
     }
 
