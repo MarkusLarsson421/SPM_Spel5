@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6554212979626211724}
   - component: {fileID: 6554212979626211727}
   - component: {fileID: 1853350296640201466}
-  - component: {fileID: 6554212979626211726}
+  - component: {fileID: 2601183819414500516}
+  - component: {fileID: 1198034198185207796}
   m_Layer: 0
   m_Name: Scrap
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6554212979626211720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.2333875, y: 7.782365, z: -0.9942213}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,7 +97,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6554212979626211726
+--- !u!114 &2601183819414500516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,7 +106,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 6554212979626211720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d9a4f80ffc18184a9693fa8be1ccb3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 15cb588c88d9d0346b53c886852f4be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 1
+  amount: 1
+  type: 0
+--- !u!114 &1198034198185207796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6554212979626211720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf15f4fcdab6924cbb7dc773fe31d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2601183819414500516}
+        m_TargetAssemblyTypeName: Item, Assembly-CSharp
+        m_MethodName: PickUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactIcon: {fileID: 0}
+  iconSize: {x: 0, y: 0}
+  interactingGameObject: {fileID: 0}
+  ID: 0

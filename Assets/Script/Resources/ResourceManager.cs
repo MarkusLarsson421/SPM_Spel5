@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
-	/*
-	 * Test klass vill kunna f� UI att fungera korrekt.
-	 * 
-	 * @Author Simon Hessling and Markus Larsson
-	 */
-	
-	[SerializeField] private int ammo  = 20;
-	[SerializeField] private int batteries = 2;
-	[SerializeField] private int scrap;
+	[SerializeField] private int ammo = 0;
+	[SerializeField] private int ammoMax = 20;
+	[SerializeField] private int batteries = 0;
+	[SerializeField] private int batteriesMax = 4;
+	[SerializeField] private int scrap = 0;
+	[SerializeField] private int scrapMax = 4;
 
 	private int aP1;
 	private int aP2;
@@ -33,8 +30,7 @@ public class ResourceManager : MonoBehaviour
 		    case ItemType.Ammo:
 			    return ammo;
 	    }
-		Debug.Log(gameObject.tag);
-	    return 46;
+	    return -1;
     }
 
     /**
@@ -44,7 +40,7 @@ public class ResourceManager : MonoBehaviour
     {
 	    switch(type){
 		    case ItemType.Battery:
-			    batteries = amount;
+				batteries = amount;
 			    break;
 		    case ItemType.Scrap:
 			    scrap = amount;
@@ -71,10 +67,5 @@ public class ResourceManager : MonoBehaviour
 			    ammo += amount;
 			    break;
 	    }
-    }
-
-	public int GetAmmo()
-    {
-		return ammo;
     }
 }
