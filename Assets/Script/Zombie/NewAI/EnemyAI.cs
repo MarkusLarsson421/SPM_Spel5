@@ -16,8 +16,8 @@ public class EnemyAI : MonoBehaviour
     public ZombieObjectPooled zOP;
     private EnemyAI zReference;
     private ZombiePool zP;
-    
-    
+
+
     [SerializeField] private Cover[] avaliableCovers;
     private GameObject player;
     private GameObject playerTwo;
@@ -37,10 +37,10 @@ public class EnemyAI : MonoBehaviour
     private Node topNode;
 
 
-    
+
 
     private float _currentHealth;
-	public float currentHealth
+    public float currentHealth
     {
         get { return _currentHealth; }
         set { _currentHealth = Mathf.Clamp(value, 0, startingHealth); }
@@ -55,21 +55,21 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
-        
+
         player = GameObject.FindGameObjectWithTag("Player");
         playerTwo = GameObject.FindGameObjectWithTag("Player2");
-        ClosestPlayer();
+        //ClosestPlayer();
     }
     public void FixPlayerTransform()
     {
-        if(player != null || playerTwo != null)
+        if (player != null || playerTwo != null)
         {
             playerTransform = player.transform;
         }
     }
     private void Start()
     {
-        ClosestPlayer();
+        //ClosestPlayer();
         _currentHealth = startingHealth;
         FixPlayerTransform();
         ConstructBehahaviourTree();
@@ -78,7 +78,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void Update()
     {
-        ClosestPlayer();
+        ///ClosestPlayer();
         topNode.Evaluate();
         if (topNode.nodeState == NodeState.FAILURE)
         {
@@ -90,24 +90,21 @@ public class EnemyAI : MonoBehaviour
 
     private void ClosestPlayer()
     {
-        
         target1 = GameObject.FindGameObjectWithTag("Player1");
         target2 = GameObject.FindGameObjectWithTag("Player2");
-        Debug.Log(target1);
-        Debug.Log(target2);
         distance1 = Vector3.Distance(transform.position, target1.transform.position);
         distance2 = Vector3.Distance(transform.position, target2.transform.position);
         if (distance1 < distance2)
         {
             Debug.Log("ett är närmast");
             player = target1;
-            
+
         }
         else
         {
             Debug.Log("två är närmast");
             player = target2;
-          
+
         }
     }
 
@@ -139,7 +136,7 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-   
+
 
 
     public void TakeDamage(float damage)
@@ -150,7 +147,7 @@ public class EnemyAI : MonoBehaviour
         {
             Debug.Log("returned");
             zOP.DecreaseZombies();
-            
+
             zP.ReturnToPool(zReference);
         }
     }
