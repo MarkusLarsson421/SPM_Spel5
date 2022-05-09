@@ -14,16 +14,23 @@ public class ResourceManager : MonoBehaviour
 
 	private int aP1;
 	private int aP2;
+
+	public enum ItemType{
+		Scrap,
+		Battery,
+		Ammo,
+	}
+
 	/**
 	 * @Author Markus Larsson
 	 */
-    public int Get(MyItem.Type type){
+    public int Get(ItemType type){
 	    switch(type){
-		    case MyItem.Type.Batteries:
+		    case ItemType.Battery:
 			    return batteries;
-		    case MyItem.Type.Scrap:
+		    case ItemType.Scrap:
 			    return scrap;
-		    case MyItem.Type.Ammo:
+		    case ItemType.Ammo:
 			    return ammo;
 	    }
 		Debug.Log(gameObject.tag);
@@ -33,16 +40,16 @@ public class ResourceManager : MonoBehaviour
     /**
 	 * @Author Markus Larsson
 	 */
-    public void SetTotal(MyItem.Type type, int amount)
+    public void SetTotal(ItemType type, int amount)
     {
 	    switch(type){
-		    case MyItem.Type.Batteries:
+		    case ItemType.Battery:
 			    batteries = amount;
 			    break;
-		    case MyItem.Type.Scrap:
+		    case ItemType.Scrap:
 			    scrap = amount;
 			    break;
-		    case MyItem.Type.Ammo:
+		    case ItemType.Ammo:
 			    ammo = amount;
 			    break;
 	    }
@@ -51,43 +58,23 @@ public class ResourceManager : MonoBehaviour
     /**
 	 * @Author Markus Larsson
 	 */
-    public void Offset(MyItem.Type type, int amount)
+    public void Offset(ItemType type, int amount)
     {
 	    switch(type){
-		    case MyItem.Type.Batteries:
+		    case ItemType.Battery:
 			    batteries += amount;
 			    break;
-		    case MyItem.Type.Scrap:
+		    case ItemType.Scrap:
 			    scrap += amount;
 			    break;
-		    case MyItem.Type.Ammo:
+		    case ItemType.Ammo:
 			    ammo += amount;
 			    break;
 	    }
     }
 
-	/**
-	 * @Author Martin Wallmark
-	 */
-	public void DecreaseItem(MyItem.Type type, int amount)
-	{
-		switch (type)
-		{
-			case MyItem.Type.Batteries:
-				batteries -= amount;
-				break;
-			case MyItem.Type.Scrap:
-				scrap -= amount;
-				break;
-			case MyItem.Type.Ammo:
-				ammo -= amount;
-				break;
-		}
-
-	}
 	public int GetAmmo()
     {
 		return ammo;
     }
-	
 }

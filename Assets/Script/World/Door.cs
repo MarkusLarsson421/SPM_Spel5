@@ -6,14 +6,20 @@ using UnityEngine;
 public class Door : MonoBehaviour{
 	[SerializeField] private bool isOpen;
 	[SerializeField] private bool playerCanOpen;
-	private Animator ani;
+	private Animator[] ani;
 
 	private void Start(){
-		ani = transform.GetChild(0).GetComponent<Animator>();
-
+		ani = new Animator[transform.childCount];
+		for(int i = 0; i < transform.childCount; i++){
+			Animator tmpAni = transform.GetChild(i).GetComponent<Animator>();
+			if(tmpAni != null){
+				ani[i] = tmpAni;
+			}
+		}
 		SetState(isOpen);
+		SetCanOpen(playerCanOpen);
 	}
-	
+
 	private void OnTriggerEnter(Collider other){
 		if(other.CompareTag("Player") && playerCanOpen){
 			Open();
@@ -45,7 +51,10 @@ public class Door : MonoBehaviour{
 	 */
 	public void Close(){
 		isOpen = false;
-		ani.SetBool("isOpen", false);
+		foreach(Animator a in ani)
+		{
+			a.SetBool("isOpen", false);
+		}
 	}
 
 	/**
@@ -53,7 +62,10 @@ public class Door : MonoBehaviour{
 	 */
 	public void Open(){
 		isOpen = true;
-		ani.SetBool("isOpen", true);
+		foreach(Animator a in ani)
+		{
+			a.SetBool("isOpen", true);
+		}
 	}
 
 	public void SetCanOpen(bool desiredState){
@@ -64,11 +76,6 @@ public class Door : MonoBehaviour{
 	 * Updates the light if the inspectorState value has been updated.
 	 */
 	private void OnValidate(){
-		if(ani == null){
-			ani = transform.GetChild(0).GetComponent<Animator>();
-		}
-		
-		SetState(isOpen);
-		SetCanOpen(playerCanOpen);
+		Start();
 	}
 }

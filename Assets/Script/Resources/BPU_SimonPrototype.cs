@@ -9,10 +9,10 @@ public class BPU_SimonPrototype : MonoBehaviour
     
     public void PickUpBatteries()
     {
-        if(rm.Get(MyItem.Type.Batteries) != maxBatteries)
+        if(rm.Get(ResourceManager.ItemType.Battery) != maxBatteries)
         {
-            rm.Offset(MyItem.Type.Batteries, 1);
-            Debug.Log("mängd batterier " + rm.Get(MyItem.Type.Batteries));
+            rm.Offset(ResourceManager.ItemType.Battery, 1);
+            Debug.Log("mängd batterier " + rm.Get(ResourceManager.ItemType.Battery));
             Destroy(gameObject);
         }
         

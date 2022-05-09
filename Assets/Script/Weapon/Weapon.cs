@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;
 using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour {
@@ -31,29 +30,6 @@ public class Weapon : MonoBehaviour {
 	{
 		currentMag = magCapacity;
 		muzzleFlash = transform.GetChild(0).GetComponent<ParticleSystem>();
-	}
-
-	void Update()
-	{
-		/*
-		timer += Time.deltaTime;
-
-		if (canFire)
-		{	
-			UserInput();
-		}
-
-		if (timer >= 0.4f)
-		{
-			canFire = true;
-			
-
-		}
-		*/
-
-
-
-		//UserInput();
 	}
 
 	/**
@@ -99,7 +75,7 @@ public class Weapon : MonoBehaviour {
 			
 		}
 		else if(isReloadPressed || Input.GetKeyDown(KeyCode.R) && !isReloading){
-			if(rm.Get(MyItem.Type.Ammo) != 0)
+			if(rm.Get(ResourceManager.ItemType.Ammo) != 0)
 			{
 				StartCoroutine(Reload());
 			}
@@ -137,19 +113,19 @@ public class Weapon : MonoBehaviour {
 		yield return new WaitForSeconds(reloadTime);
 		int tempSubSize = magCapacity - currentMag;
 		
-		if (currentMag + rm.Get(MyItem.Type.Ammo) >= magCapacity) //gör så det inte går att få mer än magCapacity i magget
+		if (currentMag + rm.Get(ResourceManager.ItemType.Ammo) >= magCapacity) //gör så det inte går att få mer än magCapacity i magget
 		{
 			currentMag = magCapacity;	
 		}
 		else
 		{
-			currentMag += rm.Get(MyItem.Type.Ammo);	
+			currentMag += rm.Get(ResourceManager.ItemType.Ammo);	
 		}
 		
-		rm.Offset(MyItem.Type.Ammo, -tempSubSize);
-		if (rm.Get(MyItem.Type.Ammo) < 0)
+		rm.Offset(ResourceManager.ItemType.Ammo, -tempSubSize);
+		if (rm.Get(ResourceManager.ItemType.Ammo) < 0)
         {
-			rm.SetTotal(MyItem.Type.Ammo, 0);
+			rm.SetTotal(ResourceManager.ItemType.Ammo, 0);
         }
 		Debug.Log("Reloaded!");
 		isReloading = false;

@@ -21,7 +21,7 @@ public class UIHandler : MonoBehaviour
 	 */
     private void UpdateAmmoText()
     {
-        ammoText.text = weapon.GetCurrentMag() + " / " + rm.Get(MyItem.Type.Ammo);
+        ammoText.text = weapon.GetCurrentMag() + " / " + rm.Get(ResourceManager.ItemType.Ammo);
     }
     
     /**
@@ -29,7 +29,7 @@ public class UIHandler : MonoBehaviour
 	 */
     private void UpdateBatteryText()
     {
-        batteryText.text ="batteries "+ rm.Get(MyItem.Type.Batteries) + " / 5";
+        batteryText.text ="batteries "+ rm.Get(ResourceManager.ItemType.Battery) + " / 5";
     }
     
     /**
@@ -37,6 +37,6 @@ public class UIHandler : MonoBehaviour
 	 */
     private void UpdateScrapsText()
     {
-        scrapText.text = "scraps "+rm.Get(MyItem.Type.Scrap);
+        scrapText.text = "scraps "+rm.Get(ResourceManager.ItemType.Scrap);
     }
 }

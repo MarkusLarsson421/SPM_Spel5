@@ -17,8 +17,8 @@ public class SPU_SimonPrototype : MonoBehaviour
             ss.SetFirstScrapPickUp(false);
             
         }
-        rm.Offset(MyItem.Type.Scrap, 1);
-        Debug.Log("totalt antal scraps " + rm.Get(MyItem.Type.Scrap));
+        rm.Offset(ResourceManager.ItemType.Scrap, 1);
+        Debug.Log("totalt antal scraps " + rm.Get(ResourceManager.ItemType.Scrap));
         Destroy(gameObject);
     }
 }
