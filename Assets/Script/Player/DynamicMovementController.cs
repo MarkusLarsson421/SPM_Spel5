@@ -25,6 +25,7 @@ public class DynamicMovementController : MonoBehaviour
     private Vector2 move;
     private float collisionMargin = 0.1f;
     private float groundCheckDistance = 0.3f;
+    private float smallInput = 0.5f;
     private CapsuleCollider collider;
 
     
@@ -96,7 +97,7 @@ public class DynamicMovementController : MonoBehaviour
     private void Movement()
     {
         //move = controls.Gameplay.Move.ReadValue<Vector2>();
-        if(move.magnitude > 0.5f)
+        if(move.magnitude > smallInput)
         {
             Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
             velocity += movement * speed * Time.deltaTime;

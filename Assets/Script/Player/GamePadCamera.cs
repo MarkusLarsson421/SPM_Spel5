@@ -14,7 +14,7 @@ public class GamePadCamera : MonoBehaviour
 
     private float xAxis;
     private float yAxis;
-    private float smallRotationInput = 0.09f;
+    private float smallRotationInput = 0.15f;
 
     private Transform player;
     // Start is called before the first frame update
