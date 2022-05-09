@@ -6,6 +6,7 @@ public class FlashLight : MonoBehaviour
     public ResourceManager rm;
     [SerializeField] [Range(1, 100)] private double batteryCharge = 100.0;
     [SerializeField] private double batteryDrainMultiplier = 0.1;
+    [SerializeField] private Light flashlightLight;
 
     private float switchTimer;
     private bool flashLightState;
@@ -120,5 +121,10 @@ public class FlashLight : MonoBehaviour
     private void RechargeAmount(byte setCharge)
     {
         batteryCharge = setCharge;
+    }
+
+    public void setFlashLightColor(float red, float green, float blue)
+    {
+        flashlightLight.color = new Color(red, green, blue);
     }
 }

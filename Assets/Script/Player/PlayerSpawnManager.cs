@@ -14,13 +14,6 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private Transform playerTwoSpawnPoint;
     [SerializeField] private PlayerInputManager playerInputManager;
 
-    /*
-    private void Awake()
-    {
-        playerInputManager.JoinPlayer();
-        playerInputManager.JoinPlayer();
-    }
-    */
     
     //Metoden används av inputsystemet för att spawna in en spelare när den tar emot input från spelarens handkontroller/tangentbord
     public void OnPlayerJoined(PlayerInput playerInput)
@@ -60,8 +53,8 @@ public class PlayerSpawnManager : MonoBehaviour
 
     private void SetPauseManager(PlayerInput playerInput)
     {
-        GameObject pauseManager = GameObject.FindGameObjectWithTag("PauseManager");
+        //GameObject pauseManager = GameObject.FindGameObjectWithTag("PauseManager");
         
-        playerInput.gameObject.GetComponent<PlayerInput>().actions.FindAction("PauseGame").AddBinding(pauseManager.GetComponent<PauseGame>().ToString());
+        //playerInput.gameObject.GetComponent<PlayerInput>().actions.FindAction("PauseGame").AddBinding(pauseManager.GetComponent<PauseGame>().ToString());
     }
 }

@@ -28,6 +28,8 @@ public class CraftingSystem : MonoBehaviour
     private List<string> MagazineUpgradedPlayers = new List<string>();
     private List<string> flashLightUpgradedPlayers = new List<string>();
 
+    private Dictionary<string, string> upgradedPlayers = new Dictionary<string, string>();
+
 
     private GameObject damageUpgrade;
     private GameObject magazineUpgrade;

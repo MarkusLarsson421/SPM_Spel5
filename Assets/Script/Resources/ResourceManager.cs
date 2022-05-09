@@ -8,9 +8,9 @@ public class ResourceManager : MonoBehaviour
 	 * @Author Simon Hessling and Markus Larsson
 	 */
 	
-	private int ammo  = 20;
-	private int batteries = 2; 
-	private int scrap;
+	[SerializeField] private int ammo  = 20;
+	[SerializeField] private int batteries = 2;
+	[SerializeField] private int scrap;
 
 	private int aP1;
 	private int aP2;
