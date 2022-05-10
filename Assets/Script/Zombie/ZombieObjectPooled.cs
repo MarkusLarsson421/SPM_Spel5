@@ -54,26 +54,25 @@ public class ZombieObjectPooled : MonoBehaviour
     private void DoIT()
     {
         int debug = 0;
-        Debug.Log(zombieAmount);
         /*if(zombieAmount < 0)
        {
             zombieAmount = 0;
        }*/
-        if (zombieAmount <= 0)
+        if (zombieAmount <= 0 && isAbleToSpawn)
         {
-            Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
+            //Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
             for (int i = 0; i < zombiesNextWave; i++) // nu spawnas HUUUR MÅNGA ZOMBIES MAN VILL 
             {
                 SpawnZombie();
                 zombieAmount++;
-
+                Debug.Log("zombie spawned");
                 debug++;
 
             }//spawna en zombie i varje spawner
             SimpleWaveIncreaser();
         }
 
-        Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
+        //Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
     }
 
     public void DecreaseZombies()
@@ -81,17 +80,14 @@ public class ZombieObjectPooled : MonoBehaviour
         zombieAmount--;
     }
 
-
     private void SpawnZombie()
     {
-        if(isAbleToSpawn == true)
-        {
-            var zombie = ZombiePool.Instance.Get();
-            /* float randomXValue = Random.Range(1, 4);
-             * Vector3 distCorrection = new Vector3(randomXValue, 2.4f);
-             * zombie.transform.SetPositionAndRotation(distCorrection, transform.rotation);*/
-            zombie.gameObject.SetActive(true);
-        }
+        var zombie = ZombiePool.Instance.Get();
+        /* float randomXValue = Random.Range(1, 4);
+         * Vector3 distCorrection = new Vector3(randomXValue, 2.4f);
+         * zombie.transform.SetPositionAndRotation(distCorrection, transform.rotation);*/
+        zombie.gameObject.SetActive(true);
+        
         
     }
 }
