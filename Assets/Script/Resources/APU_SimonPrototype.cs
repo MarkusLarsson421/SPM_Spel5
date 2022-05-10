@@ -33,7 +33,7 @@ public class APU_SimonPrototype : MonoBehaviour
 
     private void AddAmmo()
     {
-        counter++;
+        //counter++;
         if (ammoLimit)
         {
             currentAmmo = Random.Range(MINPICKUP, MAXPICKUP);
@@ -47,10 +47,10 @@ public class APU_SimonPrototype : MonoBehaviour
              */
             // AmmoPool.Instance.ReturnToPool(this);
             //quickfix
-            if (counter > 1)
-            {
+            //if (counter > 1)
+            //{
                 Destroy(gameObject);
-            }
+            //}
 
             Debug.Log("current ammo =" + currentAmmo);
             Debug.Log("total ammo =" + rm.Get(ResourceManager.ItemType.Ammo));

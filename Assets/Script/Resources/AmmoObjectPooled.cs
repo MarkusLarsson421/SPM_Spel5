@@ -13,6 +13,7 @@ public class AmmoObjectPooled : MonoBehaviour
         if (timer >= 5)
         {
             SpawnAmmo();
+            timer = 0;
         }
     }
 
