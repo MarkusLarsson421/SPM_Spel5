@@ -45,4 +45,10 @@ namespace EventCallbacks
         */
     }
 
+    public class OnAttackWithMaleeEvent : Event
+    {
+        public PlayerStats player;
+        public int slowTime;
+    }
+
 }

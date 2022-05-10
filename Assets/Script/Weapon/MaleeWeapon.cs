@@ -1,3 +1,4 @@
+using EventCallbacks;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -61,6 +62,9 @@ public class MaleeWeapon : MonoBehaviour
 			if (target != null)
 			{
 				target.TakeDamage(damage);
+				OnAttackWithMaleeEvent unit = new OnAttackWithMaleeEvent();
+				unit.player = transform.parent.parent.parent.GetComponent<PlayerStats>();
+				EventSystem.Current.FireEvent(unit);
 			}
 		}
 	}
