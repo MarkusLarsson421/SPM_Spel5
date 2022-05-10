@@ -7,9 +7,11 @@ using UnityEngine;
  */
 public class ScrapObjectPooled : MonoBehaviour
 {
+    private float timer;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        timer += Time.deltaTime;
+        if (timer >= 5)
         {
             SpawnScrap();
         }

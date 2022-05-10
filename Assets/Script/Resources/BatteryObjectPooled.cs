@@ -7,12 +7,16 @@ using UnityEngine;
  */
 public class BatteryObjectPooled : MonoBehaviour
 {
+
+    private float timer;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        timer += Time.deltaTime;
+        if(timer >= 5)
         {
             SpawnBattery();
         }
+        
     }
 
     private void SpawnBattery()

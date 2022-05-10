@@ -6,9 +6,11 @@ using UnityEngine;
  */
 public class AmmoObjectPooled : MonoBehaviour
 {
+    private float timer;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        timer += Time.deltaTime;
+        if (timer >= 5)
         {
             SpawnAmmo();
         }
