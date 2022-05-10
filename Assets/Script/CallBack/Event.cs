@@ -50,5 +50,9 @@ namespace EventCallbacks
         public PlayerStats player;
         public int slowTime;
     }
+    public class OnZombieDeathEvent : Event
+    {
+        public GameObject zombie;
+    }
 
 }

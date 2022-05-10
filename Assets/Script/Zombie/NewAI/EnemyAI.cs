@@ -132,7 +132,6 @@ public class EnemyAI : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("ouch");
         currentHealth -= damage;
         if (_currentHealth <= 0)
         {
