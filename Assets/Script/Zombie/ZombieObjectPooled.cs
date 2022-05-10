@@ -10,7 +10,7 @@ public class ZombieObjectPooled : MonoBehaviour
 {
     //[SerializeField] private TMP_Text waveText;
     private int amtSpawners;
-    private static int zombiesNextWave = 1;
+    private static int zombiesNextWave = 3;
     private static int zombieAmount;
     private int currentWave;
     private int betweenWaves = 4;
@@ -60,19 +60,18 @@ public class ZombieObjectPooled : MonoBehaviour
        }*/
         if (zombieAmount <= 0 && isAbleToSpawn)
         {
-            //Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
+            Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
             for (int i = 0; i < zombiesNextWave; i++) // nu spawnas HUUUR MÅNGA ZOMBIES MAN VILL 
             {
                 SpawnZombie();
                 zombieAmount++;
-                Debug.Log("zombie spawned");
                 debug++;
 
             }//spawna en zombie i varje spawner
             SimpleWaveIncreaser();
         }
 
-        //Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
+        Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
     }
 
     public void DecreaseZombies()
@@ -86,9 +85,7 @@ public class ZombieObjectPooled : MonoBehaviour
         /* float randomXValue = Random.Range(1, 4);
          * Vector3 distCorrection = new Vector3(randomXValue, 2.4f);
          * zombie.transform.SetPositionAndRotation(distCorrection, transform.rotation);*/
-        zombie.gameObject.SetActive(true);
-        
-        
+        zombie.gameObject.SetActive(true);   
     }
 }
 /*ATT GÖRA
@@ -96,6 +93,4 @@ public class ZombieObjectPooled : MonoBehaviour
  * - Se över hur jag gör med AddZombies() och InstantiateZombie(), kanske slå ihop dem.
  * - Fixa så zombies inte spawnar inuti varandra. Använd OverlapSphere eller raycast för att kolla ifall zombies spawnar inuti varandra.
  * Eller Vector3.Distance()
- * - Fixa så att spawners som är långt ifrån spelaren blir avaktiverade
- * - 
  */
