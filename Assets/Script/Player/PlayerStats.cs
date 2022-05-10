@@ -59,8 +59,7 @@ public class PlayerStats : MonoBehaviour
     void UpdatePlayerStatsCnvas()
     {
         PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
-        playerHealthChange.UnitGO = gameObject;
-        playerHealthChange.PlayerStats = instance;
+        playerHealthChange.PlayerHealth = health;
         EventSystem.Current.FireEvent(playerHealthChange);
     }
 

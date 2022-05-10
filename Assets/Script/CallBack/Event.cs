@@ -38,8 +38,7 @@ namespace EventCallbacks
     }
     public class PlayerHealthChangeEvent : Event
     {
-        public GameObject UnitGO;
-        public PlayerStats PlayerStats;
+        public int PlayerHealth;
         /*
         Info about cause of death, our killer, etc...
         Could be a struct, read only, etc...
