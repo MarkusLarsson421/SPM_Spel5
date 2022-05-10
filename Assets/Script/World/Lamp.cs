@@ -127,8 +127,17 @@ public class Lamp : MonoBehaviour{
 	 *
 	 * @Param desiredState What the state of the children is desired.
 	 */
-	private void SetChildState(bool desiredState){
+	private void SetChildState(bool desiredState)
+	{
+		if (lights == null)
+		{
+			return;
+		}
 		foreach(Light l in lights){
+			if (l == null)
+			{
+				continue;
+			}
 			l.enabled = desiredState;
 		}
 	}
@@ -165,7 +174,5 @@ public class Lamp : MonoBehaviour{
 	 */
 	private void OnValidate(){
 		Start();
-		
-		SetState(isOn);
 	}
 }

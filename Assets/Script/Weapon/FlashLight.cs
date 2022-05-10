@@ -6,8 +6,8 @@ public class FlashLight : MonoBehaviour
     public ResourceManager rm;
     [SerializeField] [Range(1, 100)] private double batteryCharge = 100.0;
     [SerializeField] private double batteryDrainMultiplier = 0.1;
-    [SerializeField] private Light flashlightLight;
 
+    private Light flashLight;
     private float switchTimer;
     private bool flashLightState;
     private bool isToggled;
@@ -15,7 +15,8 @@ public class FlashLight : MonoBehaviour
 
     private void Start()
     {
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        gameObject.SetActive(false);
+        flashLight = GetComponent<Light>();
     }
 
     private void Update()
@@ -87,13 +88,13 @@ public class FlashLight : MonoBehaviour
         if (desiredState && batteryCharge > 0)
         {
             //Turn on flash light (if it has battery)
-            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            gameObject.SetActive(true);
             flashLightState = true;
         }
         else
         {
             //Turn off flash light.
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            gameObject.SetActive(false);
             flashLightState = false;
         }
     }
@@ -125,6 +126,6 @@ public class FlashLight : MonoBehaviour
 
     public void setFlashLightColor(float red, float green, float blue)
     {
-        flashlightLight.color = new Color(red, green, blue);
+        flashLight.color = new Color(red, green, blue);
     }
 }

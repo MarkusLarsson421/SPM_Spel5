@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3768444222574582997}
   - component: {fileID: 3768444222574582996}
   m_Layer: 0
-  m_Name: Spot Light
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ Light:
   m_GameObject: {fileID: 3768444222574582570}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 0
+  m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_Intensity: 25
@@ -193,6 +193,6 @@ MonoBehaviour:
   isOn: 1
   colour: {r: 1, g: 0, b: 0, a: 0}
   materialIndex: 1
-  isBlinking: 0
+  isFlickering: 0
   blinkInterval: 5
   blinkLength: 5

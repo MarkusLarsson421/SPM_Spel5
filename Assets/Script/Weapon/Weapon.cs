@@ -40,16 +40,13 @@ public class Weapon : MonoBehaviour {
         if (context.performed && !isReloading && currentMag > 0 /*&& /*canFire*/)
         {
 			Fire();
-			//isFiring = true;
-			//canFire = false ;
         }
 
-        //if (context.canceled)
-        //{
-			//isFiring = false;
-        //}
     }
 
+	/**
+	 * @Author Martin Wallmark
+	 */
 	public void OnReload(InputAction.CallbackContext context)
     {
 		if (context.performed){
