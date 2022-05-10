@@ -15,6 +15,7 @@ public class BatteryObjectPooled : MonoBehaviour
         if(timer >= 5)
         {
             SpawnBattery();
+            timer = 0;
         }
         
     }

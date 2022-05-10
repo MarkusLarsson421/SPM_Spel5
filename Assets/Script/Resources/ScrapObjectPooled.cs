@@ -14,6 +14,7 @@ public class ScrapObjectPooled : MonoBehaviour
         if (timer >= 5)
         {
             SpawnScrap();
+            timer = 0;
         }
     }
 
