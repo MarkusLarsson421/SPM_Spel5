@@ -21,12 +21,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public int getHealth() { return health; }
-    //public int setHealth(int healthAmount) { return healthAmount; } Delete me
-    //public int getStamina() { return stamina; } Delete me
-
     float Timer = 0;
-
     public void HitByZombie()
     {
         if (Timer < 1)
@@ -59,8 +54,7 @@ public class PlayerStats : MonoBehaviour
     void UpdatePlayerStatsCnvas()
     {
         PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
-        playerHealthChange.UnitGO = gameObject;
-        playerHealthChange.PlayerStats = instance;
+        playerHealthChange.PlayerHealth = health;
         EventSystem.Current.FireEvent(playerHealthChange);
     }
 

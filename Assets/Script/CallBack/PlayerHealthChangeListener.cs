@@ -10,12 +10,12 @@ namespace EventCallbacks
         void Start()
         {
             EventSystem.Current.RegisterListener<PlayerHealthChangeEvent>(ChangePlayerHealthInPlayerStateCanvas);
-
         }
         void ChangePlayerHealthInPlayerStateCanvas(PlayerHealthChangeEvent playerHealthChange)
         {
+            
             CanvasHandler playerStateCanvas = GameObject.FindGameObjectWithTag("UI").GetComponent<CanvasHandler>();
-            playerStateCanvas.UpdatePlayerStats(playerHealthChange.PlayerStats.getHealth());
+            playerStateCanvas.UpdatePlayerStats(playerHealthChange.PlayerHealth);
         }
 
     }
