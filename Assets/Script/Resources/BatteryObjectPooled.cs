@@ -9,6 +9,7 @@ public class BatteryObjectPooled : MonoBehaviour
 {
 
     private float timer;
+    private bool hasSpawned = false;
     void Update()
     {
         timer += Time.deltaTime;
@@ -21,10 +22,15 @@ public class BatteryObjectPooled : MonoBehaviour
  
     private void SpawnBattery()
     {
-        var battery = BatteryPool.Instance.Get();
-        battery.transform.position = transform.position;
-        battery.transform.rotation = transform.rotation;
-        battery.gameObject.SetActive(true);
+        if (!hasSpawned)
+        {
+            var battery = BatteryPool.Instance.Get();
+            battery.transform.position = transform.position;
+            battery.transform.rotation = transform.rotation;
+            battery.gameObject.SetActive(true);
+            hasSpawned = true;
+        }
+        hasSpawned = false;
     }
 
     public void SpawnBatteryFromZombie()

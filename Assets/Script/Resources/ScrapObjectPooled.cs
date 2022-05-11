@@ -8,6 +8,7 @@ using UnityEngine;
 public class ScrapObjectPooled : MonoBehaviour
 {
     private float timer;
+    private bool hasSpawned;
     void Update()
     {
         timer += Time.deltaTime;
@@ -20,9 +21,14 @@ public class ScrapObjectPooled : MonoBehaviour
 
     private void SpawnScrap()
     {
-        var scrap = ScrapPool.Instance.Get();
-        scrap.transform.position = transform.position;
-        scrap.transform.rotation = transform.rotation;
-        scrap.gameObject.SetActive(true);
+        if (!hasSpawned)
+        {
+            var battery = BatteryPool.Instance.Get();
+            battery.transform.position = transform.position;
+            battery.transform.rotation = transform.rotation;
+            battery.gameObject.SetActive(true);
+            hasSpawned = true;
+        }
+        hasSpawned = false;
     }
 }

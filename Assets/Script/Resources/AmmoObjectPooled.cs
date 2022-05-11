@@ -7,6 +7,7 @@ using UnityEngine;
 public class AmmoObjectPooled : MonoBehaviour
 {
     private float timer;
+    private bool hasSpawned = false;
     void Update()
     {
         timer += Time.deltaTime;
@@ -19,9 +20,15 @@ public class AmmoObjectPooled : MonoBehaviour
 
     private void SpawnAmmo()
     {
-        var ammo = AmmoPool.Instance.Get();
-        ammo.transform.position = transform.position;
-        ammo.transform.rotation = transform.rotation;
-        ammo.gameObject.SetActive(true);
+        if (!hasSpawned)
+        {
+            var battery = BatteryPool.Instance.Get();
+            battery.transform.position = transform.position;
+            battery.transform.rotation = transform.rotation;
+            battery.gameObject.SetActive(true);
+            hasSpawned = true;
+        }
+        hasSpawned = false;
     }
 }
+
