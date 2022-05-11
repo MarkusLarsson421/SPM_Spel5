@@ -31,7 +31,7 @@ public class ZombieObjectPooled : MonoBehaviour
      */
     private void SimpleWaveIncreaser()
     {
-        //zombiesNextWave++;
+        zombiesNextWave++;
         currentWave++;
         //waveText.text = currentWave.ToString();
     }
