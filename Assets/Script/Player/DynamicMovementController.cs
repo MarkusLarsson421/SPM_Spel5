@@ -23,7 +23,7 @@ public class DynamicMovementController : MonoBehaviour
     private float timer;
 
     private Vector2 move;
-    private float collisionMargin = 0.1f;
+    private float collisionMargin = 0.2f;
     private float groundCheckDistance = 0.3f;
     private float smallInput = 0.5f;
     private CapsuleCollider collider;
