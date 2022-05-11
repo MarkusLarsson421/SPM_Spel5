@@ -67,7 +67,9 @@ public class EnemyAI : MonoBehaviour
     }
     bool one = true;
     bool two = true;
-
+    /*
+     * @Author Simon Hessling Oscarson
+     */
     private void ClosestPlayer()
     {
         playerOne = GameObject.FindGameObjectWithTag("Player1");

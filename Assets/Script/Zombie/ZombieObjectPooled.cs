@@ -8,9 +8,9 @@ using TMPro;
  */
 public class ZombieObjectPooled : MonoBehaviour
 {
-    //[SerializeField] private TMP_Text waveText;
+    [SerializeField] private TMP_Text waveText;
     private int amtSpawners;
-    private static int zombiesNextWave = 1;
+    private static int zombiesNextWave = 15;
     private static int zombieAmount;
     private int currentWave;
     private int betweenWaves = 4;
@@ -33,7 +33,7 @@ public class ZombieObjectPooled : MonoBehaviour
     {
         zombiesNextWave++;
         currentWave++;
-        //waveText.text = currentWave.ToString();
+        waveText.text = currentWave.ToString();
     }
     /*
     * @ AuthorSimon Hessling Oscarson
@@ -58,6 +58,7 @@ public class ZombieObjectPooled : MonoBehaviour
        {
             zombieAmount = 0;
        }*/
+       // DistanceFromPlayer();
         if (zombieAmount <= 0 && isAbleToSpawn)
         {
             Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
@@ -73,7 +74,20 @@ public class ZombieObjectPooled : MonoBehaviour
 
         Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
     }
-
+    
+    /*private void DistanceFromPlayer()
+    {
+        if(Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("Player1").transform.position) > 40 || Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("Player2").transform.position) > 40)
+        {
+            gameObject.SetActive(false);
+            
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
+        
+    }*/
     public void DecreaseZombies()
     {
         zombieAmount--;
