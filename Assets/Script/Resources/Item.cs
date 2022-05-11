@@ -1,6 +1,8 @@
 using UnityEngine;
 
 public class Item : MonoBehaviour{
+
+	public string playah;
 	[SerializeField] private int amount;
 	[SerializeField] private ResourceManager.ItemType type;
 	private AmmoPool ammoPool;
@@ -21,7 +23,9 @@ public class Item : MonoBehaviour{
     }
 
     public void PickUp(){
+		Debug.Log(playah);
 		Die();
+		Debug.Log(playah+ "wow");
 	}
 
 	private void Die(){

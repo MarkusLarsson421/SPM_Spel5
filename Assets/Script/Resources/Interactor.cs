@@ -96,6 +96,8 @@ public class Interactor : MonoBehaviour
                     if(interactable.gameObject.tag.Equals("Ammo"))
                     {
                         interactable.gameObject.GetComponent<APU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
+                        interactable.gameObject.GetComponent<Item>().playah = this.transform.parent.tag;
+
                     }
 
                     if (interactable.gameObject.tag.Equals("Battery"))
