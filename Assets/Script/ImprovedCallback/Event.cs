@@ -32,6 +32,7 @@ public abstract class Event<T> where T : Event<T>{
 public class PickUpEvent : Event<PickUpEvent>{
 	private int amount;
 	private ResourceManager.ItemType type;
+	//private ResourceManager manager;
 
 	public int GetAmount(){
 		return amount;
