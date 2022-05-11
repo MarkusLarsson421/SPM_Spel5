@@ -29,7 +29,7 @@ public class UIHandler : MonoBehaviour
 	 */
     private void UpdateBatteryText()
     {
-        batteryText.text ="batteries "+ rm.Get(ResourceManager.ItemType.Battery) + " / 5";
+        batteryText.text ="batteries "+ rm.Get(ResourceManager.ItemType.Battery) + " /"+rm.GetMaxBatteries();
     }
     
     /**

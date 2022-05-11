@@ -10,7 +10,11 @@ public class PickupListener : MonoBehaviour{
 
 	//What do to when called
 	private void OnItemPickedUp(PickUpEvent ePickUpEvent){
-		resourceManager.Offset(ePickUpEvent.GetItemType(), ePickUpEvent.GetAmount());
+		if(ePickUpEvent.GetAmount() + resourceManager.Get(ePickUpEvent.GetItemType()) <= resourceManager.GetMaxAmount(ePickUpEvent.GetItemType()))
+		{
+			resourceManager.Offset(ePickUpEvent.GetItemType(), ePickUpEvent.GetAmount());
+		}
+		
 	}
 	
 	//Unregister listener

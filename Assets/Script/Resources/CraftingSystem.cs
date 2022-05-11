@@ -132,7 +132,8 @@ public class CraftingSystem : MonoBehaviour
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -2);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -2);
             //Gör så pistoler gör mer skada
-            GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(35);
+            //GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(35);
+            inter.interactingGameObject.GetComponentInChildren<Weapon>().SetDamage(35);
             print("HEYO");
             damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
             Debug.Log(damageUpgradedPlayers.Contains("Player1"));
@@ -164,7 +165,7 @@ public class CraftingSystem : MonoBehaviour
         {
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -1);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, 3);
-            GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetMagCapacity(12);
+            inter.interactingGameObject.GetComponentInChildren<Weapon>().SetMagCapacity(12);
             MagazineUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
             UpdateInfoText("GotUpgrade");
 
@@ -188,7 +189,7 @@ public class CraftingSystem : MonoBehaviour
         {
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -3);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -1);
-            GameObject.FindWithTag("Flashlight").GetComponent<FlashLight>().SetDrainMultiplier(0.05);
+            inter.interactingGameObject.GetComponentInChildren<FlashLight>().SetDrainMultiplier(0.05);
             flashLightUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
             Debug.Log(inter.interactingGameObject.transform.parent.tag);
             UpdateInfoText("GotUpgrade");

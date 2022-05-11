@@ -68,4 +68,24 @@ public class ResourceManager : MonoBehaviour
 			    break;
 	    }
     }
+
+	public int GetMaxAmount(ItemType type)
+    {
+		switch (type)
+		{
+			case ItemType.Battery:
+				return batteriesMax;
+			case ItemType.Scrap:
+				return scrapMax;
+			case ItemType.Ammo:
+				return ammoMax;
+				
+		}
+		return 0;
+	}
+
+	public int GetMaxBatteries()
+    {
+		return batteriesMax;
+    }
 }
