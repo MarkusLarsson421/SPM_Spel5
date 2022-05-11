@@ -4,11 +4,13 @@ using UnityEngine;
 
 
 namespace EventCallbacks
-{
+{/*@Author Khaled Alraas & Axel Sterner
+    */
     public class ZombieDeathListener : MonoBehaviour // khaled Alraas gjort själva drop systemet
     {
         float range;
-        const float battery_dropChance = 2f / 10f;
+        // const float battery_dropChance = 2f / 10f;
+        const float battery_dropChance = 100f;
         const float scrap_dropChance = 5f / 10f;
 
         // Start is called before the first frame update
@@ -23,9 +25,9 @@ namespace EventCallbacks
 
         private void DropItems(OnZombieDeathEvent obj)
         {
-            if (range <= battery_dropChance)
+            if (battery_dropChance == 100.0f)
             {
-                // spawn a dropped item
+                obj.bPool.SpawnBatteryFromZombie();
             }
             else if(range <= scrap_dropChance)
             {
