@@ -30,7 +30,7 @@ public class CraftingSystem : MonoBehaviour
 
     private Dictionary<string, string> upgradedPlayers = new Dictionary<string, string>();
 
-
+    private Canvas currentCanvas;
     private GameObject damageUpgrade;
     private GameObject magazineUpgrade;
     private GameObject flashlightUpgrade;
@@ -46,6 +46,8 @@ public class CraftingSystem : MonoBehaviour
     private bool hasUpgradedDamage;
     private bool hasMagazineSizeUpgrade;
     private bool hasFlashlightUpgrade;
+
+    private bool buttonsEnabled;
 
     private void Start()
     {
@@ -83,6 +85,24 @@ public class CraftingSystem : MonoBehaviour
                 textTimer = 0;
             }
         }
+        //Experiment!
+        /*
+        if(!isToggled && playah != null)
+        {
+            playah = null;
+            currentCanvas.gameObject.transform.Find("CraftingTable").gameObject.SetActive(false);
+            currentCanvas = null;
+
+        }
+
+        if(isToggled && !buttonsEnabled)
+        {
+            currentCanvas = GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<Canvas>();
+            GameObject yes = currentCanvas.gameObject.transform.Find("CraftingTable").gameObject;
+            yes.SetActive(true);
+            yes.gameObject.transform.Find("DamageUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
+        }
+        */
     }
 
     public void ToggleCraftingBench()
@@ -114,6 +134,7 @@ public class CraftingSystem : MonoBehaviour
             {
                 infoText.enabled = false;
             }
+            
             
             Cursor.lockState = CursorLockMode.Locked;
         }
