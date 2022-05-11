@@ -131,12 +131,8 @@ public class CraftingSystem : MonoBehaviour
         {
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -2);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -2);
-            //Gör så pistoler gör mer skada
-            //GameObject.FindWithTag("Pistol").GetComponentInChildren<Weapon>().SetDamage(35);
             inter.interactingGameObject.GetComponentInChildren<Weapon>().SetDamage(35);
-            print("HEYO");
             damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
-            Debug.Log(damageUpgradedPlayers.Contains("Player1"));
             UpdateInfoText("GotUpgrade");
 
 
@@ -158,7 +154,6 @@ public class CraftingSystem : MonoBehaviour
         //Gör så att vapnets magasin kan ha fler patroner
         if (MagazineUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
         {
-            Debug.Log("You already have this upgrade!");
             UpdateInfoText("AlreadyHasUpgrade");
         }
         else if (!hasMagazineSizeUpgrade && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 1 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 3)
@@ -172,7 +167,6 @@ public class CraftingSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("Need more items pal");
             UpdateInfoText("NotEnoughItems");
         }
     }
@@ -181,7 +175,6 @@ public class CraftingSystem : MonoBehaviour
     {
         if (flashLightUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
         {
-            Debug.Log("You already have this upgrade!");
             UpdateInfoText("AlreadyHasUpgrade");
         }
         //gör så att ficklampans batterie räcker längre
@@ -196,7 +189,6 @@ public class CraftingSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("Need more items pal");
             UpdateInfoText("NotEnoughItems");
         }
         
@@ -209,12 +201,6 @@ public class CraftingSystem : MonoBehaviour
         {
             cancelButton.SetActive(true);
             damageUpgrade.SetActive(true);
-            /*
-            if (damageUpgradedPlayers.Count==0 || !damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
-            {
-                
-            }
-            */
             magazineUpgrade.SetActive(true);
             flashlightUpgrade.SetActive(true);
             
@@ -226,11 +212,6 @@ public class CraftingSystem : MonoBehaviour
             flashlightUpgrade.SetActive(false);
             cancelButton.SetActive(false);
         }
-    }
-
-    private void SetPlayah()
-    {
-        interactingPlayer = GameObject.FindGameObjectWithTag(playah);
     }
 
     private void UpdateInfoText(string s)
