@@ -17,7 +17,6 @@ public class BatteryObjectPooled : MonoBehaviour
             SpawnBattery();
             timer = 0;
         }
-        
     }
  
     private void SpawnBattery()
