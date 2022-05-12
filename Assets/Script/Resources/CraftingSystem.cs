@@ -73,7 +73,7 @@ public class CraftingSystem : MonoBehaviour
 
      void Update()
     {
-
+        
         if (isShowingInfoText)
         {
             textTimer += Time.deltaTime;
@@ -106,6 +106,15 @@ public class CraftingSystem : MonoBehaviour
             yes.gameObject.transform.Find("MagazineUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
             buttonsEnabled = true;
             
+        }
+
+        if (isToggled)
+        {
+            float distance = Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag(currentPlayerTag).transform.position);
+            if(distance > 2)
+            {
+                ToggleCraftingBench();
+            }
         }
         
 
