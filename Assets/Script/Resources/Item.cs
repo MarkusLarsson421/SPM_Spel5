@@ -9,7 +9,7 @@ public class Item : MonoBehaviour{
 	private APU_SimonPrototype apu;
 	private BPU_SimonPrototype bpu;
 	private SPU_SimonPrototype spu;
-	//public SubsScript ss;
+	public SubsScript ss;
 	private ScrapPool scrapPool;
 	private BatteryPool batteryPool;
 
@@ -50,7 +50,7 @@ public class Item : MonoBehaviour{
 				break;
 			case ResourceManager.ItemType.Scrap:
 				scrapPool.ReturnToPool(spu);
-				//ss.GetFirstScrapPickUp();
+				ss.SetFirstScrapPickUp(true);
 				break;
 			case ResourceManager.ItemType.Battery:
 				batteryPool.ReturnToPool(bpu);
