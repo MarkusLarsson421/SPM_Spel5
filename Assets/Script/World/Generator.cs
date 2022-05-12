@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Generator : MonoBehaviour{
-	private const int maxFuel = 1;
+	private const int maxFuel = 100;
 	
 	//Whether or not the generator is on.
 	[SerializeField] private bool isOn;
@@ -25,7 +25,6 @@ public class Generator : MonoBehaviour{
 
 	private void Start(){
 		fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
-		isOn = true;
 		fuel = maxFuel;
 	}
 
@@ -139,6 +138,6 @@ public class Generator : MonoBehaviour{
 	}
 
 	private void OnValidate(){
-		Start();
+		SetState(isOn);
 	}
 }
