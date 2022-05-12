@@ -29,8 +29,6 @@ public class CraftingSystem : MonoBehaviour
     private List<string> MagazineUpgradedPlayers = new List<string>();
     private List<string> flashLightUpgradedPlayers = new List<string>();
 
-    private Dictionary<string, string> upgradedPlayers = new Dictionary<string, string>();
-
     private Canvas currentCanvas;
     private GameObject damageUpgrade;
     private GameObject magazineUpgrade;
@@ -117,11 +115,9 @@ public class CraftingSystem : MonoBehaviour
                 ToggleCraftingBench();
             }
         }
+   
         
-
-        
-        
-    }
+     }
 
     public void ToggleCraftingBench()
     {
@@ -134,16 +130,8 @@ public class CraftingSystem : MonoBehaviour
             isToggled = true;
             infoText.enabled = true;
             eventSystem.SetSelectedGameObject(cancelButton);
-            Debug.Log(damageUpgradedPlayers.Count);
-
-            if (hasFlashlightUpgrade && hasMagazineSizeUpgrade && hasUpgradedDamage)
-            {
-                infoText.text = "No more upgrades available :(";
-            }
-            else
-            {
-                infoText.text = "Craft here! \n" + "Upgrade damage: 2 Batteries, 2 Scraps \n" + "Upgrade magazine: 1 Battery, 3 Scraps \n" + "Upgrade flashlight: 3 Batteries, 1 Scrap";
-            }
+            infoText.text = "Craft here! \n" + "Upgrade damage: 2 Batteries, 2 Scraps \n" + "Upgrade magazine: 1 Battery, 3 Scraps \n" + "Upgrade flashlight: 3 Batteries, 1 Scrap";
+            
         }
         else
         {
@@ -236,7 +224,7 @@ public class CraftingSystem : MonoBehaviour
         }
         
     }
-
+    /*
     private void toggleButtons()
     {
        
@@ -256,6 +244,7 @@ public class CraftingSystem : MonoBehaviour
             cancelButton.SetActive(false);
         }
     }
+    */
 
     private void UpdateInfoText(string s)
     {
