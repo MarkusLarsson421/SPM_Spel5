@@ -21,7 +21,6 @@ public class IdleNode : Node
         {
             //@Martin Nyman Här !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             // "ai" är GameObject som du kan referera till om du behöver
-            Debug.Log("sasdasd");
 
             return NodeState.RUNNING;
 
