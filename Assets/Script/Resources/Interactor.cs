@@ -111,6 +111,11 @@ public class Interactor : MonoBehaviour
                         interactable.gameObject.GetComponent<SPU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
                         interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
                     }
+                    if (interactable.gameObject.tag.Equals("Car"))
+                    {
+                        interactable.gameObject.GetComponent<WinGame_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
+                        interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
+                    }
 
                     canInteract = false;
                     //Debug.Log("Interact");

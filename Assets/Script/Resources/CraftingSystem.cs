@@ -86,12 +86,13 @@ public class CraftingSystem : MonoBehaviour
             }
         }
         //Experiment!
-        /*
+        
         if(!isToggled && playah != null)
         {
             playah = null;
             currentCanvas.gameObject.transform.Find("CraftingTable").gameObject.SetActive(false);
             currentCanvas = null;
+            buttonsEnabled = false;
 
         }
 
@@ -101,14 +102,17 @@ public class CraftingSystem : MonoBehaviour
             GameObject yes = currentCanvas.gameObject.transform.Find("CraftingTable").gameObject;
             yes.SetActive(true);
             yes.gameObject.transform.Find("DamageUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
+            yes.gameObject.transform.Find("fireRateUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
+            yes.gameObject.transform.Find("MagazineUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
+            buttonsEnabled = true;
         }
-        */
+        
     }
 
     public void ToggleCraftingBench()
     {
         
-        toggleButtons();
+        //toggleButtons();
         if (!isToggled)
         {
             
@@ -143,27 +147,35 @@ public class CraftingSystem : MonoBehaviour
     }
     public void DamageUpgrade()
     {
-        playah = inter.interactingGameObject.transform.parent.tag;
-        if (damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag)){
-            Debug.Log("You already have this upgrade!");
-            UpdateInfoText("AlreadyHasUpgrade");
-        }
-        else if(inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 2)
+        int counter = 0;
+        if (counter <= 1)
         {
-            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -2);
-            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -2);
-            inter.interactingGameObject.GetComponentInChildren<Weapon>().SetDamage(35);
-            damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
-            UpdateInfoText("GotUpgrade");
+            playah = inter.interactingGameObject.transform.parent.tag;
+            if (damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
+            {
+                Debug.Log("You already have this upgrade!");
+                UpdateInfoText("AlreadyHasUpgrade");
+            }
+            else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 2)
+            {
+                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -2);
+                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -2);
+                inter.interactingGameObject.GetComponentInChildren<Weapon>().SetDamage(35);
+                damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
+                UpdateInfoText("GotUpgrade");
+                Debug.Log("GOT UPGRADE");
 
 
+            }
+            else
+            {
+                Debug.Log("Too few batteries pal");
+                Debug.Log(inter.interactingGameObject.transform.parent.tag);
+                UpdateInfoText("NotEnoughItems");
+            }
+            counter++;
         }
-        else
-        {
-            Debug.Log("Too few batteries pal");
-            Debug.Log(inter.interactingGameObject.transform.parent.tag);
-            UpdateInfoText("NotEnoughItems");
-        }
+       
         
 
 
