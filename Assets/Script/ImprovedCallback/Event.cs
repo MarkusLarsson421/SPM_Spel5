@@ -50,5 +50,15 @@ public class PickUpEvent : Event<PickUpEvent>{
 		this.type = type;
 	}
 
+	public void SetRM(ResourceManager rm)
+    {
+		manager = rm;
+    }
+
+	public ResourceManager GetRm()
+    {
+		return manager;
+    }
+
 	
 }

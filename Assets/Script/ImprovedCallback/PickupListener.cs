@@ -10,9 +10,9 @@ public class PickupListener : MonoBehaviour{
 
 	//What do to when called
 	private void OnItemPickedUp(PickUpEvent ePickUpEvent){
-		if(ePickUpEvent.GetAmount() + resourceManager.Get(ePickUpEvent.GetItemType()) <= resourceManager.GetMaxAmount(ePickUpEvent.GetItemType()))
+		if(ePickUpEvent.GetAmount() + ePickUpEvent.GetRm().Get(ePickUpEvent.GetItemType()) <= resourceManager.GetMaxAmount(ePickUpEvent.GetItemType()))
 		{
-			resourceManager.Offset(ePickUpEvent.GetItemType(), ePickUpEvent.GetAmount());
+			ePickUpEvent.GetRm().Offset(ePickUpEvent.GetItemType(), ePickUpEvent.GetAmount());
 		}
 		
 	}

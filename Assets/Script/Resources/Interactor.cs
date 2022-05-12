@@ -96,18 +96,20 @@ public class Interactor : MonoBehaviour
                     if(interactable.gameObject.tag.Equals("Ammo"))
                     {
                         interactable.gameObject.GetComponent<APU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
-                        interactable.gameObject.GetComponent<Item>().playah = this.transform.parent.tag;
+                        interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
 
                     }
 
                     if (interactable.gameObject.tag.Equals("Battery"))
                     {
                         interactable.gameObject.GetComponent<BPU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
+                        interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
                     }
 
                     if (interactable.gameObject.tag.Equals("Scrap"))
                     {
                         interactable.gameObject.GetComponent<SPU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
+                        interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
                     }
 
                     canInteract = false;

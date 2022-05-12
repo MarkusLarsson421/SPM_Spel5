@@ -12,6 +12,8 @@ public class Item : MonoBehaviour{
 	//public SubsScript ss;
 	private ScrapPool scrapPool;
 	private BatteryPool batteryPool;
+
+	private bool isPickedUp;
     private void Start()
     {
 		ammoPool = GameObject.Find("AmmoPool").GetComponent<AmmoPool>();
@@ -22,10 +24,21 @@ public class Item : MonoBehaviour{
 		spu = gameObject.GetComponent<SPU_SimonPrototype>();
     }
 
+    private void Update()
+    {
+        if (isPickedUp && playah !=null)
+        {
+			//Debug.Log(playah + "wow");
+			Die();
+			//Debug.Log(playah + "owo");
+		}
+    }
+
     public void PickUp(){
-		Debug.Log(playah);
-		Die();
-		Debug.Log(playah+ "wow");
+		
+		//Die();
+		isPickedUp = true;
+		
 	}
 
 	private void Die(){
@@ -44,11 +57,14 @@ public class Item : MonoBehaviour{
 				break;
 				
         }
+		//Debug.Log("Playyhada");
 		PickUpEvent pickUpEvent = new PickUpEvent();
 		pickUpEvent.Description = "Item: " + type + " x " + amount + " has been picked up.";
 		pickUpEvent.SetItemType(type);
 		pickUpEvent.SetAmount(amount);
+		pickUpEvent.SetRM(GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<ResourceManager>());
 		pickUpEvent.FireEvent();
+		playah = null;
 		
 	}
 }
