@@ -16,7 +16,6 @@ public class Generator : MonoBehaviour{
 
 	[Header("Generator interactions")]
 	[SerializeField] private GameObject[] lights;
-	[SerializeField] private Door[] doors;
 	[SerializeField] private GameObject[] emergencyLights;
 
 	private Light fuelIndicator;
@@ -55,13 +54,11 @@ public class Generator : MonoBehaviour{
 		if(fuel <= 0){return;}
 		isOn = true;
 		SetLightState(true);
-		SetDoorState(true);
 	}
 	
 	public void TurnOff(){
 		isOn = false;
 		SetLightState(false);
-		SetDoorState(false);
 	}
 
 	/**
@@ -114,18 +111,6 @@ public class Generator : MonoBehaviour{
 			go.GetComponent<Lamp>().SetState(desiredState);
 		}
 	}*/
-
-	/*
-	 * Tells the door to either open or close depending on the parameter.
-	 *
-	 * @Param desiredState What state the door is desired to be in.
-	 * @Author Martin Wallmark and Markus Larsson
-	 */
-	private void SetDoorState(bool desiredState){
-		foreach(Door door in doors){
-			door.SetState(desiredState);
-		}
-	}
 
 	/*
 	 * When generator is half full the light intensity will lerp from 2 to 1 before shutting off
