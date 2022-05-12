@@ -114,6 +114,7 @@ public class EnemyAI : MonoBehaviour
         ChasingInRangeNode chasingInRangeNode = new ChasingInRangeNode(chasingRange, playerTransform, transform);
         RangeNode shootingRangeNode = new RangeNode(shootingRange, playerTransform, transform);
         AttackNode attackNode = new AttackNode(agent, this, playerTransform, player);
+        IdleNode idleNode = new IdleNode(agent, this);
         IsThereAnyPlayer isThereAnyPlayer = new IsThereAnyPlayer(player, playerTwo);
         IsPlayerDeadNode isPlayerDeadNode = new IsPlayerDeadNode(player);
         Sequence playerDeathSequence = new Sequence(new List<Node> { isPlayerDeadNode });
@@ -127,7 +128,7 @@ public class EnemyAI : MonoBehaviour
         Selector mainCoverSequence = new Selector(new List<Node> { isCoveredNode, findCoverSelector });
         //Sequence mainCoverSequence = new Sequence(new List<Node> { healthNode, tryToTakeCoverSelector });
 
-        topNode = new Selector(new List<Node> { checkPlayerSequence, shootSequence, chaseSequence, mainCoverSequence });
+        topNode = new Selector(new List<Node> { checkPlayerSequence, shootSequence, chaseSequence, idleNode });
 
 
     }
