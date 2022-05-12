@@ -90,7 +90,7 @@ public class Interactor : MonoBehaviour
                     //Experiment
                     if(interactable.gameObject.tag.Equals("CraftingTable"))
                     {
-                        interactable.gameObject.GetComponent<CraftingSystem>().playah = this.transform.parent.tag;
+                        interactable.gameObject.GetComponent<CraftingSystem>().currentPlayerTag = this.transform.parent.tag;
                     }
                     
                     if(interactable.gameObject.tag.Equals("Ammo"))
