@@ -24,8 +24,9 @@ public class ChaseNode : Node
         {
             agent.isStopped = false;
             agent.SetDestination(target.position);
-            //@Martin Nyman Här !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            // "ai" är GameObject som du kan referera till om du behöver
+            //@Martin Nyman Animation här
+            RunAnimation();
+
             return NodeState.RUNNING;
         }
         else
@@ -35,5 +36,10 @@ public class ChaseNode : Node
         }
     }
 
-   
+    private void RunAnimation()
+    {
+        Animator anim = ai.GetComponent<Animator>();
+        anim.SetTrigger("Run");
+    }
+
 }
