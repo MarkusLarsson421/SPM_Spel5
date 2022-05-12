@@ -5,7 +5,7 @@ using TMPro;
 public class SubsScript : MonoBehaviour{
 	public GameObject textBox;
 	public bool scrapPickUpLine;
-	public bool batteryFirstPickUp;
+	//public bool batteryFirstPickUp;
 	public bool needToReload;
 	public bool flashLightLine;
 	public bool craftingTableLine;
@@ -42,8 +42,9 @@ public class SubsScript : MonoBehaviour{
             generatorBrokeFirstTime = false;
         }
 
-        if (batteryFirstPickUp){
-			batteryFirstPickUp = false;
+        if (firstBatteryPickedUp)
+        {
+            firstBatteryPickedUp = false;
 			StartCoroutine(Subtitle("Perfect for the flashlight.", timeToShowText));
 		}
 

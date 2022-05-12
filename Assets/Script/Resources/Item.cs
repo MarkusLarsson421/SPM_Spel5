@@ -14,6 +14,7 @@ public class Item : MonoBehaviour{
 	private BatteryPool batteryPool;
 
 	private bool isPickedUp;
+
     private void Start()
     {
 		ammoPool = GameObject.Find("AmmoPool").GetComponent<AmmoPool>();
@@ -54,6 +55,7 @@ public class Item : MonoBehaviour{
 				ss.SetFirstScrapPickUp(true);
 				break;
 			case ResourceManager.ItemType.Battery:
+                Debug.Log("HADA");
 				batteryPool.ReturnToPool(bpu);
                 ss.SetFirstBatteryPickUp(true);
                 break;

@@ -17,10 +17,10 @@ public class BPU_SimonPrototype : MonoBehaviour
 
         if (ss.GetFirstBatteryPickUp())
         {
-            Debug.Log("funkar");
+            /*Debug.Log("funkar");
             ss.batteryFirstPickUp = true;
             Debug.Log(ss.batteryFirstPickUp);
-            ss.SetFirstBatteryPickUp(false);
+            ss.SetFirstBatteryPickUp(false);*/
 
         }
 
