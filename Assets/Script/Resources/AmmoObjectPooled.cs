@@ -22,10 +22,10 @@ public class AmmoObjectPooled : MonoBehaviour
     {
         if (!hasSpawned)
         {
-            var battery = BatteryPool.Instance.Get();
-            battery.transform.position = transform.position;
-            battery.transform.rotation = transform.rotation;
-            battery.gameObject.SetActive(true);
+            var ammo = AmmoPool.Instance.Get();
+            ammo.transform.position = transform.position;
+            ammo.transform.rotation = transform.rotation;
+            ammo.gameObject.SetActive(true);
             hasSpawned = true;
         }
         hasSpawned = false;

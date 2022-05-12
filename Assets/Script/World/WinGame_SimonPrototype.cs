@@ -6,7 +6,7 @@ public class WinGame_SimonPrototype : MonoBehaviour
     public ResourceManager rm;
     public CanvasHandler ch;
     private int scrapsInCar;
-    private int scrapsNeededToFixCar = 1;
+    private int scrapsNeededToFixCar = 5;
     private bool isClicked;
 
 

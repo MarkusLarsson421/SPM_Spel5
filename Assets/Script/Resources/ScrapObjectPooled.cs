@@ -23,10 +23,10 @@ public class ScrapObjectPooled : MonoBehaviour
     {
         if (!hasSpawned)
         {
-            var battery = BatteryPool.Instance.Get();
-            battery.transform.position = transform.position;
-            battery.transform.rotation = transform.rotation;
-            battery.gameObject.SetActive(true);
+            var scrap = ScrapPool.Instance.Get();
+            scrap.transform.position = transform.position;
+            scrap.transform.rotation = transform.rotation;
+            scrap.gameObject.SetActive(true);
             hasSpawned = true;
         }
         hasSpawned = false;
