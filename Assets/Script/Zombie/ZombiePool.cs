@@ -42,7 +42,7 @@ public class ZombiePool : MonoBehaviour
         if (zombieContainer.Count == 0)
         {
             AddZombies(zombieQty);
-            Debug.Log(zombieContainer.Count);
+            //Debug.Log(zombieContainer.Count);
         }
         zombieContainer.Peek().SetHealth();
         ZombieObjectPooled.amountOfZombiesSpawned++;
