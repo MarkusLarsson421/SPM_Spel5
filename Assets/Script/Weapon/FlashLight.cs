@@ -16,7 +16,7 @@ public class FlashLight : MonoBehaviour{
 
     private void Start()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         flashLight = GetComponent<Light>();
     }
 
@@ -89,13 +89,17 @@ public class FlashLight : MonoBehaviour{
         if (desiredState && batteryCharge > 0)
         {
             //Turn on flash light (if it has battery)
-            gameObject.SetActive(true);
+            //gameObject.SetActive(true);
             isOn = true;
+            flashLight.intensity = 200;
+            Debug.Log("on");
         }
         else
         {
             //Turn off flash light.
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Debug.Log("off");
+            flashLight.intensity = 0;
             isOn = false;
         }
     }
