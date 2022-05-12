@@ -16,7 +16,7 @@ public class ZombieObjectPooled : MonoBehaviour
     private int betweenWaves = 4;
     public static int amountOfZombiesSpawned;
     private float cooldownTime = 5.0f;
-    [SerializeField]private bool isAbleToSpawn = true;
+    [SerializeField]private bool isAbleToSpawn = false;
 
     private void Start()
     {

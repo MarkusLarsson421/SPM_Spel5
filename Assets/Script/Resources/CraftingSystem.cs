@@ -11,6 +11,7 @@ using UnityEngine.EventSystems;
 public class CraftingSystem : MonoBehaviour
 {
     public ResourceManager rm;
+
     [SerializeField] private int scrapAmountNeeded;
     [SerializeField] private GameObject canvas;
     [SerializeField] private Font font;
