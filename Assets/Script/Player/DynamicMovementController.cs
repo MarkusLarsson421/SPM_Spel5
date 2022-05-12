@@ -37,6 +37,8 @@ public class DynamicMovementController : MonoBehaviour
     [SerializeField] float staticFrictionCoefficient;
     [SerializeField] float kineticFloatCoefficent;
 
+    [SerializeField] private Animator anim;
+
     public void OnMove(InputAction.CallbackContext callback)
     {
         move = callback.ReadValue<Vector2>();
@@ -114,7 +116,10 @@ public class DynamicMovementController : MonoBehaviour
                 //print("stahp!");
             }
         }
-        
+
+        anim.SetFloat("Speed", move.x);
+        anim.SetFloat("Direction", move.y);
+
     }
 
 
