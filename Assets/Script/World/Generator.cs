@@ -1,14 +1,14 @@
-using System;
 using UnityEngine;
 
 public class Generator : MonoBehaviour{
+	private const int maxFuel = 100;
+	
 	//Whether or not the generator is on.
 	[SerializeField] private bool isOn;
 	
 	//Fuel
 	[Header("Fuel settings")]
-	[SerializeField] private float fuel;
-	[SerializeField] private float maxFuel = 100.0f;
+	[SerializeField][Range(1, maxFuel)] private float fuel;
 	[SerializeField] private float fuelDrainMultiplier = 1.0f;
 
 	//Colours to display the current fuel stage to the player.
@@ -25,15 +25,6 @@ public class Generator : MonoBehaviour{
 		fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
 		isOn = true;
 		fuel = maxFuel;
-	}
-
-	private void GetLights(){
-		for(int i = 0; i < transform.childCount; i++){
-			Light comp = transform.GetChild(i).gameObject.GetComponent<Light>();
-			if(comp != null){
-				
-			}
-		}
 	}
 
 	private void Update(){

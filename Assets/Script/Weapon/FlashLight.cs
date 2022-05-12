@@ -1,15 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FlashLight : MonoBehaviour
-{
-    public ResourceManager rm;
-    [SerializeField] [Range(1, 100)] private double batteryCharge = 100.0;
+public class FlashLight : MonoBehaviour{
+	private const int maxBatteryCharge = 100;
+	
+	public ResourceManager rm;
+    [SerializeField] [Range(1, maxBatteryCharge)] private double batteryCharge = 100.0;
     [SerializeField] private double batteryDrainMultiplier = 0.1;
 
     private Light flashLight;
     private float switchTimer;
-    private bool flashLightState;
+    private bool isOn;
     private bool isToggled;
     private bool canSwitch;
 
@@ -23,7 +24,7 @@ public class FlashLight : MonoBehaviour
     {
         batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
 
-        if (batteryCharge == 0)
+        if (batteryCharge == 0 && isOn)
         {
             SetState(false);
         }
@@ -89,19 +90,19 @@ public class FlashLight : MonoBehaviour
         {
             //Turn on flash light (if it has battery)
             gameObject.SetActive(true);
-            flashLightState = true;
+            isOn = true;
         }
         else
         {
             //Turn off flash light.
             gameObject.SetActive(false);
-            flashLightState = false;
+            isOn = false;
         }
     }
 
     private void Toggle()
     {
-        SetState(!flashLightState);
+        SetState(!isOn);
     }
 
     /**
@@ -109,22 +110,14 @@ public class FlashLight : MonoBehaviour
 	 */
     private void Recharge()
     {
-        if (rm.Get(ResourceManager.ItemType.Battery) != 0)
+        if (rm.Get(ResourceManager.ItemType.Battery) > 0)
         {
             rm.Offset(ResourceManager.ItemType.Battery, -1);
-            RechargeAmount(100);
-        }
+			batteryCharge = maxBatteryCharge;
+		}
     }
 
-    /**
-	 * @Simon Hessling Oscarson
-	 */
-    private void RechargeAmount(byte setCharge)
-    {
-        batteryCharge = setCharge;
-    }
-
-    public void setFlashLightColor(float red, float green, float blue)
+	public void setFlashLightColor(float red, float green, float blue)
     {
         flashLight.color = new Color(red, green, blue);
     }
