@@ -13,7 +13,7 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private Transform playerOneSpawnPoint;
     [SerializeField] private Transform playerTwoSpawnPoint;
     [SerializeField] private PlayerInputManager playerInputManager;
-
+    public bool playerHasJoined = false;
     
     //Metoden används av inputsystemet för att spawna in en spelare när den tar emot input från spelarens handkontroller/tangentbord
     public void OnPlayerJoined(PlayerInput playerInput)
@@ -34,7 +34,7 @@ public class PlayerSpawnManager : MonoBehaviour
         }
         SetPlayerSensitivity(playerInput);
         SetPauseManager(playerInput);
-        
+        playerHasJoined = true;
     }
 
     //Anpassar sensitivity baserat på om spelaren har handkontroller eller mus

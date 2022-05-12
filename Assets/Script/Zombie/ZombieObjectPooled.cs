@@ -16,7 +16,7 @@ public class ZombieObjectPooled : MonoBehaviour
     private int betweenWaves = 4;
     public static int amountOfZombiesSpawned;
     private float cooldownTime = 5.0f;
-    public bool isAbleToSpawn = true;
+    [SerializeField]private bool isAbleToSpawn = true;
 
     private void Start()
     {
@@ -46,6 +46,16 @@ public class ZombieObjectPooled : MonoBehaviour
             InvokeRepeating("DoIT", 0, betweenWaves);
         }
     }
+
+    public void SetAbleToSpawnTrue()
+    {
+        isAbleToSpawn = true;
+    }
+    //om detta funkar får jag göra det finare 
+    public void SetAbleToSpawnFalse()
+    {
+        isAbleToSpawn = false;
+    }
     /*
     * @ AuthorSimon Hessling Oscarson
     * 
@@ -61,7 +71,7 @@ public class ZombieObjectPooled : MonoBehaviour
        // DistanceFromPlayer();
         if (zombieAmount <= 0 && isAbleToSpawn)
         {
-            Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
+            //Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
             for (int i = 0; i < zombiesNextWave; i++) // nu spawnas HUUUR MÅNGA ZOMBIES MAN VILL 
             {
                 SpawnZombie();
@@ -72,7 +82,7 @@ public class ZombieObjectPooled : MonoBehaviour
             SimpleWaveIncreaser();
         }
 
-        Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
+        //Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
     }
     
     /*private void DistanceFromPlayer()
@@ -105,6 +115,4 @@ public class ZombieObjectPooled : MonoBehaviour
 /*ATT GÖRA
  * Zombier ska komma i vågor
  * - Se över hur jag gör med AddZombies() och InstantiateZombie(), kanske slå ihop dem.
- * - Fixa så zombies inte spawnar inuti varandra. Använd OverlapSphere eller raycast för att kolla ifall zombies spawnar inuti varandra.
- * Eller Vector3.Distance()
  */
