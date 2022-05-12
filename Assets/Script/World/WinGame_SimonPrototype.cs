@@ -24,7 +24,7 @@ public class WinGame_SimonPrototype : MonoBehaviour
     }
     public void AddScrapsToCar()
     {
-        wait();
+        //wait();
         Debug.Log("test132");
        scrapsInCar += rm.Get(ResourceManager.ItemType.Scrap);
       
