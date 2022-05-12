@@ -7,7 +7,7 @@ public class ChaseNode : Node
 {
     private Transform target;
     private NavMeshAgent agent;
-    private EnemyAI ai;
+    private EnemyAI ai; // me
 
     public ChaseNode(Transform target, NavMeshAgent agent, EnemyAI ai)
     {
@@ -24,6 +24,8 @@ public class ChaseNode : Node
         {
             agent.isStopped = false;
             agent.SetDestination(target.position);
+            //@Martin Nyman Här !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // "ai" är GameObject som du kan referera till om du behöver
             return NodeState.RUNNING;
         }
         else

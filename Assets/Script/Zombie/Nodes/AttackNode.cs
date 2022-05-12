@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class AttackNode : Node
 {
     private NavMeshAgent agent;
-    private EnemyAI ai;
+    private EnemyAI ai; // me
     private Transform target;
     private GameObject player;
 
@@ -32,6 +32,8 @@ public class AttackNode : Node
         Quaternion rotation = Quaternion.LookRotation(currentDirection, Vector3.up);
         ai.transform.rotation = rotation;
         PlayerStats playerStats = player.GetComponent<PlayerStats>();
+        //@Martin Nyman Här !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // "ai" är GameObject som du kan referera till om du behöver
         playerStats.HitByZombie();
         return NodeState.RUNNING;
     }
