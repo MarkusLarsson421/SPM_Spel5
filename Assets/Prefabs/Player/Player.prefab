@@ -1162,10 +1162,10 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
-  m_Dithering: 0
+  m_Dithering: 1
   m_ClearDepth: 1
   m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
@@ -2843,6 +2843,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3085997580443032867}
     m_Modifications:
+    - target: {fileID: 665555728631948745, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+      propertyPath: m_Intensity
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864590559140632169, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
+      propertyPath: rm
+      value: 
+      objectReference: {fileID: 3930936816685424033}
     - target: {fileID: 6262694501724369284, guid: 80715cfbd2de50c4c847bd3087d1e946, type: 3}
       propertyPath: m_RootOrder
       value: 2
