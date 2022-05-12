@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 public class Generator : MonoBehaviour{
-	//Whether or not the fuel is on.
+	//Whether or not the generator is on.
 	[SerializeField] private bool isOn;
 	
 	//Fuel
@@ -25,6 +25,15 @@ public class Generator : MonoBehaviour{
 		fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
 		isOn = true;
 		fuel = maxFuel;
+	}
+
+	private void GetLights(){
+		for(int i = 0; i < transform.childCount; i++){
+			Light comp = transform.GetChild(i).gameObject.GetComponent<Light>();
+			if(comp != null){
+				
+			}
+		}
 	}
 
 	private void Update(){
