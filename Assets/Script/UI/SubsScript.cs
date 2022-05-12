@@ -10,6 +10,7 @@ public class SubsScript : MonoBehaviour{
 	public bool flashLightLine;
 	public bool craftingTableLine;
     private bool firstScrapPickedUp; //används i SPU_SimonProtype.
+    private bool firstBatteryPickedUp;
     private bool generatorBrokeFirstTime;
     private bool coroutineRunning;
     private int timeToShowText = 3;
@@ -77,6 +78,14 @@ public class SubsScript : MonoBehaviour{
     public void SetFirstScrapPickUp(bool boolean)
     {
         firstScrapPickedUp = boolean;
+    }
+    public bool GetFirstBatteryPickUp()
+    {
+        return firstBatteryPickedUp;
+    }
+    public void SetFirstBatteryPickUp(bool boolean)
+    {
+        firstBatteryPickedUp = boolean;
     }
 
     public void SetGeneratorBreakFirstTime(bool boolean)

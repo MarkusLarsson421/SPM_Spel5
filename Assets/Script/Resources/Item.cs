@@ -47,14 +47,16 @@ public class Item : MonoBehaviour{
         {
 			case ResourceManager.ItemType.Ammo:
 				ammoPool.ReturnToPool(apu);
-				break;
+                //ss.SetFirstScrapPickUp(true);
+                break;
 			case ResourceManager.ItemType.Scrap:
 				scrapPool.ReturnToPool(spu);
 				ss.SetFirstScrapPickUp(true);
 				break;
 			case ResourceManager.ItemType.Battery:
 				batteryPool.ReturnToPool(bpu);
-				break;
+                ss.SetFirstBatteryPickUp(true);
+                break;
 				
         }
 		//Debug.Log("Playyhada");
