@@ -98,11 +98,11 @@ public class CraftingSystem : MonoBehaviour
         if(isToggled && !buttonsEnabled)
         {
             currentCanvas = GameObject.FindGameObjectWithTag(currentPlayerTag).GetComponentInChildren<Canvas>();
-            GameObject yes = currentCanvas.gameObject.transform.Find("CraftingTable").gameObject;
-            yes.SetActive(true);
-            yes.gameObject.transform.Find("DamageUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
-            yes.gameObject.transform.Find("fireRateUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
-            yes.gameObject.transform.Find("MagazineUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
+            GameObject craftingButtons = currentCanvas.gameObject.transform.Find("CraftingTable").gameObject;
+            craftingButtons.SetActive(true);
+            craftingButtons.gameObject.transform.Find("DamageUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
+            craftingButtons.gameObject.transform.Find("fireRateUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
+            craftingButtons.gameObject.transform.Find("MagazineUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
             buttonsEnabled = true;
             
         }
@@ -115,7 +115,6 @@ public class CraftingSystem : MonoBehaviour
                 ToggleCraftingBench();
             }
         }
-   
         
      }
 
