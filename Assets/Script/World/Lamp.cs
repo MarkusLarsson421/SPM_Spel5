@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
+using LightType = UnityEngine.LightType;
 
 /**
  * @Author Markus Larsson
@@ -34,16 +36,11 @@ public class Lamp : MonoBehaviour{
 		//Reference to render.
 		meshRenderer = GetComponent<Renderer>();
 
-		//Set the inspector state to the current state.
-		SetState(isOn);
-
-		int index = 0;
+		lights = new Light[transform.childCount];
 		for(int i = 0; i < transform.childCount; i++){
-			Light comp = transform.GetChild(i).gameObject.GetComponent<Light>();
+			Light comp = transform.GetChild(i).GetComponent<Light>();
 			if(comp != null){
-				lights = new Light[index + 1];
-				lights[index] = comp;
-				index++;
+				lights[i] = comp;
 			}
 		}
 
@@ -52,6 +49,9 @@ public class Lamp : MonoBehaviour{
 				name + " has no children with light objects. Did you put this script on the light source? \n" + 
 				"This object needs children with light objects.");
 		}
+		
+		//Set the inspector state to the current state.
+		SetState(isOn);
 	}
 
 	private void Update(){
@@ -74,9 +74,6 @@ public class Lamp : MonoBehaviour{
 	 * @param State the desired state of the light.
 	 */
 	public void SetState(bool desiredState){
-		if(desiredState && isOn){
-			return;
-		}
 		if(desiredState){
 			TurnOn();
 		} else{
@@ -90,7 +87,7 @@ public class Lamp : MonoBehaviour{
 	public void TurnOn(){
 		isOn = true;
 		
-		SetChildState(isOn);
+		SetChildState(true);
 		ChangeColour(true);
 	}
 	
@@ -100,7 +97,7 @@ public class Lamp : MonoBehaviour{
 	public void TurnOff(){
 		isOn = false;
 
-		SetChildState(isOn);
+		SetChildState(false);
 		ChangeColour(false);
 	}
 
@@ -127,16 +124,11 @@ public class Lamp : MonoBehaviour{
 	 */
 	private void SetChildState(bool desiredState)
 	{
-		if (lights == null)
-		{
-			return;
-		}
 		foreach(Light l in lights){
-			if (l == null)
+			if (l != null)
 			{
-				continue;
+				l.enabled = desiredState;
 			}
-			l.enabled = desiredState;
 		}
 	}
 
