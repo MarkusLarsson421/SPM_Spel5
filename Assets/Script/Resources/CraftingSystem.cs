@@ -158,8 +158,6 @@ public class CraftingSystem : MonoBehaviour
         }
         else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 2)
         {
-
-
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -2);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -2);
             inter.interactingGameObject.GetComponentInChildren<Weapon>().SetDamage(35);
@@ -167,8 +165,6 @@ public class CraftingSystem : MonoBehaviour
             damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
             UpdateInfoText("GotUpgrade");
             Debug.Log("GOT UPGRADE");
-
-
         }
         else
         {
