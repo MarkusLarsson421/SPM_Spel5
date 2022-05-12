@@ -32,11 +32,18 @@ public class AttackNode : Node
         Quaternion rotation = Quaternion.LookRotation(currentDirection, Vector3.up);
         ai.transform.rotation = rotation;
         PlayerStats playerStats = player.GetComponent<PlayerStats>();
-        //@Martin Nyman Här !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // "ai" är GameObject som du kan referera till om du behöver
+
+        //@Martin Nyman Animation här
+        AttackAnimation();
+
         playerStats.HitByZombie();
         return NodeState.RUNNING;
     }
 
+    private void AttackAnimation()
+    {
+        Animator anim = ai.GetComponent<Animator>();
+        anim.SetTrigger("Attack");
+    }
 
 }

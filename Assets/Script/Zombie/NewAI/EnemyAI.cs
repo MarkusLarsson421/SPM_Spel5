@@ -38,6 +38,8 @@ public class EnemyAI : MonoBehaviour
 
     private Node topNode;
 
+    [SerializeField] Animator anim;
+
 
     private void Awake()
     {
