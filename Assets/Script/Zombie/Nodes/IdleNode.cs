@@ -19,8 +19,7 @@ public class IdleNode : Node
     {
         if (!agent.isStopped)
         {
-            //@Martin Nyman Här !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            // "ai" är GameObject som du kan referera till om du behöver
+            //IdleAnimation();
 
             return NodeState.RUNNING;
 
@@ -32,4 +31,11 @@ public class IdleNode : Node
         }
 
     }
+    /*
+    private void IdleAnimation()
+    {
+        Animator anim = ai.GetComponent<Animator>();
+        anim.SetTrigger("Idle");
+    }
+    */
 }
