@@ -110,17 +110,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03931fc09c6d1640b7e2f06a9b27384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 0
-  fuel: 10
-  maxFuel: 100
+  isOn: 1
+  fuel: 100
   fuelDrainMultiplier: 1
   fuelIndicatorColours:
   - {r: 0.015686274, g: 1, b: 0.08499534, a: 0}
   - {r: 1, g: 0.9878479, b: 0, a: 0}
   - {r: 1, g: 0, b: 0, a: 0}
-  lights: []
   doors: []
-  emergencyLights: []
+  highPowerLights: []
+  lowPowerLights: []
 --- !u!114 &1719810379302933031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +144,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 100
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1719810379302933032}
+        m_TargetAssemblyTypeName: Generator, Assembly-CSharp
+        m_MethodName: OpenDoors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -195,8 +206,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.7372549, g: 0.6813323, b: 0, a: 1}
-  m_Intensity: 0.5
-  m_Range: 0.1
+  m_Intensity: 10
+  m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 30
   m_CookieSize: 10
