@@ -12,6 +12,8 @@ public class Item : MonoBehaviour{
 	public SubsScript ss;
 	private ScrapPool scrapPool;
 	private BatteryPool batteryPool;
+    private static bool doOnce1 = true;
+    private static bool doOnce2 = true;
 
 	private bool isPickedUp;
 
@@ -52,11 +54,20 @@ public class Item : MonoBehaviour{
                 break;
 			case ResourceManager.ItemType.Scrap:
 				scrapPool.ReturnToPool(spu);
-				ss.SetFirstScrapPickUp(true);
+                if (doOnce1)
+                {
+                    Debug.Log(doOnce1);
+                    ss.SetFirstScrapPickUp(true);
+                    doOnce1 = false;
+                }
+				
 				break;
 			case ResourceManager.ItemType.Battery:
 				batteryPool.ReturnToPool(bpu);
-                ss.SetFirstBatteryPickUp(true);
+                if (doOnce2)
+                {
+                    ss.SetFirstBatteryPickUp(true);
+                }
                 break;
 				
         }
