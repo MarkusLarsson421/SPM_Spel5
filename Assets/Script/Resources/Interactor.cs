@@ -99,7 +99,6 @@ public class Interactor : MonoBehaviour
                         interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
 
                     }
-
                     if (interactable.gameObject.tag.Equals("Battery"))
                     {
                         interactable.gameObject.GetComponent<BPU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
