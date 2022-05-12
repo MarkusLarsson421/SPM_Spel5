@@ -224,27 +224,6 @@ public class CraftingSystem : MonoBehaviour
         }
         
     }
-    /*
-    private void toggleButtons()
-    {
-       
-        if (!isToggled)
-        {
-            cancelButton.SetActive(true);
-            damageUpgrade.SetActive(true);
-            magazineUpgrade.SetActive(true);
-            flashlightUpgrade.SetActive(true);
-            
-        }
-        else
-        {
-            damageUpgrade.SetActive(false);
-            magazineUpgrade.SetActive(false);
-            flashlightUpgrade.SetActive(false);
-            cancelButton.SetActive(false);
-        }
-    }
-    */
 
     private void UpdateInfoText(string s)
     {
