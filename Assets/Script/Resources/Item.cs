@@ -55,7 +55,6 @@ public class Item : MonoBehaviour{
 				ss.SetFirstScrapPickUp(true);
 				break;
 			case ResourceManager.ItemType.Battery:
-                Debug.Log("HADA");
 				batteryPool.ReturnToPool(bpu);
                 ss.SetFirstBatteryPickUp(true);
                 break;
