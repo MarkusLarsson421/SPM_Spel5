@@ -9,11 +9,14 @@ public class Item : MonoBehaviour{
 	private APU_SimonPrototype apu;
 	private BPU_SimonPrototype bpu;
 	private SPU_SimonPrototype spu;
-	//public SubsScript ss;
+	public SubsScript ss;
 	private ScrapPool scrapPool;
 	private BatteryPool batteryPool;
+    private static bool doOnce1 = true;
+    private static bool doOnce2 = true;
 
 	private bool isPickedUp;
+
     private void Start()
     {
 		ammoPool = GameObject.Find("AmmoPool").GetComponent<AmmoPool>();
@@ -47,14 +50,26 @@ public class Item : MonoBehaviour{
         {
 			case ResourceManager.ItemType.Ammo:
 				ammoPool.ReturnToPool(apu);
-				break;
+                //ss.SetFirstScrapPickUp(true);
+                break;
 			case ResourceManager.ItemType.Scrap:
 				scrapPool.ReturnToPool(spu);
-				//ss.GetFirstScrapPickUp();
+                if (doOnce1)
+                {
+                    Debug.Log(doOnce1);
+                    ss.SetFirstScrapPickUp(true);
+                    doOnce1 = false;
+                }
+				
 				break;
 			case ResourceManager.ItemType.Battery:
 				batteryPool.ReturnToPool(bpu);
-				break;
+                if (doOnce2)
+                {
+                    ss.SetFirstBatteryPickUp(true);
+                    doOnce2 = false;
+                }
+                break;
 				
         }
 		//Debug.Log("Playyhada");

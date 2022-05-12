@@ -29,6 +29,9 @@ public class APU_SimonPrototype : MonoBehaviour
     {
         AmmoLimitReached();
         AddAmmo();
+       
+
+
     }
 
     private void AddAmmo()

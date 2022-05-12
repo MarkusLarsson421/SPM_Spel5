@@ -90,7 +90,7 @@ public class Interactor : MonoBehaviour
                     //Experiment
                     if(interactable.gameObject.tag.Equals("CraftingTable"))
                     {
-                        interactable.gameObject.GetComponent<CraftingSystem>().playah = this.transform.parent.tag;
+                        interactable.gameObject.GetComponent<CraftingSystem>().currentPlayerTag = this.transform.parent.tag;
                     }
                     
                     if(interactable.gameObject.tag.Equals("Ammo"))
@@ -99,7 +99,6 @@ public class Interactor : MonoBehaviour
                         interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
 
                     }
-
                     if (interactable.gameObject.tag.Equals("Battery"))
                     {
                         interactable.gameObject.GetComponent<BPU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
@@ -109,6 +108,11 @@ public class Interactor : MonoBehaviour
                     if (interactable.gameObject.tag.Equals("Scrap"))
                     {
                         interactable.gameObject.GetComponent<SPU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
+                        interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
+                    }
+                    if (interactable.gameObject.tag.Equals("Car"))
+                    {
+                        interactable.gameObject.GetComponent<WinGame_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
                         interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
                     }
 

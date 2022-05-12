@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Generator : MonoBehaviour{
-	private const int maxFuel = 100;
+	private const int maxFuel = 1;
 	
 	//Whether or not the generator is on.
 	[SerializeField] private bool isOn;
@@ -15,9 +15,11 @@ public class Generator : MonoBehaviour{
 	[SerializeField] private Color[] fuelIndicatorColours;
 
 	[Header("Generator interactions")]
-	[SerializeField] private GameObject[] lights;
-	[SerializeField] private Door[] doors;
-	[SerializeField] private GameObject[] emergencyLights;
+	[SerializeField] private GameObject[] doors;
+	[Tooltip("Normal powered state of the generator and its components.")]
+	[SerializeField] private GameObject[] highPowerLights;
+	[Tooltip("Powered objects when the power is turned off. Such as emergency lights.")]
+	[SerializeField] private GameObject[] lowPowerLights;
 
 	private Light fuelIndicator;
 
@@ -55,13 +57,15 @@ public class Generator : MonoBehaviour{
 		if(fuel <= 0){return;}
 		isOn = true;
 		SetLightState(true);
-		SetDoorState(true);
 	}
 	
 	public void TurnOff(){
 		isOn = false;
 		SetLightState(false);
-		SetDoorState(false);
+	}
+
+	public void OpenDoors(){
+		SetDoorState(true);
 	}
 
 	/**
@@ -101,29 +105,24 @@ public class Generator : MonoBehaviour{
 	 * @Author Martin Wallmark and Markus Larsson
 	 */
 	private void SetLightState(bool desiredState){
-		foreach(GameObject go in lights){
+		foreach(GameObject go in highPowerLights){
 			go.GetComponent<Lamp>().SetState(desiredState);
+		}
+
+		foreach(GameObject go in lowPowerLights){
+			go.GetComponent<Lamp>().SetState(!desiredState);
 		}
 	}
 	
 	/*
-	 * @Author Markus Larsson
-	 */
-	/*private void SetEmergencyLightState(bool desiredState){
-		foreach(GameObject go in lights){
-			go.GetComponent<Lamp>().SetState(desiredState);
-		}
-	}*/
-
-	/*
-	 * Tells the door to either open or close depending on the parameter.
+	 * Tells the doors to either open or close.
 	 *
 	 * @Param desiredState What state the door is desired to be in.
 	 * @Author Martin Wallmark and Markus Larsson
 	 */
 	private void SetDoorState(bool desiredState){
-		foreach(Door door in doors){
-			door.SetState(desiredState);
+		foreach(GameObject go in doors){
+			go.GetComponent<Door>().SetState(desiredState);
 		}
 	}
 
@@ -140,9 +139,6 @@ public class Generator : MonoBehaviour{
 	}
 
 	private void OnValidate(){
-		if(fuel <= 0){
-			isOn = false;
-		}
-		SetState(isOn);
+		Start();
 	}
 }

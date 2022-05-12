@@ -13,8 +13,14 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private Transform playerOneSpawnPoint;
     [SerializeField] private Transform playerTwoSpawnPoint;
     [SerializeField] private PlayerInputManager playerInputManager;
+    [SerializeField] private GameObject player1Prefab;
+    [SerializeField] private GameObject player2Prefab;
     public bool playerHasJoined = false;
-    
+
+    private void Start()
+    {
+        playerInputManager.playerPrefab = player1Prefab;
+    }
     //Metoden används av inputsystemet för att spawna in en spelare när den tar emot input från spelarens handkontroller/tangentbord
     public void OnPlayerJoined(PlayerInput playerInput)
     {
@@ -25,11 +31,14 @@ public class PlayerSpawnManager : MonoBehaviour
         if(playerInput.gameObject.GetComponent<PlayerStartInfo>().playerID == 1)
         {
             playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerOneSpawnPoint.position;
+            playerInputManager.playerPrefab = player1Prefab;
             playerInput.gameObject.tag = "Player1";
+            playerInputManager.playerPrefab = player2Prefab;
         }
         else
         {
             playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerTwoSpawnPoint.position;
+            //playerInputManager.playerPrefab = player2Prefab;
             playerInput.gameObject.tag = "Player2";
         }
         SetPlayerSensitivity(playerInput);

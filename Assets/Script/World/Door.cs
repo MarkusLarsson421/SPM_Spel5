@@ -53,7 +53,8 @@ public class Door : MonoBehaviour{
 		isOpen = false;
 		foreach(Animator a in ani)
 		{
-			a.SetBool("isOpen", false);
+            if(a!= null)
+			    a.SetBool("isOpen", false);
 		}
 	}
 

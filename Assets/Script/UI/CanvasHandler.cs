@@ -10,6 +10,8 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     [SerializeField] private GameObject CanvasObject;
     [SerializeField] private GameObject deathCanvasObject;
     [SerializeField] private GameObject tookDamgeCanvasObject;
+    [SerializeField] private GameObject popOutTextCanvas;
+    [SerializeField] private TextMeshProUGUI nearCarText;
     [SerializeField] private int sceneToIndex;
     static private int MainMenuSceneIsIndex = 0;
     [SerializeField] private CanvasGroup tookDamgeCanvas;
@@ -95,6 +97,17 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     public void UpdatePlayerStats(int playerHealth)
     {
         playerHealthText.text = playerHealth.ToString();
+    }
+    float timer = 0;
+    public void showPopOutText(string text)
+    {
+        popOutTextCanvas.SetActive(true);
+        nearCarText.text = text;
+        timer += Time.deltaTime;
+        if(timer >= 3)
+        {
+            popOutTextCanvas.SetActive(false);
+        }
     }
 
 }

@@ -55,4 +55,10 @@ namespace EventCallbacks
         public GameObject zombie;
         public BatteryObjectPooled bPool;
     }
+
+    public class PlayeIsNearTheCarEvent : Event
+    {
+        public GameObject zombie;
+        public BatteryObjectPooled bPool;
+    }
 }
