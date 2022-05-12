@@ -17,9 +17,14 @@ public class GeneratorBreakerFirstTIme : MonoBehaviour
         
     }
 
-    void OnTriggerEnter()
+    private void OnCollisionEnter(Collision collision)
     {
-        ss.SetGeneratorBreakFirstTime(true);
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "Player1" || collision.gameObject.tag == "Player2")
+        {
+            Debug.Log("triggar?");
+            ss.SetGeneratorBreakFirstTime(true);
+            Destroy(gameObject);
+        }
+        
     }
 }

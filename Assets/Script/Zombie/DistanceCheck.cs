@@ -10,7 +10,7 @@ public class DistanceCheck : MonoBehaviour
     GameObject player1, player2;
     private ZombieObjectPooled spawner;
     private PlayerSpawnManager pSpawner;
-    private float distaneFromSpawner = 40.0f;
+    private float distaneFromSpawner = 50.0f;
 
     void Start()
     {
@@ -52,7 +52,7 @@ public class DistanceCheck : MonoBehaviour
         if(dist1 <= distaneFromSpawner || dist2 <= distaneFromSpawner)
         {
             spawner.SetAbleToSpawnFalse();
-            Debug.Log("borde vara false");
+            Debug.Log(dist1);
         }
         else
         {

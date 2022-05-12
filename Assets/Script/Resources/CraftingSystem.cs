@@ -11,6 +11,7 @@ using UnityEngine.EventSystems;
 public class CraftingSystem : MonoBehaviour
 {
     public ResourceManager rm;
+
     [SerializeField] private int scrapAmountNeeded;
     [SerializeField] private GameObject canvas;
     [SerializeField] private Font font;
@@ -19,7 +20,7 @@ public class CraftingSystem : MonoBehaviour
     //Används för att kunna identifiera vilken spelare det är som interagerar med craftingbordet
     [SerializeField] private Interactable inter; 
 
-    [SerializeField] public string playah;
+    [SerializeField] public string currentPlayerTag;
     private Text infoText;
     private bool isToggled;
 
@@ -27,8 +28,6 @@ public class CraftingSystem : MonoBehaviour
     private List<string> damageUpgradedPlayers = new List<string>();
     private List<string> MagazineUpgradedPlayers = new List<string>();
     private List<string> flashLightUpgradedPlayers = new List<string>();
-
-    private Dictionary<string, string> upgradedPlayers = new Dictionary<string, string>();
 
     private Canvas currentCanvas;
     private GameObject damageUpgrade;
@@ -71,7 +70,7 @@ public class CraftingSystem : MonoBehaviour
         
     }
 
-    private void Update()
+     void Update()
     {
         
         if (isShowingInfoText)
@@ -85,11 +84,11 @@ public class CraftingSystem : MonoBehaviour
                 textTimer = 0;
             }
         }
-        //Experiment!
         
-        if(!isToggled && playah != null)
+        
+        if(!isToggled && currentPlayerTag != null)
         {
-            playah = null;
+            currentPlayerTag = null;
             currentCanvas.gameObject.transform.Find("CraftingTable").gameObject.SetActive(false);
             currentCanvas = null;
             buttonsEnabled = false;
@@ -98,16 +97,27 @@ public class CraftingSystem : MonoBehaviour
 
         if(isToggled && !buttonsEnabled)
         {
-            currentCanvas = GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<Canvas>();
+            currentCanvas = GameObject.FindGameObjectWithTag(currentPlayerTag).GetComponentInChildren<Canvas>();
             GameObject yes = currentCanvas.gameObject.transform.Find("CraftingTable").gameObject;
             yes.SetActive(true);
             yes.gameObject.transform.Find("DamageUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
             yes.gameObject.transform.Find("fireRateUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
             yes.gameObject.transform.Find("MagazineUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
             buttonsEnabled = true;
+            
         }
+
+        if (isToggled)
+        {
+            float distance = Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag(currentPlayerTag).transform.position);
+            if(distance > 2)
+            {
+                ToggleCraftingBench();
+            }
+        }
+   
         
-    }
+     }
 
     public void ToggleCraftingBench()
     {
@@ -120,16 +130,8 @@ public class CraftingSystem : MonoBehaviour
             isToggled = true;
             infoText.enabled = true;
             eventSystem.SetSelectedGameObject(cancelButton);
-            Debug.Log(damageUpgradedPlayers.Count);
-
-            if (hasFlashlightUpgrade && hasMagazineSizeUpgrade && hasUpgradedDamage)
-            {
-                infoText.text = "No more upgrades available :(";
-            }
-            else
-            {
-                infoText.text = "Craft here! \n" + "Upgrade damage: 2 Batteries, 2 Scraps \n" + "Upgrade magazine: 1 Battery, 3 Scraps \n" + "Upgrade flashlight: 3 Batteries, 1 Scrap";
-            }
+            infoText.text = "Craft here! \n" + "Upgrade damage: 2 Batteries, 2 Scraps \n" + "Upgrade magazine: 1 Battery, 3 Scraps \n" + "Upgrade flashlight: 3 Batteries, 1 Scrap";
+            
         }
         else
         {
@@ -142,42 +144,38 @@ public class CraftingSystem : MonoBehaviour
             
             Cursor.lockState = CursorLockMode.Locked;
         }
-        Debug.Log(playah + "is here");
+        Debug.Log(currentPlayerTag + "is here");
         
     }
     public void DamageUpgrade()
     {
-        int counter = 0;
-        if (counter <= 1)
+
+        currentPlayerTag = inter.interactingGameObject.transform.parent.tag;
+        if (damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
         {
-            playah = inter.interactingGameObject.transform.parent.tag;
-            if (damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
-            {
-                Debug.Log("You already have this upgrade!");
-                UpdateInfoText("AlreadyHasUpgrade");
-            }
-            else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 2)
-            {
-                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -2);
-                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -2);
-                inter.interactingGameObject.GetComponentInChildren<Weapon>().SetDamage(35);
-                damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
-                UpdateInfoText("GotUpgrade");
-                Debug.Log("GOT UPGRADE");
-
-
-            }
-            else
-            {
-                Debug.Log("Too few batteries pal");
-                Debug.Log(inter.interactingGameObject.transform.parent.tag);
-                UpdateInfoText("NotEnoughItems");
-            }
-            counter++;
+            Debug.Log("You already have this upgrade!");
+            UpdateInfoText("AlreadyHasUpgrade");
         }
-       
-        
+        else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 2)
+        {
 
+
+            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -2);
+            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -2);
+            inter.interactingGameObject.GetComponentInChildren<Weapon>().SetDamage(35);
+
+            damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
+            UpdateInfoText("GotUpgrade");
+            Debug.Log("GOT UPGRADE");
+
+
+        }
+        else
+        {
+            Debug.Log("Too few batteries pal");
+            Debug.Log(inter.interactingGameObject.transform.parent.tag);
+            UpdateInfoText("NotEnoughItems");
+        }
 
 
     }
@@ -226,7 +224,7 @@ public class CraftingSystem : MonoBehaviour
         }
         
     }
-
+    /*
     private void toggleButtons()
     {
        
@@ -246,6 +244,7 @@ public class CraftingSystem : MonoBehaviour
             cancelButton.SetActive(false);
         }
     }
+    */
 
     private void UpdateInfoText(string s)
     {
