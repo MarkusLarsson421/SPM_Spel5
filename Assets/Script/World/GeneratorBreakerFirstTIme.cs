@@ -1,29 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GeneratorBreakerFirstTIme : MonoBehaviour
 {
-    public SubsScript ss;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private SubsScript ss;
+	[SerializeField] private Generator gen;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
-    private void OnCollisionEnter(Collision collision)
+	private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player1" || collision.gameObject.tag == "Player2")
         {
             Debug.Log("triggar?");
             ss.SetGeneratorBreakFirstTime(true);
+			gen.GetComponent<Generator>().SetFuel(0.0f);
             Destroy(gameObject);
         }
         

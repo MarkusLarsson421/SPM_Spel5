@@ -41,7 +41,7 @@ public class Generator : MonoBehaviour{
 			amount = maxFuel - fuel;
 		}
 		fuel += amount;
-		ToggleGenerator();
+		TurnOn();
 	}
 	
 	public void SetState(bool desiredState){
@@ -65,6 +65,10 @@ public class Generator : MonoBehaviour{
 
 	public void OpenDoors(){
 		SetDoorState(true);
+	}
+
+	public void SetFuel(float fuel){
+		this.fuel = fuel;
 	}
 
 	/**
