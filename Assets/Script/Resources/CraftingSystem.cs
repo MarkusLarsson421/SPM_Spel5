@@ -110,7 +110,7 @@ public class CraftingSystem : MonoBehaviour
         if (isToggled)
         {
             float distance = Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag(currentPlayerTag).transform.position);
-            if(distance > 2)
+            if(distance > 3)
             {
                 ToggleCraftingBench();
             }
