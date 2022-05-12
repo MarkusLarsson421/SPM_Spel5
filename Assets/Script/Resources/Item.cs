@@ -67,6 +67,7 @@ public class Item : MonoBehaviour{
                 if (doOnce2)
                 {
                     ss.SetFirstBatteryPickUp(true);
+                    doOnce2 = false;
                 }
                 break;
 				

@@ -4,7 +4,7 @@ public class BPU_SimonPrototype : MonoBehaviour
 {
     public ResourceManager rm;
     public SubsScript ss;
-    private int maxBatteries = 5;
+    private int maxBatteries = 1;
     
     public void PickUpBatteries()
     {
