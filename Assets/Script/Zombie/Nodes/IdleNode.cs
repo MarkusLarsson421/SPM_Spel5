@@ -19,7 +19,7 @@ public class IdleNode : Node
     {
         if (!agent.isStopped)
         {
-            //IdleAnimation();
+            IdleAnimation();
 
             return NodeState.RUNNING;
 
@@ -31,11 +31,9 @@ public class IdleNode : Node
         }
 
     }
-    /*
     private void IdleAnimation()
     {
         Animator anim = ai.GetComponent<Animator>();
         anim.SetTrigger("Idle");
     }
-    */
 }
