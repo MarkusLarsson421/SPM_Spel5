@@ -9,14 +9,10 @@ public class FlashLight : MonoBehaviour{
     [SerializeField] private double batteryDrainMultiplier = 0.1;
 
     private Light flashLight;
-    private float switchTimer;
     private bool isOn;
-    private bool isToggled;
-    private bool canSwitch;
 
     private void Start()
     {
-        //gameObject.SetActive(false);
         flashLight = GetComponent<Light>();
     }
 
@@ -24,22 +20,9 @@ public class FlashLight : MonoBehaviour{
     {
         batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
 
-        if (batteryCharge == 0 && isOn)
+        if (isOn && batteryCharge == 0)
         {
             SetState(false);
-        }
-
-
-        switchTimer += Time.deltaTime;
-
-        if (switchTimer >= 0.2f)
-        {
-            canSwitch = true;
-        }
-
-        if (canSwitch)
-        {
-            UserInput();
         }
     }
 
@@ -47,12 +30,7 @@ public class FlashLight : MonoBehaviour{
     {
         if (context.performed)
         {
-            isToggled = true;
-        }
-
-        if (context.canceled)
-        {
-            isToggled = false;
+            Toggle();
         }
     }
 
@@ -61,24 +39,20 @@ public class FlashLight : MonoBehaviour{
         batteryDrainMultiplier = nDrainMultiplier;
     }
 
-
-    /**
-     * @Author Markus Larsson
-     */
-    private void UserInput()
+    public void TurnOn()
     {
-        if (isToggled || Input.GetKeyDown(KeyCode.F))
+        if (batteryCharge <= 0)
         {
-            Toggle();
+            return;
         }
+        isOn = true;
+        flashLight.enabled = true;
+    }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Recharge();
-        }
-
-        canSwitch = false;
-        switchTimer = 0;
+    public void TurnOff()
+    {
+        isOn = false;
+        flashLight.enabled = false;
     }
 
     /**
@@ -86,21 +60,13 @@ public class FlashLight : MonoBehaviour{
 	 */
     private void SetState(bool desiredState)
     {
-        if (desiredState && batteryCharge > 0)
+        if (desiredState)
         {
-            //Turn on flash light (if it has battery)
-            //gameObject.SetActive(true);
-            isOn = true;
-            flashLight.intensity = 200;
-            Debug.Log("on");
+            TurnOn();
         }
         else
         {
-            //Turn off flash light.
-            //gameObject.SetActive(false);
-            Debug.Log("off");
-            flashLight.intensity = 0;
-            isOn = false;
+            TurnOff();
         }
     }
 
@@ -119,10 +85,5 @@ public class FlashLight : MonoBehaviour{
             rm.Offset(ResourceManager.ItemType.Battery, -1);
 			batteryCharge = maxBatteryCharge;
 		}
-    }
-
-	public void setFlashLightColor(float red, float green, float blue)
-    {
-        flashLight.color = new Color(red, green, blue);
     }
 }

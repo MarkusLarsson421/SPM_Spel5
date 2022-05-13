@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour {
 	//Shooting
 	[SerializeField] private int damage = 20;
 	[SerializeField] private float range = 100.0f;
+	[Tooltip("Rounds per second.")]
 	[SerializeField] private float fireRate = 5.0f;
 	private float nextTimeToFire;
 
@@ -17,10 +18,6 @@ public class Weapon : MonoBehaviour {
 	private bool isReloading;
 
 	private bool isFiring;
-	private bool isReloadPressed;
-	private bool canFire = true;
-
-	private float timer;
 
 	private ParticleSystem muzzleFlash;
 	
@@ -37,8 +34,9 @@ public class Weapon : MonoBehaviour {
 	 */
 	public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed && !isReloading && currentMag > 0 /*&& /*canFire*/)
+        if (context.performed && Time.time >= nextTimeToFire && isReloading == false && currentMag > 0)
         {
+	        nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
         }
 
@@ -49,14 +47,15 @@ public class Weapon : MonoBehaviour {
 	 */
 	public void OnReload(InputAction.CallbackContext context)
     {
-		if (context.performed){
-			isReloadPressed = true;
+		if (context.performed && isReloading == false && rm.Get(ResourceManager.ItemType.Ammo) != 0){
+			isReloading = true;
 			StartCoroutine(Reload());
+
 		}
 
 		if (context.canceled)
 		{
-			isReloadPressed = false;
+			isReloading = false;
 		}
 	}
 
@@ -68,16 +67,13 @@ public class Weapon : MonoBehaviour {
 		if (isFiring || Input.GetKeyDown(KeyCode.Mouse1) && Time.time >= nextTimeToFire && !isReloading && currentMag > 0){
 			nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
-			canFire = false;
-			
 		}
-		else if(isReloadPressed || Input.GetKeyDown(KeyCode.R) && !isReloading){
+		else if(Input.GetKeyDown(KeyCode.R) && !isReloading){
 			if(rm.Get(ResourceManager.ItemType.Ammo) != 0)
 			{
 				StartCoroutine(Reload());
 			}
 		}
-		timer = 0;
 	}
 
 	/**
