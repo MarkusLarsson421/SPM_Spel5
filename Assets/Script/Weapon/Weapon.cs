@@ -11,9 +11,9 @@ public class Weapon : MonoBehaviour {
 	private float nextTimeToFire;
 
 	//Ammo
-	[SerializeField] private int magCapacity = 8;
 	[SerializeField] private float reloadTime = 2.0f;
 	[SerializeField] private ResourceManager rm;
+	private int magCapacity = 8;
 	private int currentMag;
 	private bool isReloading;
 
@@ -48,9 +48,7 @@ public class Weapon : MonoBehaviour {
 	public void OnReload(InputAction.CallbackContext context)
     {
 		if (context.performed && isReloading == false && rm.Get(ResourceManager.ItemType.Ammo) != 0){
-			isReloading = true;
 			StartCoroutine(Reload());
-
 		}
 
 		if (context.canceled)
@@ -93,6 +91,11 @@ public class Weapon : MonoBehaviour {
 			if(target != null){
 				target.TakeDamage(damage);
 			}
+		}
+
+		if (currentMag <= 0)
+		{
+			Reload();
 		}
 	}
 

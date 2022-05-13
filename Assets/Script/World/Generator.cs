@@ -25,7 +25,7 @@ public class Generator : MonoBehaviour{
 
 	private void Start(){
 		fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
-		fuel = maxFuel;
+		SetState(isOn);
 	}
 
 	private void Update(){
@@ -56,11 +56,13 @@ public class Generator : MonoBehaviour{
 		if(fuel <= 0){return;}
 		isOn = true;
 		SetLightState(true);
+		fuelIndicator.enabled = true;
 	}
 	
 	public void TurnOff(){
 		isOn = false;
 		SetLightState(false);
+		fuelIndicator.enabled = false;
 	}
 
 	public void OpenDoors(){
@@ -86,14 +88,17 @@ public class Generator : MonoBehaviour{
 		}
 	}
 
+	/**
+	 * @Author Markus Larsson
+	 */
 	private void FuelIndicator(){
 		float fuelRatio = fuel / maxFuel;
-		if(fuelRatio < 0.95f){
-			fuelIndicator.color = fuelIndicatorColours[0];
-		}else if(fuelRatio < 0.5f){
-			fuelIndicator.color = fuelIndicatorColours[1];
-		} else if(fuelRatio < 0.25f){
+		if(fuelRatio < .25f){
 			fuelIndicator.color = fuelIndicatorColours[2];
+		}else if(fuelRatio < .5f){
+			fuelIndicator.color = fuelIndicatorColours[1];
+		} else if(fuelRatio < 1.0f){
+			fuelIndicator.color = fuelIndicatorColours[0];
 		}
 	}
 
@@ -141,7 +146,10 @@ public class Generator : MonoBehaviour{
 		}*/
 	}
 
-	private void OnValidate(){
+	private void OnValidate()
+	{
+		Start();
 		SetState(isOn);
+		FuelIndicator();
 	}
 }

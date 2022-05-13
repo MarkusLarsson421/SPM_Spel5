@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ab29932af0b410441b9b60e2b4b33248, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,14 +112,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOn: 1
   fuel: 100
-  fuelDrainMultiplier: 1
+  fuelDrainMultiplier: 5
   fuelIndicatorColours:
   - {r: 0.015686274, g: 1, b: 0.08499534, a: 0}
   - {r: 1, g: 0.9878479, b: 0, a: 0}
   - {r: 1, g: 0, b: 0, a: 0}
-  doors: []
-  highPowerLights: []
-  lowPowerLights: []
+  doors:
+  - {fileID: 0}
+  - {fileID: 0}
+  highPowerLights:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  lowPowerLights:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1719810379302933031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +227,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  interactIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  interactIcon: {fileID: 0}
   iconSize: {x: 0, y: 0}
   interactingGameObject: {fileID: 0}
   ID: 0
@@ -205,9 +273,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.7372549, g: 0.6813323, b: 0, a: 1}
+  m_Color: {r: 0.015686274, g: 1, b: 0.08499534, a: 0}
   m_Intensity: 10
-  m_Range: 5
+  m_Range: 2
   m_SpotAngle: 30
   m_InnerSpotAngle: 30
   m_CookieSize: 10
