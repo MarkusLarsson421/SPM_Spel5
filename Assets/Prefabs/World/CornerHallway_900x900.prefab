@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 1567064435358040397}
   - component: {fileID: 4025705899723753149}
   - component: {fileID: 5644850085977936017}
-  - component: {fileID: 7300133019949962554}
+  - component: {fileID: 138257122310550945}
   m_Layer: 0
   m_Name: CornerHallwayFloor_900x900
   m_TagString: Untagged
@@ -210,8 +210,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7300133019949962554
-MeshCollider:
+--- !u!65 &138257122310550945
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -220,7 +220,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 220855515510438554, guid: 1d9b87067f65b9645baba4c70b976ce7, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 9, y: 0.5, z: 9}
+  m_Center: {x: 4.5, y: -0.25, z: -4.5}

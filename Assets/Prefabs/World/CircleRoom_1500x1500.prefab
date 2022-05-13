@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 2279396266878332923}
   - component: {fileID: 3511270527181322865}
   - component: {fileID: 7376867738705714133}
-  - component: {fileID: 8498119053759696822}
+  - component: {fileID: 1803092037253151637}
   m_Layer: 0
   m_Name: CircleRoomFloor_900x900
   m_TagString: Untagged
@@ -408,8 +408,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8498119053759696822
-MeshCollider:
+--- !u!65 &1803092037253151637
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -418,10 +418,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3295052905297539583, guid: e7e13da1b43f89548b54ed1e31d59752, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 15, y: 0.5, z: 15}
+  m_Center: {x: 0, y: -0.25, z: -0.00000023841858}
 --- !u!1001 &2846293644174549379
 PrefabInstance:
   m_ObjectHideFlags: 0
