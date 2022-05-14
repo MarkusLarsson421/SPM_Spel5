@@ -98,6 +98,7 @@ public class DynamicMovementController : MonoBehaviour
 
     private void Movement()
     {
+        
         //move = controls.Gameplay.Move.ReadValue<Vector2>();
         if(move.magnitude > smallInput)
         {
@@ -116,6 +117,8 @@ public class DynamicMovementController : MonoBehaviour
                 //print("stahp!");
             }
         }
+        
+        
 
         anim.SetFloat("Speed", move.x);
         anim.SetFloat("Direction", move.y);
