@@ -120,18 +120,18 @@ public class Interactor : MonoBehaviour
                     //Debug.Log("Interact");
                 }
             }
-            else
-            {
-                if (interactImage.sprite != defaultIcon)
-                {
-                    interactImage.sprite = defaultIcon;
-                    interactImage.rectTransform.sizeDelta = defaultIconSize;
-                }
-            }
+            
             
             timer = 0;
         }
-
+        else
+        {
+            if (interactImage.sprite != defaultIcon)
+            {
+                interactImage.sprite = defaultIcon;
+                interactImage.rectTransform.sizeDelta = defaultIconSize;
+            }
+        }
         void ChangeInteractionIcon()
         { //also makes it possible to change the size.
             if (interactable.interactIcon != null)
