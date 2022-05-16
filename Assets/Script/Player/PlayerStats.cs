@@ -76,7 +76,7 @@ public class PlayerStats : MonoBehaviour
             runImage.enabled = false;
             walkImage.enabled = true;
         }
-        else if(stamina > 0 && isRunning)
+        else if(stamina >= 0 && isRunning)
         {
             stamina--;
             runImage.enabled = true;
