@@ -29,7 +29,7 @@ public class UIHandler : MonoBehaviour
 	 */
     private void UpdateBatteryText()
     {
-        batteryText.text ="batteries "+ rm.Get(ResourceManager.ItemType.Battery) + " /"+rm.GetMaxBatteries();
+        batteryText.text = rm.Get(ResourceManager.ItemType.Battery) + " / "+rm.GetMaxBatteries();
     }
     
     /**
@@ -37,6 +37,6 @@ public class UIHandler : MonoBehaviour
 	 */
     private void UpdateScrapsText()
     {
-        scrapText.text = "scraps "+rm.Get(ResourceManager.ItemType.Scrap);
+        scrapText.text = rm.Get(ResourceManager.ItemType.Scrap)+ " scraps";
     }
 }

@@ -31,7 +31,6 @@ public class PlayerSpawnManager : MonoBehaviour
         if(playerInput.gameObject.GetComponent<PlayerStartInfo>().playerID == 1)
         {
             playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerOneSpawnPoint.position;
-            playerInputManager.playerPrefab = player1Prefab;
             playerInput.gameObject.tag = "Player1";
             playerInputManager.playerPrefab = player2Prefab;
         }

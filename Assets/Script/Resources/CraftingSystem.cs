@@ -100,6 +100,7 @@ public class CraftingSystem : MonoBehaviour
             currentCanvas = GameObject.FindGameObjectWithTag(currentPlayerTag).GetComponentInChildren<Canvas>();
             GameObject craftingButtons = currentCanvas.gameObject.transform.Find("CraftingTable").gameObject;
             craftingButtons.SetActive(true);
+            craftingButtons.gameObject.transform.Find("CancelButton").gameObject.GetComponent<Button>().onClick.AddListener(delegate { ToggleCraftingBench(); });
             craftingButtons.gameObject.transform.Find("DamageUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
             craftingButtons.gameObject.transform.Find("fireRateUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
             craftingButtons.gameObject.transform.Find("MagazineUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
@@ -171,6 +172,7 @@ public class CraftingSystem : MonoBehaviour
             Debug.Log(inter.interactingGameObject.transform.parent.tag);
             UpdateInfoText("NotEnoughItems");
         }
+        ToggleCraftingBench();
 
 
     }
@@ -180,6 +182,7 @@ public class CraftingSystem : MonoBehaviour
         //Gör så att vapnets magasin kan ha fler patroner
         if (MagazineUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
         {
+            //ToggleCraftingBench();
             UpdateInfoText("AlreadyHasUpgrade");
         }
         else if (!hasMagazineSizeUpgrade && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 1 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 3)
@@ -188,13 +191,16 @@ public class CraftingSystem : MonoBehaviour
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, 3);
             inter.interactingGameObject.GetComponentInChildren<Weapon>().SetMagCapacity(12);
             MagazineUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
+            //ToggleCraftingBench();
             UpdateInfoText("GotUpgrade");
 
         }
         else
         {
+            //ToggleCraftingBench();
             UpdateInfoText("NotEnoughItems");
         }
+        
     }
 
     public void flashLightUpgrade()
@@ -217,7 +223,8 @@ public class CraftingSystem : MonoBehaviour
         {
             UpdateInfoText("NotEnoughItems");
         }
-        
+        ToggleCraftingBench();
+
     }
 
     private void UpdateInfoText(string s)
