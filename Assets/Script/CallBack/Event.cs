@@ -53,7 +53,6 @@ namespace EventCallbacks
     public class OnZombieDeathEvent : Event
     {
         public GameObject zombie;
-        public BatteryObjectPooled bPool;
     }
 
     public class PlayeIsNearTheCarEvent : Event

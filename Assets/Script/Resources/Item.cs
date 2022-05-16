@@ -60,15 +60,14 @@ public class Item : MonoBehaviour{
                     ss.SetFirstScrapPickUp(true);
                     doOnce1 = false;
                 }
-				
 				break;
 			case ResourceManager.ItemType.Battery:
 				batteryPool.ReturnToPool(bpu);
-                if (doOnce2)
+              /*  if (doOnce2)
                 {
                     ss.SetFirstBatteryPickUp(true);
                     doOnce2 = false;
-                }
+                }*/
                 break;
 				
         }

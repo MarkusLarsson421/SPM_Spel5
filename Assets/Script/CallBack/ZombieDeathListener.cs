@@ -27,19 +27,8 @@ namespace EventCallbacks
         {
             if (battery_dropChance == 100.0f)
             {
-                obj.bPool.SpawnBatteryFromZombie();
-            }
-            else if(range <= scrap_dropChance)
-            {
-                // spawn a dropped item
-            }
-            else
-            {
-                // spawn a dropped item
+                
             }
         }
-
-
-
     }
 }

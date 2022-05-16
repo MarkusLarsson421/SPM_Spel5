@@ -11,6 +11,7 @@ public class BatteryPool : MonoBehaviour
 
     private Queue<BPU_SimonPrototype> batteryContainer = new Queue<BPU_SimonPrototype>();
     public static BatteryPool Instance { get; private set; }
+    
     private void Awake()
     {
         Instance = this;
