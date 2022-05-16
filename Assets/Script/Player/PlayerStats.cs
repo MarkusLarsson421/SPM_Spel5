@@ -13,7 +13,8 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         UpdatePlayerStatsCnvas();
-        staminaSlider.value = stamina;
+        
+        
     }
 
     void Update()
@@ -23,6 +24,7 @@ public class PlayerStats : MonoBehaviour
             health = 0;
             PlayerDeath();
         }
+        staminaSlider.value = stamina;
     }
 
     float Timer = 0;
