@@ -12,7 +12,6 @@ public class BPU_SimonPrototype : MonoBehaviour
         {
             rm.Offset(ResourceManager.ItemType.Battery, 1);
             Debug.Log("mängd batterier " + rm.Get(ResourceManager.ItemType.Battery));
-            Destroy(gameObject);
         }
 
         if (ss.GetFirstBatteryPickUp())
