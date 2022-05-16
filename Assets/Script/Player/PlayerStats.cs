@@ -70,13 +70,13 @@ public class PlayerStats : MonoBehaviour
 
     public void StaminaUpdater(bool isRunning)
     {
-        if(stamina < 100 && !isRunning)
+        if((stamina < 100 && !isRunning) || (stamina <= 0 && isRunning))
         {
             stamina++;
             runImage.enabled = false;
             walkImage.enabled = true;
         }
-        else if(stamina >= 0 && isRunning)
+        else if(stamina > 0 && isRunning)
         {
             stamina--;
             runImage.enabled = true;
