@@ -58,4 +58,21 @@ public class PlayerStats : MonoBehaviour
         EventSystem.Current.FireEvent(playerHealthChange);
     }
 
+    public void StaminaUpdater(bool isRunning)
+    {
+        if(stamina < 100 && !isRunning)
+        {
+            stamina++;
+        }
+        else if(stamina > 0 && isRunning)
+        {
+            stamina--;
+        }
+    }
+
+    public int getStamina()
+    {
+        return stamina;
+    }
+
 }

@@ -8,7 +8,9 @@ public class DynamicMovementController : MonoBehaviour
     // Start is called before the first frame update
     private InputSystem controls;
     [SerializeField] private float speed = 9f;
-    [SerializeField] private float maxSpeed;
+    [SerializeField] private float initialMaxSpeed;
+    [SerializeField] private float sprintMaxSpeed;
+    private float maxSpeed;
     [SerializeField] private float sprintSpeedAddition;
 
     private float acceleration = 2f;
@@ -27,6 +29,7 @@ public class DynamicMovementController : MonoBehaviour
     private float groundCheckDistance = 0.3f;
     private float smallInput = 0.5f;
     private CapsuleCollider collider;
+    private PlayerStats stats;
 
     
 
@@ -47,13 +50,13 @@ public class DynamicMovementController : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext callback)
     {
+        
         if (callback.performed)
         {
-            
-            if(stamina >= 0)
+            Debug.Log("ayy");
+            if (stats.getStamina() >= 0)
             {
                 isSprinting = true;
-                maxSpeed += sprintSpeedAddition;
             }
             
         }
@@ -69,6 +72,8 @@ public class DynamicMovementController : MonoBehaviour
         controls = new InputSystem();
         collider = GetComponent<CapsuleCollider>();
         Cursor.lockState = CursorLockMode.Locked;
+        stats = gameObject.GetComponent<PlayerStats>();
+        maxSpeed = initialMaxSpeed;
     }
 
     void Update()
@@ -81,10 +86,22 @@ public class DynamicMovementController : MonoBehaviour
         }
         UpdateVelocity();
         ForceDown();
-        if (isSprinting || stamina < 7)
+        
+        handleSprint(isSprinting);
+
+        if (isSprinting)
         {
-            handleSprint();
+            if(stats.getStamina() > 0)
+            {
+                maxSpeed = sprintMaxSpeed;
+            }
+
+            else if(stats.getStamina() <= 0)
+            {
+                maxSpeed = initialMaxSpeed;
+            }
         }
+        
         //Open door
         if (Input.GetKeyDown(KeyCode.E)) { Interact(); }
     }
@@ -208,20 +225,13 @@ public class DynamicMovementController : MonoBehaviour
 
     }
 
-    private void handleSprint()
+    private void handleSprint(bool isSprinting)
     {
         
         timer += Time.deltaTime;
-        if(timer >= 1)
+        if(timer >= 0.1)
         {
-            if (isSprinting)
-            {
-                stamina--;
-            }
-            else
-            {
-                stamina++;
-            }
+            stats.StaminaUpdater(isSprinting);
             timer = 0;
         }
     }
