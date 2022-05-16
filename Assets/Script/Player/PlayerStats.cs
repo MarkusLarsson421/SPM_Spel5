@@ -1,15 +1,19 @@
 using UnityEngine;
 using EventCallbacks;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
     PlayerStats instance;
     [SerializeField] private int health = 100; 
     [SerializeField] private int stamina; //set the stamina of health in unity
+    [SerializeField] private Slider staminaSlider;
+
     private bool isDead = false;
     void Start()
     {
         UpdatePlayerStatsCnvas();
+        staminaSlider.value = stamina;
     }
 
     void Update()
