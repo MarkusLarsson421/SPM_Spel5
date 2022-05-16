@@ -5823,6 +5823,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1719810379302933031, guid: e3a2bba56a66ab944846118003d52e38, type: 3}
+      propertyPath: iconSize.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719810379302933031, guid: e3a2bba56a66ab944846118003d52e38, type: 3}
+      propertyPath: iconSize.y
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719810379302933031, guid: e3a2bba56a66ab944846118003d52e38, type: 3}
+      propertyPath: interactIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: ad082904740979246b6f42b62347eedf, type: 3}
     - target: {fileID: 1719810379302933032, guid: e3a2bba56a66ab944846118003d52e38, type: 3}
       propertyPath: doors.Array.data[0]
       value: 
@@ -8374,8 +8386,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  interactIcon: {fileID: 0}
-  iconSize: {x: 0, y: 0}
+  interactIcon: {fileID: 21300000, guid: ad082904740979246b6f42b62347eedf, type: 3}
+  iconSize: {x: 800, y: 800}
   interactingGameObject: {fileID: 0}
   ID: 0
 --- !u!114 &665512560
