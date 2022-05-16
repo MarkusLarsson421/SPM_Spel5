@@ -8,11 +8,15 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int health = 100; 
     [SerializeField] private int stamina; //set the stamina of health in unity
     [SerializeField] private Slider staminaSlider;
+    [SerializeField] private Image walkImage;
+    [SerializeField] private Image runImage;
 
     private bool isDead = false;
     void Start()
     {
         UpdatePlayerStatsCnvas();
+        runImage.enabled = false;
+        walkImage.enabled = true;
         
         
     }
@@ -69,10 +73,14 @@ public class PlayerStats : MonoBehaviour
         if(stamina < 100 && !isRunning)
         {
             stamina++;
+            runImage.enabled = false;
+            walkImage.enabled = true;
         }
         else if(stamina > 0 && isRunning)
         {
             stamina--;
+            runImage.enabled = true;
+            walkImage.enabled = false;
         }
     }
 

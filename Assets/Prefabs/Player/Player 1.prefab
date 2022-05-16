@@ -555,7 +555,7 @@ RectTransform:
   m_Children:
   - {fileID: 97890355309955772}
   m_Father: {fileID: 8049101470213420721}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -933,6 +933,8 @@ MonoBehaviour:
   health: 100
   stamina: 100
   staminaSlider: {fileID: 3297233101035263393}
+  walkImage: {fileID: 8970955707860576799}
+  runImage: {fileID: 1221241019543041048}
 --- !u!114 &4075965575175922090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1322,7 +1324,7 @@ RectTransform:
   m_LocalScale: {x: 0.2666722, y: 0.2666722, z: 0.2666722}
   m_Children: []
   m_Father: {fileID: 8049101470213420721}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.643}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1456,7 +1458,7 @@ RectTransform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 8049101470213420721}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1860,7 +1862,7 @@ RectTransform:
   m_Children:
   - {fileID: 477375048501400220}
   m_Father: {fileID: 8049101470213420721}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2117,7 +2119,7 @@ RectTransform:
   - {fileID: 1165392056112895022}
   - {fileID: 515307717355289251}
   m_Father: {fileID: 8049101470213420721}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2565,7 +2567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5189845539961939937, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5230013867212376723, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
       propertyPath: m_LocalPosition.x
