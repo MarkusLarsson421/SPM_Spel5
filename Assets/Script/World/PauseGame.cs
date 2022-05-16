@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+
 //Martin Wallmark
 /*
  * Används för att kunna pausa spelet
@@ -12,6 +14,7 @@ public class PauseGame : MonoBehaviour
     [SerializeField] private GameObject resumeButton;
     [SerializeField] private GameObject menuButton;
     
+
     private bool isPaused;
 
     private void Awake()
