@@ -3,7 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public static class SaveSystem{
-	/*private const string exention = ".sin";
+	private const string exention = ".sin";
 	private const string saveLocation = "/saves/";
 
 	public static void Save(string saveSubLocation, string saveName, DataStorage dataStorage){
@@ -32,5 +32,5 @@ public static class SaveSystem{
 
 	private static string SaveLocation(string saveSubLocation, string saveName){
 		return Application.persistentDataPath + saveLocation + "/" + saveSubLocation + "/" + saveName + exention;
-	}*/
+	}
 }

@@ -14,14 +14,14 @@ public class BPU_SimonPrototype : MonoBehaviour
             Debug.Log("mängd batterier " + rm.Get(ResourceManager.ItemType.Battery));
         }
 
-      /*  if (ss != null && ss.GetFirstBatteryPickUp())
+        if (ss.GetFirstBatteryPickUp())
         {
-            Debug.Log("funkar");
+            /*Debug.Log("funkar");
             ss.batteryFirstPickUp = true;
-            Debug.Log(ss.GetFirstBatteryPickUp());
-            ss.SetFirstBatteryPickUp(false);
+            Debug.Log(ss.batteryFirstPickUp);
+            ss.SetFirstBatteryPickUp(false);*/
 
-        }*/
+        }
 
     }
 }
