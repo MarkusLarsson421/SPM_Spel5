@@ -183,7 +183,7 @@ public class CraftingSystem : MonoBehaviour
             else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 1 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 3)
             {
                 inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -1);
-                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, 3);
+                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -3);
                 inter.interactingGameObject.GetComponentInChildren<Weapon>().SetMagCapacity(12);
                 MagazineUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
                 //ToggleCraftingBench();
