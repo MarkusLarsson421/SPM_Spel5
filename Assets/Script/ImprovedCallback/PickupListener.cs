@@ -10,15 +10,18 @@ public class PickupListener : MonoBehaviour{
 
 	//What do to when called
 	private void OnItemPickedUp(PickUpEvent ePickUpEvent){
+        Debug.Log("DOING IT");
 		if(ePickUpEvent.GetAmount() + ePickUpEvent.GetRm().Get(ePickUpEvent.GetItemType()) <= resourceManager.GetMaxAmount(ePickUpEvent.GetItemType()))
 		{
-			ePickUpEvent.GetRm().Offset(ePickUpEvent.GetItemType(), ePickUpEvent.GetAmount());
+            Debug.Log("SKRRR");
+            ePickUpEvent.GetRm().Offset(ePickUpEvent.GetItemType(), ePickUpEvent.GetAmount());
 		}
 		
 	}
 	
 	//Unregister listener
 	private void OnDestroy(){
-		PickUpEvent.UnregisterListener(OnItemPickedUp);
+        Debug.Log("whyyyyy");
+        PickUpEvent.UnregisterListener(OnItemPickedUp);
 	}
 }
