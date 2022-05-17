@@ -5,8 +5,8 @@ public class FlashLight : MonoBehaviour{
 	private const int maxBatteryCharge = 100;
 	
 	public ResourceManager rm;
-    [SerializeField] [Range(1, maxBatteryCharge)] private double batteryCharge = 100.0;
-    [SerializeField] private double batteryDrainMultiplier = 0.1;
+    [SerializeField] [Range(1, maxBatteryCharge)] private float batteryCharge = 100.0f;
+    [SerializeField] private float batteryDrainMultiplier = 0.1f;
 
     private Light flashLight;
     private bool isOn;
@@ -34,7 +34,7 @@ public class FlashLight : MonoBehaviour{
         }
     }
 
-    public void SetDrainMultiplier(double nDrainMultiplier)
+    public void SetDrainMultiplier(float nDrainMultiplier)
     {
         batteryDrainMultiplier = nDrainMultiplier;
     }
@@ -86,4 +86,8 @@ public class FlashLight : MonoBehaviour{
 			batteryCharge = maxBatteryCharge;
 		}
     }
+
+	public float GetBatteryCharge(){
+		return batteryCharge;
+	}
 }

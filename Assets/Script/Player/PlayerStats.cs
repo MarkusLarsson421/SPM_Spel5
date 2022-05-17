@@ -94,4 +94,7 @@ public class PlayerStats : MonoBehaviour
         return stamina;
     }
 
+	public int GetHealth(){
+		return health;
+	}
 }

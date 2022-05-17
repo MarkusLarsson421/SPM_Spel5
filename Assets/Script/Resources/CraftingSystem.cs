@@ -205,7 +205,7 @@ public class CraftingSystem : MonoBehaviour
         {
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -3);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -1);
-            inter.interactingGameObject.GetComponentInChildren<FlashLight>().SetDrainMultiplier(0.05);
+            inter.interactingGameObject.GetComponentInChildren<FlashLight>().SetDrainMultiplier(0.05f);
             flashLightUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
             Debug.Log(inter.interactingGameObject.transform.parent.tag);
             UpdateInfoText("GotUpgrade");
