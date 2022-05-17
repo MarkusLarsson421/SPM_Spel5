@@ -6,7 +6,7 @@ public class SaveTrigger : MonoBehaviour{
 	private void OnCollisionEnter(Collision collision){
 		GameObject go = collision.gameObject;
 		if((go.CompareTag("Player1") || go.CompareTag("Player2")) && hasBeenTriggered == false){
-			SaveSystem.Save();
+			//SaveSystem.Save();  // remove commint
 		}
 	}
 }

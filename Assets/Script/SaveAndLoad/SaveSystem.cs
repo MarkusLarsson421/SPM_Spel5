@@ -10,10 +10,10 @@ public static class SaveSystem{
 		BinaryFormatter formatter = new BinaryFormatter();
 		string path = SaveLocation(saveSubLocation, saveName);
 		FileStream stream = new FileStream(path, FileMode.Create);
-		
-		PlayerData playerData = new PlayerData(pistol, flashLight, rm, stats);
-		
-		formatter.Serialize(stream, playerData);
+
+		//PlayerData playerData = new PlayerData(pistol, flashLight, rm, stats); // remove commint
+
+		//formatter.Serialize(stream, playerData); // remove commint
 		stream.Close();
 	}
 
