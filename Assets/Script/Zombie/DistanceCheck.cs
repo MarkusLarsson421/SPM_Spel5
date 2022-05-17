@@ -6,7 +6,6 @@ using UnityEngine;
  */
 public class DistanceCheck : MonoBehaviour
 {
-    RaycastHit hit;
     GameObject player1, player2;
     private ZombieObjectPooled spawner;
     private PlayerSpawnManager pSpawner;
@@ -27,23 +26,6 @@ public class DistanceCheck : MonoBehaviour
             CheckDistFromSpawner();
         }
     }
-
-   /* private void RaycastTowardPlayers(GameObject p, GameObject p2)
-    {
-        Vector3 raycastDir = p.transform.position - transform.position;
-        if(Physics.Raycast(transform.position,raycastDir, out hit, 10.0f))
-        {
-            if (hit.collider.CompareTag("Player1") || hit.collider.CompareTag("Player2"))
-            {
-                spawner.isAbleToSpawn = false;
-            }
-        }
-        else
-        {
-            spawner.isAbleToSpawn = true;
-        }
-    }*/
-
     private void CheckDistFromSpawner()
     {
         float dist1 = Vector3.Distance(player1.transform.position, transform.position);

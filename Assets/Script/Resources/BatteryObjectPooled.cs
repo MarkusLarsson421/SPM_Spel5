@@ -7,30 +7,39 @@ using UnityEngine;
 public class BatteryObjectPooled : MonoBehaviour
 {
     private float timer;
-    private bool isSpawned = false;
-    public Transform otherBattery;
+    private float timeUntilRespawn = 2.0f;
+    private bool isAbleToSpawn;
+
+    private void Start()
+    {
+        isAbleToSpawn = true;
+    }
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 5)
+        if(timer > timeUntilRespawn)
         {
-            SpawnBattery();
             timer = 0;
+            SpawnBattery();
         }
     }
 
     private void SpawnBattery()
     {
-        if (!isSpawned)
+        if (isAbleToSpawn == true)
         {
+            isAbleToSpawn = false;
+            Debug.Log(isAbleToSpawn);
             var battery = BatteryPool.Instance.Get();
             battery.transform.position = transform.position;
             battery.transform.rotation = transform.rotation;
             battery.gameObject.SetActive(true);
-        }
+        }   
     }
-  public void SetSpawned(bool value)
+
+    public void SetSpawned(bool value)
     {
-        isSpawned = value;
+        isAbleToSpawn = value;
     }
+    
 }
