@@ -13,7 +13,7 @@ public class PauseGame : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject resumeButton;
     [SerializeField] private GameObject menuButton;
-    
+    [SerializeField] private EventSystem eventSystem;
 
     private bool isPaused;
 
@@ -45,19 +45,20 @@ public class PauseGame : MonoBehaviour
     private void togglePause()
     {
         if (isPaused)
-            {
-               Time.timeScale = 1;
-               isPaused = false;
-               resumeButton.SetActive(false);
-               menuButton.SetActive(false);
-            }
-            else
-            {
-                Time.timeScale = 0;
-                isPaused = true;
-                resumeButton.SetActive(true);
-                menuButton.SetActive(true);
-            }
+        {
+            Time.timeScale = 1;
+            isPaused = false;
+            resumeButton.SetActive(false);
+            menuButton.SetActive(false);
+        }
+        else
+        {
+            eventSystem.SetSelectedGameObject(resumeButton);
+            Time.timeScale = 0;
+            isPaused = true;
+            resumeButton.SetActive(true);
+            menuButton.SetActive(true);
+        }
 
     }
 

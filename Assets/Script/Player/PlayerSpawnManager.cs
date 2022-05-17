@@ -15,11 +15,22 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private PlayerInputManager playerInputManager;
     [SerializeField] private GameObject player1Prefab;
     [SerializeField] private GameObject player2Prefab;
+    private float timer;
     public bool playerHasJoined = false;
+    private bool player2hasjoined;
+    private bool isEventSystemReset;
 
     private void Start()
     {
         playerInputManager.playerPrefab = player1Prefab;
+    }
+
+    private void Update()
+    {
+        if (player2hasjoined && !isEventSystemReset)
+        {
+            FixPlayerOneEventSystem();
+        }
     }
     //Metoden används av inputsystemet för att spawna in en spelare när den tar emot input från spelarens handkontroller/tangentbord
     public void OnPlayerJoined(PlayerInput playerInput)
@@ -39,6 +50,8 @@ public class PlayerSpawnManager : MonoBehaviour
             playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerTwoSpawnPoint.position;
             //playerInputManager.playerPrefab = player2Prefab;
             playerInput.gameObject.tag = "Player2";
+            player2hasjoined = true;
+            
         }
         SetPlayerSensitivity(playerInput);
         SetPauseManager(playerInput);
@@ -65,4 +78,20 @@ public class PlayerSpawnManager : MonoBehaviour
         
         //playerInput.gameObject.GetComponent<PlayerInput>().actions.FindAction("PauseGame").AddBinding(pauseManager.GetComponent<PauseGame>().ToString());
     }
+
+
+    private void FixPlayerOneEventSystem()
+    {
+        GameObject player1 = GameObject.FindGameObjectWithTag("Player1");
+        GameObject eventSystem = player1.transform.Find("EventSystem").gameObject;
+        eventSystem.SetActive(false);
+        timer += Time.deltaTime;
+        if(timer >= 1)
+        {
+            eventSystem.SetActive(true);
+            isEventSystemReset = true;
+        }
+        
+    }
+
 }
