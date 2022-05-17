@@ -43,10 +43,6 @@ public class CraftingSystem : MonoBehaviour
 
     private float textTimer;
 
-    private bool hasUpgradedDamage;
-    private bool hasMagazineSizeUpgrade;
-    private bool hasFlashlightUpgrade;
-
     private bool buttonsEnabled;
 
     private void Start()
@@ -98,19 +94,8 @@ public class CraftingSystem : MonoBehaviour
 
         if(isToggled && !buttonsEnabled)
         {
-            currentPlayerEventSystem = GameObject.FindGameObjectWithTag(currentPlayerTag).transform.Find("EventSystem").GetComponent<EventSystem>();
-            
-            currentCanvas = GameObject.FindGameObjectWithTag(currentPlayerTag).GetComponentInChildren<Canvas>();
-            GameObject craftingButtons = currentCanvas.gameObject.transform.Find("CraftingTable").gameObject;
-            craftingButtons.SetActive(true);
-            craftingButtons.gameObject.transform.Find("CancelButton").gameObject.GetComponent<Button>().onClick.AddListener(delegate { ToggleCraftingBench(); });
-            craftingButtons.gameObject.transform.Find("DamageUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
-            craftingButtons.gameObject.transform.Find("fireRateUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
-            craftingButtons.gameObject.transform.Find("MagazineUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
-
-            currentPlayerEventSystem.SetSelectedGameObject(craftingButtons.gameObject.transform.Find("CancelButton").gameObject);
-            buttonsEnabled = true;
-            
+            SetCurrentCanvas();
+            buttonsEnabled = true; 
         }
 
         if (isToggled)
@@ -135,7 +120,7 @@ public class CraftingSystem : MonoBehaviour
             isToggled = true;
             infoText.enabled = true;
             eventSystem.SetSelectedGameObject(cancelButton);
-            infoText.text = "Craft here! \n" + "Upgrade damage: 2 Batteries, 2 Scraps \n" + "Upgrade magazine: 1 Battery, 3 Scraps \n" + "Upgrade flashlight: 3 Batteries, 1 Scrap";
+            infoText.text = "Craft here! \n" + "\nUpgrade damage: 2 Batteries, 2 Scraps \n" + "\nUpgrade magazine: 1 Battery, 3 Scraps \n" + "\nUpgrade flashlight: 3 Batteries, 1 Scrap";
             
         }
         else
@@ -145,8 +130,6 @@ public class CraftingSystem : MonoBehaviour
             {
                 infoText.enabled = false;
             }
-            
-            
             Cursor.lockState = CursorLockMode.Locked;
         }
         Debug.Log(currentPlayerTag + "is here");
@@ -177,20 +160,21 @@ public class CraftingSystem : MonoBehaviour
             Debug.Log(inter.interactingGameObject.transform.parent.tag);
             UpdateInfoText("NotEnoughItems");
         }
-        ToggleCraftingBench();
+        //ToggleCraftingBench();
 
 
     }
 
     public void IncreaseMagazineSize()
     {
+        
         //Gör så att vapnets magasin kan ha fler patroner
         if (MagazineUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
         {
             //ToggleCraftingBench();
             UpdateInfoText("AlreadyHasUpgrade");
         }
-        else if (!hasMagazineSizeUpgrade && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 1 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 3)
+        else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 1 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 3)
         {
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -1);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, 3);
@@ -205,6 +189,8 @@ public class CraftingSystem : MonoBehaviour
             //ToggleCraftingBench();
             UpdateInfoText("NotEnoughItems");
         }
+        //ToggleCraftingBench();
+        Debug.Log("wahwah");
         
     }
 
@@ -215,7 +201,7 @@ public class CraftingSystem : MonoBehaviour
             UpdateInfoText("AlreadyHasUpgrade");
         }
         //gör så att ficklampans batterie räcker längre
-        else if (!hasFlashlightUpgrade && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 3 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 1)
+        else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 3 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 1)
         {
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -3);
             inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -1);
@@ -228,8 +214,29 @@ public class CraftingSystem : MonoBehaviour
         {
             UpdateInfoText("NotEnoughItems");
         }
-        ToggleCraftingBench();
+        //ToggleCraftingBench();
+        Debug.Log("wahwah");
 
+    }
+
+    private void SetCurrentCanvas()
+    {
+        currentCanvas = GameObject.FindGameObjectWithTag(currentPlayerTag).GetComponentInChildren<Canvas>();
+        GameObject craftingButtons = currentCanvas.gameObject.transform.Find("CraftingTable").gameObject;
+        
+        craftingButtons.SetActive(true);
+        //craftingButtons.gameObject.transform.Find("CancelButton").gameObject.GetComponent<Button>().onClick.AddListener(delegate { ToggleCraftingBench(); });
+        craftingButtons.gameObject.transform.Find("DamageUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
+        craftingButtons.gameObject.transform.Find("fireRateUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
+        craftingButtons.gameObject.transform.Find("MagazineUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
+        
+        SetCurrentEventSystem(craftingButtons);
+    }
+
+    private void SetCurrentEventSystem(GameObject craftingButtons)
+    {
+        currentPlayerEventSystem = GameObject.FindGameObjectWithTag(currentPlayerTag).transform.Find("EventSystem").GetComponent<EventSystem>();
+        currentPlayerEventSystem.SetSelectedGameObject(craftingButtons.gameObject.transform.Find("CancelButton").gameObject);
     }
 
     private void UpdateInfoText(string s)
