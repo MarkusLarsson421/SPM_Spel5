@@ -16,6 +16,7 @@ public class CraftingSystem : MonoBehaviour
     [SerializeField] private GameObject canvas;
     [SerializeField] private Font font;
     [SerializeField] private EventSystem eventSystem;
+    private EventSystem currentPlayerEventSystem;
     
     //Används för att kunna identifiera vilken spelare det är som interagerar med craftingbordet
     [SerializeField] private Interactable inter; 
@@ -97,6 +98,8 @@ public class CraftingSystem : MonoBehaviour
 
         if(isToggled && !buttonsEnabled)
         {
+            currentPlayerEventSystem = GameObject.FindGameObjectWithTag(currentPlayerTag).transform.Find("EventSystem").GetComponent<EventSystem>();
+            
             currentCanvas = GameObject.FindGameObjectWithTag(currentPlayerTag).GetComponentInChildren<Canvas>();
             GameObject craftingButtons = currentCanvas.gameObject.transform.Find("CraftingTable").gameObject;
             craftingButtons.SetActive(true);
@@ -104,6 +107,8 @@ public class CraftingSystem : MonoBehaviour
             craftingButtons.gameObject.transform.Find("DamageUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
             craftingButtons.gameObject.transform.Find("fireRateUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
             craftingButtons.gameObject.transform.Find("MagazineUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
+
+            currentPlayerEventSystem.SetSelectedGameObject(craftingButtons.gameObject.transform.Find("CancelButton").gameObject);
             buttonsEnabled = true;
             
         }
