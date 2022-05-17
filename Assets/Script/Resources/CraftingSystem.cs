@@ -25,6 +25,8 @@ public class CraftingSystem : MonoBehaviour
     private Text infoText;
     private bool isToggled;
 
+    private bool isButtonClicked;
+
     //Listorna är till för att hålla koll på om en viss spelare redan har en uppgradering.
     private List<string> damageUpgradedPlayers = new List<string>();
     private List<string> MagazineUpgradedPlayers = new List<string>();
@@ -126,6 +128,7 @@ public class CraftingSystem : MonoBehaviour
         else
         {
             isToggled = false;
+            isButtonClicked = false;
             if (!isShowingInfoText)
             {
                 infoText.enabled = false;
@@ -137,85 +140,95 @@ public class CraftingSystem : MonoBehaviour
     }
     public void DamageUpgrade()
     {
-
-        currentPlayerTag = inter.interactingGameObject.transform.parent.tag;
-        if (damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
+        if (!isButtonClicked)
         {
-            Debug.Log("You already have this upgrade!");
-            UpdateInfoText("AlreadyHasUpgrade");
-        }
-        else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 2)
-        {
-            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -2);
-            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -2);
-            inter.interactingGameObject.GetComponentInChildren<Weapon>().SetDamage(35);
+            currentPlayerTag = inter.interactingGameObject.transform.parent.tag;
+            if (damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
+            {
+                Debug.Log("You already have this upgrade!");
+                UpdateInfoText("AlreadyHasUpgrade");
+            }
+            else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 2)
+            {
+                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -2);
+                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -2);
+                inter.interactingGameObject.GetComponentInChildren<Weapon>().SetDamage(35);
 
-            damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
-            UpdateInfoText("GotUpgrade");
-            Debug.Log("GOT UPGRADE");
+                damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
+                UpdateInfoText("GotUpgrade");
+                Debug.Log("GOT UPGRADE");
+            }
+            else
+            {
+                Debug.Log("Too few batteries pal");
+                Debug.Log(inter.interactingGameObject.transform.parent.tag);
+                UpdateInfoText("NotEnoughItems");
+            }
+            isButtonClicked = true;
+           
         }
-        else
-        {
-            Debug.Log("Too few batteries pal");
-            Debug.Log(inter.interactingGameObject.transform.parent.tag);
-            UpdateInfoText("NotEnoughItems");
-        }
-        //ToggleCraftingBench();
-
 
     }
 
     public void IncreaseMagazineSize()
     {
-        
-        //Gör så att vapnets magasin kan ha fler patroner
-        if (MagazineUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
+        if (!isButtonClicked)
         {
-            //ToggleCraftingBench();
-            UpdateInfoText("AlreadyHasUpgrade");
-        }
-        else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 1 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 3)
-        {
-            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -1);
-            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, 3);
-            inter.interactingGameObject.GetComponentInChildren<Weapon>().SetMagCapacity(12);
-            MagazineUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
-            //ToggleCraftingBench();
-            UpdateInfoText("GotUpgrade");
+            //Gör så att vapnets magasin kan ha fler patroner
+            if (MagazineUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
+            {
+                //ToggleCraftingBench();
+                UpdateInfoText("AlreadyHasUpgrade");
+            }
+            else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 1 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 3)
+            {
+                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -1);
+                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, 3);
+                inter.interactingGameObject.GetComponentInChildren<Weapon>().SetMagCapacity(12);
+                MagazineUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
+                //ToggleCraftingBench();
+                UpdateInfoText("GotUpgrade");
 
-        }
-        else
-        {
+            }
+            else
+            {
+                //ToggleCraftingBench();
+                UpdateInfoText("NotEnoughItems");
+            }
             //ToggleCraftingBench();
-            UpdateInfoText("NotEnoughItems");
+            Debug.Log("wahwah");
+            isButtonClicked = true;
         }
-        //ToggleCraftingBench();
-        Debug.Log("wahwah");
-        
     }
 
     public void flashLightUpgrade()
     {
-        if (flashLightUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
+        if (!isButtonClicked)
         {
-            UpdateInfoText("AlreadyHasUpgrade");
+
+
+            if (flashLightUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
+            {
+                UpdateInfoText("AlreadyHasUpgrade");
+            }
+            //gör så att ficklampans batterie räcker längre
+            else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 3 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 1)
+            {
+                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -3);
+                inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -1);
+                inter.interactingGameObject.GetComponentInChildren<FlashLight>().SetDrainMultiplier(0.05f);
+                flashLightUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
+                Debug.Log(inter.interactingGameObject.transform.parent.tag);
+                UpdateInfoText("GotUpgrade");
+            }
+            else
+            {
+                UpdateInfoText("NotEnoughItems");
+            }
+            //ToggleCraftingBench();
+            Debug.Log("wahwah");
+            isButtonClicked = true;
         }
-        //gör så att ficklampans batterie räcker längre
-        else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 3 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 1)
-        {
-            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -3);
-            inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -1);
-            inter.interactingGameObject.GetComponentInChildren<FlashLight>().SetDrainMultiplier(0.05f);
-            flashLightUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
-            Debug.Log(inter.interactingGameObject.transform.parent.tag);
-            UpdateInfoText("GotUpgrade");
-        }
-        else
-        {
-            UpdateInfoText("NotEnoughItems");
-        }
-        //ToggleCraftingBench();
-        Debug.Log("wahwah");
 
     }
 
