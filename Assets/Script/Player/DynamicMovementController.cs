@@ -6,41 +6,34 @@ using UnityEngine.InputSystem;
 public class DynamicMovementController : MonoBehaviour
 {
     // Start is called before the first frame update
-    private InputSystem controls;
-    [SerializeField] private float speed = 9f;
+    
+    [SerializeField] private float speed;
     [SerializeField] private float initialMaxSpeed;
     [SerializeField] private float sprintMaxSpeed;
-    private float maxSpeed;
-    [SerializeField] private float sprintSpeedAddition;
-
-    private float acceleration = 2f;
-    private float deceleration = 1f;
-
+    [SerializeField] private float staticFrictionCoefficient;
+    [SerializeField] private float kineticFloatCoefficent;
+    
+    [SerializeField] private LayerMask collisionMask;
+    [SerializeField] private Animator anim;
+    
+    private InputSystem controls;
+    private CapsuleCollider collider;
+    private PlayerStats stats;
+    private Vector2 move;
     private Vector3 velocity;
 
+    private float maxSpeed;
+    private float acceleration = 2f;
+    private float deceleration = 1f;
     private float gravity = 15f;
-    //private float airGravity = 150f;
-
-    private float stamina = 7;
     private float timer;
-
-    private Vector2 move;
     private float collisionMargin = 0.2f;
     private float groundCheckDistance = 0.3f;
     private float smallInput = 0.5f;
-    private CapsuleCollider collider;
-    private PlayerStats stats;
-
     
-
-
     private bool isSprinting;
 
-    [SerializeField] private LayerMask collisionMask;
-    [SerializeField] float staticFrictionCoefficient;
-    [SerializeField] float kineticFloatCoefficent;
-
-    [SerializeField] private Animator anim;
+    
 
     public void OnMove(InputAction.CallbackContext callback)
     {
@@ -53,7 +46,7 @@ public class DynamicMovementController : MonoBehaviour
         
         if (callback.performed)
         {
-            Debug.Log("ayy");
+            
             if (stats.getStamina() >= 0)
             {
                 isSprinting = true;
@@ -91,15 +84,7 @@ public class DynamicMovementController : MonoBehaviour
 
         if (isSprinting)
         {
-            if(stats.getStamina() > 0)
-            {
-                maxSpeed = sprintMaxSpeed;
-            }
-
-            else if(stats.getStamina() <= 0)
-            {
-                maxSpeed = initialMaxSpeed;
-            }
+            MaxSpeedHandler();
         }
         
         //Open door
@@ -253,14 +238,6 @@ public class DynamicMovementController : MonoBehaviour
         door.ToggleState();
     }
 
-    private void checkSprint()
-    {
-        if(stamina > 7)
-        {
-
-        }
-    }
-
     bool IsGrounded()
     {
         Vector3 down = velocity.normalized * groundCheckDistance;
@@ -275,6 +252,19 @@ public class DynamicMovementController : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private void MaxSpeedHandler()
+    {
+        if (stats.getStamina() > 0)
+        {
+            maxSpeed = sprintMaxSpeed;
+        }
+
+        else if (stats.getStamina() <= 0)
+        {
+            maxSpeed = initialMaxSpeed;
         }
     }
 

@@ -103,6 +103,7 @@ public class Interactor : MonoBehaviour
                     {
                         interactable.gameObject.GetComponent<BPU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
                         interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
+
                     }
 
                     if (interactable.gameObject.tag.Equals("Scrap"))

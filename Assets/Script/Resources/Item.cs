@@ -14,6 +14,7 @@ public class Item : MonoBehaviour{
 	private BatteryPool batteryPool;
     private static bool doOnce1 = true;
     private static bool doOnce2 = true;
+    [SerializeField] private BatteryObjectPooled batteryObj;
 
 	private bool isPickedUp;
 
@@ -25,6 +26,7 @@ public class Item : MonoBehaviour{
 		apu = gameObject.GetComponent<APU_SimonPrototype>();
 		bpu = gameObject.GetComponent<BPU_SimonPrototype>();
 		spu = gameObject.GetComponent<SPU_SimonPrototype>();
+        batteryObj = GameObject.Find("BatterySpawner").GetComponent<BatteryObjectPooled>();
     }
 
     private void Update()
@@ -38,10 +40,7 @@ public class Item : MonoBehaviour{
     }
 
     public void PickUp(){
-		
-		//Die();
 		isPickedUp = true;
-		
 	}
 
 	private void Die(){
@@ -63,6 +62,7 @@ public class Item : MonoBehaviour{
 				break;
 			case ResourceManager.ItemType.Battery:
 				batteryPool.ReturnToPool(bpu);
+                batteryObj.SetSpawned(true);
               /*  if (doOnce2)
                 {
                     ss.SetFirstBatteryPickUp(true);
