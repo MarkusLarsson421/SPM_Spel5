@@ -7,10 +7,9 @@ public class DynamicMovementController : MonoBehaviour
 {
     // Start is called before the first frame update
     
-    [SerializeField] private float speed = 9f;
+    [SerializeField] private float speed;
     [SerializeField] private float initialMaxSpeed;
     [SerializeField] private float sprintMaxSpeed;
-    [SerializeField] private float sprintSpeedAddition;
     [SerializeField] private float staticFrictionCoefficient;
     [SerializeField] private float kineticFloatCoefficent;
     
@@ -27,7 +26,6 @@ public class DynamicMovementController : MonoBehaviour
     private float acceleration = 2f;
     private float deceleration = 1f;
     private float gravity = 15f;
-    private float stamina = 7;
     private float timer;
     private float collisionMargin = 0.2f;
     private float groundCheckDistance = 0.3f;
