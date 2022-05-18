@@ -1,15 +1,24 @@
 using UnityEngine;
 using EventCallbacks;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] private int health; // set the amount of health in unity
+    PlayerStats instance;
+    [SerializeField] private int health = 100; 
     [SerializeField] private int stamina; //set the stamina of health in unity
+    [SerializeField] private Slider staminaSlider;
+    [SerializeField] private Image walkImage;
+    [SerializeField] private Image runImage;
+
     private bool isDead = false;
     void Start()
     {
-        health = 100;
         UpdatePlayerStatsCnvas();
+        runImage.enabled = false;
+        walkImage.enabled = true;
+        
+        
     }
 
     void Update()
@@ -19,25 +28,21 @@ public class PlayerStats : MonoBehaviour
             health = 0;
             PlayerDeath();
         }
+        staminaSlider.value = stamina;
     }
 
-    public int getHealth()  { return health; }
-    public int setHealth(int healthAmount) { return healthAmount; }
-    public int getStamina() { return stamina; }
-
-    float temp = 0;
-
+    float Timer = 0;
     public void HitByZombie()
     {
-        if(temp < 1)
+        if (Timer < 1)
         {
-            temp += Time.deltaTime;
+            Timer += Time.deltaTime;
         }
         else
         {
             int randomNr = Random.Range(15, 26);
             health -= randomNr;
-            temp = 0;
+            Timer = 0;
             UpdatePlayerStatsCnvas();
             PlayerGetHitByZombieEvent playerGetHitByZombie = new PlayerGetHitByZombieEvent();
             playerGetHitByZombie.UnitGO = gameObject;
@@ -49,7 +54,6 @@ public class PlayerStats : MonoBehaviour
     private void PlayerDeath()
     {
         PlayerDieEvent udei = new PlayerDieEvent();
-        udei.EventDescription = "Unit " + gameObject.name + " has died.";
         udei.UnitGO = gameObject;
         EventSystem.Current.FireEvent(udei);
         isDead = true;
@@ -60,8 +64,40 @@ public class PlayerStats : MonoBehaviour
     void UpdatePlayerStatsCnvas()
     {
         PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
-        playerHealthChange.UnitGO = gameObject;
+        playerHealthChange.PlayerHealth = health;
         EventSystem.Current.FireEvent(playerHealthChange);
     }
 
+    /**
+     * Martin Wallmark
+     */
+    public void StaminaUpdater(bool isRunning)
+    {
+        if(stamina < 100 && !isRunning)
+        {
+            stamina++;
+            runImage.enabled = false;
+            walkImage.enabled = true;
+        }
+        else if(stamina > 0 && isRunning)
+        {
+            stamina--;
+            runImage.enabled = true;
+            walkImage.enabled = false;
+        }
+        else if(stamina <= 0 && isRunning)
+        {
+            runImage.enabled = false;
+            walkImage.enabled = true;
+        }
+    }
+
+    public int getStamina()
+    {
+        return stamina;
+    }
+
+	public int GetHealth(){
+		return health;
+	}
 }

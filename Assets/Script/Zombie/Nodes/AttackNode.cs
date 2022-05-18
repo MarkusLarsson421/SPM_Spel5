@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class AttackNode : Node
 {
     private NavMeshAgent agent;
-    private EnemyAI ai;
+    private EnemyAI ai; // me
     private Transform target;
     private GameObject player;
 
@@ -26,15 +26,24 @@ public class AttackNode : Node
     public override NodeState Evaluate()
     {
         agent.isStopped = true;
-        ai.SetColor(Color.green);
+        ai.SetColor(Color.red);
         Vector3 direction = target.position - ai.transform.position;
         Vector3 currentDirection = Vector3.SmoothDamp(ai.transform.forward, direction, ref currentVelocity, smoothDamp);
         Quaternion rotation = Quaternion.LookRotation(currentDirection, Vector3.up);
         ai.transform.rotation = rotation;
         PlayerStats playerStats = player.GetComponent<PlayerStats>();
+
+        //@Martin Nyman Animation här
+        AttackAnimation();
+
         playerStats.HitByZombie();
         return NodeState.RUNNING;
     }
 
+    private void AttackAnimation()
+    {
+        Animator anim = ai.GetComponent<Animator>();
+        anim.SetTrigger("Attack");
+    }
 
 }

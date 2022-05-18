@@ -9,7 +9,10 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
 {
     [SerializeField] private GameObject CanvasObject;
     [SerializeField] private GameObject deathCanvasObject;
+    [SerializeField] private GameObject winCanvasObject;
     [SerializeField] private GameObject tookDamgeCanvasObject;
+    [SerializeField] private GameObject popOutTextCanvas;
+    [SerializeField] private TextMeshProUGUI nearCarText;
     [SerializeField] private int sceneToIndex;
     static private int MainMenuSceneIsIndex = 0;
     [SerializeField] private CanvasGroup tookDamgeCanvas;
@@ -24,20 +27,15 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         tookDamgeCanvas.alpha = 0;
 
     }
-    void Update()
+    private void Update()
     {
         EnemyAttackedMe();
-        
     }
     public void ReastartLevel()
     {
         int y = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(y);
 
-    }
-    void LoadLevel()
-    {
-        SceneManager.LoadScene(sceneToIndex);
     }
     public void GoToMainMenu()
     {
@@ -54,6 +52,12 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         deathCanvasObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
     }
+    public void ChangeCanvasToWinCanvas()
+    {
+        CanvasObject.SetActive(false);
+        winCanvasObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+    }
 
     public void EnemyAttackedMe()
     {
@@ -66,15 +70,18 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
             hideTookDamgeCanvas();
         }
     }
-
+    
     void showTookDamgeCanavs()
     {
 
-        if (tookDamgeCanvas.alpha < 1 && fadeIn)
+        if (tookDamgeCanvas.alpha < 1)
         {
-            tookDamgeCanvas.alpha += Time.deltaTime*20;
-            if(tookDamgeCanvas.alpha >= 1)
+            Debug.Log("hej");
+            tookDamgeCanvas.alpha += Time.deltaTime * 20;
+            if (tookDamgeCanvas.alpha >= 0.9)
             {
+                Debug.Log("hej2");
+                hideTookDamgeCanvas();
                 fadeIn = false;
                 fadeOut = true;
             }
@@ -85,9 +92,11 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     {
         if (tookDamgeCanvas.alpha > 0)
         {
-            tookDamgeCanvas.alpha -= Time.deltaTime*2;
-            if (tookDamgeCanvas.alpha == 0)
+            Debug.Log("hej3");
+            tookDamgeCanvas.alpha -= Time.deltaTime * 2;
+            if (tookDamgeCanvas.alpha <= 0)
             {
+                Debug.Log("hej4");
                 fadeOut = false;
             }
         }
@@ -100,6 +109,17 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     public void UpdatePlayerStats(int playerHealth)
     {
         playerHealthText.text = playerHealth.ToString();
+    }
+    float timer = 0;
+    public void showPopOutText(string text)
+    {
+        popOutTextCanvas.SetActive(true);
+        nearCarText.text = text;
+        timer += Time.deltaTime;
+        if(timer >= 3)
+        {
+            popOutTextCanvas.SetActive(false);
+        }
     }
 
 }

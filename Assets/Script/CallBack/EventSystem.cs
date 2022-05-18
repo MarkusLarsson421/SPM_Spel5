@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,12 @@ namespace EventCallbacks
         }
 
         static private EventSystem __Current;
+
+        internal void RegisterListener<T>(object slowPl, object ayerDown)
+        {
+            throw new NotImplementedException();
+        }
+
         static public EventSystem Current
         {
             get

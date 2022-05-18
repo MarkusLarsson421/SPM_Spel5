@@ -7,7 +7,7 @@ public class ChaseNode : Node
 {
     private Transform target;
     private NavMeshAgent agent;
-    private EnemyAI ai;
+    private EnemyAI ai; // me
 
     public ChaseNode(Transform target, NavMeshAgent agent, EnemyAI ai)
     {
@@ -24,6 +24,9 @@ public class ChaseNode : Node
         {
             agent.isStopped = false;
             agent.SetDestination(target.position);
+            //@Martin Nyman Animation här
+            RunAnimation();
+
             return NodeState.RUNNING;
         }
         else
@@ -33,5 +36,10 @@ public class ChaseNode : Node
         }
     }
 
-   
+    private void RunAnimation()
+    {
+        Animator anim = ai.GetComponent<Animator>();
+        anim.SetTrigger("Run");
+    }
+
 }

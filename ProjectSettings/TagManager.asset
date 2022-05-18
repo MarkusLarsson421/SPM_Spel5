@@ -11,7 +11,12 @@ TagManager:
   - Interactable
   - Player1
   - Player2
+  - Pistol
+  - Flashlight
   - UI
+  - CraftingTable
+  - CustomizationTable
+  - Car
   layers:
   - Default
   - TransparentFX
@@ -22,9 +27,9 @@ TagManager:
   - 
   - Interactable
   - Clickable
-  - 
-  - 
-  - 
+  - Zombie
+  - HiddenPlayer1
+  - HiddenPlayer2
   - 
   - 
   - 
@@ -48,4 +53,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: behind
+    uniqueID: 3503350991
     locked: 0

@@ -38,11 +38,26 @@ namespace EventCallbacks
     }
     public class PlayerHealthChangeEvent : Event
     {
-        public GameObject UnitGO;
+        public int PlayerHealth;
         /*
         Info about cause of death, our killer, etc...
         Could be a struct, read only, etc...
         */
     }
 
+    public class OnAttackWithMaleeEvent : Event
+    {
+        public PlayerStats player;
+        public int slowTime;
+    }
+    public class OnZombieDeathEvent : Event
+    {
+        public GameObject zombie;
+    }
+
+    public class PlayeIsNearTheCarEvent : Event
+    {
+        public GameObject zombie;
+        public BatteryObjectPooled bPool;
+    }
 }

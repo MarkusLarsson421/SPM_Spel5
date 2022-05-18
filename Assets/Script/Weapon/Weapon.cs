@@ -1,61 +1,32 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;
 using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour {
-	public RM rm;
 	//Shooting
 	[SerializeField] private int damage = 20;
 	[SerializeField] private float range = 100.0f;
+	[Tooltip("Rounds per second.")]
 	[SerializeField] private float fireRate = 5.0f;
-	//[SerializeField] private TextMeshProUGUI ammoText; // ammo Text UI; @Khaled Alraas //bör ej finnas här Simon.
 	private float nextTimeToFire;
 
 	//Ammo
-	[SerializeField] private int totalAmmo;
-	[SerializeField] private int magCapacity = 8;
 	[SerializeField] private float reloadTime = 2.0f;
+	[SerializeField] private ResourceManager rm;
+	private int magCapacity = 8;
 	private int currentMag;
 	private bool isReloading;
 
 	private bool isFiring;
-	private bool isReloadPressed;
 
-	private float timer;
-	private bool targetIsSet;
-
+	private ParticleSystem muzzleFlash;
+	
 	[SerializeField] private Camera fpsCamera;
 
 	void Start()
 	{
-
-		totalAmmo = rm.GetTotalAmmo();// var 100. Uppdaterat av Simon till rm.GetTotalAmmo()
 		currentMag = magCapacity;
-	}
-	void Awake()
-	{
-
-		totalAmmo = rm.GetTotalAmmo();// var 100. Uppdaterat av Simon till rm.GetTotalAmmo()
-		currentMag = magCapacity;
-	}
-
-	void Update()
-	{
-		/*if (!targetIsSet)
-		{
-
-			timer += Time.deltaTime;
-
-			if (timer >= 20)
-			{
-				totalAmmo = rm.GetTotalAmmo();// var 100. Uppdaterat av Simon till rm.GetTotalAmmo()
-				currentMag = magCapacity;
-				targetIsSet = true;
-			}
-
-		}*/
-		UserInput();
+		muzzleFlash = transform.GetChild(0).GetComponent<ParticleSystem>();
 	}
 
 	/**
@@ -63,72 +34,29 @@ public class Weapon : MonoBehaviour {
 	 */
 	public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && Time.time >= nextTimeToFire && isReloading == false && currentMag > 0)
         {
-			isFiring = true;
+	        nextTimeToFire = Time.time + 1.0f / fireRate;
+			Fire();
         }
 
-        if (context.canceled)
-        {
-			isFiring = false;
-        }
     }
 
+	/**
+	 * @Author Martin Wallmark
+	 */
 	public void OnReload(InputAction.CallbackContext context)
     {
-		if (context.performed)
-		{
-			isReloadPressed = true;
+		if (context.performed && isReloading == false && rm.Get(ResourceManager.ItemType.Ammo) != 0){
+			StartCoroutine(Reload());
 		}
 
 		if (context.canceled)
 		{
-			isReloadPressed = false;
+			isReloading = false;
 		}
 	}
-	
-	/**
-	 * @Author Axel Sterner
-	 * @Simon Hessling Oscarson finns i RM.
-	 */
-	public int GetAmmo() { return totalAmmo; }
 
-	/**
-	 * @Author Axel Sterner
-	 */
-	public void SetAmmo(int newAmmo)
-	{
-		totalAmmo += newAmmo;
-	}
-	
-	/**
-	 * @Author Axel Sterner
-	 * 
-	 */
-	public void ResetAmmo()
-	{
-		totalAmmo = 100;
-	}
-
-	/**
-	 * @Author Martin Wallmark
-	 */
-	public void SetDamage(int newDamage)
-	{
-		damage = newDamage;
-	}
-	
-	/**
-	 * @Author Martin Wallmark
-	 */
-	public void SetMagCapacity(int newMagCapacity)
-	{
-		magCapacity = newMagCapacity;
-	}
-	/**
-	 * @Author Simon Hessling Oscarson
-	 */
-	public int GetCurrentMag() { return currentMag; }
 	/**
 	 * @Author Markus Larsson and Khaled Alrass
 	 */
@@ -137,72 +65,80 @@ public class Weapon : MonoBehaviour {
 		if (isFiring || Input.GetKeyDown(KeyCode.Mouse1) && Time.time >= nextTimeToFire && !isReloading && currentMag > 0){
 			nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
-			SetAmmoText();
 		}
-		else if(isReloadPressed || Input.GetKeyDown(KeyCode.R) && !isReloading){
-			StartCoroutine(Reload());
-			SetAmmoText();
+		else if(Input.GetKeyDown(KeyCode.R) && !isReloading){
+			if(rm.Get(ResourceManager.ItemType.Ammo) != 0)
+			{
+				StartCoroutine(Reload());
+			}
 		}
 	}
 
 	/**
-	 * @Author Markus Larsson
-	 * 
 	 * Shoots from the referenced camera 10 units forward.
-	 * @Author Simon Hessling Oscarson. Minskar inte total ammo längre.
+	 * 
+	 * @Author Markus Larsson 
+	 * @Simon Hessling Oscarson
 	 */
 	private void Fire(){
 		currentMag--;
-		//totalAmmo--;
+		muzzleFlash.Play();
 
 		RaycastHit hit;
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
 			EnemyAI target = hit.collider.GetComponent<EnemyAI>(); //Khaled ändrat typen från Zombie till EnemyAI
-			Debug.Log("Hit: " + hit.transform.name + ", Remaining ammo: " + totalAmmo);
 			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
 			if(target != null){
 				target.TakeDamage(damage);
 			}
 		}
+
+		if (currentMag <= 0)
+		{
+			StartCoroutine(Reload());
+		}
+		
 	}
 
 	/**
-	 * @Author Markus Larsson
-	 * @Simon Hessling Oscarson
 	 * Reloads the current magazine.
+	 *
+	 * @Author Markus Larsson and Simon Hessling Oscarson
 	 */
-	IEnumerator Reload(){
-		if (rm.GetTotalAmmo() != 0) // ifall man har något extra ammo
+	private IEnumerator Reload(){
+		isReloading = true;
+		yield return new WaitForSeconds(reloadTime);
+		int tempSubSize = magCapacity - currentMag;
+		
+		if (currentMag + rm.Get(ResourceManager.ItemType.Ammo) >= magCapacity) //gör så det inte går att få mer än magCapacity i magget
 		{
-			isReloading = true;
-			Debug.Log("Reloading...");
-			yield return new WaitForSeconds(reloadTime);
-			int tempSubSize = magCapacity - currentMag;
-			if (currentMag + rm.GetTotalAmmo() >= magCapacity)//gör så det inte går att få mer än magCapacity i magget
-			{
-				currentMag = magCapacity;	
-			}
-			else
-			{
-				currentMag += rm.GetTotalAmmo();
-			}
-			rm.SubTotalAmmo(tempSubSize);
-			if (rm.GetTotalAmmo() < 0)
-            {
-				rm.SetTotalAmmo(0);
-            }
-			Debug.Log("Reloaded!");
-			isReloading = false;
+			currentMag = magCapacity;	
 		}
+		else
+		{
+			currentMag += rm.Get(ResourceManager.ItemType.Ammo);	
+		}
+		
+		rm.Offset(ResourceManager.ItemType.Ammo, -tempSubSize);
+		if (rm.Get(ResourceManager.ItemType.Ammo) < 0)
+        {
+			rm.SetTotal(ResourceManager.ItemType.Ammo, 0);
+        }
+		Debug.Log("Reloaded!");
+		isReloading = false;
 	}
-	
-	/**
-	 * @Author Khaled Alraas
-	 * @Simon Hessling Oscarson. Tagit bort texten.
-	 */
-	private void SetAmmoText()
+
+	public void SetDamage(int newDamage)
 	{
-		// set ammo Text UI
-		//ammoText.text = totalAmmo.ToString();
+		damage = newDamage;
+	}
+	public void SetMagCapacity(int newMagCapacity)
+	{
+		magCapacity = newMagCapacity;
+	}
+
+	public int GetCurrentMag()
+	{
+		return currentMag;
 	}
 }

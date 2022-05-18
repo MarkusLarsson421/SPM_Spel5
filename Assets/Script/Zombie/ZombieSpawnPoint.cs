@@ -9,16 +9,22 @@ public class ZombieSpawnPoint : MonoBehaviour
     [SerializeField] private GameObject zombie;
     [SerializeField] private int maxAmountAtSpawnPoint;
     private int randomAmountOfZombies;
-    private GameObject player;
+    private GameObject player1;
+
+    private GameObject player2;
 
     private float timer;
 
     private bool canSpawn;
     private bool targetIsSet;
 
+    private float distanceToPlayer1;
+    private float distanceToPlayer2;
+
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player1 = GameObject.FindGameObjectWithTag("Player1");
+        player2 = GameObject.FindGameObjectWithTag("Player2");
     }
 
     private void Update()
@@ -30,7 +36,9 @@ public class ZombieSpawnPoint : MonoBehaviour
 
             if (timer >= 20)
             {
-                player = GameObject.FindGameObjectWithTag("Player1");
+                //player = GameObject.FindGameObjectWithTag("Player1");
+                player1 = GameObject.FindGameObjectWithTag("Player1");
+                player2 = GameObject.FindGameObjectWithTag("Player2");
                 targetIsSet = true;
             }
 
@@ -45,7 +53,7 @@ public class ZombieSpawnPoint : MonoBehaviour
         for (int i = 0; i < randomAmountOfZombies; i++)
         {
             GameObject go = Instantiate(zombie, this.transform);
-            go.GetComponent<Zombie>().SetTarget(player.transform);
+            go.GetComponent<Zombie>().SetTarget(player1.transform);
         }
 
     }
@@ -70,9 +78,16 @@ public class ZombieSpawnPoint : MonoBehaviour
 
     public void setCanSpawn()
     {
-        float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-        Debug.Log(distanceToPlayer);
-        if(distanceToPlayer <= minimunDistanceToPlayer)
+        distanceToPlayer1 = Vector3.Distance(player1.transform.position, transform.position);
+        /*
+        if(player2 != null)
+        {
+            distanceToPlayer2 = Vector3.Distance(player2.transform.position, transform.position);
+        }
+        */
+        
+        //Debug.Log(distanceToPlayer);
+        if(distanceToPlayer1 <= minimunDistanceToPlayer /*|| distanceToPlayer2 <= minimunDistanceToPlayer*/)
         {
             canSpawn = false;
         }

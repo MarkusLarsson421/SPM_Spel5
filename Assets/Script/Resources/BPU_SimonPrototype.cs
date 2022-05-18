@@ -1,20 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BPU_SimonPrototype : MonoBehaviour
 {
-    public RM rm;
-    private int maxBatteries = 5;
+    public ResourceManager rm;
+    public SubsScript ss;
+    private int maxBatteries = 1;
     
     public void PickUpBatteries()
     {
-        if(rm.GetCurrentBatteries() != maxBatteries)
+        if(rm.Get(ResourceManager.ItemType.Battery) != maxBatteries)
         {
-            rm.PickUpBatteries();
-            Debug.Log("mängd batterier " + rm.GetCurrentBatteries());
-            Destroy(gameObject);
+            rm.Offset(ResourceManager.ItemType.Battery, 1);
+            Debug.Log("mängd batterier " + rm.Get(ResourceManager.ItemType.Battery));
         }
-        
+
+      /*  if (ss != null && ss.GetFirstBatteryPickUp())
+        {
+            Debug.Log("funkar");
+            ss.batteryFirstPickUp = true;
+            Debug.Log(ss.GetFirstBatteryPickUp());
+            ss.SetFirstBatteryPickUp(false);
+
+        }*/
+
     }
 }

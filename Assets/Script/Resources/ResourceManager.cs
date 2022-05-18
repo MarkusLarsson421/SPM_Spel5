@@ -1,109 +1,91 @@
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-//Axel Sterner
+public class ResourceManager : MonoBehaviour
+{
+	[SerializeField] private int ammo = 0;
+	[SerializeField] private int ammoMax = 20;
+	[SerializeField] private int batteries = 0;
+	[SerializeField] private int batteriesMax = 4;
+	[SerializeField] private int scrap = 0;
+	[SerializeField] private int scrapMax = 4;
 
-public class ResourceManager : MonoBehaviour{
-    //private Dictionary<string, int> inventory = new Dictionary<string, int>();
-	
-    private int ammoCap = 100;
-    private int scrapCap = 10;
-    private int batteryCap = 3; //maxantal
-    private int pickUpQuant;
-    private int scrapCount = 0;
-    private int batteryCount = 0;
-    private string itemTag;
-    public Weapon wpn;
+	private int aP1;
+	private int aP2;
 
-    private int MINAMMOPICKUP = 10;
-    private int MAXAMMOPICKUP = 40;
-    private int MINSCRAPPICKUP = 3;
-    private int MAXSCRAPPICKUP = 6;
-    
-    void Start(){
-        
-    }
-
-    void Update()
-    {
-
-    }
+	public enum ItemType{
+		Scrap,
+		Battery,
+		Ammo,
+	}
 
 	/**
-	 * @Author Axel Sterner and Markus Larsson
-	 * 
-	 * 
+	 * @Author Markus Larsson
 	 */
-    public void PickUp(GameObject g)
-    {
-        itemTag = g.tag;
-        switch (itemTag)
-        {
-            case "Ammo":
-                if(wpn.GetAmmo() == 100)
-                {
-                    return;
-                }
-                else
-                {
-                    AmmoHandler(g);
-                    Destroy(g);
-                }
-                break;
-
-            case "Scrap":
-                ItemHandler(g);
-                if(scrapCount < scrapCap - pickUpQuant)
-                {
-                    scrapCount += pickUpQuant;
-                    Debug.Log(scrapCount);
-                    Destroy(g);
-                }
-                break;
-
-            case "Battery":
-                ItemHandler(g);
-                if(batteryCount < batteryCap - pickUpQuant)
-                {
-                    batteryCount += pickUpQuant;
-                    Debug.Log(batteryCount);
-                    Destroy(g);
-
-                }
-                Debug.Log("Quantity: " + pickUpQuant);
-                break;
-        }
-    }
-   
-    private void ItemHandler(GameObject g)
-    {
-        pickUpQuant = 3;
+    public int Get(ItemType type){
+	    switch(type){
+		    case ItemType.Battery:
+			    return batteries;
+		    case ItemType.Scrap:
+			    return scrap;
+		    case ItemType.Ammo:
+			    return ammo;
+	    }
+	    return -1;
     }
 
-    private void AmmoHandler(GameObject g)
+    /**
+	 * @Author Markus Larsson
+	 */
+    public void SetTotal(ItemType type, int amount)
     {
-        pickUpQuant = Random.Range(MINAMMOPICKUP, MAXAMMOPICKUP);
-        Debug.Log("Antal: " + pickUpQuant);
-        int currentAmmo = wpn.GetAmmo();
-        if(currentAmmo + pickUpQuant > 100)
-        {
-            wpn.ResetAmmo();
-            Debug.Log(wpn.GetAmmo());
-        }
-        else
-        {
-            wpn.SetAmmo(pickUpQuant);
-            Debug.Log("Total ammo: " + wpn.GetAmmo());
-        }
-
+	    switch(type){
+		    case ItemType.Battery:
+				batteries = amount;
+			    break;
+		    case ItemType.Scrap:
+			    scrap = amount;
+			    break;
+		    case ItemType.Ammo:
+			    ammo = amount;
+			    break;
+	    }
     }
 
-    private void ScrapHandler(GameObject g)
+    /**
+	 * @Author Markus Larsson
+	 */
+    public void Offset(ItemType type, int amount)
     {
-        pickUpQuant = Random.Range(MINSCRAPPICKUP, MAXSCRAPPICKUP);
+	    switch(type){
+		    case ItemType.Battery:
+			    batteries += amount;
+			    break;
+		    case ItemType.Scrap:
+			    scrap += amount;
+			    break;
+		    case ItemType.Ammo:
+			    ammo += amount;
+			    break;
+	    }
     }
-    /*
-     * 
-     * */
+
+	public int GetMaxAmount(ItemType type)
+    {
+		switch (type)
+		{
+			case ItemType.Battery:
+				return batteriesMax;
+			case ItemType.Scrap:
+				return scrapMax;
+			case ItemType.Ammo:
+				return ammoMax;
+				
+		}
+		return 0;
+	}
+
+	public int GetMaxBatteries()
+    {
+		return batteriesMax;
+    }
 }
