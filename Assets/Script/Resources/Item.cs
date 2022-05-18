@@ -6,6 +6,7 @@ public class Item : MonoBehaviour{
 	[SerializeField] private int amount;
 	[SerializeField] private ResourceManager.ItemType type;
 	private AmmoPool ammoPool;
+    private PickupPool pickupPool;
 	private APU_SimonPrototype apu;
 	private BPU_SimonPrototype bpu;
 	private SPU_SimonPrototype spu;
@@ -15,18 +16,19 @@ public class Item : MonoBehaviour{
     private static bool doOnce1 = true;
     private static bool doOnce2 = true;
     [SerializeField] private BatteryObjectPooled batteryObj;
+    [SerializeField] private PickupObjectPooled pickupObj;
 
-	private bool isPickedUp;
+    private GameObject ammo, scrap, battery;
+
+    private bool isPickedUp;
 
     private void Start()
     {
-		ammoPool = GameObject.Find("AmmoPool").GetComponent<AmmoPool>();
-		scrapPool = GameObject.Find("ScrapPool").GetComponent<ScrapPool>();
-		batteryPool = GameObject.Find("BatteryPool").GetComponent<BatteryPool>();
-		apu = gameObject.GetComponent<APU_SimonPrototype>();
+        pickupPool = GameObject.Find("PickupPool").GetComponent<PickupPool>();
+        pickupObj = GameObject.Find("PickupSpawner").GetComponent<PickupObjectPooled>();
+        apu = gameObject.GetComponent<APU_SimonPrototype>();
 		bpu = gameObject.GetComponent<BPU_SimonPrototype>();
-		spu = gameObject.GetComponent<SPU_SimonPrototype>();
-        batteryObj = GameObject.Find("BatterySpawner").GetComponent<BatteryObjectPooled>();
+		spu = gameObject.GetComponent<SPU_SimonPrototype>();   
     }
 
     private void Update()
@@ -44,35 +46,9 @@ public class Item : MonoBehaviour{
 	}
 
 	private void Die(){
-
-        switch (type)
-        {
-			case ResourceManager.ItemType.Ammo:
-				ammoPool.ReturnToPool(apu);
-                //ss.SetFirstScrapPickUp(true);
-                break;
-			case ResourceManager.ItemType.Scrap:
-				scrapPool.ReturnToPool(spu);
-                if (doOnce1)
-                {
-                    Debug.Log(doOnce1);
-                    ss.SetFirstScrapPickUp(true);
-                    doOnce1 = false;
-                }
-				break;
-			case ResourceManager.ItemType.Battery:
-				batteryPool.ReturnToPool(bpu);
-                batteryObj.SetSpawned(true);
-              /*  if (doOnce2)
-                {
-                    ss.SetFirstBatteryPickUp(true);
-                    doOnce2 = false;
-                }*/
-                break;
-				
-        }
-		//Debug.Log("Playyhada");
-		PickUpEvent pickUpEvent = new PickUpEvent();
+        pickupPool.ReturnToPool(this.gameObject);
+        pickupObj.SetAbleToSpawn(true);
+        PickUpEvent pickUpEvent = new PickUpEvent();
 		pickUpEvent.Description = "Item: " + type + " x " + amount + " has been picked up.";
 		pickUpEvent.SetItemType(type);
 		pickUpEvent.SetAmount(amount);

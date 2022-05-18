@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 /*@Author Axel Sterner
  * Klass som instansierar batteri-objekt ur poolen. Läggs på en prefab som agerar spawner
+ * 
+ * hur ska spawn() fungera för en generell klass? 
  */
 public class BatteryObjectPooled : MonoBehaviour
 {

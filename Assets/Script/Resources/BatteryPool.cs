@@ -4,6 +4,8 @@ using UnityEngine;
 
 /*@Author Axel Sterner
  * Databehållare för batteri-objekt som ska spawnas med object pooling.
+ * 
+ * PickupPool som innehåller en kö med GameObjects. Get() tar emot gameobjects och lägger till en av varje prefab. Tre olika add-metoder (för batteri, scraps och ammo) och slutligen ReturnToPool som tar emot gameobject
  */
 public class BatteryPool : MonoBehaviour
 {
@@ -31,9 +33,22 @@ public class BatteryPool : MonoBehaviour
     {
         for(int i = 0; i < count; i++)
         {
-            BPU_SimonPrototype batt = Instantiate(batteryPrefab);
-            batt.gameObject.SetActive(false);
-            batteryContainer.Enqueue(batt);
+            int randomItem = Random.Range(0,2);
+            if(randomItem == 0)
+            {
+                BPU_SimonPrototype batt = Instantiate(batteryPrefab);
+            }
+            if (randomItem == 1)
+            {
+                //ammo
+            }
+            if (randomItem == 2)
+            {
+                //scraps
+            }
+            
+            /*batt.gameObject.SetActive(false);
+            batteryContainer.Enqueue(batt);*/
         }
     }
 
