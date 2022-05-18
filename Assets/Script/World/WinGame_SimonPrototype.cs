@@ -1,11 +1,15 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.EventSystems;
+
 public class WinGame_SimonPrototype : MonoBehaviour
 {
     public ResourceManager rm;
     public CanvasHandler ch;
     [SerializeField] private TMP_Text scrapsInCarText;
+    [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private GameObject theButton;
     private int scrapsInCar;
     private int scrapsNeededToFixCar = 5;
     private bool isClicked;
@@ -34,7 +38,9 @@ public class WinGame_SimonPrototype : MonoBehaviour
         scrapsInCarText.text = "scraps in car " + scrapsInCar + " / " + scrapsNeededToFixCar;
         if (scrapsInCar >= scrapsNeededToFixCar)
         {
-            ch.ChangeCanvasToWinCanvas();           
+            
+            ch.ChangeCanvasToWinCanvas();
+            eventSystem.SetSelectedGameObject(theButton);
             Debug.Log("u won the game");
         }
     }

@@ -48,7 +48,11 @@ public class PlayerSpawnManager : MonoBehaviour
 
         if(playerInput.gameObject.GetComponent<PlayerStartInfo>().playerID == 1)
         {
-            ss.FixCarLinePlay();
+            if(ss != null)
+            {
+                ss.FixCarLinePlay();
+            }
+            
             DestroyStartImage();
             player1 = playerInput.gameObject;
             player1.GetComponent<PlayerStartInfo>().startPosition = playerOneSpawnPoint.position;
