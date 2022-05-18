@@ -5,18 +5,14 @@ public class Item : MonoBehaviour{
 	public string playah;
 	[SerializeField] private int amount;
 	[SerializeField] private ResourceManager.ItemType type;
-	private AmmoPool ammoPool;
     private PickupPool pickupPool;
 	private APU_SimonPrototype apu;
 	private BPU_SimonPrototype bpu;
 	private SPU_SimonPrototype spu;
 	public SubsScript ss;
-	private ScrapPool scrapPool;
-	private BatteryPool batteryPool;
     private static bool doOnce1 = true;
     private static bool doOnce2 = true;
-    [SerializeField] private BatteryObjectPooled batteryObj;
-    [SerializeField] private PickupObjectPooled pickupObj;
+    private PickupObjectPooled pickupSpawner;
 
     private GameObject ammo, scrap, battery;
 
@@ -25,7 +21,8 @@ public class Item : MonoBehaviour{
     private void Start()
     {
         pickupPool = GameObject.Find("PickupPool").GetComponent<PickupPool>();
-        pickupObj = GameObject.Find("PickupSpawner").GetComponent<PickupObjectPooled>();
+        pickupSpawner = GameObject.Find("PickupSpawner").GetComponent<PickupObjectPooled>();
+        Debug.Log(pickupSpawner);
         apu = gameObject.GetComponent<APU_SimonPrototype>();
 		bpu = gameObject.GetComponent<BPU_SimonPrototype>();
 		spu = gameObject.GetComponent<SPU_SimonPrototype>();   
@@ -35,9 +32,9 @@ public class Item : MonoBehaviour{
     {
         if (isPickedUp && playah !=null)
         {
-			//Debug.Log(playah + "wow");
+			//Debug.Log(playah + "WoW");
 			Die();
-			//Debug.Log(playah + "owo");
+			//Debug.Log(playah + "UwU");
 		}
     }
 
@@ -46,8 +43,8 @@ public class Item : MonoBehaviour{
 	}
 
 	private void Die(){
-        pickupPool.ReturnToPool(this.gameObject);
-        pickupObj.SetAbleToSpawn(true);
+        pickupPool.ReturnToPool(gameObject);
+        pickupSpawner.SetAbleToSpawn(true); 
         PickUpEvent pickUpEvent = new PickUpEvent();
 		pickUpEvent.Description = "Item: " + type + " x " + amount + " has been picked up.";
 		pickUpEvent.SetItemType(type);

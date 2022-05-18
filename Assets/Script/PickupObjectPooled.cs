@@ -8,8 +8,10 @@ public class PickupObjectPooled : MonoBehaviour
 {
     private float timer;
     private float timeUntilRespawn = 2.0f;
-    private bool isAbleToSpawn;
-
+    [SerializeField] private bool isAbleToSpawn;
+    /*Lägg pickup prefabs som barn till spawner-prefaben. Lägg alla barnen i en lista/kö, om isAbleToSpawn SetActive(index).
+     * Detta kan ersätta PickupPool helt, då items spawnar genom att helt enkelt sättas till aktiva. Ingen object pooling däremot men osäker om det verkligen behövs.
+     */
     private void Start()
     {
         isAbleToSpawn = true;

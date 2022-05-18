@@ -33,7 +33,6 @@ public class PickupPool : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             int randomItem = Random.Range(0, 3);
-            Debug.Log(randomItem);
             switch (randomItem)
             {
                 case 0:
@@ -48,7 +47,7 @@ public class PickupPool : MonoBehaviour
                     pickupContainer.Enqueue(ammo);
                     break;
 
-                case 2:
+                case 5:
                     GameObject scrap = Instantiate(scrapPrefab);
                     scrap.gameObject.SetActive(false);
                     pickupContainer.Enqueue(scrap);
@@ -57,8 +56,6 @@ public class PickupPool : MonoBehaviour
                 default:
                     break;
             }
-            /*batt.gameObject.SetActive(false);
-            batteryContainer.Enqueue(batt);*/
         }
     }
 
