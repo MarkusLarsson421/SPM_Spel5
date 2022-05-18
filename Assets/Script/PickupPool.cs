@@ -47,11 +47,11 @@ public class PickupPool : MonoBehaviour
                     pickupContainer.Enqueue(ammo);
                     break;
 
-                case 5:
+               /* case 5:
                     GameObject scrap = Instantiate(scrapPrefab);
                     scrap.gameObject.SetActive(false);
                     pickupContainer.Enqueue(scrap);
-                    break;
+                    break;*/
 
                 default:
                     break;
