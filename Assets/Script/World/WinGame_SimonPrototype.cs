@@ -34,7 +34,7 @@ public class WinGame_SimonPrototype : MonoBehaviour
         scrapsInCarText.text = "scraps in car " + scrapsInCar + " / " + scrapsNeededToFixCar;
         if (scrapsInCar >= scrapsNeededToFixCar)
         {
-            ch.ChangeCanvasToDeathCanvas();           
+            ch.ChangeCanvasToWinCanvas();           
             Debug.Log("u won the game");
         }
     }
@@ -50,7 +50,7 @@ public class WinGame_SimonPrototype : MonoBehaviour
         Debug.Log("rm scraps = " + rm.Get(ResourceManager.ItemType.Scrap) + " scrapsInCar = " + scrapsInCar);
         if (scrapsInCar >= scrapsNeededToFixCar)
         {
-            ch.ChangeCanvasToDeathCanvas();
+            ch.ChangeCanvasToWinCanvas();
             Debug.Log("u won the game");
         }
     }

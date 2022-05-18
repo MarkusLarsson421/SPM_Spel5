@@ -9,6 +9,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
 {
     [SerializeField] private GameObject CanvasObject;
     [SerializeField] private GameObject deathCanvasObject;
+    [SerializeField] private GameObject winCanvasObject;
     [SerializeField] private GameObject tookDamgeCanvasObject;
     [SerializeField] private GameObject popOutTextCanvas;
     [SerializeField] private TextMeshProUGUI nearCarText;
@@ -49,6 +50,12 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     {
         CanvasObject.SetActive(false);
         deathCanvasObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+    }
+    public void ChangeCanvasToWinCanvas()
+    {
+        CanvasObject.SetActive(false);
+        winCanvasObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
     }
 
