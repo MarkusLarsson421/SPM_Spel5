@@ -7,12 +7,36 @@ using UnityEngine;
  */
 public class PlayerStartInfo : MonoBehaviour
 {
-    public int playerID;
+    private int playerID;
+    private float playerRotation;
     
-    public Vector3 startPosition;
+    private Vector3 startPosition;
     // Start is called before the first frame update
     void Start()
     {
         transform.position = startPosition;
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + playerRotation,transform.eulerAngles.z);
     }
+
+    public int GetPlayerID()
+    {
+        return playerID;
+    }
+
+    public void SetPlayerID(int nPlayerID)
+    {
+        playerID = nPlayerID;
+    }
+
+    public void SetStartPosition(Vector3 nStartPosition)
+    {
+        startPosition = nStartPosition;
+    }
+
+    public void SetPlayerRotation(float rotation)
+    {
+        playerRotation = rotation;
+    }
+
+
 }

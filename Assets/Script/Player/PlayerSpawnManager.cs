@@ -18,7 +18,10 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private GameObject player2Prefab;
     [SerializeField] private GameObject startCamera;
     [SerializeField] private GameObject startUIPicture;
-    
+
+    [SerializeField] private float player1Rotation;
+    [SerializeField] private float player2Rotation;
+
     private float timer;
     public bool playerHasJoined = false;
     private bool player2hasjoined;
@@ -44,9 +47,9 @@ public class PlayerSpawnManager : MonoBehaviour
     {
         Debug.Log("Player joined " + playerInput.playerIndex);
 
-        playerInput.gameObject.GetComponent<PlayerStartInfo>().playerID = playerInput.playerIndex + 1;
+        playerInput.gameObject.GetComponent<PlayerStartInfo>().SetPlayerID(playerInput.playerIndex + 1);
 
-        if(playerInput.gameObject.GetComponent<PlayerStartInfo>().playerID == 1)
+        if(playerInput.gameObject.GetComponent<PlayerStartInfo>().GetPlayerID() == 1)
         {
             if(ss != null)
             {
@@ -55,14 +58,16 @@ public class PlayerSpawnManager : MonoBehaviour
             
             DestroyStartImage();
             player1 = playerInput.gameObject;
-            player1.GetComponent<PlayerStartInfo>().startPosition = playerOneSpawnPoint.position;
+            player1.GetComponent<PlayerStartInfo>().SetStartPosition(playerOneSpawnPoint.position);
+            player1.GetComponent<PlayerStartInfo>().SetPlayerRotation(player1Rotation);
             player1.tag = "Player1";
             playerInputManager.playerPrefab = player2Prefab;
         }
         else
         {
             player2 = playerInput.gameObject;
-            player2.GetComponent<PlayerStartInfo>().startPosition = playerTwoSpawnPoint.position;
+            player2.GetComponent<PlayerStartInfo>().SetStartPosition(playerTwoSpawnPoint.position);
+            player2.GetComponent<PlayerStartInfo>().SetPlayerRotation(player2Rotation);
             player2.tag = "Player2";
             player2hasjoined = true;
             
