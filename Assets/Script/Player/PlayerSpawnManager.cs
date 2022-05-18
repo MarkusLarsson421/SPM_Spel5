@@ -103,12 +103,12 @@ public class PlayerSpawnManager : MonoBehaviour
         
     }
 
-    private GameObject GetPlayer1()
+    public GameObject GetPlayer1()
     {
         return player1;
     }
 
-    private GameObject GetPlayer2()
+    public GameObject GetPlayer2()
     {
         return player2;
     }
