@@ -108,4 +108,9 @@ public class PlayerSpawnManager : MonoBehaviour
         return player2;
     }
 
+
+    public void doStartingCanvas()
+    {
+
+    }
 }
