@@ -79,14 +79,14 @@ public class PlayerSpawnManager : MonoBehaviour
         //playerInput.gameObject.GetComponent<PlayerInput>().actions.FindAction("PauseGame").AddBinding(pauseManager.GetComponent<PauseGame>().ToString());
     }
 
-
+    //Player1s evensystem stängs av och sätts på när player2 joinar. Görs bara för att komma runt en bugg i unity
     private void FixPlayerOneEventSystem()
     {
         GameObject player1 = GameObject.FindGameObjectWithTag("Player1");
         GameObject eventSystem = player1.transform.Find("EventSystem").gameObject;
         eventSystem.SetActive(false);
         timer += Time.deltaTime;
-        if(timer >= 1)
+        if(timer >= 0.2)
         {
             eventSystem.SetActive(true);
             isEventSystemReset = true;
