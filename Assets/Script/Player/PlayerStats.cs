@@ -68,6 +68,9 @@ public class PlayerStats : MonoBehaviour
         EventSystem.Current.FireEvent(playerHealthChange);
     }
 
+    /**
+     * Martin Wallmark
+     */
     public void StaminaUpdater(bool isRunning)
     {
         if(stamina < 100 && !isRunning)
