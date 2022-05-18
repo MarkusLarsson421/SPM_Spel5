@@ -27,7 +27,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         tookDamgeCanvas.alpha = 0;
 
     }
-    void Update()
+    private void Update()
     {
         EnemyAttackedMe();
     }
@@ -70,7 +70,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
             hideTookDamgeCanvas();
         }
     }
-    float timer = 0;
+    
     void showTookDamgeCanavs()
     {
 
