@@ -10,7 +10,7 @@ public class ZombieObjectPooled : MonoBehaviour
 {
     [SerializeField] private TMP_Text waveText;
     private int amtSpawners;
-    private static int zombiesNextWave = 15;
+    private static int zombiesNextWave = 7;
     private static int zombieAmount;
     private int currentWave;
     private int betweenWaves = 4;
