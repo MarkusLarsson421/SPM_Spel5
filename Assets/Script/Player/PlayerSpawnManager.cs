@@ -15,6 +15,8 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private PlayerInputManager playerInputManager;
     [SerializeField] private GameObject player1Prefab;
     [SerializeField] private GameObject player2Prefab;
+    [SerializeField] private GameObject startCamera;
+    [SerializeField] private GameObject startUIPicture;
     private float timer;
     public bool playerHasJoined = false;
     private bool player2hasjoined;
@@ -41,6 +43,8 @@ public class PlayerSpawnManager : MonoBehaviour
 
         if(playerInput.gameObject.GetComponent<PlayerStartInfo>().playerID == 1)
         {
+            Destroy(startCamera);
+            Destroy(startUIPicture);
             playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerOneSpawnPoint.position;
             playerInput.gameObject.tag = "Player1";
             playerInputManager.playerPrefab = player2Prefab;
