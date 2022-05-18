@@ -22,6 +22,9 @@ public class PlayerSpawnManager : MonoBehaviour
     private bool player2hasjoined;
     private bool isEventSystemReset;
 
+    [SerializeField] private GameObject player1;
+    [SerializeField] private GameObject player2;
+
     private void Start()
     {
         playerInputManager.playerPrefab = player1Prefab;
@@ -45,12 +48,14 @@ public class PlayerSpawnManager : MonoBehaviour
         {
             Destroy(startCamera);
             Destroy(startUIPicture);
+            player1 = playerInput.gameObject;
             playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerOneSpawnPoint.position;
             playerInput.gameObject.tag = "Player1";
             playerInputManager.playerPrefab = player2Prefab;
         }
         else
         {
+            player2 = playerInput.gameObject;
             playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerTwoSpawnPoint.position;
             //playerInputManager.playerPrefab = player2Prefab;
             playerInput.gameObject.tag = "Player2";
@@ -96,6 +101,16 @@ public class PlayerSpawnManager : MonoBehaviour
             isEventSystemReset = true;
         }
         
+    }
+
+    private GameObject GetPlayer1()
+    {
+        return player1;
+    }
+
+    private GameObject GetPlayer2()
+    {
+        return player2;
     }
 
 }
