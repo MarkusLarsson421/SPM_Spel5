@@ -93,8 +93,8 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         if (tookDamgeCanvas.alpha > 0)
         {
             Debug.Log("hej3");
-            tookDamgeCanvas.alpha -= Time.deltaTime * 20;
-            if (tookDamgeCanvas.alpha <= 0.1)
+            tookDamgeCanvas.alpha -= Time.deltaTime * 2;
+            if (tookDamgeCanvas.alpha <= 0)
             {
                 Debug.Log("hej4");
                 fadeOut = false;
