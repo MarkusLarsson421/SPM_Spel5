@@ -95,8 +95,9 @@ public class Weapon : MonoBehaviour {
 
 		if (currentMag <= 0)
 		{
-			Reload();
+			StartCoroutine(Reload());
 		}
+		
 	}
 
 	/**
