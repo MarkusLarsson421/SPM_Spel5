@@ -11,7 +11,7 @@ public class FlashLight : MonoBehaviour{
     [SerializeField] private Slider batterySlider;
 
     private Light flashLight;
-    private bool isOn;
+    private bool isOn = true;
 
     private void Start()
     {
@@ -20,12 +20,24 @@ public class FlashLight : MonoBehaviour{
 
     private void Update()
     {
-        batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
+        if(batteryCharge > 0f && isOn)
+        {
+            batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
+        }
         batterySlider.value = batteryCharge;
 
-        if (isOn && batteryCharge == 0)
+        if (isOn && batteryCharge <= 0)
         {
-            SetState(false);
+            if(rm.Get(ResourceManager.ItemType.Battery) >= 1)
+            {
+                Recharge();
+            }
+            else
+            {
+                SetState(false);
+            }
+
+            
         }
     }
 
@@ -44,9 +56,13 @@ public class FlashLight : MonoBehaviour{
 
     public void TurnOn()
     {
-        if (batteryCharge <= 0)
+        if (batteryCharge <= 0 && rm.Get(ResourceManager.ItemType.Battery) == 0)
         {
             return;
+        }
+        else if(batteryCharge <= 0 && rm.Get(ResourceManager.ItemType.Battery) != 0)
+        {
+            Recharge();
         }
         isOn = true;
         flashLight.enabled = true;
