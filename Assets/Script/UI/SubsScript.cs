@@ -12,7 +12,6 @@ public class SubsScript : MonoBehaviour{
     private bool firstScrapPickedUp; //används i SPU_SimonProtype.
     private bool firstBatteryPickedUp;
     private bool generatorBrokeFirstTime;
-    private bool coroutineRunning;
     private int timeToShowText = 3;
 
     /*
@@ -23,7 +22,7 @@ public class SubsScript : MonoBehaviour{
      */
     //TODO gör så man kan köra fler rader än en. Just kan scriptet enbart köra en rad.
 	private void Start(){
-		StartCoroutine(Subtitle("Dan: We got to fix the car.", timeToShowText));
+		
 	}
 
 	private void Update(){
@@ -31,44 +30,44 @@ public class SubsScript : MonoBehaviour{
 		if(firstScrapPickedUp){
             Debug.Log("funkar2");
 			
-			StartCoroutine(Subtitle("We can probably use these to fix the car.", timeToShowText));
+			StartCoroutine(Subtitle("We can probably use these to fix the car.",0, timeToShowText));
             firstScrapPickedUp = false;
         }
         if (generatorBrokeFirstTime)
         {
             Debug.Log("funkar2");
 
-            StartCoroutine(Subtitle("Shit, the generator broke, we have to fix it.", timeToShowText));
+            StartCoroutine(Subtitle("Shit, the generator broke, we have to fix it.",0, timeToShowText));
             generatorBrokeFirstTime = false;
         }
 
         if (firstBatteryPickedUp)
         {
             firstBatteryPickedUp = false;
-			StartCoroutine(Subtitle("Perfect for the flashlight.", timeToShowText));
+			StartCoroutine(Subtitle("Perfect for the flashlight.",0, timeToShowText));
 		}
 
 		if(needToReload){
 			needToReload = false;
-			StartCoroutine(Subtitle("Gotta reload.", timeToShowText));
+			StartCoroutine(Subtitle("Gotta reload.",0, timeToShowText));
 		}
 
 		if(flashLightLine){
 			flashLightLine = false;
-			StartCoroutine(Subtitle("Oh no, it is flickering.", timeToShowText));
+			StartCoroutine(Subtitle("Oh no, it is flickering.",0, timeToShowText));
 		}
 
 		if(craftingTableLine){
 			craftingTableLine = false;
-			StartCoroutine(Subtitle("We can probably use these to fix the car.", timeToShowText));
+			StartCoroutine(Subtitle("We can probably use these to fix the car.",0, timeToShowText));
 		}
 	}
 
-	private IEnumerator Subtitle(string text, int seconds){
+	private IEnumerator Subtitle(string text,int timeToStart, int timeToFinish){
 		textBox.GetComponent<TextMeshProUGUI>().text = "";
-		yield return new WaitForSeconds(0);
+		yield return new WaitForSeconds(timeToStart);
 		textBox.GetComponent<TextMeshProUGUI>().text = text;
-		yield return new WaitForSeconds(seconds);
+		yield return new WaitForSeconds(timeToFinish);
 		textBox.GetComponent<TextMeshProUGUI>().text = "";
 	}
     
@@ -92,5 +91,10 @@ public class SubsScript : MonoBehaviour{
     public void SetGeneratorBreakFirstTime(bool boolean)
     {
         generatorBrokeFirstTime = boolean;
+    }
+
+    public void FixCarLinePlay()
+    {
+        StartCoroutine(Subtitle("Dan: We got to fix the car.", 2, timeToShowText));
     }
 }
