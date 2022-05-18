@@ -34,7 +34,7 @@ public class DistanceCheck : MonoBehaviour
         if(dist1 <= distaneFromSpawner || dist2 <= distaneFromSpawner)
         {
             spawner.SetAbleToSpawnFalse();
-            Debug.Log(dist1);
+           
         }
         else
         {
