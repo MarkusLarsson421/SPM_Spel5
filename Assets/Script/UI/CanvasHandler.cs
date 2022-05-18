@@ -63,15 +63,18 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
             hideTookDamgeCanvas();
         }
     }
-
+    float timer = 0;
     void showTookDamgeCanavs()
     {
 
-        if (tookDamgeCanvas.alpha < 1 && fadeIn)
+        if (tookDamgeCanvas.alpha < 1)
         {
+            Debug.Log("hej");
             tookDamgeCanvas.alpha += Time.deltaTime * 20;
-            if (tookDamgeCanvas.alpha >= 1)
+            if (tookDamgeCanvas.alpha >= 0.9)
             {
+                Debug.Log("hej2");
+                hideTookDamgeCanvas();
                 fadeIn = false;
                 fadeOut = true;
             }
@@ -82,9 +85,11 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     {
         if (tookDamgeCanvas.alpha > 0)
         {
-            tookDamgeCanvas.alpha -= Time.deltaTime * 2;
-            if (tookDamgeCanvas.alpha == 0)
+            Debug.Log("hej3");
+            tookDamgeCanvas.alpha -= Time.deltaTime * 20;
+            if (tookDamgeCanvas.alpha <= 0.1)
             {
+                Debug.Log("hej4");
                 fadeOut = false;
             }
         }
@@ -98,7 +103,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     {
         playerHealthText.text = playerHealth.ToString();
     }
-    float timer = 0;
+   
     public void showPopOutText(string text)
     {
         popOutTextCanvas.SetActive(true);
