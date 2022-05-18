@@ -22,6 +22,9 @@ public class PlayerSpawnManager : MonoBehaviour
     private bool player2hasjoined;
     private bool isEventSystemReset;
 
+    [SerializeField] private GameObject player1;
+    [SerializeField] private GameObject player2;
+
     private void Start()
     {
         playerInputManager.playerPrefab = player1Prefab;
@@ -43,22 +46,21 @@ public class PlayerSpawnManager : MonoBehaviour
 
         if(playerInput.gameObject.GetComponent<PlayerStartInfo>().playerID == 1)
         {
-            Destroy(startCamera);
-            Destroy(startUIPicture);
-            playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerOneSpawnPoint.position;
-            playerInput.gameObject.tag = "Player1";
+            DestroyStartImage();
+            player1 = playerInput.gameObject;
+            player1.GetComponent<PlayerStartInfo>().startPosition = playerOneSpawnPoint.position;
+            player1.tag = "Player1";
             playerInputManager.playerPrefab = player2Prefab;
         }
         else
         {
-            playerInput.gameObject.GetComponent<PlayerStartInfo>().startPosition = playerTwoSpawnPoint.position;
-            //playerInputManager.playerPrefab = player2Prefab;
-            playerInput.gameObject.tag = "Player2";
+            player2 = playerInput.gameObject;
+            player2.GetComponent<PlayerStartInfo>().startPosition = playerTwoSpawnPoint.position;
+            player2.tag = "Player2";
             player2hasjoined = true;
             
         }
         SetPlayerSensitivity(playerInput);
-        SetPauseManager(playerInput);
         playerHasJoined = true;
     }
 
@@ -75,14 +77,6 @@ public class PlayerSpawnManager : MonoBehaviour
         }
     }
 
-
-    private void SetPauseManager(PlayerInput playerInput)
-    {
-        //GameObject pauseManager = GameObject.FindGameObjectWithTag("PauseManager");
-        
-        //playerInput.gameObject.GetComponent<PlayerInput>().actions.FindAction("PauseGame").AddBinding(pauseManager.GetComponent<PauseGame>().ToString());
-    }
-
     //Player1s evensystem stängs av och sätts på när player2 joinar. Görs bara för att komma runt en bugg i unity
     private void FixPlayerOneEventSystem()
     {
@@ -96,6 +90,22 @@ public class PlayerSpawnManager : MonoBehaviour
             isEventSystemReset = true;
         }
         
+    }
+
+    private void DestroyStartImage()
+    {
+        Destroy(startCamera);
+        Destroy(startUIPicture);
+    }
+
+    public GameObject GetPlayer1()
+    {
+        return player1;
+    }
+
+    public GameObject GetPlayer2()
+    {
+        return player2;
     }
 
 }

@@ -24,24 +24,12 @@ public class PauseGame : MonoBehaviour
     }
     public void OnPause(InputAction.CallbackContext context)
     {
-        Debug.Log("WOFF");
         if (context.performed)
         {
             togglePause();
         }
 
     }
-
-    /*
-    public void OnPause(PlayerInput playerInput)
-    {
-        if (playerInput.actionEvents.Equals("PauseGame"))
-        {
-            togglePause();
-        }
-
-    }
-    */
     private void togglePause()
     {
         if (isPaused)
