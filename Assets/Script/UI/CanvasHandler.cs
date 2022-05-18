@@ -110,7 +110,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     {
         playerHealthText.text = playerHealth.ToString();
     }
-   
+    float timer = 0;
     public void showPopOutText(string text)
     {
         popOutTextCanvas.SetActive(true);
