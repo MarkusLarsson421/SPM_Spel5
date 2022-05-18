@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class FlashLight : MonoBehaviour{
 	private const int maxBatteryCharge = 100;
@@ -7,6 +8,7 @@ public class FlashLight : MonoBehaviour{
 	public ResourceManager rm;
     [SerializeField] [Range(1, maxBatteryCharge)] private float batteryCharge = 100.0f;
     [SerializeField] private float batteryDrainMultiplier = 0.1f;
+    [SerializeField] private Slider batterySlider;
 
     private Light flashLight;
     private bool isOn;
@@ -19,6 +21,7 @@ public class FlashLight : MonoBehaviour{
     private void Update()
     {
         batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
+        batterySlider.value = batteryCharge;
 
         if (isOn && batteryCharge == 0)
         {
