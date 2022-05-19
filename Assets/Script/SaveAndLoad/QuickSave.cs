@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class QuickSave : MonoBehaviour{
-	private const string saveSubLocation = "Quicksave";
+	/*private const string saveSubLocation = "Quicksave";
 	
 	void Update()
     {
@@ -10,5 +10,5 @@ public class QuickSave : MonoBehaviour{
 		}else if(Input.GetKeyDown(KeyCode.F8)){
 			SaveSystem.Load(saveSubLocation);
 		}
-    }
+    }*/
 }

@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour {
 	//Shooting
 	[SerializeField] private int damage = 20;
 	[SerializeField] private float range = 100.0f;
+	[SerializeField] private GameObject zombieHitBloodParticle;
 	[Tooltip("Rounds per second.")]
 	[SerializeField] private float fireRate = 5.0f;
 	private float nextTimeToFire;
@@ -82,16 +83,18 @@ public class Weapon : MonoBehaviour {
 	 * @Author Markus Larsson 
 	 * @Simon Hessling Oscarson
 	 */
+	RaycastHit hit;
 	private void Fire(){
 		currentMag--;
 		muzzleFlash.Play();
 
-		RaycastHit hit;
+		
 		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
 			EnemyAI target = hit.collider.GetComponent<EnemyAI>(); //Khaled ändrat typen från Zombie till EnemyAI
 			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
 			if(target != null){
 				target.TakeDamage(damage);
+				ParticleOnHitEffect();
 			}
 		}
 
@@ -101,7 +104,14 @@ public class Weapon : MonoBehaviour {
 		}
 		
 	}
+	private void ParticleOnHitEffect()
+	{
 
+		Vector3 hitMe = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+
+		GameObject zombieBlood = Instantiate(zombieHitBloodParticle, hitMe, Quaternion.identity);
+		zombieBlood.GetComponent<ParticleSystem>().Play();
+	}
 	/**
 	 * Reloads the current magazine.
 	 *
