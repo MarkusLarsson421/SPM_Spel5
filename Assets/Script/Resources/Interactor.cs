@@ -85,6 +85,9 @@ public class Interactor : MonoBehaviour
                         case "CraftingTable":
                             interactable.gameObject.GetComponent<CraftingSystem>().currentPlayerTag = this.transform.parent.tag;
                             break;
+                        case "CustomizationTable":
+                            interactable.gameObject.GetComponent<CraftingSystem>().currentPlayerTag = this.transform.parent.tag;
+                            break;
                         case "Ammo":
                             interactable.gameObject.GetComponent<APU_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
                             interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;

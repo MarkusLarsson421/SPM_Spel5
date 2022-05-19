@@ -12,6 +12,7 @@ public class CustomizationSystem : MonoBehaviour
     [SerializeField] private Font font;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Interactable inter;
+    [SerializeField] public string currentPlayerTag;
 
     private Color originalColor = new Color(61f, 104f, 93f);
 

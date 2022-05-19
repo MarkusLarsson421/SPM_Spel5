@@ -2542,11 +2542,11 @@ GameObject:
   - component: {fileID: 1626818378}
   m_Layer: 7
   m_Name: CusTable
-  m_TagString: Untagged
+  m_TagString: CustomizationTable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1626818378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2595,6 +2595,7 @@ MonoBehaviour:
   font: {fileID: 12800000, guid: b9c5ffd05ad732d41b780985d30608d7, type: 3}
   eventSystem: {fileID: 1491301871}
   inter: {fileID: 1626818378}
+  currentPlayerTag: 
 --- !u!65 &1626818380
 BoxCollider:
   m_ObjectHideFlags: 0
