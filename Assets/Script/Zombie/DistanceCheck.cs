@@ -10,6 +10,8 @@ public class DistanceCheck : MonoBehaviour
     private ZombieObjectPooled spawner;
     private PlayerSpawnManager pSpawner;
     private float distaneFromSpawner = 50.0f;
+    private bool isPlayerOneSet;
+    private bool isPlayerTwoSet;
 
     void Start()
     {
@@ -21,8 +23,15 @@ public class DistanceCheck : MonoBehaviour
     {
         if(pSpawner.playerHasJoined)
         {
-            player1 = GameObject.FindGameObjectWithTag("Player1");
-            player2 = GameObject.FindGameObjectWithTag("Player2");
+            
+                player1 = GameObject.FindGameObjectWithTag("Player1");
+                
+            
+            
+                player2 = GameObject.FindGameObjectWithTag("Player2");
+                
+            
+           
             CheckDistFromSpawner();
         }
     }
@@ -33,12 +42,12 @@ public class DistanceCheck : MonoBehaviour
 
         if(dist1 <= distaneFromSpawner || dist2 <= distaneFromSpawner)
         {
-            spawner.SetAbleToSpawnFalse();
+            gameObject.transform.Find("GameObject").gameObject.SetActive(false);
            
         }
         else
         {
-            spawner.SetAbleToSpawnTrue();
+            gameObject.transform.Find("GameObject").gameObject.SetActive(true);
         }
     }
 }

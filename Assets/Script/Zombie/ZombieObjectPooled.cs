@@ -13,7 +13,7 @@ public class ZombieObjectPooled : MonoBehaviour
     private static int zombiesNextWave = 7;
     private static int zombieAmount;
     private int currentWave;
-    private int betweenWaves = 4;
+    private int betweenWaves = 20;
     public static int amountOfZombiesSpawned;
     private float cooldownTime = 5.0f;
     [SerializeField]private bool isAbleToSpawn = false;
