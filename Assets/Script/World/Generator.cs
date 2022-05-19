@@ -26,6 +26,7 @@ public class Generator : MonoBehaviour{
 	private void Start(){
 		fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
 		SetState(isOn);
+		FuelIndicator();
 	}
 
 	private void Update(){
@@ -71,6 +72,16 @@ public class Generator : MonoBehaviour{
 
 	public void SetFuel(float fuel){
 		this.fuel = fuel;
+	}
+
+	public float GetFuel()
+	{
+		return fuel;
+	}
+
+	public bool GetState()
+	{
+		return isOn;
 	}
 
 	/**
@@ -149,7 +160,5 @@ public class Generator : MonoBehaviour{
 	private void OnValidate()
 	{
 		Start();
-		SetState(isOn);
-		FuelIndicator();
 	}
 }

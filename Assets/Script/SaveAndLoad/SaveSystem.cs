@@ -3,39 +3,32 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public static class SaveSystem{
-	/*private const string exention = ".sin";
+	private const string exention = ".sin";
 	private const string saveLocation = "/saves/";
 
-	public static void Save(string saveSubLocation){
+	public static void Save<T>(string saveSubLocation, string saveName, T save, string key){
 		BinaryFormatter formatter = new BinaryFormatter();
-		string path = SaveLocation(saveSubLocation);
-		FileStream stream = new FileStream(path, FileMode.Create);
-
-		//Data to save
-		PlayerData player1Data = new PlayerData(pistol, flashLight, rm, stats);
-		PlayerData player2Data = new PlayerData(pistol, flashLight, rm, stats);
-		TriggerOnceGeneratorData triggerOnceGenerator = new TriggerOnceGeneratorData();
-
-		formatter.Serialize(stream, player1Data);
-		formatter.Serialize(stream, player2Data);
-		formatter.Serialize(stream, triggerOnceGenerator);
-		stream.Close();
+		string path = SaveLocation(saveSubLocation, saveName);
+		using (FileStream stream = new FileStream(path, FileMode.Create))
+		{
+			formatter.Serialize(stream, save);
+		}
 	}
 
-	public static PlayerData Load(string saveSubLocation){
-		string path = SaveLocation(saveSubLocation);
-		if(!File.Exists(path)){
-			Debug.LogError("Save file " + saveName + " not found in Path: " + path);
-			return null;
+	public static T Load<T>(string saveSubLocation, string saveName, string key){
+		string path = SaveLocation(saveSubLocation, saveName);
+		BinaryFormatter formatter = new BinaryFormatter();
+		T output;
+		using (FileStream stream = new FileStream(path, FileMode.Open))
+		{
+			output = (T)formatter.Deserialize(stream);
 		}
 
-		BinaryFormatter formatter = new BinaryFormatter();
-		FileStream stream = new FileStream(path, FileMode.Open);
-		PlayerData playerData = formatter.Deserialize(stream) as PlayerData;
-		return playerData;
+		return output;
 	}
 
-	private static string SaveLocation(string saveSubLocation, string saveName){
-		return Application.persistentDataPath + saveLocation + "/" + saveSubLocation + "/" + saveName + exention;
-	}*/
+	private static string SaveLocation(string saveSubLocation, string saveName)
+	{
+		return Path.Combine(Application.persistentDataPath, saveLocation, saveSubLocation, saveName + exention);
+	}
 }
