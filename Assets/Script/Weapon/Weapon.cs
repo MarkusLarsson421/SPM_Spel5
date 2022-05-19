@@ -2,160 +2,176 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Weapon : MonoBehaviour {
-	//Shooting
-	[SerializeField] private int damage = 20;
-	[SerializeField] private float range = 100.0f;
-	[SerializeField] private GameObject zombieHitBloodParticle;
-	[Tooltip("Rounds per second.")]
-	[SerializeField] private float fireRate = 5.0f;
-	private float nextTimeToFire;
+public class Weapon : MonoBehaviour
+{
+    //Shooting
+    [SerializeField] private int damage = 20;
+    [SerializeField] private float range = 100.0f;
+    [SerializeField] private GameObject zombieHitBloodParticle;
+    [Tooltip("Rounds per second.")]
+    [SerializeField] private float fireRate = 5.0f;
+    private float nextTimeToFire;
 
-	//Ammo
-	[SerializeField] private float reloadTime = 2.0f;
-	[SerializeField] private ResourceManager rm;
-	private int magCapacity = 8;
-	private int currentMag;
-	private bool isReloading;
+    //Ammo
+    [SerializeField] private float reloadTime = 2.0f;
+    [SerializeField] private ResourceManager rm;
+    private int magCapacity = 8;
+    private int currentMag;
+    private bool isReloading;
 
-	private bool isFiring;
+    private bool isFiring;
 
-	private bool canFire = true;
+    private bool canFire = true;
 
-	private ParticleSystem muzzleFlash;
-	
-	[SerializeField] private Camera fpsCamera;
+    private ParticleSystem muzzleFlash;
 
-	void Start()
-	{
-		currentMag = magCapacity;
-		muzzleFlash = transform.GetChild(0).GetComponent<ParticleSystem>();
-	}
+    [SerializeField] private Camera fpsCamera;
 
-	/**
+    public Animator anim;
+    void Start()
+    {
+        currentMag = magCapacity;
+        muzzleFlash = transform.GetChild(0).GetComponent<ParticleSystem>();
+    }
+
+    /**
 	 * @Author Martin Wallmark
 	 */
-	public void OnFire(InputAction.CallbackContext context)
+    public void OnFire(InputAction.CallbackContext context)
     {
         if (canFire && context.performed && Time.time >= nextTimeToFire && isReloading == false && currentMag > 0)
         {
-	        nextTimeToFire = Time.time + 1.0f / fireRate;
-			Fire();
+            nextTimeToFire = Time.time + 1.0f / fireRate;
+            Fire();
         }
 
     }
 
-	/**
+    /**
 	 * @Author Martin Wallmark
 	 */
-	public void OnReload(InputAction.CallbackContext context)
+    public void OnReload(InputAction.CallbackContext context)
     {
-		if (context.performed && isReloading == false && rm.Get(ResourceManager.ItemType.Ammo) != 0){
-			StartCoroutine(Reload());
-		}
+        if (context.performed && isReloading == false && rm.Get(ResourceManager.ItemType.Ammo) != 0)
+        {
+            StartCoroutine(Reload());
+        }
 
-		if (context.canceled)
-		{
-			isReloading = false;
-		}
-	}
+        if (context.canceled)
+        {
+            isReloading = false;
+        }
+    }
 
-	/**
+    /**
 	 * @Author Markus Larsson and Khaled Alrass
 	 */
-	private void UserInput()
-	{
-		if (isFiring || Input.GetKeyDown(KeyCode.Mouse1) && Time.time >= nextTimeToFire && !isReloading && currentMag > 0){
-			nextTimeToFire = Time.time + 1.0f / fireRate;
-			Fire();
-		}
-		else if(Input.GetKeyDown(KeyCode.R) && !isReloading){
-			if(rm.Get(ResourceManager.ItemType.Ammo) != 0)
-			{
-				StartCoroutine(Reload());
-			}
-		}
-	}
+    private void UserInput()
+    {
+        if (isFiring || Input.GetKeyDown(KeyCode.Mouse1) && Time.time >= nextTimeToFire && !isReloading && currentMag > 0)
+        {
+            nextTimeToFire = Time.time + 1.0f / fireRate;
+            Fire();
+        }
+        else if (Input.GetKeyDown(KeyCode.R) && !isReloading)
+        {
+            if (rm.Get(ResourceManager.ItemType.Ammo) != 0)
+            {
+                StartCoroutine(Reload());
+            }
+        }
+    }
 
-	/**
+    /**
 	 * Shoots from the referenced camera 10 units forward.
 	 * 
 	 * @Author Markus Larsson 
 	 * @Simon Hessling Oscarson
 	 */
-	RaycastHit hit;
-	private void Fire(){
-		currentMag--;
-		muzzleFlash.Play();
+    RaycastHit hit;
+    private void Fire()
+    {
+        currentMag--;
+        muzzleFlash.Play();
 
-		
-		if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range)){
-			EnemyAI target = hit.collider.GetComponent<EnemyAI>(); //Khaled ändrat typen från Zombie till EnemyAI
-			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
-			if(target != null){
-				target.TakeDamage(damage);
-				ParticleOnHitEffect();
-			}
-		}
 
-		if (currentMag <= 0)
-		{
-			StartCoroutine(Reload());
-		}
-		
-	}
-	private void ParticleOnHitEffect()
-	{
+        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
+        {
+            EnemyAI target = hit.collider.GetComponent<EnemyAI>(); //Khaled ändrat typen från Zombie till EnemyAI
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+                ParticleOnHitEffect();
+            }
+        }
 
-		Vector3 hitMe = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+        if (currentMag <= 0)
+        {
+            StartCoroutine(Reload());
+        }
 
-		GameObject zombieBlood = Instantiate(zombieHitBloodParticle, hitMe, Quaternion.identity);
-		zombieBlood.GetComponent<ParticleSystem>().Play();
-	}
-	/**
+    }
+    private void ParticleOnHitEffect()
+    {
+
+        Vector3 hitMe = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+
+        GameObject zombieBlood = Instantiate(zombieHitBloodParticle, hitMe, Quaternion.identity);
+        zombieBlood.GetComponent<ParticleSystem>().Play();
+    }
+    /**
 	 * Reloads the current magazine.
 	 *
 	 * @Author Markus Larsson and Simon Hessling Oscarson
 	 */
-	private IEnumerator Reload(){
-		isReloading = true;
-		yield return new WaitForSeconds(reloadTime);
-		int tempSubSize = magCapacity - currentMag;
-		
-		if (currentMag + rm.Get(ResourceManager.ItemType.Ammo) >= magCapacity) //gör så det inte går att få mer än magCapacity i magget
-		{
-			currentMag = magCapacity;	
-		}
-		else
-		{
-			currentMag += rm.Get(ResourceManager.ItemType.Ammo);	
-		}
-		
-		rm.Offset(ResourceManager.ItemType.Ammo, -tempSubSize);
-		if (rm.Get(ResourceManager.ItemType.Ammo) < 0)
-        {
-			rm.SetTotal(ResourceManager.ItemType.Ammo, 0);
-        }
-		Debug.Log("Reloaded!");
-		isReloading = false;
-	}
-
-	public void SetDamage(int newDamage)
-	{
-		damage = newDamage;
-	}
-	public void SetMagCapacity(int newMagCapacity)
-	{
-		magCapacity = newMagCapacity;
-	}
-
-	public int GetCurrentMag()
-	{
-		return currentMag;
-	}
-
-	public void SetCanFire(bool nCanFire)
+    private IEnumerator Reload()
     {
-		canFire = nCanFire;
+        isReloading = true;
+
+        //temp reload animation - nyman
+        if (currentMag < magCapacity)
+        {
+            anim.SetTrigger("Reload");
+        }
+
+        yield return new WaitForSeconds(reloadTime);
+        int tempSubSize = magCapacity - currentMag;
+
+        if (currentMag + rm.Get(ResourceManager.ItemType.Ammo) >= magCapacity) //gör så det inte går att få mer än magCapacity i magget
+        {
+            currentMag = magCapacity;
+        }
+        else
+        {
+            currentMag += rm.Get(ResourceManager.ItemType.Ammo);
+        }
+
+        rm.Offset(ResourceManager.ItemType.Ammo, -tempSubSize);
+        if (rm.Get(ResourceManager.ItemType.Ammo) < 0)
+        {
+            rm.SetTotal(ResourceManager.ItemType.Ammo, 0);
+        }
+        Debug.Log("Reloaded!");
+        isReloading = false;
+    }
+
+    public void SetDamage(int newDamage)
+    {
+        damage = newDamage;
+    }
+    public void SetMagCapacity(int newMagCapacity)
+    {
+        magCapacity = newMagCapacity;
+    }
+
+    public int GetCurrentMag()
+    {
+        return currentMag;
+    }
+
+    public void SetCanFire(bool nCanFire)
+    {
+        canFire = nCanFire;
     }
 }
