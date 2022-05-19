@@ -5,7 +5,6 @@ using TMPro;
 public class SubsScript : MonoBehaviour{
 	public GameObject textBox;
 	public bool scrapPickUpLine;
-	//public bool batteryFirstPickUp;
 	public bool needToReload;
 	public bool flashLightLine;
 	public bool craftingTableLine;
@@ -21,18 +20,8 @@ public class SubsScript : MonoBehaviour{
      * 
      */
     //TODO gör så man kan köra fler rader än en. Just kan scriptet enbart köra en rad.
-	private void Start(){
-		
-	}
 
 	private void Update(){
-        
-		if(firstScrapPickedUp){
-           /* Debug.Log("funkar2");
-			
-			StartCoroutine(Subtitle("We can probably use these to fix the car.",0, timeToShowText));
-            firstScrapPickedUp = false;*/
-        }
         if (generatorBrokeFirstTime)
         {
             Debug.Log("funkar2");
@@ -40,7 +29,7 @@ public class SubsScript : MonoBehaviour{
             StartCoroutine(Subtitle("Shit, the generator broke, we have to fix it.",0, timeToShowText));
             generatorBrokeFirstTime = false;
         }
-
+        /*
         if (firstBatteryPickedUp)
         {
             firstBatteryPickedUp = false;
@@ -60,7 +49,7 @@ public class SubsScript : MonoBehaviour{
 		if(craftingTableLine){
 			craftingTableLine = false;
 			StartCoroutine(Subtitle("We can probably use these to fix the car.",0, timeToShowText));
-		}
+		}*/
 	}
 
 	private IEnumerator Subtitle(string text,int timeToStart, int timeToFinish){
