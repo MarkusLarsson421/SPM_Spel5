@@ -1,17 +1,33 @@
 using UnityEngine;
 
-public class DataStorage : MonoBehaviour{
-	[SerializeField] private GameObject player1;
-	[SerializeField] private GameObject player2;
+public class DataStorage : MonoBehaviour
+{
+	[SerializeField] private GameObject[] players = new GameObject[2];
 	[SerializeField] private GameObject triggerOnceGenerator;
+	[SerializeField] private GameObject generator;
 
 	private void Update(){
-		if(player1 != null){
-			player1 = GameObject.FindWithTag("player1");
+		if(players[0] == null)
+		{
+			players[0] = GameObject.FindWithTag("player1");
 		}
 
-		if(player2 != null){
-			player2 = GameObject.FindWithTag("player2");
+		if(players[1] == null)
+		{
+			players[1] = GameObject.FindWithTag("player2");
 		}
+	}
+
+	public PlayerData GetPlayer(int player)
+	{
+		//PlayerData playerData = new PlayerData(players[player].GetComponent<>())
+		return null;
+	}
+
+	public GeneratorData GetGenerator()
+	{
+		Generator script = generator.GetComponent<Generator>();
+		GeneratorData generatorData = new GeneratorData(script.GetState(), script.GetFuel());
+		return generatorData;
 	}
 }
