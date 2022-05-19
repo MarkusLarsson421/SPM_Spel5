@@ -19,6 +19,8 @@ public class Weapon : MonoBehaviour {
 
 	private bool isFiring;
 
+	private bool canFire = true;
+
 	private ParticleSystem muzzleFlash;
 	
 	[SerializeField] private Camera fpsCamera;
@@ -34,7 +36,7 @@ public class Weapon : MonoBehaviour {
 	 */
 	public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.time >= nextTimeToFire && isReloading == false && currentMag > 0)
+        if (canFire && context.performed && Time.time >= nextTimeToFire && isReloading == false && currentMag > 0)
         {
 	        nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
@@ -141,4 +143,9 @@ public class Weapon : MonoBehaviour {
 	{
 		return currentMag;
 	}
+
+	public void SetCanFire(bool nCanFire)
+    {
+		canFire = nCanFire;
+    }
 }

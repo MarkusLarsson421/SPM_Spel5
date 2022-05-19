@@ -98,6 +98,15 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWeaponUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""9fb37027-47cc-4a23-b74c-80c6d55dc17f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -318,6 +327,17 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6b66941-3fae-4e57-a71f-c065aa953479"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SwitchWeaponUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -759,6 +779,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         m_Gameplay_FlashLight = m_Gameplay.FindAction("FlashLight", throwIfNotFound: true);
         m_Gameplay_Sprint = m_Gameplay.FindAction("Sprint", throwIfNotFound: true);
         m_Gameplay_PauseGame = m_Gameplay.FindAction("PauseGame", throwIfNotFound: true);
+        m_Gameplay_SwitchWeaponUp = m_Gameplay.FindAction("SwitchWeaponUp", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -838,6 +859,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_FlashLight;
     private readonly InputAction m_Gameplay_Sprint;
     private readonly InputAction m_Gameplay_PauseGame;
+    private readonly InputAction m_Gameplay_SwitchWeaponUp;
     public struct GameplayActions
     {
         private @InputSystem m_Wrapper;
@@ -850,6 +872,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         public InputAction @FlashLight => m_Wrapper.m_Gameplay_FlashLight;
         public InputAction @Sprint => m_Wrapper.m_Gameplay_Sprint;
         public InputAction @PauseGame => m_Wrapper.m_Gameplay_PauseGame;
+        public InputAction @SwitchWeaponUp => m_Wrapper.m_Gameplay_SwitchWeaponUp;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -883,6 +906,9 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 @PauseGame.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
                 @PauseGame.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
                 @PauseGame.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
+                @SwitchWeaponUp.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchWeaponUp;
+                @SwitchWeaponUp.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchWeaponUp;
+                @SwitchWeaponUp.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchWeaponUp;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -911,6 +937,9 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 @PauseGame.started += instance.OnPauseGame;
                 @PauseGame.performed += instance.OnPauseGame;
                 @PauseGame.canceled += instance.OnPauseGame;
+                @SwitchWeaponUp.started += instance.OnSwitchWeaponUp;
+                @SwitchWeaponUp.performed += instance.OnSwitchWeaponUp;
+                @SwitchWeaponUp.canceled += instance.OnSwitchWeaponUp;
             }
         }
     }
@@ -1048,6 +1077,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         void OnFlashLight(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
+        void OnSwitchWeaponUp(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

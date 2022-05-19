@@ -16,7 +16,11 @@ public class MaleeWeapon : MonoBehaviour
 
 	private bool isFiring;
 
+	private bool canFire;
+
 	private float timer;
+
+
 
 
 	[SerializeField] private Camera fpsCamera;
@@ -26,7 +30,7 @@ public class MaleeWeapon : MonoBehaviour
 	 */
 	public void OnFire(InputAction.CallbackContext context)
 	{
-		if (context.performed && !isReloading /*&& /*canFire*/)
+		if (context.performed && !isReloading && canFire)
 		{
 			Fire();
 
@@ -79,4 +83,9 @@ public class MaleeWeapon : MonoBehaviour
 	{
 		damage = newDamage;
 	}
+
+	public void SetCanFire(bool nCanFire)
+    {
+		canFire = nCanFire;
+    }
 }

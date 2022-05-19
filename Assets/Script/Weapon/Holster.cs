@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Holster : MonoBehaviour
 {
@@ -7,10 +8,23 @@ public class Holster : MonoBehaviour
     private bool isSwitched;
     private bool canSwitch;
 
+    private bool isSwitchingUp;
+    private bool isSwitchingDown;
+
     private void Start()
     {
         SelectWeapon();
     }
+
+    public void OnSwitchUp(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isSwitchingUp = true;
+            UserInput();
+        }
+    }
+
 
     private void Update()
     {
@@ -20,7 +34,7 @@ public class Holster : MonoBehaviour
 
         if (switchTimer >= 0.2f)
         {
-            canSwitch = true;
+            //canSwitch = true;
         }
     }
 
@@ -32,7 +46,8 @@ public class Holster : MonoBehaviour
     private void UserInput()
     {
         //Scroll through weapons.
-        if (isSwitched || Input.GetAxis("Mouse ScrollWheel") > 0.0f)
+        Debug.Log("ayyo");
+        if (isSwitched || Input.GetAxis("Mouse ScrollWheel") > 0.0f || isSwitchingUp)
         {
             if (selectedWeapon >= transform.childCount - 1)
             {
@@ -44,8 +59,9 @@ public class Holster : MonoBehaviour
             }
 
             SelectWeapon();
+            isSwitchingUp = false;
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0.0f)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0.0f || isSwitchingDown)
         {
             if (selectedWeapon <= 0)
             {
@@ -57,6 +73,7 @@ public class Holster : MonoBehaviour
             }
 
             SelectWeapon();
+            isSwitchingDown = false;
         }
 
         //Weapon select using numbers at the top.
@@ -77,20 +94,38 @@ public class Holster : MonoBehaviour
 
     /**
 	 * @Author Markus Larsson
-     *
+     * @Author Martin Wallmark
+     * 
      * Loops through the list of weapons and disables all non-desired weapons and enables the desired ones.
 	 */
     private void SelectWeapon()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
+            GameObject currentWeapon = transform.GetChild(i).transform.gameObject;
             if (selectedWeapon == i)
             {
-                transform.GetChild(i).transform.gameObject.SetActive(true);
+                currentWeapon.SetActive(true);
+                if (currentWeapon.tag.Equals("Pistol"))
+                {
+                    currentWeapon.GetComponent<Weapon>().SetCanFire(true);
+                }
+                else if (currentWeapon.tag.Equals("Melee"))
+                {
+                    currentWeapon.GetComponent<MaleeWeapon>().SetCanFire(true);
+                }
             }
             else
             {
-                transform.GetChild(i).transform.gameObject.SetActive(false);
+                currentWeapon.SetActive(false);
+                if (currentWeapon.tag.Equals("Pistol"))
+                {
+                    currentWeapon.GetComponent<Weapon>().SetCanFire(false);
+                }
+                else if (currentWeapon.tag.Equals("Melee"))
+                {
+                    currentWeapon.GetComponent<MaleeWeapon>().SetCanFire(false);
+                }
             }
         }
     }
