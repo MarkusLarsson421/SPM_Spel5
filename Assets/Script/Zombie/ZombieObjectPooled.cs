@@ -21,7 +21,7 @@ public class ZombieObjectPooled : MonoBehaviour
     private void Start()
     {
         NoMoreZombies();
-        //amtSpawners = zPool.GetArraySize();
+        
     }
 
     /*
@@ -64,14 +64,10 @@ public class ZombieObjectPooled : MonoBehaviour
     private void DoIT()
     {
         int debug = 0;
-        /*if(zombieAmount < 0)
-       {
-            zombieAmount = 0;
-       }*/
-       // DistanceFromPlayer();
+        
         if (zombieAmount <= 0 && isAbleToSpawn)
         {
-            //Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
+            
             for (int i = 0; i < zombiesNextWave; i++) // nu spawnas HUUUR MÅNGA ZOMBIES MAN VILL 
             {
                 SpawnZombie();
@@ -82,22 +78,10 @@ public class ZombieObjectPooled : MonoBehaviour
             SimpleWaveIncreaser();
         }
 
-        //Debug.Log($"spawned zombies now: {debug} | total zombies: {zombieAmount} | zombies next wave {zombiesNextWave}");
+        
     }
     
-    /*private void DistanceFromPlayer()
-    {
-        if(Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("Player1").transform.position) > 40 || Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("Player2").transform.position) > 40)
-        {
-            gameObject.SetActive(false);
-            
-        }
-        else
-        {
-            gameObject.SetActive(true);
-        }
-        
-    }*/
+   
     public void DecreaseZombies()
     {
         zombieAmount--;
@@ -106,10 +90,8 @@ public class ZombieObjectPooled : MonoBehaviour
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();
-        /* float randomXValue = Random.Range(1, 4);
-         * Vector3 distCorrection = new Vector3(randomXValue, 2.4f);
-         * zombie.transform.SetPositionAndRotation(distCorrection, transform.rotation);*/
-        zombie.gameObject.SetActive(true);   
+        zombie.gameObject.SetActive(true);
+        zombie.gameObject.GetComponent<EnemyAI>().spawnPosition = transform.position;
     }
 }
 /*ATT GÖRA

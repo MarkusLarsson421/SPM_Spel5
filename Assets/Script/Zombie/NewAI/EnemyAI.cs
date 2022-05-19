@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     public ZombieObjectPooled zOP;
     private EnemyAI zReference;
     private ZombiePool zP;
+    public Vector3 spawnPosition;
 
 
     [SerializeField] private Cover[] avaliableCovers;
@@ -142,7 +143,7 @@ public class EnemyAI : MonoBehaviour
         {
             Debug.Log("returned");
             zOP.DecreaseZombies();
-
+            gameObject.transform.position = spawnPosition;
             zP.ReturnToPool(zReference);
         }
     }
