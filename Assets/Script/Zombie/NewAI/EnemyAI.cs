@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -141,11 +142,27 @@ public class EnemyAI : MonoBehaviour
         currentHealth -= damage;
         if (_currentHealth <= 0)
         {
-            Debug.Log("returned");
+            /*Debug.Log("returned");
             zOP.DecreaseZombies();
             gameObject.transform.position = spawnPosition;
-            zP.ReturnToPool(zReference);
+            zP.ReturnToPool(zReference);*/
+            StartCoroutine(PlayDeathAnimation(1.65f));
         }
+    }
+
+    //temp death animation nyman
+    IEnumerator PlayDeathAnimation(float time)
+    {
+        anim.SetTrigger("Die");
+        anim.SetBool("CanAttack", false);
+        agent.isStopped = true;
+        yield return new WaitForSeconds(time);
+        agent.isStopped = false;
+        anim.SetBool("CanAttack", true);
+        Debug.Log("returned");
+        zOP.DecreaseZombies();
+        gameObject.transform.position = spawnPosition;
+        zP.ReturnToPool(zReference);
     }
 
     public void SetColor(Color color)
@@ -179,6 +196,8 @@ public class EnemyAI : MonoBehaviour
     {
         return currentHealth = startingHealth;
     }
+
+
 }
 /*
  private void Start()
