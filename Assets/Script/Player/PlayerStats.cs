@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private Slider staminaSlider;
     [SerializeField] private Image walkImage;
     [SerializeField] private Image runImage;
-
+    [SerializeField] private CanvasHandler ch;
     private bool isDead = false;
     void Start()
     {
@@ -47,6 +47,11 @@ public class PlayerStats : MonoBehaviour
             PlayerGetHitByZombieEvent playerGetHitByZombie = new PlayerGetHitByZombieEvent();
             playerGetHitByZombie.UnitGO = gameObject;
             EventSystem.Current.FireEvent(playerGetHitByZombie);
+            CanvasHandler tookDamgeCanvas = gameObject.GetComponentInChildren<CanvasHandler>();
+            Debug.Log(gameObject.tag);
+            tookDamgeCanvas.setFadeIn(true);
+            tookDamgeCanvas.EnemyAttackedMe();
+
         }
         // Hur mycket skada man tar av en zombie varierar
 

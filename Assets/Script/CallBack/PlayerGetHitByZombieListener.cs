@@ -12,10 +12,11 @@ namespace EventCallbacks
         }
 
         void ShowTookDamgeCanvas(PlayerGetHitByZombieEvent playerGetHitByZombieInfo)
-        {
-            CanvasHandler tookDamgeCanvas = GameObject.FindGameObjectWithTag("UI").GetComponent<CanvasHandler>();
+        {/*
+            CanvasHandler tookDamgeCanvas = gameObject.transform.parent.transform.parent.GetComponentInChildren<CanvasHandler>();
+            Debug.Log(gameObject.transform.parent.transform.parent.tag);           
             tookDamgeCanvas.setFadeIn(true);
-            tookDamgeCanvas.EnemyAttackedMe();
+            tookDamgeCanvas.EnemyAttackedMe();*/
         }
     }
 }
