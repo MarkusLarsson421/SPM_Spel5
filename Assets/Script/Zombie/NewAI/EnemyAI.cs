@@ -87,7 +87,6 @@ public class EnemyAI : MonoBehaviour
                 distance2 = Vector3.Distance(transform.position, playerTwo.transform.position);
                 if (distance2 < distance1)
                 {
-                    Debug.Log("två är närmast");
                     player = playerTwo;
                     playerTransform = playerTwo.transform;
                     if (two)
