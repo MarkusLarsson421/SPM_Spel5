@@ -27,7 +27,9 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private Camera fpsCamera;
 
-    public Animator anim;
+    public Animator playerAnim;
+    public Animator gunAnim;
+
     void Start()
     {
         currentMag = magCapacity;
@@ -93,6 +95,11 @@ public class Weapon : MonoBehaviour
     {
         currentMag--;
         muzzleFlash.Play();
+        //temp shoot animation - nyman
+        if (!isReloading)
+        {
+            gunAnim.SetTrigger("Fire");
+        }
 
 
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
@@ -127,13 +134,17 @@ public class Weapon : MonoBehaviour
 	 */
     private IEnumerator Reload()
     {
-        isReloading = true;
 
         //temp reload animation - nyman
-        if (currentMag < magCapacity)
+        if (currentMag < magCapacity && !isReloading)
         {
-            anim.SetTrigger("Reload");
+            playerAnim.SetTrigger("Reload");
+            gunAnim.SetTrigger("Reload");
         }
+
+
+        isReloading = true;
+
 
         yield return new WaitForSeconds(reloadTime);
         int tempSubSize = magCapacity - currentMag;
