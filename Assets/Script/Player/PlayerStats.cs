@@ -48,7 +48,6 @@ public class PlayerStats : MonoBehaviour
             playerGetHitByZombie.UnitGO = gameObject;
             EventSystem.Current.FireEvent(playerGetHitByZombie);
             CanvasHandler tookDamgeCanvas = gameObject.GetComponentInChildren<CanvasHandler>();
-            Debug.Log(gameObject.tag);
             tookDamgeCanvas.setFadeIn(true);
             tookDamgeCanvas.EnemyAttackedMe();
 
