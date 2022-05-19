@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
     PlayerStats instance;
     [SerializeField] private int health = 100; 
-    [SerializeField] private int stamina;
+    [SerializeField] private int stamina; //set the stamina of health in unity
     [SerializeField] private Slider staminaSlider;
     [SerializeField] private Image walkImage;
     [SerializeField] private Image runImage;
