@@ -43,6 +43,7 @@ public class Item : MonoBehaviour{
 	}
 
 	private void Die(){
+		
         pickupPool.ReturnToPool(gameObject);
         pickupSpawner.SetAbleToSpawn(true); 
         PickUpEvent pickUpEvent = new PickUpEvent();
@@ -51,6 +52,7 @@ public class Item : MonoBehaviour{
 		pickUpEvent.SetAmount(amount);
 		pickUpEvent.SetRM(GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<ResourceManager>());
 		pickUpEvent.FireEvent();
+		if (ss != null && type.ToString() == "Scrap") { ss.ScrapsUsedForCarLine(); }
 		playah = null;
 		
 	}

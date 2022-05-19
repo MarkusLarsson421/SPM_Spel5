@@ -9,7 +9,7 @@ public class SubsScript : MonoBehaviour{
 	public bool needToReload;
 	public bool flashLightLine;
 	public bool craftingTableLine;
-    private bool firstScrapPickedUp; //används i SPU_SimonProtype.
+    private bool firstScrapPickedUp = true; //används i SPU_SimonProtype.
     private bool firstBatteryPickedUp;
     private bool generatorBrokeFirstTime;
     private int timeToShowText = 3;
@@ -28,10 +28,10 @@ public class SubsScript : MonoBehaviour{
 	private void Update(){
         
 		if(firstScrapPickedUp){
-            Debug.Log("funkar2");
+           /* Debug.Log("funkar2");
 			
 			StartCoroutine(Subtitle("We can probably use these to fix the car.",0, timeToShowText));
-            firstScrapPickedUp = false;
+            firstScrapPickedUp = false;*/
         }
         if (generatorBrokeFirstTime)
         {
@@ -96,5 +96,14 @@ public class SubsScript : MonoBehaviour{
     public void FixCarLinePlay()
     {
         StartCoroutine(Subtitle("Dan: We got to fix the car.", 2, timeToShowText));
+    }
+    public void ScrapsUsedForCarLine()
+    {
+        if (firstScrapPickedUp)
+        {
+            StartCoroutine(Subtitle("We can probably use these to fix the car.", 0, timeToShowText));
+        }
+        firstScrapPickedUp = false;
+        
     }
 }
