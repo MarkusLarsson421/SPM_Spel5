@@ -9,6 +9,7 @@ public class CustomizationSystem : MonoBehaviour
 
     public ResourceManager rm;
     [SerializeField] private GameObject canvas;
+    
     [SerializeField] private Font font;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Interactable inter;
@@ -21,6 +22,7 @@ public class CustomizationSystem : MonoBehaviour
     private GameObject greenColorButton;
     private GameObject whiteColorButton;
     private GameObject cancelButton;
+    private GameObject currentHat;
 
     private bool buttonsEnabled;
     private bool isToggled;
@@ -34,6 +36,7 @@ public class CustomizationSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(isToggled);
         if (isToggled && !buttonsEnabled)
         {
             SetCurrentCanvas();
@@ -43,7 +46,7 @@ public class CustomizationSystem : MonoBehaviour
         if (!isToggled && currentPlayerTag != null)
         {
             currentPlayerTag = null;
-            currentCanvas.gameObject.transform.Find("CraftingTable").gameObject.SetActive(false);
+            currentCanvas.gameObject.transform.Find("CustomizationButtons").gameObject.SetActive(false);
             currentCanvas = null;
             buttonsEnabled = false;
 
@@ -54,6 +57,7 @@ public class CustomizationSystem : MonoBehaviour
             float distance = Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag(currentPlayerTag).transform.position);
             if (distance > 3)
             {
+                Debug.Log("Toggled");
                 ToggleCustomizationTable();
             }
         }
@@ -75,29 +79,15 @@ public class CustomizationSystem : MonoBehaviour
     }
 
 
-    private void ToggleButtons()
-    {
-        if (!isToggled)
-        {
-            greenColorButton.SetActive(true);
-            whiteColorButton.SetActive(true);
-            cancelButton.SetActive(true);
-        }
-        else
-        {
-            greenColorButton.SetActive(false);
-            whiteColorButton.SetActive(false);
-            cancelButton.SetActive(false);
-        }
-    }
-
     private void SetCurrentCanvas()
     {
         
 
 
         currentCanvas = GameObject.FindGameObjectWithTag(currentPlayerTag).GetComponentInChildren<Canvas>();
+        currentHat = GameObject.FindGameObjectWithTag(currentPlayerTag).transform.Find("Hat").gameObject;
         GameObject customButtons = currentCanvas.gameObject.transform.Find("CustomizationButtons").gameObject;
+        
 
         customButtons.SetActive(true);
         //craftingButtons.gameObject.transform.Find("CancelButton").gameObject.GetComponent<Button>().onClick.AddListener(delegate { ToggleCraftingBench(); });
@@ -120,11 +110,16 @@ public class CustomizationSystem : MonoBehaviour
     private void ActivateHat()
     {
         Debug.Log("hat");
+        currentHat.SetActive(true);
+        Debug.Log("wow");
+        
     }
 
     private void DisableHat()
     {
         Debug.Log("noHat");
+        currentHat.SetActive(false);
+        
     }
 
     /*
