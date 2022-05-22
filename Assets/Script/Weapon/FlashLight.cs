@@ -40,7 +40,9 @@ public class FlashLight : MonoBehaviour{
             
         }
     }
-
+    /**
+	 * @Author Martin Wallmark
+	 */
     public void OnFire(InputAction.CallbackContext context)
     {
         if (context.performed)

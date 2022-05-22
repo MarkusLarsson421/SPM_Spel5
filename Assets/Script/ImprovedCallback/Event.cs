@@ -28,6 +28,10 @@ public abstract class Event<T> where T : Event<T>{
 		Debug.Log(Description);
 	}
 }
+/**
+ * @authors Markus Larsson and Martin Wallmark
+ * 
+ */
 
 public class PickUpEvent : Event<PickUpEvent>{
 	private int amount;
