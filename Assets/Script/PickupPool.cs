@@ -21,6 +21,11 @@ public class PickupPool : MonoBehaviour
         Instance = this;
         amountOfScraps = 3;
         scraps = GameObject.FindGameObjectsWithTag("Scrap");
+        foreach(GameObject go in scraps)
+        {
+            go.SetActive(false);
+        }
+        SetScrapsActive();
         //AddPickups(1);
     }
 
@@ -87,5 +92,23 @@ public class PickupPool : MonoBehaviour
                 spawnPoints[i].GetComponent<PickupObjectPooled>().SetAbleToSpawn(true);
             }
         }
+    }
+
+    /**
+     * @author Martin Wallmark
+     * aktiverar ett antal scraps som bestämms av amountOfScraps
+     */
+
+    public void SetScrapsActive()
+    {
+        for(int i = 0; i<amountOfScraps; i++)
+        {
+            scraps[i].SetActive(true);
+        }
+    }
+
+    public void SetAmountOfScraps(int nAmountOfScraps)
+    {
+        amountOfScraps = nAmountOfScraps;
     }
 }
