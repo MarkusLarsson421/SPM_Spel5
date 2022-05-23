@@ -8,6 +8,9 @@ using UnityEngine;
 public class PickupPool : MonoBehaviour
 {
     [SerializeField] private GameObject batteryPrefab, ammoPrefab, scrapPrefab;
+    [SerializeField] private GameObject[] spawnPoints;
+    [SerializeField] private GameObject[] scraps;
+    private int amountOfScraps;
 
 
     private Queue<GameObject> pickupContainer = new Queue<GameObject>();
@@ -16,6 +19,9 @@ public class PickupPool : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        amountOfScraps = 3;
+        scraps = GameObject.FindGameObjectsWithTag("Scrap");
+        //AddPickups(1);
     }
 
     public GameObject Get()
@@ -61,7 +67,25 @@ public class PickupPool : MonoBehaviour
 
     public void ReturnToPool(GameObject pickupToReturn)
     {
+        MoveToRandomSpawnPoint(pickupToReturn);
         pickupToReturn.gameObject.SetActive(false);
         pickupContainer.Enqueue(pickupToReturn);
+    }
+
+    /**
+     * @Author Martin Wallmark
+     * Moves the item to a random itemSpawner
+     */
+    private void MoveToRandomSpawnPoint(GameObject pickUp)
+    {
+        int randomNumber = Random.Range(0, spawnPoints.Length);
+        for(int i = 0; i < spawnPoints.Length; i++)
+        {
+            if(i == randomNumber)
+            {
+                pickUp.transform.position = spawnPoints[i].transform.position;
+                spawnPoints[i].GetComponent<PickupObjectPooled>().SetAbleToSpawn(true);
+            }
+        }
     }
 }

@@ -45,7 +45,7 @@ public class Item : MonoBehaviour{
 	private void Die(){
 		
         pickupPool.ReturnToPool(gameObject);
-        pickupSpawner.SetAbleToSpawn(true); 
+        //pickupSpawner.SetAbleToSpawn(true); 
         PickUpEvent pickUpEvent = new PickUpEvent();
 		pickUpEvent.Description = "Item: " + type + " x " + amount + " has been picked up.";
 		pickUpEvent.SetItemType(type);
