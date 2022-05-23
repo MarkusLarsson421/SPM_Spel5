@@ -49,16 +49,26 @@ public class DynamicMovementController : MonoBehaviour
             
             if (stats.getStamina() >= 0)
             {
-                isSprinting = true;
+                if (!isSprinting)
+                {
+                    isSprinting = true;
+                }
+                else
+                {
+                    isSprinting = false;
+                    maxSpeed = initialMaxSpeed;
+                }
+                
             }
             
         }
-
+        /*
         if (callback.canceled)
         {
             isSprinting = false;
             maxSpeed = 5;
 ;       }
+        */
     }
     void Awake()
     {
@@ -168,7 +178,6 @@ public class DynamicMovementController : MonoBehaviour
                 velocity += normalForce;
                 FrictionCalculator(normalForce);
                 temp++;
-                //Debug.Log(temp);
             }
         } while (hit.collider && temp < 3);
 
