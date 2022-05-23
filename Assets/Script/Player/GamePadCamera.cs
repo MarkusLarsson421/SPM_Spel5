@@ -81,7 +81,9 @@ public class GamePadCamera : MonoBehaviour
         
         
     }
-
+    /**
+     * Sets the sensitivty based on the value the method recieves
+     */
     public void SetSensitivity(float nSensitivty)
     {
         sensitity = nSensitivty;
