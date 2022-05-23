@@ -15,12 +15,12 @@ public class CraftingSystem : MonoBehaviour
     [SerializeField] private Font font;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Interactable inter;
-    [SerializeField] public string currentPlayerTag;
+    [SerializeField] private string currentPlayerTag;
     
     private EventSystem currentPlayerEventSystem;
     private Text infoText;
     private Canvas currentCanvas;
-    public GameObject interactingPlayer;
+    private GameObject interactingPlayer;
 
     private bool isToggled;
     private bool isButtonClicked;
@@ -34,9 +34,11 @@ public class CraftingSystem : MonoBehaviour
 
     //TODO ändra så bara en dictionary används istället för 3 listor
     private Dictionary<string, List<string>> upgradedPlayers = new Dictionary<string, List<string>>();
+    /*
     private List<string> damageUpgradedPlayers = new List<string>();
     private List<string> MagazineUpgradedPlayers = new List<string>();
     private List<string> flashLightUpgradedPlayers = new List<string>();
+    */
 
     private void Start()
     {
@@ -287,6 +289,11 @@ public class CraftingSystem : MonoBehaviour
             infoText.enabled = false;
             textTimer = 0;
         }
+    }
+
+    public void SetCurrentPlayerTag(string tag)
+    {
+        currentPlayerTag = tag;
     }
 
 }

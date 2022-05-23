@@ -7,16 +7,17 @@ using UnityEngine.UI;
 public class CustomizationSystem : MonoBehaviour
 {
 
-    public ResourceManager rm;
+     
     [SerializeField] private GameObject canvas;
     
     [SerializeField] private Font font;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Interactable inter;
-    [SerializeField] public string currentPlayerTag;
+    [SerializeField] private string currentPlayerTag;
     private Canvas currentCanvas;
     private EventSystem currentPlayerEventSystem;
     private GameObject interactingPlayer;
+    private ResourceManager rm;
 
     private Color originalColor = new Color(61f, 104f, 93f);
 
@@ -65,6 +66,9 @@ public class CustomizationSystem : MonoBehaviour
         }
     }
 
+    /**
+     * Activate or deactivates the customizationtable based on if the bool istoggled is true or not
+     */
 
     public void ToggleCustomizationTable()
     {
@@ -80,7 +84,9 @@ public class CustomizationSystem : MonoBehaviour
         }
     }
 
-
+    /**
+     * Finds the canvas inside the interacting player and activates the buttons
+     */
     private void SetCurrentCanvas()
     {
         
@@ -105,7 +111,9 @@ public class CustomizationSystem : MonoBehaviour
 
         SetCurrentEventSystem();
     }
-
+    /**
+     * Finds the eventsystem inside the interacting player and activates sets the first selected button
+     */
     public void SetCurrentEventSystem()
     {
         currentPlayerEventSystem = GameObject.FindGameObjectWithTag(currentPlayerTag).transform.Find("EventSystem").GetComponent<EventSystem>();
@@ -125,6 +133,11 @@ public class CustomizationSystem : MonoBehaviour
         Debug.Log("noHat");
         currentHat.SetActive(false);
         
+    }
+
+    public void SetCurrentPlayerTag(string tag)
+    {
+        currentPlayerTag = tag;
     }
 
     /*

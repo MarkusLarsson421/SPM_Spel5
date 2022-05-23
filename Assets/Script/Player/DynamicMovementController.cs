@@ -159,7 +159,7 @@ public class DynamicMovementController : MonoBehaviour
 
 
     /**
-     * @Author Khaled Alraas
+     * @Author Khaled Alraas and Martin Wallmark
      * Handles collisions and updates the velocity of the player
      */
     void UpdateVelocity()
@@ -169,9 +169,9 @@ public class DynamicMovementController : MonoBehaviour
         do
         {
 
-            Vector3 point1 = transform.position + collider.center + Vector3.up * (collider.height / 2 - collider.radius);
-            Vector3 point2 = transform.position + collider.center + Vector3.down * (collider.height / 2 - collider.radius);
-            bool check = Physics.CapsuleCast(point1, point2, collider.radius, velocity.normalized, out hit, velocity.magnitude / 30 + collisionMargin, collisionMask);
+            Vector3 centerOfSphere1 = transform.position + Vector3.up * (collider.height / 2 - collider.radius);
+            Vector3 centerOfSphere2 = transform.position + Vector3.down * (collider.height / 2 - collider.radius);
+            bool check = Physics.CapsuleCast(centerOfSphere1, centerOfSphere2, collider.radius, velocity.normalized, out hit, velocity.magnitude / 30 + collisionMargin, collisionMask);
             if (check)
             {
                 Vector3 normalForce = NormalForce(velocity, hit.normal);

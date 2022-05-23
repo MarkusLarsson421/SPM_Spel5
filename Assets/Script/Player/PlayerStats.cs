@@ -74,6 +74,8 @@ public class PlayerStats : MonoBehaviour
 
     /**
      * Martin Wallmark
+     * 
+     * Uppdaterar ikonen på gubben baserat på om man springer eller inte.
      */
     public void StaminaUpdater(bool isRunning)
     {
