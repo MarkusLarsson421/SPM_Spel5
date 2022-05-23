@@ -196,7 +196,10 @@ public class EnemyAI : MonoBehaviour
     {
         return currentHealth = startingHealth;
     }
-
+    public void setChasingRange(int chasingRange)
+    {
+        this.chasingRange = chasingRange;
+    }
 
 }
 /*

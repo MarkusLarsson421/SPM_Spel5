@@ -58,8 +58,13 @@ public class Generator : MonoBehaviour{
 		isOn = true;
 		SetLightState(true);
 		fuelIndicator.enabled = true;
+		//Khaled 
+		GneratorIsOnEvent generatorIsOn = new GneratorIsOnEvent();
+		generatorIsOn.generator = gameObject;
+		EventSystem.Current.FireEvent(generatorIsOn);
+		//Khaled
 	}
-	
+
 	public void TurnOff(){
 		isOn = false;
 		SetLightState(false);

@@ -60,4 +60,8 @@ namespace EventCallbacks
         public GameObject zombie;
         public BatteryObjectPooled bPool;
     }
+    public class GneratorIsOnEvent : Event
+    {
+        public GameObject generator;
+    }
 }
