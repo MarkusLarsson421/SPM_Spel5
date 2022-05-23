@@ -140,6 +140,8 @@ public class EnemyAI : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        anim.SetTrigger("Stun4");
+
         if (_currentHealth <= 0)
         {
             /*Debug.Log("returned");
