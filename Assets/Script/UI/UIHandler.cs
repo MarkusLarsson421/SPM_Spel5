@@ -37,6 +37,6 @@ public class UIHandler : MonoBehaviour
 	 */
     private void UpdateScrapsText()
     {
-        scrapText.text = rm.Get(ResourceManager.ItemType.Scrap)+ " scraps";
+        scrapText.text = rm.Get(ResourceManager.ItemType.Scrap)+"";
     }
 }
