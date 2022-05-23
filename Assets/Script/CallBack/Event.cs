@@ -6,12 +6,6 @@ namespace EventCallbacks
 {
     public abstract class Event
     {
-        /*
-         * The base EventInfo,
-         * might have some generic text
-         * for doing Debug.Log?
-         */
-
         public string EventDescription;
     }
 
@@ -23,10 +17,7 @@ namespace EventCallbacks
     public class PlayerDieEvent : Event
     {
         public GameObject UnitGO;
-        /*
-        Info about cause of death, our killer, etc...
-        Could be a struct, read only, etc...
-        */
+
     }
     public class PlayerGetHitByZombieEvent : Event
     {
