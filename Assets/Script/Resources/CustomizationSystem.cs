@@ -16,6 +16,7 @@ public class CustomizationSystem : MonoBehaviour
     [SerializeField] public string currentPlayerTag;
     private Canvas currentCanvas;
     private EventSystem currentPlayerEventSystem;
+    private GameObject interactingPlayer;
 
     private Color originalColor = new Color(61f, 104f, 93f);
 
@@ -39,6 +40,7 @@ public class CustomizationSystem : MonoBehaviour
         Debug.Log(isToggled);
         if (isToggled && !buttonsEnabled)
         {
+            interactingPlayer = inter.interactingGameObject.transform.parent.gameObject;
             SetCurrentCanvas();
             buttonsEnabled = true;
         }
@@ -84,8 +86,8 @@ public class CustomizationSystem : MonoBehaviour
         
 
 
-        currentCanvas = GameObject.FindGameObjectWithTag(currentPlayerTag).GetComponentInChildren<Canvas>();
-        currentHat = GameObject.FindGameObjectWithTag(currentPlayerTag).transform.Find("Hat").gameObject;
+        currentCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
+        currentHat = interactingPlayer.transform.Find("Hat").gameObject;
         GameObject customButtons = currentCanvas.gameObject.transform.Find("CustomizationButtons").gameObject;
         
 
@@ -93,8 +95,11 @@ public class CustomizationSystem : MonoBehaviour
         //craftingButtons.gameObject.transform.Find("CancelButton").gameObject.GetComponent<Button>().onClick.AddListener(delegate { ToggleCraftingBench(); });
         customButtons.gameObject.transform.Find("NoHatButton").gameObject.GetComponent<Button>().onClick.AddListener(delegate { DisableHat(); });
         customButtons.gameObject.transform.Find("HatButton").gameObject.GetComponent<Button>().onClick.AddListener(delegate { ActivateHat(); });
+        /*
+        customButtons.gameObject.transform.Find("WhiteColor").gameObject.GetComponent<Button>().onClick.AddListener(delegate { WhiteLight(); });
+        customButtons.gameObject.transform.Find("GreenColor").gameObject.GetComponent<Button>().onClick.AddListener(delegate { GreenLight(); });
+        */
         
-        //customButtons.gameObject.transform.Find("MagazineUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
 
 
 
@@ -125,18 +130,12 @@ public class CustomizationSystem : MonoBehaviour
     /*
     public void GreenLight()
     {
-        Debug.Log("wadaffa");
-       // GameObject interactingPlayer = inter.gameObject;
-        //Debug.Log(inter.gameObject.tag);
-        //interactingPlayer.GetComponentInChildren<FlashLight>().setFlashLightColor(18f, 166f, 0f);
-        Debug.Log("wadaffa1");
+        interactingPlayer.GetComponentInChildren<FlashLight>().SetColor(119f, 250f, 169f);
     }
 
     public void WhiteLight()
     {
-        Debug.Log("click31");
-        //GameObject interactingPlayer = GameObject.Find(inter.interactingGameObject.transform.parent.tag);
-        //interactingPlayer.GetComponentInChildren<FlashLight>().setFlashLightColor(61f, 104f, 93f);
+        interactingPlayer.GetComponentInChildren<FlashLight>().SetColor(203f, 212f, 200f);
     }
     */
 
