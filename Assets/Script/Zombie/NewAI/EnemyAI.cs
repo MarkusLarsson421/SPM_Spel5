@@ -200,6 +200,7 @@ public class EnemyAI : MonoBehaviour
     }
     public void setChasingRange(int chasingRange)
     {
+        Debug.Log("setChasingRange work");
         this.chasingRange = chasingRange;
     }
 

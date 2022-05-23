@@ -15,7 +15,7 @@ namespace EventCallbacks
         {
             GameObject zombie = GameObject.FindGameObjectWithTag("Zombie");
             zombie.GetComponent<EnemyAI>().setChasingRange(1000);
-            Debug.Log("iwork");
+            Debug.Log("GeneratorIsOnListener work");
 
         }
     }

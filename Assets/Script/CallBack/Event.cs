@@ -62,6 +62,5 @@ namespace EventCallbacks
     }
     public class GneratorIsOnEvent : Event
     {
-        public GameObject generator;
     }
 }

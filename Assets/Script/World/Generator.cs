@@ -59,11 +59,22 @@ public class Generator : MonoBehaviour{
 		isOn = true;
 		SetLightState(true);
 		fuelIndicator.enabled = true;
-		//Khaled 
-		GneratorIsOnEvent generatorIsOn = new GneratorIsOnEvent();
-		generatorIsOn.generator = gameObject;
-		EventSystem.Current.FireEvent(generatorIsOn);
-		//Khaled
+		call();
+    }
+	public void call()
+    {
+		GameObject[] zombies;
+		zombies = GameObject.FindGameObjectsWithTag("Zombie");
+		foreach (GameObject zombie in zombies)
+		{
+			zombie.GetComponent<EnemyAI>().setChasingRange(1000);
+
+		}
+		////Khaled 
+		//GneratorIsOnEvent generatorIsOn = new GneratorIsOnEvent();
+		//EventSystem.Current.FireEvent(generatorIsOn);
+		////Khaled
+		//Debug.Log("i work Generator");
 	}
 
 	public void TurnOff(){
