@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Holster : MonoBehaviour
 {
+    [SerializeField] private UIHandler handler;
     private int selectedWeapon;
     private float switchTimer;
     private bool isSwitched;
@@ -109,10 +110,12 @@ public class Holster : MonoBehaviour
                 if (currentWeapon.tag.Equals("Pistol"))
                 {
                     currentWeapon.GetComponent<Weapon>().SetCanFire(true);
+                    handler.SwitchWeaponIcons("Pistol");
                 }
                 else if (currentWeapon.tag.Equals("Melee"))
                 {
                     currentWeapon.GetComponent<MaleeWeapon>().SetCanFire(true);
+                    handler.SwitchWeaponIcons("Melee");
                 }
             }
             else

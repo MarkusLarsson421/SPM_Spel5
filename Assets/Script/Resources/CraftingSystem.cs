@@ -74,7 +74,7 @@ public class CraftingSystem : MonoBehaviour
         if (isToggled)
         {
             distanceToInteractingPlayer = Vector3.Distance(gameObject.transform.position, interactingPlayer.transform.position);
-            if(distanceToInteractingPlayer > 3)
+            if(distanceToInteractingPlayer > 6)
             {
                 ToggleCraftingBench();
             }

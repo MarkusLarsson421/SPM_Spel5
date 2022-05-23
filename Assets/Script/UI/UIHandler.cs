@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
 {
@@ -8,7 +9,17 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private TMP_Text batteryText;
     [SerializeField] private TMP_Text scrapText;
-    
+    [SerializeField] private Image GunImageSmall;
+    [SerializeField] private Image AxeImageSmall;
+    [SerializeField] private Image GunImageBig;
+    [SerializeField] private Image AxeImageBig;
+
+    private void Start()
+    {
+        GunImageSmall.enabled = false;
+        AxeImageBig.enabled = false;
+    }
+
     private void Update()
     {
         UpdateAmmoText();
@@ -38,5 +49,39 @@ public class UIHandler : MonoBehaviour
     private void UpdateScrapsText()
     {
         scrapText.text = rm.Get(ResourceManager.ItemType.Scrap)+"";
+    }
+
+    public void SwitchWeaponIcons(string currentWeapon)
+    {
+        switch (currentWeapon)
+        {
+            case "Melee":
+                EnlargeMeleeIcon();
+                break;
+            case "Pistol":
+                EnlargePistolIcon();
+                break;
+        }
+    }
+
+    private void EnlargeMeleeIcon()
+    {
+        GunImageBig.enabled = false;
+        GunImageSmall.enabled = true;
+
+        AxeImageBig.enabled = true;
+        AxeImageSmall.enabled = false;
+
+    }
+
+    private void EnlargePistolIcon()
+    {
+        GunImageBig.enabled = true;
+        GunImageSmall.enabled = false;
+
+        AxeImageBig.enabled = false;
+        AxeImageSmall.enabled = true;
+
+
     }
 }
