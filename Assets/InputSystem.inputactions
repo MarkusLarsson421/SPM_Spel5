@@ -256,7 +256,7 @@
                 {
                     "name": "",
                     "id": "e4d08bcc-d194-40e6-9be8-6a3e753940db",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Gamepad",
@@ -333,10 +333,21 @@
                 {
                     "name": "",
                     "id": "b6b66941-3fae-4e57-a71f-c065aa953479",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "SwitchWeaponUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60a6e8e3-4cf1-443b-b752-7b48b0414f58",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard+mouse",
                     "action": "SwitchWeaponUp",
                     "isComposite": false,
                     "isPartOfComposite": false
