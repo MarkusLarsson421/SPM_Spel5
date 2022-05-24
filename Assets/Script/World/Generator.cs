@@ -6,6 +6,7 @@ public class Generator : MonoBehaviour{
 	
 	//Whether or not the generator is on.
 	[SerializeField] private bool isOn;
+	[SerializeField] private Interactable interactable;
 	
 	//Fuel
 	[Header("Fuel settings")]
@@ -23,6 +24,8 @@ public class Generator : MonoBehaviour{
 	[SerializeField] private GameObject[] lowPowerLights;
 
 	private Light fuelIndicator;
+	private GameObject interactingPlayer;
+
 
 	private void Start(){
 		fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
@@ -34,6 +37,11 @@ public class Generator : MonoBehaviour{
 		DrainFuel();
 		FuelIndicator();
 	}
+
+	public void SetInteractingPlayer()
+    {
+		interactingPlayer = interactable.interactingGameObject;
+    }
 	
 	/**
 	 * @Author Martin Wallmark and Markus Larsson

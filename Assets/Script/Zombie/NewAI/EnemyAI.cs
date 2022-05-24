@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour
     public ZombieObjectPooled zOP;
     private EnemyAI zReference;
     private ZombiePool zP;
-    //public Vector3 spawnPosition;
+    public Vector3 spawnPosition;
 
 
     [SerializeField] private Cover[] avaliableCovers;

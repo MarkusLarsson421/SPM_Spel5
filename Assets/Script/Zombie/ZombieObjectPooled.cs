@@ -85,7 +85,7 @@ public class ZombieObjectPooled : MonoBehaviour
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();
-        zombie.transform.position = gameObject.transform.parent.transform.position;//cacha
+        //zombie.transform.position = gameObject.transform.parent.transform.position;//cacha
         zombie.gameObject.SetActive(true);
         //zombie.gameObject.GetComponent<EnemyAI>().spawnPosition = transform.position;
     }
