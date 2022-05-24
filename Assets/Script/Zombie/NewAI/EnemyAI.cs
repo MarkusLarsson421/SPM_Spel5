@@ -45,15 +45,16 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+
+        Tasks();
+    }
+    void Tasks()
+    {
         if (ClosestPlayer() != cunstruct)
         {
             cunstruct = ClosestPlayer();
             Construct();
         }
-        Tasks();
-    }
-    void Tasks()
-    {
         if (ClosestPlayer() == null)
         {
             return;
