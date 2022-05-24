@@ -33,12 +33,12 @@ public class DistanceCheck : MonoBehaviour
         if(dist1 <= distaneFromSpawner || dist2 <= distaneFromSpawner)
         {
           //  gameObject.transform.Find("GameObject").gameObject.SetActive(false);
-            spawner.SetAbleToSpawnFalse();
+            spawner.SetAbleToSpawn(false);
         }
         else
         {
            // gameObject.transform.Find("GameObject").gameObject.SetActive(true);
-            spawner.SetAbleToSpawnTrue();
+            spawner.SetAbleToSpawn(true);
         }
     }
 }
