@@ -35,7 +35,6 @@ public class PickupPool : MonoBehaviour
         {
             AddPickups(1);
         }
-
         return pickupContainer.Dequeue();
     }
 

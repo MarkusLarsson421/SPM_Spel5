@@ -76,12 +76,8 @@ public class ZombieObjectPooled : MonoBehaviour
 
             }//spawna en zombie i varje spawner
             SimpleWaveIncreaser();
-        }
-
-        
+        }        
     }
-    
-   
     public void DecreaseZombies()
     {
         zombieAmount--;

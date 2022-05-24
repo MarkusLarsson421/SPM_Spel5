@@ -32,9 +32,7 @@ public class Item : MonoBehaviour{
     {
         if (isPickedUp && playah !=null)
         {
-			//Debug.Log(playah + "WoW");
-			Die();
-			//Debug.Log(playah + "UwU");
+			DespawnItems();
 		}
     }
 
@@ -42,10 +40,9 @@ public class Item : MonoBehaviour{
 		isPickedUp = true;
 	}
 
-	private void Die(){
+	private void DespawnItems(){
 		
         pickupPool.ReturnToPool(gameObject);
-        //pickupSpawner.SetAbleToSpawn(true); 
         PickUpEvent pickUpEvent = new PickUpEvent();
 		pickUpEvent.Description = "Item: " + type + " x " + amount + " has been picked up.";
 		pickUpEvent.SetItemType(type);
