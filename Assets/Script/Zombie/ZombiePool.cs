@@ -25,8 +25,6 @@ public class ZombiePool : MonoBehaviour
         return spawnObjects.Length;
     }
 
-
-
     public EnemyAI Get()
     {
         if (zombieContainer.Count == 0)

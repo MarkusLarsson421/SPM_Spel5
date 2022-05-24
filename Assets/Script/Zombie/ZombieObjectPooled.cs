@@ -46,14 +46,9 @@ public class ZombieObjectPooled : MonoBehaviour
         }
     }
 
-    public void SetAbleToSpawnTrue()
+    public void SetAbleToSpawn(bool value)
     {
-        isAbleToSpawn = true;
-    }
-    //om detta funkar får jag göra det finare 
-    public void SetAbleToSpawnFalse()
-    {
-        isAbleToSpawn = false;
+        isAbleToSpawn = value;
     }
     /*
     * @ AuthorSimon Hessling Oscarson
@@ -85,15 +80,9 @@ public class ZombieObjectPooled : MonoBehaviour
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();
-        //zombie.transform.position = gameObject.transform.parent.transform.position;//cacha
         zombie.gameObject.SetActive(true);
-        //zombie.gameObject.GetComponent<EnemyAI>().spawnPosition = transform.position;
     }
 }
 /*ATT GÖRA
- * Zombies spawnar inte som de ska. Första waven spawnar de rätt, andra waven spawnar alla på en och samma spawnerprefab, förutom en som spawnar bakom spelaren. 
- * Andra vågen så spawnar alla förutom en zombie på en och samma prefab, den sista spawnar på den andra prefaben. Scriptet har testats med två spawners aktiva i scenen.
- * 
- * 
  * - Se över hur jag gör med AddZombies() och InstantiateZombie(), kanske slå ihop dem.
  */
