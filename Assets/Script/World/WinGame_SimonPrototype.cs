@@ -11,7 +11,7 @@ public class WinGame_SimonPrototype : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GameObject theButton;
     private int scrapsInCar;
-    private int scrapsNeededToFixCar = 14;
+    private int scrapsNeededToFixCar = 1;
     private bool isClicked;
 
 
@@ -28,9 +28,7 @@ public class WinGame_SimonPrototype : MonoBehaviour
         isClicked = true;
     }
     public void AddScrapsToCar()
-    {
-        //wait();
-        Debug.Log("test132");
+    { 
        scrapsInCar += rm.Get(ResourceManager.ItemType.Scrap);
       
        rm.SetTotal(ResourceManager.ItemType.Scrap, 0);
@@ -45,19 +43,5 @@ public class WinGame_SimonPrototype : MonoBehaviour
         }
     }
 
-    IEnumerator wait()
-    {
-        yield return new WaitForSeconds(1f);
-
-        Debug.Log("test132");
-        scrapsInCar += rm.Get(ResourceManager.ItemType.Scrap);
-
-        rm.SetTotal(ResourceManager.ItemType.Scrap, 0);
-        Debug.Log("rm scraps = " + rm.Get(ResourceManager.ItemType.Scrap) + " scrapsInCar = " + scrapsInCar);
-        if (scrapsInCar >= scrapsNeededToFixCar)
-        {
-            ch.ChangeCanvasToWinCanvas();
-            Debug.Log("u won the game");
-        }
-    }
+   
 }

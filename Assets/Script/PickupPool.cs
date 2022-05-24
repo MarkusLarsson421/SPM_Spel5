@@ -38,7 +38,7 @@ public class PickupPool : MonoBehaviour
         return pickupContainer.Dequeue();
     }
 
-    private void AddPickups(int count)
+    private void AddPickups(int count)  
     {
         for (int i = 0; i < count; i++)
         {
@@ -100,7 +100,7 @@ public class PickupPool : MonoBehaviour
 
     public void SetScrapsActive()
     {
-        for(int i = 0; i<amountOfScraps; i++)
+        for(int i = 0; i < amountOfScraps; i++)
         {
             scraps[i].SetActive(true);
         }
