@@ -52,6 +52,8 @@ public class EnemyAI : MonoBehaviour
     {
         zReference = this;
         zP = ZombiePool.Instance;
+        playerOne = GameObject.FindGameObjectWithTag("Player1");
+        playerTwo = GameObject.FindGameObjectWithTag("Player2");
     }
     private void Update()
     {
@@ -78,36 +80,32 @@ public class EnemyAI : MonoBehaviour
      */
     private void ClosestPlayer()
     {
-        playerOne = GameObject.FindGameObjectWithTag("Player1");
-        if (playerOne != null)
+        if (playerOne == null)
         {
-            player = playerOne;
-            playerTransform = playerOne.transform;
-            playerTwo = GameObject.FindGameObjectWithTag("Player2");
-            if (playerTwo != null)
-            {
-                distance1 = Vector3.Distance(transform.position, playerOne.transform.position);
-                distance2 = Vector3.Distance(transform.position, playerTwo.transform.position);
-                if (distance2 < distance1)
-                {
-                    Debug.Log("två är närmast");
-                    player = playerTwo;
-                    playerTransform = playerTwo.transform;
-                    if (two)
-                    {
-                        ConstructBehahaviourTree();
-                        two = false;
-                    }
-                }
-                //else one = true;
-            }
-            else if (one)
+            return;
+        }
+        player = playerOne;
+        playerTransform = playerOne.transform;
+        if (playerTwo == null)
+        {
+            ConstructBehahaviourTree();
+            one = false;
+            two = true;
+        }
+        distance1 = Vector3.Distance(transform.position, playerOne.transform.position);
+        distance2 = Vector3.Distance(transform.position, playerTwo.transform.position);
+        if (distance2 < distance1)
+        {
+            Debug.Log("två är närmast");
+            player = playerTwo;
+            playerTransform = playerTwo.transform;
+            if (two)
             {
                 ConstructBehahaviourTree();
-                one = false;
-                two = true;
+                two = false;
             }
         }
+        //else one = true;
     }
 
     private void ConstructBehahaviourTree()
