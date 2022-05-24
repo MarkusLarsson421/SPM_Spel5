@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2175202799468771980}
   - component: {fileID: 4164466407109922374}
   - component: {fileID: 2394253686169833377}
+  - component: {fileID: 6513035296185474259}
+  - component: {fileID: 2115300922622227083}
   m_Layer: 0
   m_Name: CarDamaged_low
   m_TagString: Untagged
@@ -95,3 +97,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4879975, y: 1.8396432, z: 5.7345023}
   m_Center: {x: 0.00000017881393, y: 0, z: 0}
+--- !u!114 &6513035296185474259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2507331067228860307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf15f4fcdab6924cbb7dc773fe31d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  interactIcon: {fileID: 0}
+  iconSize: {x: 0, y: 0}
+  interactingGameObject: {fileID: 0}
+  ID: 0
+--- !u!114 &2115300922622227083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2507331067228860307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa888fb4155c224fb355ce6bc0518a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rm: {fileID: 0}
+  ch: {fileID: 0}
+  scrapsInCarText: {fileID: 0}
+  eventSystem: {fileID: 0}
+  theButton: {fileID: 0}
