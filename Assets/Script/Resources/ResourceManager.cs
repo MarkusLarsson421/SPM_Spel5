@@ -68,7 +68,9 @@ public class ResourceManager : MonoBehaviour
 			    break;
 	    }
     }
-
+	/**
+	 * @Author Martin Wallmark
+	 */
 	public int GetMaxAmount(ItemType type)
     {
 		switch (type)

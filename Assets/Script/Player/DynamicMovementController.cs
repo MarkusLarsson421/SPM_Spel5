@@ -98,7 +98,7 @@ public class DynamicMovementController : MonoBehaviour
         }
         
         //Open door
-        if (Input.GetKeyDown(KeyCode.E)) { Interact(); }
+        //if (Input.GetKeyDown(KeyCode.E)) { Interact(); }
     }
 
     private void ForceDown()
@@ -236,6 +236,7 @@ public class DynamicMovementController : MonoBehaviour
     * Opens or closes the door the user is looking at.
     * Shoots raycast from the main camera.
     */
+    /*
     private void Interact()
     {
         RaycastHit hit;
@@ -246,6 +247,7 @@ public class DynamicMovementController : MonoBehaviour
         if (door == null) { return; }
         door.ToggleState();
     }
+    */
 
     bool IsGrounded()
     {
