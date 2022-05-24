@@ -11,33 +11,21 @@ public class EnemyAI : MonoBehaviour
     */
 
     [SerializeField] private float startingHealth;
-    //[SerializeField] private float lowHealthThreshold;
-    //[SerializeField] private float healthRestoreRate;
-
     [SerializeField] private float chasingRange;
     [SerializeField] private float shootingRange;
 
     public ZombieObjectPooled zOP;
     private EnemyAI zReference;
     private ZombiePool zP;
-    //public Vector3 spawnPosition;
+    public Vector3 spawnPosition;
 
-
-    [SerializeField] private Cover[] avaliableCovers;
     private GameObject playerOne;
     private GameObject playerTwo;
-    private float distance1;
-    private float distance2;
-    private GameObject player;
-    [SerializeField] private Transform playerTransform;
-
-    ChaseNode chaseNode;
-
+    private GameObject chosenPlayer;
+    [SerializeField] private Transform chosenPlayerTransform;
 
     private Material material;
-    private Transform bestCoverSpot;
     private NavMeshAgent agent;
-
     private Node topNode;
 
     [SerializeField] Animator anim;
@@ -47,18 +35,16 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
+        agent.acceleration = 10;
+        agent.speed = 5.1f;
     }
     private void Start()
     {
         zReference = this;
         zP = ZombiePool.Instance;
-        playerOne = GameObject.FindGameObjectWithTag("Player1");
-        playerTwo = GameObject.FindGameObjectWithTag("Player2");
     }
     private void Update()
     {
-        agent.acceleration = 10;
-        agent.speed = 4.1f;
         ClosestPlayer();
         if (playerOne != null || playerTwo != null)
         {
@@ -80,56 +66,55 @@ public class EnemyAI : MonoBehaviour
      */
     private void ClosestPlayer()
     {
+        playerOne = GameObject.FindGameObjectWithTag("Player1");
         if (playerOne == null)
         {
             return;
         }
-        player = playerOne;
-        playerTransform = playerOne.transform;
-        if (playerTwo == null)
+        chosenPlayer = playerOne;
+        chosenPlayerTransform = playerOne.transform;
+        playerTwo = GameObject.FindGameObjectWithTag("Player2");
+        if (playerTwo != null)
+        {
+            float distance1 = Vector3.Distance(transform.position, playerOne.transform.position);
+            float distance2 = Vector3.Distance(transform.position, playerTwo.transform.position);
+            if (distance2 < distance1)
+            {
+                Debug.Log("två är närmast");
+                chosenPlayer = playerTwo;
+                chosenPlayerTransform = playerTwo.transform;
+                if (two)
+                {
+                    ConstructBehahaviourTree();
+                    two = false;
+                }
+            }
+            //else one = true;
+        }
+        else if (one)
         {
             ConstructBehahaviourTree();
             one = false;
             two = true;
         }
-        distance1 = Vector3.Distance(transform.position, playerOne.transform.position);
-        distance2 = Vector3.Distance(transform.position, playerTwo.transform.position);
-        if (distance2 < distance1)
-        {
-            Debug.Log("två är närmast");
-            player = playerTwo;
-            playerTransform = playerTwo.transform;
-            if (two)
-            {
-                ConstructBehahaviourTree();
-                two = false;
-            }
-        }
-        //else one = true;
     }
 
     private void ConstructBehahaviourTree()
     {
-        IsThereAnyAvaliableHidingPlaceNode coverAvaliableNode = new IsThereAnyAvaliableHidingPlaceNode(avaliableCovers, playerTransform, this);
-        GoToHidingPlaceNode goToCoverNode = new GoToHidingPlaceNode(agent, this);
         //HealthNode healthNode = new HealthNode(this, lowHealthThreshold);
-        IsHidingNode isCoveredNode = new IsHidingNode(playerTransform, transform);
-        chaseNode = new ChaseNode(playerTransform, agent, this);
-        ChasingInRangeNode chasingInRangeNode = new ChasingInRangeNode(chasingRange, playerTransform, transform);
-        RangeNode shootingRangeNode = new RangeNode(shootingRange, playerTransform, transform);
-        AttackNode attackNode = new AttackNode(agent, this, playerTransform, player);
+        ChaseNode chaseNode = new ChaseNode(chosenPlayerTransform, agent, this);
+        ChasingInRangeNode chasingInRangeNode = new ChasingInRangeNode(chasingRange, chosenPlayerTransform, transform);
+        RangeNode shootingRangeNode = new RangeNode(shootingRange, chosenPlayerTransform, transform);
+        AttackNode attackNode = new AttackNode(agent, this, chosenPlayerTransform, chosenPlayer);
         IdleNode idleNode = new IdleNode(agent, this);
-        IsThereAnyPlayer isThereAnyPlayer = new IsThereAnyPlayer(player, playerTwo);
-        IsPlayerDeadNode isPlayerDeadNode = new IsPlayerDeadNode(player);
+        IsThereAnyPlayer isThereAnyPlayer = new IsThereAnyPlayer(chosenPlayer, playerTwo);
+        IsPlayerDeadNode isPlayerDeadNode = new IsPlayerDeadNode(chosenPlayer);
         Sequence playerDeathSequence = new Sequence(new List<Node> { isPlayerDeadNode });
 
         Sequence chaseSequence = new Sequence(new List<Node> { chasingInRangeNode, chaseNode });
         Sequence shootSequence = new Sequence(new List<Node> { shootingRangeNode, attackNode });
         Sequence checkPlayerSequence = new Sequence(new List<Node> { isThereAnyPlayer, playerDeathSequence });
 
-        Sequence goToCoverSequence = new Sequence(new List<Node> { coverAvaliableNode, goToCoverNode });
-        Selector findCoverSelector = new Selector(new List<Node> { goToCoverSequence, chaseSequence });
-        Selector mainCoverSequence = new Selector(new List<Node> { isCoveredNode, findCoverSelector });
         //Sequence mainCoverSequence = new Sequence(new List<Node> { healthNode, tryToTakeCoverSelector });
 
         topNode = new Selector(new List<Node> { checkPlayerSequence, shootSequence, chaseSequence, idleNode });
@@ -170,16 +155,6 @@ public class EnemyAI : MonoBehaviour
     public void SetColor(Color color)
     {
         material.color = color;
-    }
-
-    public void SetBestCoverSpot(Transform bestCoverSpot)
-    {
-        this.bestCoverSpot = bestCoverSpot;
-    }
-
-    public Transform GetBestCoverSpot()
-    {
-        return bestCoverSpot;
     }
 
     //public void TakeDamage(int damage)

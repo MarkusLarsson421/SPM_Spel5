@@ -49,7 +49,8 @@ public class ZombiePool : MonoBehaviour
     {
         for (int i = 0; i < spawnObjects.Length; i++)
         {
-            EnemyAI zo = Instantiate(zPrefab,spawnObjects[i].transform);
+            EnemyAI zo = Instantiate(zPrefab,spawnObjects[i].transform.position, Quaternion.identity);
+            zo.spawnPosition = spawnObjects[i].transform.position;
             zo.gameObject.SetActive(true);
             zombieContainer.Enqueue(zo);
         }
@@ -59,5 +60,6 @@ public class ZombiePool : MonoBehaviour
         zo.gameObject.SetActive(false);
         zombieContainer.Enqueue(zo);
         ZombieObjectPooled.amountOfZombiesSpawned--;
+        zo.transform.position = zo.spawnPosition;
     }
 }

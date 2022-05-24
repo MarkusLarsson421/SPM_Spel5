@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2394253686169833377}
   - component: {fileID: 6513035296185474259}
   - component: {fileID: 2115300922622227083}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CarDamaged_low
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2507331067228860307}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00000058114523}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0.057177864, y: 0.9198216, z: -9.052313}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -111,9 +111,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onInteract:
     m_PersistentCalls:
-      m_Calls: []
-  interactIcon: {fileID: 0}
-  iconSize: {x: 0, y: 0}
+      m_Calls:
+      - m_Target: {fileID: 2115300922622227083}
+        m_TargetAssemblyTypeName: WinGame_SimonPrototype, Assembly-CSharp
+        m_MethodName: CarInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactIcon: {fileID: 21300000, guid: 5a4ba523fce30244dbe5a160bc0dc313, type: 3}
+  iconSize: {x: 1000, y: 1000}
   interactingGameObject: {fileID: 0}
   ID: 0
 --- !u!114 &2115300922622227083
