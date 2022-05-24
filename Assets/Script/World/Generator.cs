@@ -24,8 +24,11 @@ public class Generator : MonoBehaviour{
 	[SerializeField] private GameObject[] lowPowerLights;
 
 	private Light fuelIndicator;
-	private GameObject interactingPlayer;
-
+	[SerializeField] private GameObject interactingPlayer;
+	public string interactingTag;
+	private bool isToggled;
+	private bool hasRegistered;
+	[SerializeField] private ResourceManager rm;
 
 	private void Start(){
 		fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
@@ -34,13 +37,30 @@ public class Generator : MonoBehaviour{
 	}
 
 	private void Update(){
+
+        if (isToggled && !hasRegistered)
+        {
+			interactingPlayer = interactable.interactingGameObject.transform.parent.gameObject;
+			rm = interactable.interactingGameObject.GetComponentInChildren<ResourceManager>();
+			if(rm.Get(ResourceManager.ItemType.Scrap) >= 1)
+            {
+				RefillFuel(100);
+				OpenDoors();
+				rm.Offset(ResourceManager.ItemType.Scrap, -1);
+			}
+			
+			hasRegistered = true;
+		}
 		DrainFuel();
 		FuelIndicator();
+
+		
 	}
 
 	public void SetInteractingPlayer()
     {
-		interactingPlayer = interactable.interactingGameObject;
+		isToggled = true;
+		hasRegistered = false;
     }
 	
 	/**

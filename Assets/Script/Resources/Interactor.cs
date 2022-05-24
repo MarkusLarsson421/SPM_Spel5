@@ -108,6 +108,13 @@ public class Interactor : MonoBehaviour
                             interactable.gameObject.GetComponent<WinGame_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
                             interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
                             break;
+                        case "Generator":
+                            //interactable.interactingGameObject = gameObject.transform.parent.gameObject;
+                            //interactable.gameObject.GetComponent<Generator>().interactingTag = gameObject.transform.parent.tag;
+
+                            break;
+
+
 
                     }
 
