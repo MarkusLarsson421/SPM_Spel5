@@ -33,11 +33,12 @@ public class PickupObjectPooled : MonoBehaviour
             isAbleToSpawn = false;
             Debug.Log(isAbleToSpawn);
             GameObject item = PickupPool.Instance.Get();
-            item.transform.position = transform.position;
-            item.transform.rotation = transform.rotation;
+            item.transform.SetPositionAndRotation(transform.position, transform.rotation);
             item.gameObject.SetActive(true);
         }
-    }
+    }/*sätter position på items när de spawnar. Anropar poolens get(), som anropar AddPickups, detta script sitter på spawnern som konstant anropar spawnpickupitem.
+      * Kan man göra nåt liknande för zombies?
+      */
 
     public void SetAbleToSpawn(bool value)
     {
