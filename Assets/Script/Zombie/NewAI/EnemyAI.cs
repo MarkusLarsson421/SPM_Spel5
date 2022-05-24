@@ -55,6 +55,8 @@ public class EnemyAI : MonoBehaviour
     }
     private void Update()
     {
+        agent.acceleration = 100;
+        agent.speed = 100;
         ClosestPlayer();
         if (playerOne != null || playerTwo != null)
         {
