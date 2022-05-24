@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChasingInRangeNode : Node
+public class InRageTochaseNode : Node
 {
     private float range;
     private Transform target;
     private Transform origin;
 
-    public ChasingInRangeNode(float range, Transform target, Transform origin)
+    public InRageTochaseNode(float range, Transform target, Transform origin)
     {
         this.range = range;
         this.target = target;

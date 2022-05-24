@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float startingHealth;
     [SerializeField] private float chasingRange;
     [SerializeField] private float shootingRange;
+    int counter = 0;
 
     public ZombieObjectPooled zOP;
     private EnemyAI zReference;
@@ -27,6 +28,10 @@ public class EnemyAI : MonoBehaviour
     private Node topNode;
 
     [SerializeField] Animator anim;
+    private float timer = 0f;
+    private float timer2 = 0f;
+    private bool allFounded = false;
+    private GameObject chosenPlayer;
 
 
     private void Awake()
@@ -41,21 +46,17 @@ public class EnemyAI : MonoBehaviour
         zReference = this;
         zP = ZombiePool.Instance;
     }
-    GameObject cunstruct = null;
+    GameObject currentPlayer = null;
 
     private void Update()
     {
-
         Tasks();
     }
     void Tasks()
     {
-        if (ClosestPlayer() != cunstruct)
-        {
-            cunstruct = ClosestPlayer();
-            Construct();
-        }
-        if (ClosestPlayer() == null)
+        TasksWithTimer();
+
+        if (playerOne == null)
         {
             return;
         }
@@ -66,17 +67,37 @@ public class EnemyAI : MonoBehaviour
         }
         
     }
+    void TasksWithTimer()
+    {
+        if (timer < 2f && !allFounded) timer += Time.deltaTime;
+        else
+        {
+            timer = 0f;
+            if (playerOne == null) playerOne = GameObject.FindGameObjectWithTag("Player1");
+            else if (playerTwo == null) { playerTwo = GameObject.FindGameObjectWithTag("Player2"); allFounded = true; }
+        }
+        if (timer2 < 1f) timer2 += Time.deltaTime;
+        else
+        {
+            chosenPlayer = ClosestPlayer();
+            if (chosenPlayer != currentPlayer)
+            {
+                currentPlayer = chosenPlayer;
+                ConstructBehahaviourTree(chosenPlayer, chosenPlayer.transform);
+            }
+        }
+    }
     /*
      * @Author Simon Hessling Oscarson
+     * @Khaled Alraas
      */
     private GameObject ClosestPlayer()
     {
-        playerOne = GameObject.FindGameObjectWithTag("Player1");
+        Debug.Log(++counter);
         if (playerOne == null)
         {
             return null;
         }
-        playerTwo = GameObject.FindGameObjectWithTag("Player2");
         if (playerTwo != null && Vector3.Distance(transform.position, playerTwo.transform.position) < Vector3.Distance(transform.position, playerOne.transform.position))
         {
 
@@ -84,32 +105,21 @@ public class EnemyAI : MonoBehaviour
         }
         return playerOne;
     }
-    void Construct()
-    {
-        ConstructBehahaviourTree(ClosestPlayer(), ClosestPlayer().transform);
-    }
 
     private void ConstructBehahaviourTree(GameObject player, Transform playerTransform)
     {
-        //HealthNode healthNode = new HealthNode(this, lowHealthThreshold);
         ChaseNode chaseNode = new ChaseNode(playerTransform, agent, this);
-        ChasingInRangeNode chasingInRangeNode = new ChasingInRangeNode(chasingRange, playerTransform, transform);
-        RangeNode shootingRangeNode = new RangeNode(shootingRange, playerTransform, transform);
+        InRageTochaseNode inRageTochaseNode = new InRageTochaseNode(chasingRange, playerTransform, transform);
+        InRangeToAttackNode inRangeToAttackNode = new InRangeToAttackNode(shootingRange, playerTransform, transform);
         AttackNode attackNode = new AttackNode(agent, this, playerTransform, player);
         IdleNode idleNode = new IdleNode(agent, this);
-        IsThereAnyPlayer isThereAnyPlayer = new IsThereAnyPlayer(player, playerTwo);
+        IsThereAnyPlayer isThereAnyPlayerNode = new IsThereAnyPlayer(player, playerTwo);
         IsPlayerDeadNode isPlayerDeadNode = new IsPlayerDeadNode(player);
-        Sequence playerDeathSequence = new Sequence(new List<Node> { isPlayerDeadNode });
 
-        Sequence chaseSequence = new Sequence(new List<Node> { chasingInRangeNode, chaseNode });
-        Sequence shootSequence = new Sequence(new List<Node> { shootingRangeNode, attackNode });
-        Sequence checkPlayerSequence = new Sequence(new List<Node> { isThereAnyPlayer, playerDeathSequence });
+        Sequence chaseSequence = new Sequence(new List<Node> { inRageTochaseNode, chaseNode });
+        Sequence shootSequence = new Sequence(new List<Node> { inRangeToAttackNode, attackNode });
 
-        //Sequence mainCoverSequence = new Sequence(new List<Node> { healthNode, tryToTakeCoverSelector });
-
-        topNode = new Selector(new List<Node> { checkPlayerSequence, shootSequence, chaseSequence, idleNode });
-
-
+        topNode = new Selector(new List<Node> { isPlayerDeadNode, shootSequence, chaseSequence, idleNode });
     }
 
     public void TakeDamage(float damage)

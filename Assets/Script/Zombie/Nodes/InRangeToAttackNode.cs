@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeNode : Node
+public class InRangeToAttackNode : Node
 {
     private float range;
     private Transform target;
     private Transform origin;
 
-    public RangeNode(float range, Transform target, Transform origin)
+    public InRangeToAttackNode(float range, Transform target, Transform origin)
     {
         this.range = range;
         this.target = target;
