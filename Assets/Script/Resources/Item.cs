@@ -18,6 +18,8 @@ public class Item : MonoBehaviour{
 
     private bool isPickedUp;
 
+	//@Author Axel Sterner
+	// Gjort metoden mer generisk
     private void Start()
     {
         pickupPool = GameObject.Find("PickupPool").GetComponent<PickupPool>();
@@ -42,7 +44,7 @@ public class Item : MonoBehaviour{
 
 	private void DespawnItems(){
 		
-        pickupPool.ReturnToPool(gameObject);
+        pickupPool.ReturnToPool(gameObject);//@Author Axel Sterner
         PickUpEvent pickUpEvent = new PickUpEvent();
 		pickUpEvent.Description = "Item: " + type + " x " + amount + " has been picked up.";
 		pickUpEvent.SetItemType(type);
