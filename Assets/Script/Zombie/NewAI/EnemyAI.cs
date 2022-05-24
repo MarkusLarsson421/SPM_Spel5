@@ -41,45 +41,51 @@ public class EnemyAI : MonoBehaviour
         zReference = this;
         zP = ZombiePool.Instance;
     }
+    GameObject cunstruct = null;
+
     private void Update()
     {
-        ClosestPlayer();
-        if (playerOne != null || playerTwo != null)
+        if (ClosestPlayer() != cunstruct)
         {
-            //ConstructBehahaviourTree();
-            topNode.Evaluate();
-            if (topNode.nodeState == NodeState.FAILURE)
-            {
-                SetColor(Color.red);
-                agent.isStopped = true;
-            }
+            cunstruct = ClosestPlayer();
+            Construct();
         }
-
-        //currentHealth += Time.deltaTime * healthRestoreRate;
+        Tasks();
+    }
+    void Tasks()
+    {
+        if (ClosestPlayer() == null)
+        {
+            return;
+        }
+        topNode.Evaluate();
+        if (topNode.nodeState == NodeState.FAILURE)
+        {
+            agent.isStopped = true;
+        }
+        
     }
     /*
      * @Author Simon Hessling Oscarson
      */
-    private void ClosestPlayer()
+    private GameObject ClosestPlayer()
     {
         playerOne = GameObject.FindGameObjectWithTag("Player1");
         if (playerOne == null)
         {
-            return;
+            return null;
         }
         playerTwo = GameObject.FindGameObjectWithTag("Player2");
         if (playerTwo != null && Vector3.Distance(transform.position, playerTwo.transform.position) < Vector3.Distance(transform.position, playerOne.transform.position))
         {
-            Construct(playerTwo);
-            return;
-        }
-        Construct(playerOne);
-    }
-    void Construct(GameObject chosenPlayer)
-    {
-        if(chosenPlayer == null) { return; }
-        ConstructBehahaviourTree(chosenPlayer, chosenPlayer.transform);
 
+            return playerTwo;
+        }
+        return playerOne;
+    }
+    void Construct()
+    {
+        ConstructBehahaviourTree(ClosestPlayer(), ClosestPlayer().transform);
     }
 
     private void ConstructBehahaviourTree(GameObject player, Transform playerTransform)
