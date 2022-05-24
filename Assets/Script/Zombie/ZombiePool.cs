@@ -49,7 +49,7 @@ public class ZombiePool : MonoBehaviour
     {
         for (int i = 0; i < spawnObjects.Length; i++)
         {
-            EnemyAI zo = Instantiate(zPrefab, spawnObjects[i].transform.position, Quaternion.identity);
+            EnemyAI zo = Instantiate(zPrefab,spawnObjects[i].transform);
             zo.gameObject.SetActive(true);
             zombieContainer.Enqueue(zo);
         }

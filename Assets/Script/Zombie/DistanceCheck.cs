@@ -23,15 +23,8 @@ public class DistanceCheck : MonoBehaviour
     {
         if(pSpawner.playerHasJoined)
         {
-            
-                player1 = GameObject.FindGameObjectWithTag("Player1");
-                
-            
-            
-                player2 = GameObject.FindGameObjectWithTag("Player2");
-                
-            
-           
+            player1 = GameObject.FindGameObjectWithTag("Player1");
+            player2 = GameObject.FindGameObjectWithTag("Player2");
             CheckDistFromSpawner();
         }
     }
@@ -43,7 +36,6 @@ public class DistanceCheck : MonoBehaviour
         if(dist1 <= distaneFromSpawner || dist2 <= distaneFromSpawner)
         {
             gameObject.transform.Find("GameObject").gameObject.SetActive(false);
-           
         }
         else
         {
