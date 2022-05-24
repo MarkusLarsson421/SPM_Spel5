@@ -21,8 +21,6 @@ public class EnemyAI : MonoBehaviour
 
     private GameObject playerOne;
     private GameObject playerTwo;
-    private GameObject chosenPlayer;
-    [SerializeField] private Transform chosenPlayerTransform;
 
     private Material material;
     private NavMeshAgent agent;
@@ -48,7 +46,7 @@ public class EnemyAI : MonoBehaviour
         ClosestPlayer();
         if (playerOne != null || playerTwo != null)
         {
-            ConstructBehahaviourTree();
+            //ConstructBehahaviourTree();
             topNode.Evaluate();
             if (topNode.nodeState == NodeState.FAILURE)
             {
@@ -59,8 +57,6 @@ public class EnemyAI : MonoBehaviour
 
         //currentHealth += Time.deltaTime * healthRestoreRate;
     }
-    bool one = true;
-    bool two = true;
     /*
      * @Author Simon Hessling Oscarson
      */
@@ -71,44 +67,31 @@ public class EnemyAI : MonoBehaviour
         {
             return;
         }
-        chosenPlayer = playerOne;
-        chosenPlayerTransform = playerOne.transform;
         playerTwo = GameObject.FindGameObjectWithTag("Player2");
-        if (playerTwo != null)
+        if (playerTwo != null && Vector3.Distance(transform.position, playerTwo.transform.position) < Vector3.Distance(transform.position, playerOne.transform.position))
         {
-            float distance1 = Vector3.Distance(transform.position, playerOne.transform.position);
-            float distance2 = Vector3.Distance(transform.position, playerTwo.transform.position);
-            if (distance2 < distance1)
-            {
-                Debug.Log("två är närmast");
-                chosenPlayer = playerTwo;
-                chosenPlayerTransform = playerTwo.transform;
-                if (two)
-                {
-                    ConstructBehahaviourTree();
-                    two = false;
-                }
-            }
-            //else one = true;
+            Construct(playerTwo);
+            return;
         }
-        else if (one)
-        {
-            ConstructBehahaviourTree();
-            one = false;
-            two = true;
-        }
+        Construct(playerOne);
+    }
+    void Construct(GameObject chosenPlayer)
+    {
+        if(chosenPlayer == null) { return; }
+        ConstructBehahaviourTree(chosenPlayer, chosenPlayer.transform);
+
     }
 
-    private void ConstructBehahaviourTree()
+    private void ConstructBehahaviourTree(GameObject player, Transform playerTransform)
     {
         //HealthNode healthNode = new HealthNode(this, lowHealthThreshold);
-        ChaseNode chaseNode = new ChaseNode(chosenPlayerTransform, agent, this);
-        ChasingInRangeNode chasingInRangeNode = new ChasingInRangeNode(chasingRange, chosenPlayerTransform, transform);
-        RangeNode shootingRangeNode = new RangeNode(shootingRange, chosenPlayerTransform, transform);
-        AttackNode attackNode = new AttackNode(agent, this, chosenPlayerTransform, chosenPlayer);
+        ChaseNode chaseNode = new ChaseNode(playerTransform, agent, this);
+        ChasingInRangeNode chasingInRangeNode = new ChasingInRangeNode(chasingRange, playerTransform, transform);
+        RangeNode shootingRangeNode = new RangeNode(shootingRange, playerTransform, transform);
+        AttackNode attackNode = new AttackNode(agent, this, playerTransform, player);
         IdleNode idleNode = new IdleNode(agent, this);
-        IsThereAnyPlayer isThereAnyPlayer = new IsThereAnyPlayer(chosenPlayer, playerTwo);
-        IsPlayerDeadNode isPlayerDeadNode = new IsPlayerDeadNode(chosenPlayer);
+        IsThereAnyPlayer isThereAnyPlayer = new IsThereAnyPlayer(player, playerTwo);
+        IsPlayerDeadNode isPlayerDeadNode = new IsPlayerDeadNode(player);
         Sequence playerDeathSequence = new Sequence(new List<Node> { isPlayerDeadNode });
 
         Sequence chaseSequence = new Sequence(new List<Node> { chasingInRangeNode, chaseNode });
