@@ -5,6 +5,7 @@ using TMPro;
 public class SubsScript : MonoBehaviour{
     [SerializeField] private GameObject textBox;
     [SerializeField] private GameObject controlsTextBox;
+    [SerializeField] private GameObject background;
     public bool scrapPickUpLine;
 	public bool needToReload;
 	public bool flashLightLine;
@@ -82,8 +83,10 @@ public class SubsScript : MonoBehaviour{
         
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "";
         yield return new WaitForSeconds(8);
-        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "press START to pause and see controls";
+        background.SetActive(true);
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "press START to see controls";
         yield return new WaitForSeconds(4);
+        background.SetActive(false);
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "";
     }
     public void SetGeneratorBreakFirstTime(bool boolean)
