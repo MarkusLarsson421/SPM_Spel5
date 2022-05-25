@@ -6,11 +6,14 @@ using UnityEngine.InputSystem;
 public class GamePadCamera : MonoBehaviour
 {
     [SerializeField] private float sensitity;
-    
+    [SerializeField] GameObject player;
+    [SerializeField] Camera playerCamera;
+
     private InputSystem input;
     private Vector2 look;
-    private Transform player;
-    
+    private Transform playerTransform;
+
+    private static Camera playerOneCamera;
     private float xRotation = 0f;
     private float xAxis;
     private float yAxis;
@@ -18,14 +21,18 @@ public class GamePadCamera : MonoBehaviour
 
     private bool isSplitScreenVertical;
 
-    
+
     // Start is called before the first frame update
     void Awake()
     {
-        player = transform.parent;
-        if(transform.parent.tag.Equals("Player2"))
+        if (player.tag.Equals("Player1"))
         {
-            SetUpSplitScreen();  
+            playerOneCamera = playerCamera;
+        }
+        playerTransform = player.transform;
+        if (transform.parent.tag.Equals("Player2"))
+        {
+            SetUpSplitScreen();
         }
 
         input = new InputSystem();
@@ -46,12 +53,12 @@ public class GamePadCamera : MonoBehaviour
     private void LookAround()
     {
         //look = input.Gameplay.Rotate.ReadValue<Vector2>();
-        if(look.magnitude > smallRotationInput)
+        if (look.magnitude > smallRotationInput)
         {
             xAxis = look.x * sensitity * Time.deltaTime;
             yAxis = look.y * sensitity * Time.deltaTime;
         }
-       
+
         else
         {
             xAxis = 0 * sensitity * Time.deltaTime;
@@ -63,23 +70,23 @@ public class GamePadCamera : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 70f);
 
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        player.Rotate(Vector3.up * xAxis);
+        playerTransform.Rotate(Vector3.up * xAxis);
     }
 
     private void SetUpSplitScreen()
     {
         if (isSplitScreenVertical)
         {
-            GameObject.FindWithTag("Player1").GetComponentInChildren<Camera>().rect = new Rect(0f, 0f, 0.5f, 1f);
-            GetComponent<Camera>().rect = new Rect(0.5f, 0f, 0.5f, 1f);
+            playerOneCamera.rect = new Rect(0f, 0f, 0.5f, 1f);
+            playerCamera.rect = new Rect(0.5f, 0f, 0.5f, 1f);
         }
         else
         {
-            GameObject.FindWithTag("Player1").GetComponentInChildren<Camera>().rect = new Rect(0f, 0.5f, 1f, 0.5f);
-            GetComponent<Camera>().rect = new Rect(0f, 0f, 1f, 0.5f);
+            playerOneCamera.rect = new Rect(0f, 0.5f, 1f, 0.5f);
+            playerCamera.rect = new Rect(0f, 0f, 1f, 0.5f);
         }
-        
-        
+
+
     }
     /**
      * Sets the sensitivty based on the value the method recieves

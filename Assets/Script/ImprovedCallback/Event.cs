@@ -104,3 +104,8 @@ public class OnAttackWithMaleeEvent : Event<OnAttackWithMaleeEvent>
 	public PlayerStats player;
 	public int slowTime;
 }
+// här skpar ni ny events
+public class EatThePizza : Event<EatThePizza>
+{
+	public IWantPizza pizza; //ni behöver inte lägga något här.
+}
