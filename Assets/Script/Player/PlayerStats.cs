@@ -7,10 +7,11 @@ public class PlayerStats : MonoBehaviour
     PlayerStats instance;
     [SerializeField] private int health = 100; 
     [SerializeField] private int stamina; //set the stamina of health in unity
-    [SerializeField] private Slider staminaSlider;
+    //[SerializeField] private Slider staminaSlider;
     [SerializeField] private Image walkImage;
     [SerializeField] private Image runImage;
     [SerializeField] private CanvasHandler ch;
+    [SerializeField] private UIHandler handler;
     private bool isDead = false;
     void Start()
     {
@@ -23,12 +24,14 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
+        handler.SetCurrentHealth(health);
         if (health <= 0 && !isDead)
         {
             health = 0;
             PlayerDeath();
         }
-        staminaSlider.value = stamina;
+        
+        //staminaSlider.value = stamina;
     }
 
     float Timer = 0;
@@ -70,6 +73,7 @@ public class PlayerStats : MonoBehaviour
         PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
         playerHealthChange.PlayerHealth = health;
         EventSystem.Current.FireEvent(playerHealthChange);
+        
     }
 
     /**

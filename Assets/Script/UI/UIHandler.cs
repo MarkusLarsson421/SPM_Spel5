@@ -9,6 +9,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private TMP_Text batteryText;
     [SerializeField] private TMP_Text scrapText;
+    [SerializeField] private TMP_Text healthText;
     [SerializeField] private Image GunImageSmall;
     [SerializeField] private Image AxeImageSmall;
     [SerializeField] private Image GunImageBig;
@@ -62,6 +63,11 @@ public class UIHandler : MonoBehaviour
                 EnlargePistolIcon();
                 break;
         }
+    }
+
+    public void SetCurrentHealth(int currentHealth)
+    {
+        healthText.text = currentHealth+"";
     }
 
     private void EnlargeMeleeIcon()
