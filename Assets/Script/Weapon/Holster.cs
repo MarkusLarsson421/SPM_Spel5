@@ -118,10 +118,10 @@ public class Holster : MonoBehaviour
                     handler.SwitchWeaponIcons("Melee");
                 }
 
-                else if (currentWeapon.tag.Equals("Ak47"))
+                else if (currentWeapon.tag.Equals("AK47"))
                 {
-                    currentWeapon.GetComponent<MaleeWeapon>().SetCanFire(true);
-                    handler.SwitchWeaponIcons("Ak47");
+                    //currentWeapon.GetComponent<MaleeWeapon>().SetCanFire(true);
+                    handler.SwitchWeaponIcons("AK47");
                 }
               
             }
@@ -136,9 +136,9 @@ public class Holster : MonoBehaviour
                 {
                     currentWeapon.GetComponent<MaleeWeapon>().SetCanFire(false);
                 }
-                else if (currentWeapon.tag.Equals("Ak47"))
+                else if (currentWeapon.tag.Equals("AK47"))
                 {
-                    currentWeapon.GetComponent<MaleeWeapon>().SetCanFire(false);
+                    //currentWeapon.GetComponent<MaleeWeapon>().SetCanFire(false);
                     
                 }
             }
