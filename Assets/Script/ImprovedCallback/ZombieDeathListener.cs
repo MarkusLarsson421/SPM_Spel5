@@ -16,7 +16,7 @@ namespace EventCallbacks
         // Start is called before the first frame update
         void Start()
         {
-            EventSystem.Current.RegisterListener<OnZombieDeathEvent>(DropItems);
+            OnZombieDeathEvent.RegisterListener(DropItems);
         }
         private void Update()
         {
