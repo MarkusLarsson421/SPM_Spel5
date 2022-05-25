@@ -10,15 +10,18 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private TMP_Text batteryText;
     [SerializeField] private TMP_Text scrapText;
     [SerializeField] private TMP_Text healthText;
-    [SerializeField] private Image GunImageSmall;
-    [SerializeField] private Image AxeImageSmall;
-    [SerializeField] private Image GunImageBig;
-    [SerializeField] private Image AxeImageBig;
+    [SerializeField] private Image gunImageSmall;
+    [SerializeField] private Image axeImageSmall;
+    [SerializeField] private Image gunImageBig;
+    [SerializeField] private Image axeImageBig;
+    [SerializeField] private Image ak47ImageBig;
+    [SerializeField] private Image ak47ImageSmall;
 
     private void Start()
     {
-        GunImageSmall.enabled = false;
-        AxeImageBig.enabled = false;
+        gunImageSmall.enabled = false;
+        axeImageBig.enabled = false;
+        ak47ImageBig.enabled = false;
     }
 
     private void Update()
@@ -62,6 +65,9 @@ public class UIHandler : MonoBehaviour
             case "Pistol":
                 EnlargePistolIcon();
                 break;
+            case "AK47":
+                EnlargeAKIcon();
+                break;
         }
     }
 
@@ -72,22 +78,42 @@ public class UIHandler : MonoBehaviour
 
     private void EnlargeMeleeIcon()
     {
-        GunImageBig.enabled = false;
-        GunImageSmall.enabled = true;
+        gunImageBig.enabled = false;
+        gunImageSmall.enabled = true;
 
-        AxeImageBig.enabled = true;
-        AxeImageSmall.enabled = false;
+        axeImageBig.enabled = true;
+        axeImageSmall.enabled = false;
+
+        ak47ImageBig.enabled = false;
+        ak47ImageSmall.enabled = true;
 
     }
 
     private void EnlargePistolIcon()
     {
-        GunImageBig.enabled = true;
-        GunImageSmall.enabled = false;
+        gunImageBig.enabled = true;
+        gunImageSmall.enabled = false;
 
-        AxeImageBig.enabled = false;
-        AxeImageSmall.enabled = true;
+        axeImageBig.enabled = false;
+        axeImageSmall.enabled = true;
 
+        ak47ImageBig.enabled = false;
+        ak47ImageSmall.enabled = true;
+
+
+    }
+
+    private void EnlargeAKIcon()
+    {
+
+        ak47ImageBig.enabled = true;
+        ak47ImageSmall.enabled = false;
+
+        gunImageBig.enabled = false;
+        gunImageSmall.enabled = true;
+
+        axeImageBig.enabled = false;
+        axeImageSmall.enabled = true;
 
     }
 }
