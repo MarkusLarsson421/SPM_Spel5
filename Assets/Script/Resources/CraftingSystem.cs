@@ -38,9 +38,12 @@ public class CraftingSystem : MonoBehaviour
     private GameObject playerOneButtons, playerTwoButtons;
     private Canvas playerOneCanvas, playerTwoCanvas;
 
+    private EventSystem playerOneEventSystem, playerTwoEventSystem;
+
     private GameObject playerOneDamageUpgrade, playerTwoDamageUpgrade;
     private GameObject playerOneMagazineUpgrade, playerTwoMagazineUpgrade;
     private GameObject playerOneFlashLightUpgrade, playerTwoFlashLightUpgrade;
+    private GameObject playerOneCancelButton, playerTwoCancelButton;
 
     //TODO ändra så bara en dictionary används istället för 3 listor
     private Dictionary<string, List<string>> upgradedPlayers = new Dictionary<string, List<string>>();
@@ -143,24 +146,46 @@ public class CraftingSystem : MonoBehaviour
             {
                 Debug.Log("You already have this upgrade!");
                 UpdateInfoText("AlreadyHasUpgrade");
+                return;
             }
-            else if (interactingPlayer.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 2 && interactingPlayer.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 2)
+            if (interactingPlayer.tag.Equals("Player1"))
             {
-                interactingPlayer.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -2);
-                interactingPlayer.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -2);
-                interactingPlayer.GetComponentInChildren<Weapon>().SetDamage(40);
+                if (playerOneRM.Get(ResourceManager.ItemType.Battery) >= 2 && playerOneRM.Get(ResourceManager.ItemType.Scrap) >= 2)
+                {
+                    playerOneRM.Offset(ResourceManager.ItemType.Battery, -2);
+                    playerOneRM.Offset(ResourceManager.ItemType.Scrap, -2);
+                    playerOneWeapon.SetDamage(40);
 
-                list.Add(currentPlayerTag);
-                UpdateInfoText("GotUpgrade");
+                    list.Add(currentPlayerTag);
+                    UpdateInfoText("GotUpgrade");
+                }
+                else
+                {
+                    UpdateInfoText("NotEnoughItems");
+                }
             }
             else
             {
-                UpdateInfoText("NotEnoughItems");
-            }
-                isButtonClicked = true;
+                if (playerTwoRM.Get(ResourceManager.ItemType.Battery) >= 2 && playerTwoRM.Get(ResourceManager.ItemType.Scrap) >= 2)
+                {
+                    playerTwoRM.Offset(ResourceManager.ItemType.Battery, -2);
+                    playerTwoRM.Offset(ResourceManager.ItemType.Scrap, -2);
+                    playerTwoWeapon.SetDamage(40);
+
+                    list.Add(currentPlayerTag);
+                    UpdateInfoText("GotUpgrade");
+                }
+                else
+                {
+                    UpdateInfoText("NotEnoughItems");
+                }
             }
 
+            isButtonClicked = true;
         }
+        
+
+    }
 
     
 
@@ -176,24 +201,47 @@ public class CraftingSystem : MonoBehaviour
             {
                 Debug.Log("You already have this upgrade!");
                 UpdateInfoText("AlreadyHasUpgrade");
+                return;
             }
             //Gör så att vapnets magasin kan ha fler patroner
-          
-            else if (interactingPlayer.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 1 && interactingPlayer.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 3)
+            if (interactingPlayer.tag.Equals("Player1"))
             {
-                interactingPlayer.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -1);
-                interactingPlayer.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -3);
-                interactingPlayer.GetComponentInChildren<Weapon>().SetMagCapacity(12);
-                list.Add(currentPlayerTag);
-                
-                UpdateInfoText("GotUpgrade");
+                if (playerOneRM.Get(ResourceManager.ItemType.Battery) >= 1 && playerOneRM.Get(ResourceManager.ItemType.Scrap) >= 3)
+                {
+                    playerOneRM.Offset(ResourceManager.ItemType.Battery, -1);
+                    playerOneRM.Offset(ResourceManager.ItemType.Scrap, -3);
+                    playerOneWeapon.SetMagCapacity(12);
+                    list.Add(currentPlayerTag);
 
+                    UpdateInfoText("GotUpgrade");
+
+                }
+                else
+                {
+                    UpdateInfoText("NotEnoughItems");
+                }
+                
             }
             else
             {
-                UpdateInfoText("NotEnoughItems");
+                if (playerTwoRM.Get(ResourceManager.ItemType.Battery) >= 1 && playerTwoRM.Get(ResourceManager.ItemType.Scrap) >= 3)
+                {
+                    playerTwoRM.Offset(ResourceManager.ItemType.Battery, -1);
+                    playerTwoRM.Offset(ResourceManager.ItemType.Scrap, -3);
+                    playerTwoWeapon.SetMagCapacity(12);
+                    list.Add(currentPlayerTag);
+
+                    UpdateInfoText("GotUpgrade");
+
+                }
+                else
+                {
+                    UpdateInfoText("NotEnoughItems");
+                }
             }
             isButtonClicked = true;
+
+
         }
     }
 
@@ -208,24 +256,48 @@ public class CraftingSystem : MonoBehaviour
             {
                 Debug.Log("You already have this upgrade!");
                 UpdateInfoText("AlreadyHasUpgrade");
+                return;
             }
-            //gör så att ficklampans batterie räcker längre
-            else if (interactingPlayer.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 3 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 1)
+            if (interactingPlayer.tag.Equals("Player1"))
             {
-                interactingPlayer.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -3);
-                interactingPlayer.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -1);
-                interactingPlayer.GetComponentInChildren<FlashLight>().SetDrainMultiplier(0.05f);
-                list.Add(currentPlayerTag);
-                UpdateInfoText("GotUpgrade");
+                if (playerOneRM.Get(ResourceManager.ItemType.Battery) >= 3 && playerOneRM.Get(ResourceManager.ItemType.Scrap) >= 1)
+                {
+                    playerOneRM.Offset(ResourceManager.ItemType.Battery, -3);
+                    playerOneRM.Offset(ResourceManager.ItemType.Scrap, -1);
+                    playerOneFlashLight.SetDrainMultiplier(0.25f);
+                    list.Add(currentPlayerTag);
+                    UpdateInfoText("GotUpgrade");
+                }
+                else
+                {
+                    UpdateInfoText("NotEnoughItems");
+                }
             }
             else
             {
-                UpdateInfoText("NotEnoughItems");
+                if (playerTwoRM.Get(ResourceManager.ItemType.Battery) >= 3 && playerTwoRM.Get(ResourceManager.ItemType.Scrap) >= 1)
+                {
+                    playerTwoRM.Offset(ResourceManager.ItemType.Battery, -3);
+                    playerTwoRM.Offset(ResourceManager.ItemType.Scrap, -1);
+                    playerTwoFlashLight.SetDrainMultiplier(0.25f);
+                    list.Add(currentPlayerTag);
+                    UpdateInfoText("GotUpgrade");
+                }
+                else
+                {
+                    UpdateInfoText("NotEnoughItems");
+                }
             }
+            //gör så att ficklampans batterie räcker längre
+           
             isButtonClicked = true;
         }
 
     }
+
+    /**
+     * Metoden körs endast första gången spelaren interagerar med craftingbordet, därefter cachas allt som craftingen behöver från spelaren
+     */
 
     private void SetCurrentCanvas()
     {
@@ -238,12 +310,15 @@ public class CraftingSystem : MonoBehaviour
             playerOneDamageUpgrade = playerOneButtons.gameObject.transform.Find("DamageUpgrade").gameObject;
             playerOneMagazineUpgrade = playerOneButtons.gameObject.transform.Find("MagazineUpgrade").gameObject;
             playerOneFlashLightUpgrade = playerOneButtons.gameObject.transform.Find("fireRateUpgrade").gameObject;
-            
+            playerOneCancelButton = playerOneButtons.gameObject.transform.Find("CancelButton").gameObject;
+
             playerOneDamageUpgrade.gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
             playerOneMagazineUpgrade.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
             playerOneFlashLightUpgrade.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
 
-            
+            playerOneRM = interactingPlayer.GetComponentInChildren<ResourceManager>();
+            playerOneWeapon = interactingPlayer.GetComponentInChildren<Weapon>();
+            playerOneFlashLight = interactingPlayer.GetComponentInChildren<FlashLight>();
 
             SetCurrentEventSystem(playerOneButtons);
         }
@@ -256,11 +331,15 @@ public class CraftingSystem : MonoBehaviour
             playerTwoDamageUpgrade = playerTwoButtons.gameObject.transform.Find("DamageUpgrade").gameObject;
             playerTwoMagazineUpgrade = playerTwoButtons.gameObject.transform.Find("MagazineUpgrade").gameObject;
             playerTwoFlashLightUpgrade = playerTwoButtons.gameObject.transform.Find("fireRateUpgrade").gameObject;
+            playerTwoCancelButton = playerTwoButtons.gameObject.transform.Find("CancelButton").gameObject;
 
             playerTwoDamageUpgrade.gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
             playerTwoMagazineUpgrade.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
             playerTwoFlashLightUpgrade.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
 
+            playerTwoRM = interactingPlayer.GetComponentInChildren<ResourceManager>();
+            playerTwoWeapon = interactingPlayer.GetComponentInChildren<Weapon>();
+            playerTwoFlashLight = interactingPlayer.GetComponentInChildren<FlashLight>();
             SetCurrentEventSystem(playerTwoButtons);
         }
         interactedPlayers.Add(interactingPlayer.tag);
@@ -283,20 +362,32 @@ public class CraftingSystem : MonoBehaviour
         if(interactingPlayer.tag == "Player1")
         {
             playerOneButtons.SetActive(true);
-            SetCurrentEventSystem(playerOneButtons);
+            playerOneEventSystem.SetSelectedGameObject(playerOneCancelButton);
         }
         else
         {
             playerTwoButtons.SetActive(true);
-            SetCurrentEventSystem(playerTwoButtons);
+            playerTwoEventSystem.SetSelectedGameObject(playerTwoCancelButton);
         }
         
     }
 
     private void SetCurrentEventSystem(GameObject craftingButtons)
     {
+        if(interactingPlayer.tag.Equals("Player1"))
+        {
+            playerOneEventSystem = interactingPlayer.transform.Find("EventSystem").GetComponent<EventSystem>();
+            playerOneEventSystem.SetSelectedGameObject(playerOneCancelButton);
+        }
+        else
+        {
+            playerTwoEventSystem = interactingPlayer.transform.Find("EventSystem").GetComponent<EventSystem>();
+            playerTwoEventSystem.SetSelectedGameObject(playerTwoCancelButton);
+        }
+        /*
         currentPlayerEventSystem = interactingPlayer.transform.Find("EventSystem").GetComponent<EventSystem>();
         currentPlayerEventSystem.SetSelectedGameObject(craftingButtons.gameObject.transform.Find("CancelButton").gameObject);
+        */
     }
 
     private void RemoveCurrentPlayer()
