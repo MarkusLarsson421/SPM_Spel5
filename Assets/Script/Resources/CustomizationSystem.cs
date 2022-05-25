@@ -85,7 +85,7 @@ public class CustomizationSystem : MonoBehaviour
 
     public void ToggleCustomizationTable()
     {
-        //ToggleButtons();
+        
         if (!isToggled)
         {
             isToggled = true;
