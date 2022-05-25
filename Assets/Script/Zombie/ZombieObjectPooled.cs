@@ -77,6 +77,17 @@ public class ZombieObjectPooled : MonoBehaviour
             }
             SimpleWaveIncreaser();
         }
+        /*if(minutes == 1) 
+        {
+            for (int i = 0; i < zombiesNextWave; i++)
+            {
+                Debug.Log("wave startad");
+                SpawnZombie();
+                zombieAmount++;
+                debug++;
+            }
+        }*/
+//att anropa spawnzombie på det här sättet fungerar. alldeles för många zombies spawnas dock.
     }
     public void DecreaseZombies()
     {
