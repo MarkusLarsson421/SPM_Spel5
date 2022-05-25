@@ -9,18 +9,28 @@ using TMPro;
 public class ZombieObjectPooled : MonoBehaviour
 {
     [SerializeField] private TMP_Text waveText;
-    private int amtSpawners;
     private static int zombiesNextWave = 7;
     private static int zombieAmount;
     private int currentWave;
     private int betweenWaves = 20;
     public static int amountOfZombiesSpawned;
-    private float cooldownTime = 5.0f;
-    [SerializeField]private bool isAbleToSpawn = false;
+    [SerializeField] private bool isAbleToSpawn = false;
+    private float timeInSeconds;
+    private int minutes;
 
     private void Start()
     {
         NoMoreZombies();
+    }
+    private void Update()
+    {
+        CountMinutes();
+    }
+
+    private void CountMinutes()
+    {
+        timeInSeconds += Time.deltaTime;
+        minutes = ((int)(timeInSeconds / 60)) % 60;
     }
 
     /*
@@ -32,7 +42,7 @@ public class ZombieObjectPooled : MonoBehaviour
     {
         zombiesNextWave++;
         currentWave++;
-        waveText.text = currentWave.ToString();
+        //waveText.text = currentWave.ToString();
     }
     /*
     * @ AuthorSimon Hessling Oscarson
@@ -41,9 +51,7 @@ public class ZombieObjectPooled : MonoBehaviour
     */
     private void NoMoreZombies()
     {
-        {
-            InvokeRepeating("DoIT", 0, betweenWaves);
-        }
+        InvokeRepeating(nameof(DoIT), 0, betweenWaves);
     }
 
     public void SetAbleToSpawn(bool value)
@@ -58,19 +66,17 @@ public class ZombieObjectPooled : MonoBehaviour
     private void DoIT()
     {
         int debug = 0;
-        
+
         if (zombieAmount <= 0 && isAbleToSpawn)
         {
-            
-            for (int i = 0; i < zombiesNextWave; i++) // nu spawnas HUUUR MÅNGA ZOMBIES MAN VILL 
+            for (int i = 0; i < zombiesNextWave; i++)
             {
                 SpawnZombie();
                 zombieAmount++;
                 debug++;
-
-            }//spawna en zombie i varje spawner
+            }
             SimpleWaveIncreaser();
-        }        
+        }
     }
     public void DecreaseZombies()
     {
@@ -84,5 +90,7 @@ public class ZombieObjectPooled : MonoBehaviour
     }
 }
 /*ATT GÖRA
+ * Lös vågor och hordes (se trello).
+ * Räkna ut tid på nåt bra sätt, skapa därefter logik för att starta ny våg
  * - Se över hur jag gör med AddZombies() och InstantiateZombie(), kanske slå ihop dem.
  */
