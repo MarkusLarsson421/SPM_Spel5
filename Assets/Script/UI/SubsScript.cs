@@ -3,8 +3,9 @@ using UnityEngine;
 using TMPro;
 
 public class SubsScript : MonoBehaviour{
-	public GameObject textBox;
-	public bool scrapPickUpLine;
+    [SerializeField] private GameObject textBox;
+    [SerializeField] private GameObject controlsTextBox;
+    public bool scrapPickUpLine;
 	public bool needToReload;
 	public bool flashLightLine;
 	public bool craftingTableLine;
@@ -12,7 +13,7 @@ public class SubsScript : MonoBehaviour{
     private bool courtineRunning;
     private bool generatorBrokeFirstTime;
     private int timeToShowText = 1;
-    
+    private int timeToWait = 2;
 
     public float delay = 0.1f;
     private string fullText;
@@ -76,6 +77,15 @@ public class SubsScript : MonoBehaviour{
         yield return new WaitForSeconds(timeToFinish);
         textBox.GetComponent<TextMeshProUGUI>().text = "";
     }
+    private IEnumerator ToolTips(int timeToStart, int timeToFinish)
+    {
+        
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "";
+        yield return new WaitForSeconds(8);
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "press START to pause and see controls";
+        yield return new WaitForSeconds(4);
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "";
+    }
     public void SetGeneratorBreakFirstTime(bool boolean)
     {
         generatorBrokeFirstTime = boolean;
@@ -84,6 +94,8 @@ public class SubsScript : MonoBehaviour{
     public void FixCarLinePlay()
     {
         StartCoroutine(Subtitle("Dan: We got to fix the car.", timeToShowText));
+
+        StartCoroutine(ToolTips( 2, timeToShowText));
     }
     public void ScrapsUsedForCarLine()
     {
