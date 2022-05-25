@@ -12,9 +12,12 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private Image runImage;
     [SerializeField] private CanvasHandler ch;
     [SerializeField] private UIHandler handler;
+    private float timer;
     private bool isDead = false;
+    private bool isHit;
     void Start()
     {
+     
         UpdatePlayerStatsCnvas();
         runImage.enabled = false;
         walkImage.enabled = true;
@@ -24,6 +27,27 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
+
+        if (isHit)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 4)
+            {
+                isHit = false;
+                timer = 0;
+            }
+        }
+        if (!isHit && health != 100)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 0.5)
+            {
+                health++;
+                timer = 0;
+            }
+            Debug.Log(timer);
+        }
+
         handler.SetCurrentHealth(health);
         if (health <= 0 && !isDead)
         {
@@ -50,6 +74,8 @@ public class PlayerStats : MonoBehaviour
             PlayerGetHitByZombieEvent playerGetHitByZombie = new PlayerGetHitByZombieEvent();
             playerGetHitByZombie.UnitGO = gameObject;
             playerGetHitByZombie.FireEvent();
+            isHit = true;
+            timer = 0;
             //CanvasHandler tookDamgeCanvas = gameObject.GetComponentInChildren<CanvasHandler>();
             //tookDamgeCanvas.setFadeIn(true);
             //tookDamgeCanvas.EnemyAttackedMe();
