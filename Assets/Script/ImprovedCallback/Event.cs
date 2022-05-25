@@ -66,3 +66,17 @@ public class PickUpEvent : Event<PickUpEvent>{
 
 	
 }
+
+public class PlayerHealthChangeEvent : Event<PlayerHealthChangeEvent>
+{
+	public int PlayerHealth;
+}
+
+public class PlayerGetHitByZombieEvent : Event<PlayerGetHitByZombieEvent>
+{
+	public GameObject UnitGO;
+
+}
+public class GneratorIsOnEvent : Event<GneratorIsOnEvent>
+{
+}

@@ -49,10 +49,10 @@ public class PlayerStats : MonoBehaviour
             UpdatePlayerStatsCnvas();
             PlayerGetHitByZombieEvent playerGetHitByZombie = new PlayerGetHitByZombieEvent();
             playerGetHitByZombie.UnitGO = gameObject;
-            EventSystem.Current.FireEvent(playerGetHitByZombie);
-            CanvasHandler tookDamgeCanvas = gameObject.GetComponentInChildren<CanvasHandler>();
-            tookDamgeCanvas.setFadeIn(true);
-            tookDamgeCanvas.EnemyAttackedMe();
+            playerGetHitByZombie.FireEvent();
+            //CanvasHandler tookDamgeCanvas = gameObject.GetComponentInChildren<CanvasHandler>();
+            //tookDamgeCanvas.setFadeIn(true);
+            //tookDamgeCanvas.EnemyAttackedMe();
 
         }
         // Hur mycket skada man tar av en zombie varierar
@@ -72,7 +72,7 @@ public class PlayerStats : MonoBehaviour
     {
         PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
         playerHealthChange.PlayerHealth = health;
-        EventSystem.Current.FireEvent(playerHealthChange);
+        playerHealthChange.FireEvent();
         
     }
 
