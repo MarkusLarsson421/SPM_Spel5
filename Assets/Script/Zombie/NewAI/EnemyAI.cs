@@ -130,9 +130,9 @@ public class EnemyAI : MonoBehaviour
     {
         currentHealth -= damage;
         anim.SetTrigger("Stun4");
-
         if (_currentHealth <= 0)
         {
+            Debug.Log(++counter);
             /*Debug.Log("returned");
             zOP.DecreaseZombies();
             gameObject.transform.position = spawnPosition;
