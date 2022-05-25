@@ -80,7 +80,3 @@ public class PlayerGetHitByZombieEvent : Event<PlayerGetHitByZombieEvent>
 public class GneratorIsOnEvent : Event<GneratorIsOnEvent>
 {
 }
-public class OnZombieDeathEvent : Event<OnZombieDeathEvent>
-{
-	public GameObject zombie;
-}
