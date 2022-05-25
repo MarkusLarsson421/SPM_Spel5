@@ -9,7 +9,7 @@ public class DistanceCheck : MonoBehaviour
     GameObject player1, player2;
     private ZombieObjectPooled spawner;
     private PlayerSpawnManager pSpawner;
-    private float distaneFromSpawner = 50.0f;
+    private float distanceFromSpawner = 50.0f;
     void Start()
     {
         spawner = gameObject.GetComponentInChildren<ZombieObjectPooled>();
@@ -30,14 +30,12 @@ public class DistanceCheck : MonoBehaviour
         float dist1 = Vector3.Distance(player1.transform.position, transform.position);
         float dist2 = Vector3.Distance(player2.transform.position, transform.position);
 
-        if(dist1 <= distaneFromSpawner || dist2 <= distaneFromSpawner)
+        if(dist1 <= distanceFromSpawner || dist2 <= distanceFromSpawner)
         {
-          //  gameObject.transform.Find("GameObject").gameObject.SetActive(false);
             spawner.SetAbleToSpawn(false);
         }
         else
         {
-           // gameObject.transform.Find("GameObject").gameObject.SetActive(true);
             spawner.SetAbleToSpawn(true);
         }
     }

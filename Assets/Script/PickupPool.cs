@@ -26,7 +26,6 @@ public class PickupPool : MonoBehaviour
             go.SetActive(false);
         }
         SetScrapsActive();
-        //AddPickups(1);
     }
 
     public GameObject Get()
