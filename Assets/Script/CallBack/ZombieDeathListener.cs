@@ -16,15 +16,18 @@ namespace EventCallbacks
         // Start is called before the first frame update
         void Start()
         {
-            EventSystem.Current.RegisterListener<OnZombieDeathEvent>(DropItems);
+            OnZombieDeathEvent.RegisterListener(DropItems);
         }
-        private void Update()
-        {
-            range = Random.Range(0f, 1f);
-        }
-
+        float timer = 0f;
         private void DropItems(OnZombieDeathEvent obj)
         {
+            if (timer == 0) timer += Time.deltaTime;
+            else
+            {
+                timer = 0;
+                range = Random.Range(0f, 1f);
+            }
+
             if (battery_dropChance == 100.0f)
             {
                 
