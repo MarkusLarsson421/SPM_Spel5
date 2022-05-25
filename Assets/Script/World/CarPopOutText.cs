@@ -22,7 +22,7 @@ public class CarPopOutText : MonoBehaviour
         if (distance < 5)
         {
             PlayeIsNearTheCarEvent playerGetHitByZombie = new PlayeIsNearTheCarEvent();
-            EventSystem.Current.FireEvent(playerGetHitByZombie);
+            playerGetHitByZombie.FireEvent();
         }
     }
     private void ClosestPlayer()

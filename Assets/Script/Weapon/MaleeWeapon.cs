@@ -68,7 +68,7 @@ public class MaleeWeapon : MonoBehaviour
 				target.TakeDamage(damage);
 				OnAttackWithMaleeEvent unit = new OnAttackWithMaleeEvent();
 				unit.player = transform.parent.parent.parent.GetComponent<PlayerStats>();
-				EventSystem.Current.FireEvent(unit);
+				unit.FireEvent();
 			}
 		}
 	}

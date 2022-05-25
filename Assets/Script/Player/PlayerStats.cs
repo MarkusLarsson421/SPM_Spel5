@@ -62,7 +62,7 @@ public class PlayerStats : MonoBehaviour
     {
         PlayerDieEvent udei = new PlayerDieEvent();
         udei.UnitGO = gameObject;
-        EventSystem.Current.FireEvent(udei);
+        udei.FireEvent();
         isDead = true;
 
     }
