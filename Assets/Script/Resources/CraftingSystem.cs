@@ -32,8 +32,19 @@ public class CraftingSystem : MonoBehaviour
     private float distanceToInteractingPlayer;
     //Listorna är till för att hålla koll på om en viss spelare redan har en uppgradering.
 
+    private Weapon playerOneWeapon, playerTwoWeapon;
+    private ResourceManager playerOneRM, playerTwoRM;
+    private FlashLight playerOneFlashLight, playerTwoFlashLight;
+    private GameObject playerOneButtons, playerTwoButtons;
+    private Canvas playerOneCanvas, playerTwoCanvas;
+
+    private GameObject playerOneDamageUpgrade, playerTwoDamageUpgrade;
+    private GameObject playerOneMagazineUpgrade, playerTwoMagazineUpgrade;
+    private GameObject playerOneFlashLightUpgrade, playerTwoFlashLightUpgrade;
+
     //TODO ändra så bara en dictionary används istället för 3 listor
     private Dictionary<string, List<string>> upgradedPlayers = new Dictionary<string, List<string>>();
+    private List<string> interactedPlayers = new List<string>();
     /*
     private List<string> damageUpgradedPlayers = new List<string>();
     private List<string> MagazineUpgradedPlayers = new List<string>();
@@ -69,7 +80,15 @@ public class CraftingSystem : MonoBehaviour
         if(isToggled && !buttonsEnabled)
         {
             interactingPlayer = inter.interactingGameObject.transform.parent.gameObject;
-            SetCurrentCanvas();
+            if (!interactedPlayers.Contains(interactingPlayer.tag)) 
+            {
+                SetCurrentCanvas();
+            }
+            else
+            {
+                ActivateInteractingPlayer();
+            }
+            
             buttonsEnabled = true; 
         }
 
@@ -139,31 +158,6 @@ public class CraftingSystem : MonoBehaviour
                 UpdateInfoText("NotEnoughItems");
             }
                 isButtonClicked = true;
-
-
-
-                /*
-                currentPlayerTag = inter.interactingGameObject.transform.parent.tag;
-                if (damageUpgradedPlayers.Contains(inter.interactingGameObject.transform.parent.tag))
-                {
-                    Debug.Log("You already have this upgrade!");
-                    UpdateInfoText("AlreadyHasUpgrade");
-                }
-                else if (inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Battery) >= 2 && inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Get(ResourceManager.ItemType.Scrap) >= 2)
-                {
-                    inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Battery, -2);
-                    inter.interactingGameObject.GetComponentInChildren<ResourceManager>().Offset(ResourceManager.ItemType.Scrap, -2);
-                    inter.interactingGameObject.GetComponentInChildren<Weapon>().SetDamage(40);
-
-                    damageUpgradedPlayers.Add(inter.interactingGameObject.transform.parent.tag);
-                    UpdateInfoText("GotUpgrade");
-                }
-                else
-                {
-                    UpdateInfoText("NotEnoughItems");
-                }
-                isButtonClicked = true;
-               */
             }
 
         }
@@ -235,6 +229,42 @@ public class CraftingSystem : MonoBehaviour
 
     private void SetCurrentCanvas()
     {
+        if(interactingPlayer.tag.Equals("Player1"))
+        {
+            playerOneCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
+            playerOneButtons = playerOneCanvas.gameObject.transform.Find("CraftingTable").gameObject;
+            playerOneButtons.SetActive(true);
+
+            playerOneDamageUpgrade = playerOneButtons.gameObject.transform.Find("DamageUpgrade").gameObject;
+            playerOneMagazineUpgrade = playerOneButtons.gameObject.transform.Find("MagazineUpgrade").gameObject;
+            playerOneFlashLightUpgrade = playerOneButtons.gameObject.transform.Find("fireRateUpgrade").gameObject;
+            
+            playerOneDamageUpgrade.gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
+            playerOneMagazineUpgrade.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
+            playerOneFlashLightUpgrade.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
+
+            
+
+            SetCurrentEventSystem(playerOneButtons);
+        }
+        else
+        {
+            playerTwoCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
+            playerTwoButtons = playerTwoCanvas.gameObject.transform.Find("CraftingTable").gameObject;
+            playerTwoButtons.SetActive(true);
+
+            playerTwoDamageUpgrade = playerTwoButtons.gameObject.transform.Find("DamageUpgrade").gameObject;
+            playerTwoMagazineUpgrade = playerTwoButtons.gameObject.transform.Find("MagazineUpgrade").gameObject;
+            playerTwoFlashLightUpgrade = playerTwoButtons.gameObject.transform.Find("fireRateUpgrade").gameObject;
+
+            playerTwoDamageUpgrade.gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
+            playerTwoMagazineUpgrade.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
+            playerTwoFlashLightUpgrade.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
+
+            SetCurrentEventSystem(playerTwoButtons);
+        }
+        interactedPlayers.Add(interactingPlayer.tag);
+        /*
         currentCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
         GameObject craftingButtons = currentCanvas.gameObject.transform.Find("CraftingTable").gameObject;
         
@@ -245,6 +275,22 @@ public class CraftingSystem : MonoBehaviour
         craftingButtons.gameObject.transform.Find("MagazineUpgrade").gameObject.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
         
         SetCurrentEventSystem(craftingButtons);
+        */
+    }
+
+    private void ActivateInteractingPlayer()
+    {
+        if(interactingPlayer.tag == "Player1")
+        {
+            playerOneButtons.SetActive(true);
+            SetCurrentEventSystem(playerOneButtons);
+        }
+        else
+        {
+            playerTwoButtons.SetActive(true);
+            SetCurrentEventSystem(playerTwoButtons);
+        }
+        
     }
 
     private void SetCurrentEventSystem(GameObject craftingButtons)
@@ -255,8 +301,16 @@ public class CraftingSystem : MonoBehaviour
 
     private void RemoveCurrentPlayer()
     {
+        if(currentPlayerTag == "Player1")
+        {
+            playerOneButtons.SetActive(false);
+        }
+        else
+        {
+            playerTwoButtons.SetActive(false);
+        }
         currentPlayerTag = null;
-        currentCanvas.gameObject.transform.Find("CraftingTable").gameObject.SetActive(false);
+        //currentCanvas.gameObject.transform.Find("CraftingTable").gameObject.SetActive(false);
         currentCanvas = null;
         buttonsEnabled = false;
         interactingPlayer = null;
