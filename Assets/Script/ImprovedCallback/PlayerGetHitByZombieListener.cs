@@ -6,17 +6,17 @@ namespace EventCallbacks
 {
     public class PlayerGetHitByZombieListener : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
-            EventSystem.Current.RegisterListener<PlayerGetHitByZombieEvent>(ShowTookDamgeCanvas);
+            PlayerGetHitByZombieEvent.RegisterListener(ShowTookDamgeCanvas);
         }
 
         void ShowTookDamgeCanvas(PlayerGetHitByZombieEvent playerGetHitByZombieInfo)
-        {/*
+        {
             CanvasHandler tookDamgeCanvas = gameObject.transform.parent.transform.parent.GetComponentInChildren<CanvasHandler>();
             Debug.Log(gameObject.transform.parent.transform.parent.tag);           
             tookDamgeCanvas.setFadeIn(true);
-            tookDamgeCanvas.EnemyAttackedMe();*/
+            tookDamgeCanvas.EnemyAttackedMe();
         }
     }
 }

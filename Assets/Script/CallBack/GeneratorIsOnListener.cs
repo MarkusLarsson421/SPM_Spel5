@@ -8,7 +8,7 @@ namespace EventCallbacks
     {
         void Start()
         {
-            EventSystem.Current.RegisterListener<GneratorIsOnEvent>(ShowTookDamgeCanvas);
+            GneratorIsOnEvent.RegisterListener(ShowTookDamgeCanvas);
         }
 
         void ShowTookDamgeCanvas(GneratorIsOnEvent generator)
