@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour
         if (timer < 2f && !allFounded) timer += Time.deltaTime;
         else
         {
-            Debug.Log(++counter);
+            //Debug.Log(++counter);
             timer = 0f;
             if (playerOne == null) playerOne = GameObject.FindGameObjectWithTag("Player1");
             else if (playerTwo == null) { playerTwo = GameObject.FindGameObjectWithTag("Player2"); allFounded = true; }
