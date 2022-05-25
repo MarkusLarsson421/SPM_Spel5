@@ -32,6 +32,10 @@ public abstract class Event<T> where T : Event<T>{
  * @authors Markus Larsson and Martin Wallmark
  * 
  */
+public class DebugEvent : Event<DebugEvent>
+{
+	public int VerbosityLevel;
+}
 
 public class PickUpEvent : Event<PickUpEvent>{
 	private int amount;
@@ -77,10 +81,26 @@ public class PlayerGetHitByZombieEvent : Event<PlayerGetHitByZombieEvent>
 	public GameObject UnitGO;
 
 }
+
+public class PlayerDieEvent : Event<PlayerDieEvent>
+{
+	public GameObject UnitGO;
+}
+
 public class GneratorIsOnEvent : Event<GneratorIsOnEvent>
 {
 }
 public class OnZombieDeathEvent : Event<OnZombieDeathEvent>
 {
 	public GameObject zombie;
+}
+public class PlayeIsNearTheCarEvent : Event<PlayeIsNearTheCarEvent>
+{
+	public GameObject zombie;
+	public BatteryObjectPooled bPool;
+}
+public class OnAttackWithMaleeEvent : Event<OnAttackWithMaleeEvent>
+{
+	public PlayerStats player;
+	public int slowTime;
 }

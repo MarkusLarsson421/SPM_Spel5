@@ -9,7 +9,7 @@ namespace EventCallbacks
     {
         private void Start()
         {
-            EventSystem.Current.RegisterListener<PlayeIsNearTheCarEvent>(PopoutText);
+            PlayeIsNearTheCarEvent.RegisterListener(PopoutText);
         }
 
         private void PopoutText(PlayeIsNearTheCarEvent obj)

@@ -13,10 +13,10 @@ namespace EventCallbacks
         // Use this for initialization
         void Start()
         {
-            EventSystem.Current.RegisterListener<PlayerDieEvent>(DebugListener);
-            EventSystem.Current.RegisterListener<PlayerDieEvent>(SoundListener);
-            EventSystem.Current.RegisterListener<PlayerDieEvent>(RemoveListener);
-            EventSystem.Current.RegisterListener<PlayerDieEvent>(ShowDeathCanvas);
+            PlayerDieEvent.RegisterListener(DebugListener);
+            PlayerDieEvent.RegisterListener(SoundListener);
+            PlayerDieEvent.RegisterListener(RemoveListener);
+            PlayerDieEvent.RegisterListener(ShowDeathCanvas);
             
 
             //EventSystem.Current.RegisterListener<PlayerDieEvent>(ParticleListener);
