@@ -9,9 +9,7 @@ public class PickupObjectPooled : MonoBehaviour
     private float timer;
     private float timeUntilRespawn = 2.0f;
     [SerializeField] private bool isAbleToSpawn;
-    /*Lägg pickup prefabs som barn till spawner-prefaben. Lägg alla barnen i en lista/kö, om isAbleToSpawn SetActive(index).
-     * Detta kan ersätta PickupPool helt, då items spawnar genom att helt enkelt sättas till aktiva. Ingen object pooling däremot men osäker om det verkligen behövs.
-     */
+
     private void Start()
     {
         isAbleToSpawn = true;
@@ -36,10 +34,7 @@ public class PickupObjectPooled : MonoBehaviour
             item.transform.SetPositionAndRotation(transform.position, transform.rotation);
             item.gameObject.SetActive(true);
         }
-    }/*sätter position på items när de spawnar. Anropar poolens get(), som anropar AddPickups, detta script sitter på spawnern som konstant anropar spawnpickupitem.
-      * Kan man göra nåt liknande för zombies?
-      */
-
+    }
     public void SetAbleToSpawn(bool value)
     {
         isAbleToSpawn = value;

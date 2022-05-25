@@ -49,7 +49,7 @@ public class Item : MonoBehaviour{
 		pickUpEvent.Description = "Item: " + type + " x " + amount + " has been picked up.";
 		pickUpEvent.SetItemType(type);
 		pickUpEvent.SetAmount(amount);
-		pickUpEvent.SetRM(GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<ResourceManager>());
+		pickUpEvent.SetRM(GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<ResourceManager>());//optimera
 		pickUpEvent.FireEvent();
 		if (ss != null && type.ToString() == "Scrap") { ss.ScrapsUsedForCarLine(); }
 		playah = null;
