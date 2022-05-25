@@ -14,17 +14,22 @@ public class CustomizationSystem : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Interactable inter;
     [SerializeField] private string currentPlayerTag;
-    private Canvas currentCanvas;
-    private EventSystem currentPlayerEventSystem;
+
+    private List<string> interactedPlayers = new List<string>();
+  
+   
     private GameObject interactingPlayer;
     private ResourceManager rm;
 
-    private Color originalColor = new Color(61f, 104f, 93f);
+    
 
-    private GameObject greenColorButton;
-    private GameObject whiteColorButton;
-    private GameObject cancelButton;
-    private GameObject currentHat;
+    private GameObject playerOneCustomizationButtons, playerTwoCustomizationButtons;
+    private GameObject playerOneHatButton, playerTwoHatButton;
+    private GameObject playerOneNoHatButton, playerTwoNoHatButton;
+   
+    private GameObject playerOneHat, playerTwoHat;
+    private Canvas playerOneCanvas, playerTwoCanvas;
+    private EventSystem playerOneEventSystem, playerTwoEventSystem;
 
     private bool buttonsEnabled;
     private bool isToggled;
@@ -42,16 +47,24 @@ public class CustomizationSystem : MonoBehaviour
         if (isToggled && !buttonsEnabled)
         {
             interactingPlayer = inter.interactingGameObject.transform.parent.gameObject;
-            SetCurrentCanvas();
+            if (!interactedPlayers.Contains(interactingPlayer.tag))
+            {
+                SetCurrentCanvas();
+            }
+            else
+            {
+                ActivateInteractingPlayer();
+            }
+            
             buttonsEnabled = true;
         }
 
         if (!isToggled && currentPlayerTag != null)
         {
+            RemoveCurrentPlayer();
             currentPlayerTag = null;
-            currentCanvas.gameObject.transform.Find("CustomizationButtons").gameObject.SetActive(false);
-            currentCanvas = null;
             buttonsEnabled = false;
+            
 
         }
 
@@ -89,25 +102,30 @@ public class CustomizationSystem : MonoBehaviour
      */
     private void SetCurrentCanvas()
     {
-        
 
-
-        currentCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
-        currentHat = interactingPlayer.transform.Find("Hat").gameObject;
-        GameObject customButtons = currentCanvas.gameObject.transform.Find("CustomizationButtons").gameObject;
-        
-
-        customButtons.SetActive(true);
-        //craftingButtons.gameObject.transform.Find("CancelButton").gameObject.GetComponent<Button>().onClick.AddListener(delegate { ToggleCraftingBench(); });
-        customButtons.gameObject.transform.Find("NoHatButton").gameObject.GetComponent<Button>().onClick.AddListener(delegate { DisableHat(); });
-        customButtons.gameObject.transform.Find("HatButton").gameObject.GetComponent<Button>().onClick.AddListener(delegate { ActivateHat(); });
-        /*
-        customButtons.gameObject.transform.Find("WhiteColor").gameObject.GetComponent<Button>().onClick.AddListener(delegate { WhiteLight(); });
-        customButtons.gameObject.transform.Find("GreenColor").gameObject.GetComponent<Button>().onClick.AddListener(delegate { GreenLight(); });
-        */
-        
-
-
+        if (interactingPlayer.tag.Equals("Player1"))
+        {
+            playerOneCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
+            playerOneHat = interactingPlayer.transform.Find("Hat").gameObject;
+            playerOneCustomizationButtons = playerOneCanvas.gameObject.transform.Find("CustomizationButtons").gameObject;
+            playerOneCustomizationButtons.SetActive(true);
+            playerOneHatButton = playerOneCustomizationButtons.transform.Find("HatButton").gameObject;
+            playerOneNoHatButton = playerOneCustomizationButtons.transform.Find("NoHatButton").gameObject;
+            playerOneNoHatButton.GetComponent<Button>().onClick.AddListener(delegate { DisableHat(); });
+            playerOneHatButton.GetComponent<Button>().onClick.AddListener(delegate { ActivateHat(); });
+        }
+        else
+        {
+            playerTwoCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
+            playerTwoHat = interactingPlayer.transform.Find("Hat").gameObject;
+            playerTwoCustomizationButtons = playerTwoCanvas.gameObject.transform.Find("CustomizationButtons").gameObject;
+            playerTwoCustomizationButtons.SetActive(true);
+            playerTwoHatButton = playerTwoCustomizationButtons.transform.Find("HatButton").gameObject;
+            playerTwoNoHatButton = playerTwoCustomizationButtons.transform.Find("NoHatButton").gameObject;
+            playerTwoNoHatButton.GetComponent<Button>().onClick.AddListener(delegate { DisableHat(); });
+            playerTwoHatButton.GetComponent<Button>().onClick.AddListener(delegate { ActivateHat(); });
+        }
+        interactedPlayers.Add(interactingPlayer.tag);
 
         SetCurrentEventSystem();
     }
@@ -116,40 +134,74 @@ public class CustomizationSystem : MonoBehaviour
      */
     public void SetCurrentEventSystem()
     {
-        currentPlayerEventSystem = GameObject.FindGameObjectWithTag(currentPlayerTag).transform.Find("EventSystem").GetComponent<EventSystem>();
-        currentPlayerEventSystem.SetSelectedGameObject(currentCanvas.gameObject.transform.Find("CustomizationButtons").gameObject.transform.Find("NoHatButton").gameObject);
+        if (interactingPlayer.tag.Equals("Player1"))
+        {
+            playerOneEventSystem = interactingPlayer.transform.Find("EventSystem").GetComponent<EventSystem>();
+            playerOneEventSystem.SetSelectedGameObject(playerOneNoHatButton);
+        }
+        else
+        {
+            playerTwoEventSystem = interactingPlayer.transform.Find("EventSystem").GetComponent<EventSystem>();
+            playerTwoEventSystem.SetSelectedGameObject(playerTwoNoHatButton);
+        }
     }
 
     private void ActivateHat()
     {
-        Debug.Log("hat");
-        currentHat.SetActive(true);
-        Debug.Log("wow");
+        if (interactingPlayer.tag.Equals("Player1"))
+        {
+            playerOneHat.SetActive(true);
+        }
+        else
+        {
+            playerTwoHat.SetActive(true);
+        }
         
     }
 
     private void DisableHat()
     {
-        Debug.Log("noHat");
-        currentHat.SetActive(false);
+        if (interactingPlayer.tag.Equals("Player1"))
+        {
+            playerOneHat.SetActive(false);
+        }
+        else
+        {
+            playerTwoHat.SetActive(false);
+        }
         
+    }
+
+    private void ActivateInteractingPlayer()
+    {
+        if (interactingPlayer.tag == "Player1")
+        {
+            playerOneCustomizationButtons.SetActive(true);
+            playerOneEventSystem.SetSelectedGameObject(playerOneNoHatButton);
+        }
+        else
+        {
+            playerOneCustomizationButtons.SetActive(true);
+            playerTwoEventSystem.SetSelectedGameObject(playerTwoNoHatButton);
+        }
+
+    }
+
+    private void RemoveCurrentPlayer()
+    {
+        if (currentPlayerTag == "Player1")
+        {
+            playerOneCustomizationButtons.SetActive(false);
+        }
+        else
+        {
+            playerTwoCustomizationButtons.SetActive(false);
+        }
     }
 
     public void SetCurrentPlayerTag(string tag)
     {
         currentPlayerTag = tag;
     }
-
-    /*
-    public void GreenLight()
-    {
-        interactingPlayer.GetComponentInChildren<FlashLight>().SetColor(119f, 250f, 169f);
-    }
-
-    public void WhiteLight()
-    {
-        interactingPlayer.GetComponentInChildren<FlashLight>().SetColor(203f, 212f, 200f);
-    }
-    */
 
 }
