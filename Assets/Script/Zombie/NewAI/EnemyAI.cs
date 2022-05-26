@@ -185,7 +185,7 @@ public class EnemyAI : MonoBehaviour
     {
         return currentHealth = startingHealth;
     }
-    public void SetNewHealth(float newHealth)
+    public void SetNewHealth(float newHealth)//Simon Hessling Oscarson
     {
         startingHealth = newHealth;
     }

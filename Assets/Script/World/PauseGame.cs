@@ -13,6 +13,7 @@ public class PauseGame : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject resumeButton;
     [SerializeField] private GameObject menuButton;
+    [SerializeField] private GameObject pauseCanvas;
     [SerializeField] private EventSystem eventSystem;
 
     private bool isPaused;
@@ -21,6 +22,7 @@ public class PauseGame : MonoBehaviour
     {
         resumeButton.SetActive(false);
         menuButton.SetActive(false);
+        pauseCanvas.SetActive(false);
     }
     public void OnPause(InputAction.CallbackContext context)
     {
@@ -38,6 +40,7 @@ public class PauseGame : MonoBehaviour
             isPaused = false;
             resumeButton.SetActive(false);
             menuButton.SetActive(false);
+            pauseCanvas.SetActive(false);
         }
         else
         {
@@ -46,6 +49,7 @@ public class PauseGame : MonoBehaviour
             isPaused = true;
             resumeButton.SetActive(true);
             menuButton.SetActive(true);
+            pauseCanvas.SetActive(true);
         }
 
     }

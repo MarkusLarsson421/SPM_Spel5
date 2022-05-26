@@ -164,19 +164,11 @@ public class ZombieObjectPooled : MonoBehaviour
 
    
 
-    private IEnumerator spawnaspawnaspawna(int timeToFinish)
-    {
-
-        for (int i = 0; i < zombiesNextWave; i++)
-        {
-
-            SpawnZombie();
-
-            yield return new WaitForSeconds(delay);
-        }
-        yield return new WaitForSeconds(timeToFinish);
-
-    }
+   /*
+    * 
+    * 
+    * @Author Simon Hessling Oscarson
+    */
     public void DecreaseZombies()
     {
         zombieAmount--;
@@ -185,7 +177,7 @@ public class ZombieObjectPooled : MonoBehaviour
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();
-        zombie.SetNewHealth(newZombieHealth);
+        zombie.SetNewHealth(newZombieHealth); //Simon Hessling Oscarson
         zombie.gameObject.SetActive(true);
     }
 }
