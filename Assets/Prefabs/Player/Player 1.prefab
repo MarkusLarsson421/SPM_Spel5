@@ -1157,6 +1157,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6044946668515124224}
+    - target: {fileID: 2409556481952985672, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 3085997580443032870}
     - target: {fileID: 3174306847147668239, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1810,7 +1814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80bc4a078cb3224cb1aa8a4752bda0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 30
   range: 100
   zombieHitBloodParticle: {fileID: 5079484556588895611, guid: 192070b9b312f534e86abd85c50e022d, type: 3}
   fireRate: 5
