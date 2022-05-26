@@ -18,7 +18,7 @@ public class ZombieObjectPooled : MonoBehaviour
     private float timeInSeconds;
     private int minutes;
     public float delay = 20.1f;
-
+    private float newZombieHealth;
     private void Start()
     {
         NoMoreZombies();
@@ -45,14 +45,19 @@ public class ZombieObjectPooled : MonoBehaviour
         if(currentWave == 1)
         {
             zombiesNextWave = 7;
+            newZombieHealth = 150;
         }
         if (currentWave == 2)
         {
+            
             zombiesNextWave = 9;
+            newZombieHealth = 200;
+
         }
         if (currentWave == 3)
         {
             zombiesNextWave = 15;
+            newZombieHealth = 250;
         }
         if (currentWave == 4)
         {
@@ -71,7 +76,8 @@ public class ZombieObjectPooled : MonoBehaviour
         if (currentWave == 7)
         {
             zombiesNextWave = 32;
-               //EN HORDE SPAWNAS
+            newZombieHealth = 300;
+            //EN HORDE SPAWNAS
         }
         if (currentWave == 8)
         {
@@ -86,6 +92,7 @@ public class ZombieObjectPooled : MonoBehaviour
         if(currentWave == 10)
         {
             zombiesNextWave = 42;
+            newZombieHealth = 350;
             //EN HORDE SPAWNAS
         }
         if (currentWave == 11)
@@ -130,9 +137,9 @@ public class ZombieObjectPooled : MonoBehaviour
              
             for (int i = 0; i < zombiesNextWave; i++)
             {
-               
-                SpawnZombie();
 
+                
+                SpawnZombie();
                 zombieAmount++;
                 debug++;
             }
@@ -168,7 +175,7 @@ public class ZombieObjectPooled : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
         yield return new WaitForSeconds(timeToFinish);
-        
+
     }
     public void DecreaseZombies()
     {
@@ -178,6 +185,7 @@ public class ZombieObjectPooled : MonoBehaviour
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();
+        zombie.SetNewHealth(newZombieHealth);
         zombie.gameObject.SetActive(true);
     }
 }
