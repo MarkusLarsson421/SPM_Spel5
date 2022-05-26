@@ -36,7 +36,7 @@ public class CraftingSystem : MonoBehaviour
     private ResourceManager playerOneRM, playerTwoRM;
     private FlashLight playerOneFlashLight, playerTwoFlashLight;
     private GameObject playerOneButtons, playerTwoButtons;
-    private Canvas playerOneCanvas, playerTwoCanvas;
+    [SerializeField] private Canvas playerOneCanvas, playerTwoCanvas;
 
     private EventSystem playerOneEventSystem, playerTwoEventSystem;
 
