@@ -32,10 +32,11 @@ public class EnemyAI : MonoBehaviour
     private float timer2 = 0f;
     private bool allFounded = false;
     private GameObject chosenPlayer;
-
+    private Collider _collider;
 
     private void Awake()
     {
+        _collider = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
         agent.acceleration = 10;
@@ -119,11 +120,13 @@ public class EnemyAI : MonoBehaviour
         IdleNode idleNode = new IdleNode(agent, this);
         IsThereAnyPlayer isThereAnyPlayerNode = new IsThereAnyPlayer(player, playerTwo);
         IsPlayerDeadNode isPlayerDeadNode = new IsPlayerDeadNode(player);
+        AmIDeadNode amIDeadNode = new AmIDeadNode(this);
 
+        Sequence deathSequence = new Sequence(new List<Node> { amIDeadNode, idleNode });
         Sequence chaseSequence = new Sequence(new List<Node> { inRageTochaseNode, chaseNode });
         Sequence shootSequence = new Sequence(new List<Node> { inRangeToAttackNode, attackNode });
 
-        topNode = new Selector(new List<Node> { isPlayerDeadNode, shootSequence, chaseSequence, idleNode });
+        topNode = new Selector(new List<Node> { deathSequence, isPlayerDeadNode, shootSequence, chaseSequence, idleNode });
     }
 
     public void TakeDamage(float damage)
@@ -133,6 +136,9 @@ public class EnemyAI : MonoBehaviour
         if (_currentHealth <= 0)
         {
             Debug.Log(++counter);
+            //agent.transform.position = Vector3.zero;
+            _collider.enabled = false;
+            //_collider
             /*Debug.Log("returned");
             zOP.DecreaseZombies();
             gameObject.transform.position = spawnPosition;
@@ -151,6 +157,8 @@ public class EnemyAI : MonoBehaviour
         agent.isStopped = false;
         anim.SetBool("CanAttack", true);
         Debug.Log("returned");
+        //agent.isStopped = false;
+        _collider.enabled = true;
         zOP.DecreaseZombies();
        // gameObject.transform.position = spawnPosition;
         zP.ReturnToPool(zReference);
@@ -176,6 +184,10 @@ public class EnemyAI : MonoBehaviour
     public float SetHealth()
     {
         return currentHealth = startingHealth;
+    }
+    public void SetNewHealth(float newHealth)
+    {
+        startingHealth = newHealth;
     }
     public void setChasingRange(int chasingRange)
     {

@@ -9,7 +9,7 @@ using TMPro;
 public class ZombieObjectPooled : MonoBehaviour
 {
     [SerializeField] private TMP_Text waveText;
-    private static int zombiesNextWave = 7;
+    private static int zombiesNextWave;
     private static int zombieAmount;
     private int currentWave;
     private int betweenWaves = 20;
@@ -17,7 +17,8 @@ public class ZombieObjectPooled : MonoBehaviour
     [SerializeField] private bool isAbleToSpawn = false;
     private float timeInSeconds;
     private int minutes;
-
+    public float delay = 20.1f;
+    private float newZombieHealth;
     private void Start()
     {
         NoMoreZombies();
@@ -40,9 +41,72 @@ public class ZombieObjectPooled : MonoBehaviour
      */
     private void SimpleWaveIncreaser()
     {
-        zombiesNextWave++;
         currentWave++;
-        //waveText.text = currentWave.ToString();
+        if(currentWave == 1)
+        {
+            zombiesNextWave = 7;
+            newZombieHealth = 150;
+        }
+        if (currentWave == 2)
+        {
+            
+            zombiesNextWave = 9;
+            newZombieHealth = 200;
+
+        }
+        if (currentWave == 3)
+        {
+            zombiesNextWave = 15;
+            newZombieHealth = 250;
+        }
+        if (currentWave == 4)
+        {
+            zombiesNextWave = 21;
+        }
+        if (currentWave == 5)
+        {
+            zombiesNextWave = 27;
+            //EN HORDE SPAWNAS
+        }
+        if (currentWave == 6)
+        {
+            zombiesNextWave = 31;
+            //EN HORDE SPAWNAS
+        }
+        if (currentWave == 7)
+        {
+            zombiesNextWave = 32;
+            newZombieHealth = 300;
+            //EN HORDE SPAWNAS
+        }
+        if (currentWave == 8)
+        {
+            zombiesNextWave = 33;
+            //EN HORDE SPAWNAS
+        }
+        if (currentWave == 9)
+        {
+            zombiesNextWave = 34;
+            //EN HORDE SPAWNAS
+        }
+        if(currentWave == 10)
+        {
+            zombiesNextWave = 42;
+            newZombieHealth = 350;
+            //EN HORDE SPAWNAS
+        }
+        if (currentWave == 11)
+        {
+            zombiesNextWave = 45;
+            //EN HORDE SPAWNAS
+        }
+        if (currentWave >= 12)
+        {
+            zombiesNextWave++;
+            //TVÅ HORDE SPAWNAS
+        }
+
+        waveText.text = currentWave.ToString();
     }
     /*
     * @ AuthorSimon Hessling Oscarson
@@ -69,14 +133,22 @@ public class ZombieObjectPooled : MonoBehaviour
 
         if (zombieAmount <= 0 && isAbleToSpawn)
         {
+            SimpleWaveIncreaser();
+             
             for (int i = 0; i < zombiesNextWave; i++)
             {
+
+                
                 SpawnZombie();
                 zombieAmount++;
                 debug++;
             }
-            SimpleWaveIncreaser();
+            
         }
+
+
+
+        
         /*if(minutes == 1) 
         {
             for (int i = 0; i < zombiesNextWave; i++)
@@ -87,7 +159,23 @@ public class ZombieObjectPooled : MonoBehaviour
                 debug++;
             }
         }*/
-//att anropa spawnzombie på det här sättet fungerar. alldeles för många zombies spawnas dock.
+        //att anropa spawnzombie på det här sättet fungerar. alldeles för många zombies spawnas dock.
+    }
+
+   
+
+    private IEnumerator spawnaspawnaspawna(int timeToFinish)
+    {
+
+        for (int i = 0; i < zombiesNextWave; i++)
+        {
+
+            SpawnZombie();
+
+            yield return new WaitForSeconds(delay);
+        }
+        yield return new WaitForSeconds(timeToFinish);
+
     }
     public void DecreaseZombies()
     {
@@ -97,6 +185,7 @@ public class ZombieObjectPooled : MonoBehaviour
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();
+        zombie.SetNewHealth(newZombieHealth);
         zombie.gameObject.SetActive(true);
     }
 }

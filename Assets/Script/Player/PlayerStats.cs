@@ -45,7 +45,7 @@ public class PlayerStats : MonoBehaviour
                 health++;
                 timer = 0;
             }
-            Debug.Log(timer);
+            
         }
 
         handler.SetCurrentHealth(health);
