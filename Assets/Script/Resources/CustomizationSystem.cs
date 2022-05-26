@@ -43,7 +43,7 @@ public class CustomizationSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isToggled);
+        
         if (isToggled && !buttonsEnabled)
         {
             interactingPlayer = inter.interactingGameObject.transform.parent.gameObject;

@@ -9,7 +9,7 @@ using TMPro;
 public class ZombieObjectPooled : MonoBehaviour
 {
     [SerializeField] private TMP_Text waveText;
-    private static int zombiesNextWave = 7;
+    private static int zombiesNextWave;
     private static int zombieAmount;
     private int currentWave;
     private int betweenWaves = 20;
@@ -40,9 +40,65 @@ public class ZombieObjectPooled : MonoBehaviour
      */
     private void SimpleWaveIncreaser()
     {
-        zombiesNextWave++;
         currentWave++;
-        //waveText.text = currentWave.ToString();
+        if(currentWave == 1)
+        {
+            zombiesNextWave = 7;
+        }
+        if (currentWave == 2)
+        {
+            zombiesNextWave = 9;
+        }
+        if (currentWave == 3)
+        {
+            zombiesNextWave = 15;
+        }
+        if (currentWave == 4)
+        {
+            zombiesNextWave = 21;
+        }
+        if (currentWave == 5)
+        {
+            zombiesNextWave = 27;
+            //EN HORDE SPAWNAS
+        }
+        if (currentWave == 6)
+        {
+            zombiesNextWave = 31;
+            //EN HORDE SPAWNAS
+        }
+        if (currentWave == 7)
+        {
+            zombiesNextWave = 32;
+               //EN HORDE SPAWNAS
+        }
+        if (currentWave == 8)
+        {
+            zombiesNextWave = 33;
+            //EN HORDE SPAWNAS
+        }
+        if (currentWave == 9)
+        {
+            zombiesNextWave = 34;
+            //EN HORDE SPAWNAS
+        }
+        if(currentWave == 10)
+        {
+            zombiesNextWave = 42;
+            //EN HORDE SPAWNAS
+        }
+        if (currentWave == 11)
+        {
+            zombiesNextWave = 45;
+            //EN HORDE SPAWNAS
+        }
+        if (currentWave >= 12)
+        {
+            zombiesNextWave++;
+            //TVÅ HORDE SPAWNAS
+        }
+
+        waveText.text = currentWave.ToString();
     }
     /*
     * @ AuthorSimon Hessling Oscarson
@@ -69,13 +125,19 @@ public class ZombieObjectPooled : MonoBehaviour
 
         if (zombieAmount <= 0 && isAbleToSpawn)
         {
+            SimpleWaveIncreaser();
+             
             for (int i = 0; i < zombiesNextWave; i++)
             {
+                /*if (maxZombiesOnMap)
+                {
+                    //Vänta
+                }*/
                 SpawnZombie();
                 zombieAmount++;
                 debug++;
             }
-            SimpleWaveIncreaser();
+            
         }
         /*if(minutes == 1) 
         {
