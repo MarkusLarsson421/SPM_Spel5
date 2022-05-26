@@ -288,9 +288,13 @@ public class DynamicMovementController : MonoBehaviour
     {
         controls.Disable();
     }
-    public void setSpeed(float speed)
+    public void setMaxSpeed(float speed)
     {
         this.maxSpeed = speed;
+    }
+    public float getMaxSpeed()
+    {
+        return maxSpeed;
     }
 
 }
