@@ -17,8 +17,8 @@ public class ScoreSystem : MonoBehaviour
     {
         spawner = gameObject.GetComponentInChildren<ZombieObjectPooled>();
         enemyAI = gameObject.GetComponentInChildren<EnemyAI>();
-
     }
+
     private void Update()
     {
         timeValue += Time.deltaTime;
