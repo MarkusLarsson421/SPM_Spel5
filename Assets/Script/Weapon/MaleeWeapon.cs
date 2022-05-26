@@ -18,12 +18,15 @@ public class MaleeWeapon : MonoBehaviour
 
 	private bool canFire;
 
-	private float timer;
+	private DynamicMovementController player;
+
+    private void Start()
+    {
+        player = GetComponentInParent<DynamicMovementController>();
+	}
 
 
-
-
-	[SerializeField] private Camera fpsCamera;
+    [SerializeField] private Camera fpsCamera;
 
 	/**
 	 * @Author Martin Wallmark
@@ -34,7 +37,7 @@ public class MaleeWeapon : MonoBehaviour
 		{
 			Fire();
 			OnAttackWithMaleeEvent unit = new OnAttackWithMaleeEvent();
-			unit.player = GetComponent<DynamicMovementController>();
+			unit.player = player;
 			unit.FireEvent();
 
 		}
@@ -50,7 +53,7 @@ public class MaleeWeapon : MonoBehaviour
 			nextTimeToFire = Time.time + 1.0f / fireRate;
 			Fire();
 		}
-		timer = 0;
+		//timer = 0;
 	}
 
 	/**
