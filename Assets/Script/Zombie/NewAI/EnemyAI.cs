@@ -40,7 +40,7 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
         agent.acceleration = 10;
-        agent.speed = 4.1f;
+        agent.speed = 5.1f;
     }
     private void Start()
     {
