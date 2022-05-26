@@ -20,6 +20,7 @@ public class PauseGame : MonoBehaviour
 
     private void Awake()
     {
+
         resumeButton.SetActive(false);
         menuButton.SetActive(false);
         pauseCanvas.SetActive(false);
