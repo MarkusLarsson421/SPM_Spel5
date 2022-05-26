@@ -17,6 +17,7 @@ public class ZombieObjectPooled : MonoBehaviour
     [SerializeField] private bool isAbleToSpawn = false;
     private float timeInSeconds;
     private int minutes;
+    public float delay = 20.1f;
 
     private void Start()
     {
@@ -129,16 +130,18 @@ public class ZombieObjectPooled : MonoBehaviour
              
             for (int i = 0; i < zombiesNextWave; i++)
             {
-                /*if (maxZombiesOnMap)
-                {
-                    //Vänta
-                }*/
+               
                 SpawnZombie();
+
                 zombieAmount++;
                 debug++;
             }
             
         }
+
+
+
+        
         /*if(minutes == 1) 
         {
             for (int i = 0; i < zombiesNextWave; i++)
@@ -149,7 +152,23 @@ public class ZombieObjectPooled : MonoBehaviour
                 debug++;
             }
         }*/
-//att anropa spawnzombie på det här sättet fungerar. alldeles för många zombies spawnas dock.
+        //att anropa spawnzombie på det här sättet fungerar. alldeles för många zombies spawnas dock.
+    }
+
+   
+
+    private IEnumerator spawnaspawnaspawna(int timeToFinish)
+    {
+
+        for (int i = 0; i < zombiesNextWave; i++)
+        {
+
+            SpawnZombie();
+
+            yield return new WaitForSeconds(delay);
+        }
+        yield return new WaitForSeconds(timeToFinish);
+        
     }
     public void DecreaseZombies()
     {
