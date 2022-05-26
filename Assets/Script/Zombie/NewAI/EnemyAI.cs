@@ -135,7 +135,7 @@ public class EnemyAI : MonoBehaviour
         anim.SetTrigger("Stun4");
         if (_currentHealth <= 0)
         {
-            Debug.Log(++counter);
+            ++counter;
             //agent.transform.position = Vector3.zero;
             _collider.enabled = false;
             //_collider
@@ -193,6 +193,11 @@ public class EnemyAI : MonoBehaviour
     {
         Debug.Log("setChasingRange work");
         this.chasingRange = chasingRange;
+    }
+
+    public int getCounter()
+    {
+        return counter;
     }
 
 }
