@@ -145,21 +145,6 @@ public class ZombieObjectPooled : MonoBehaviour
             }
             
         }
-
-
-
-        
-        /*if(minutes == 1) 
-        {
-            for (int i = 0; i < zombiesNextWave; i++)
-            {
-                Debug.Log("wave startad");
-                SpawnZombie();
-                zombieAmount++;
-                debug++;
-            }
-        }*/
-        //att anropa spawnzombie på det här sättet fungerar. alldeles för många zombies spawnas dock.
     }
 
    
@@ -186,8 +171,3 @@ public class ZombieObjectPooled : MonoBehaviour
         return currentWave;
     }
 }
-/*ATT GÖRA
- * Lös vågor och hordes (se trello).
- * Räkna ut tid på nåt bra sätt, skapa därefter logik för att starta ny våg
- * - Se över hur jag gör med AddZombies() och InstantiateZombie(), kanske slå ihop dem.
- */
