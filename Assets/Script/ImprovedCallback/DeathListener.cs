@@ -17,7 +17,7 @@ namespace EventCallbacks
             PlayerDieEvent.RegisterListener(SoundListener);
             PlayerDieEvent.RegisterListener(RemoveListener);
             PlayerDieEvent.RegisterListener(ShowDeathCanvas);
-            
+            PlayerDieEvent.RegisterListener(TriggerScoreUpdate);
 
             //EventSystem.Current.RegisterListener<PlayerDieEvent>(ParticleListener);
 
@@ -45,19 +45,13 @@ namespace EventCallbacks
             CanvasHandler deathCanvas = GameObject.FindGameObjectWithTag("UI").GetComponent<CanvasHandler>();
             deathCanvas.ChangeCanvasToDeathCanvas();
         }
-        //void ParticleListener(PlayerDieEvent unitDeathInfo) //ParticleListener är dåligt namn
-        //{
-        //    var unitPrefabClones = GameObject.FindGameObjectsWithTag("Player");
-        //    var particalesClones = GameObject.FindGameObjectsWithTag("Particales");
-        //    foreach (var clone in unitPrefabClones)
-        //    {
-        //        _ = Instantiate(bloodParticle);
-        //    }
-        //    foreach (var clone in particalesClones)
-        //    {
-        //        Destroy(clone, 1);
-        //    }
-        //}
+
+        void TriggerScoreUpdate(PlayerDieEvent unitDeathInfo)
+        {
+            ScoreSystem scoreSystem = gameObject.GetComponent<ScoreSystem>();
+            scoreSystem.UpdateValues();
+        }
+
 
     }
 }

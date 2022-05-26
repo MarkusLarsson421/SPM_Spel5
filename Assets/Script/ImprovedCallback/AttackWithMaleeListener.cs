@@ -12,10 +12,18 @@ namespace EventCallbacks
         {
             OnAttackWithMaleeEvent.RegisterListener(SlowPlayerDown);
         }
-
+        private float timer = 0;
         private void SlowPlayerDown(OnAttackWithMaleeEvent obj)
         {
-            Debug.Log("i work");
+            Debug.Log("i work-----------------");
+            obj.player.setSpeed(1);
+
+            if (timer > 0) timer += Time.deltaTime;
+            else
+            {
+                timer = 0;
+
+            }
         }
 
     }

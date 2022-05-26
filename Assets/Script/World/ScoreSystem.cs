@@ -22,9 +22,6 @@ public class ScoreSystem : MonoBehaviour
     private void Update()
     {
         timeValue += Time.deltaTime;
-        DisplayTime(timeValue);
-        DisplayZombieWave();
-        DisplayZombiesKilled();
     }
 
     void DisplayTime(float timeToDisplay)
@@ -42,6 +39,12 @@ public class ScoreSystem : MonoBehaviour
     public void DisplayZombiesKilled()
     {
         zombieKilledText.text = enemyAI.getCounter().ToString();
+    }
+    public void UpdateValues()
+    {
+        DisplayTime(timeValue);
+        DisplayZombieWave();
+        DisplayZombiesKilled();
     }
 
 

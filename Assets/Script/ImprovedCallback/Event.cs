@@ -101,8 +101,7 @@ public class PlayeIsNearTheCarEvent : Event<PlayeIsNearTheCarEvent>
 }
 public class OnAttackWithMaleeEvent : Event<OnAttackWithMaleeEvent>
 {
-	public PlayerStats player;
-	public int slowTime;
+	public DynamicMovementController player;
 }
 // här skpar ni ny events
 public class EatThePizza : Event<EatThePizza>

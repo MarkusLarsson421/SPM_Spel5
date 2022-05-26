@@ -33,6 +33,9 @@ public class MaleeWeapon : MonoBehaviour
 		if (context.performed && !isReloading && canFire)
 		{
 			Fire();
+			OnAttackWithMaleeEvent unit = new OnAttackWithMaleeEvent();
+			unit.player = GetComponent<DynamicMovementController>();
+			unit.FireEvent();
 
 		}
 	}
@@ -66,9 +69,6 @@ public class MaleeWeapon : MonoBehaviour
 			if (target != null)
 			{
 				target.TakeDamage(damage);
-				OnAttackWithMaleeEvent unit = new OnAttackWithMaleeEvent();
-				unit.player = transform.parent.parent.parent.GetComponent<PlayerStats>();
-				unit.FireEvent();
 			}
 		}
 	}
