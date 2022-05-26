@@ -180,6 +180,11 @@ public class ZombieObjectPooled : MonoBehaviour
         zombie.SetNewHealth(newZombieHealth); //Simon Hessling Oscarson
         zombie.gameObject.SetActive(true);
     }
+    //Khaled Alraas
+    public int getCurrentWave()
+    {
+        return currentWave;
+    }
 }
 /*ATT GÖRA
  * Lös vågor och hordes (se trello).
