@@ -185,6 +185,10 @@ public class EnemyAI : MonoBehaviour
     {
         return currentHealth = startingHealth;
     }
+    public void SetNewHealth(float newHealth)
+    {
+        startingHealth = newHealth;
+    }
     public void setChasingRange(int chasingRange)
     {
         Debug.Log("setChasingRange work");
