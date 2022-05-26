@@ -79,7 +79,7 @@ public class UIHandler : MonoBehaviour
     private void EnlargeMeleeIcon()
     {
         gunImageBig.enabled = false;
-        gunImageSmall.enabled = true;
+        gunImageSmall.enabled = false;
 
         axeImageBig.enabled = true;
         axeImageSmall.enabled = false;
@@ -98,7 +98,7 @@ public class UIHandler : MonoBehaviour
         axeImageSmall.enabled = true;
 
         ak47ImageBig.enabled = false;
-        ak47ImageSmall.enabled = true;
+        ak47ImageSmall.enabled = false;
 
 
     }
@@ -113,7 +113,7 @@ public class UIHandler : MonoBehaviour
         gunImageSmall.enabled = true;
 
         axeImageBig.enabled = false;
-        axeImageSmall.enabled = true;
+        axeImageSmall.enabled = false;
 
     }
 }
