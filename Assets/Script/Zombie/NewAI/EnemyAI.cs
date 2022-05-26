@@ -136,7 +136,6 @@ public class EnemyAI : MonoBehaviour
         if (_currentHealth <= 0)
         {
             Debug.Log(++counter);
-            agent.isStopped = true;
             //agent.transform.position = Vector3.zero;
             _collider.enabled = false;
             //_collider
