@@ -5,9 +5,9 @@ using TMPro;
 
 public class ScoreSystem : MonoBehaviour
 {
-    private TMP_Text waveText;
-    private TMP_Text zombieKilledText;
-    private TMP_Text timeTakenText;
+   [SerializeField] private TMP_Text waveText;
+    [SerializeField] private TMP_Text zombieKilledText;
+    [SerializeField] private TMP_Text timeTakenText;
     private float timeValue;
 
     private ZombieObjectPooled spawner;
