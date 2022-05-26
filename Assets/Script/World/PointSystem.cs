@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointSystem : MonoBehaviour
+public class ScoreSystem : MonoBehaviour
 {
     private int currentWave = 0;
     private int zombiesKilled = 0;
@@ -11,14 +11,7 @@ public class PointSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timeValue > 0)
-        {
-            timeValue -= Time.deltaTime;
-        }
-        else
-        {
-            DisplayTime(timeValue);
-        }
+        DisplayTime(timeValue);
     }
     void DisplayTime(float timeToDisplay)
     {
