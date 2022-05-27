@@ -128,8 +128,8 @@ public class CustomizationSystem : MonoBehaviour
         {
             playerTwoCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
             playerTwoHat = interactingPlayer.transform.Find("Hat").gameObject;
-            playerOneMysteryHat = interactingPlayer.transform.Find("MysteryHat").gameObject;
-            playerOneMilitaryHat = interactingPlayer.transform.Find("MilitaryHat").gameObject;
+            playerTwoMysteryHat = interactingPlayer.transform.Find("MysteryHat").gameObject;
+            playerTwoMilitaryHat = interactingPlayer.transform.Find("MilitaryHat").gameObject;
             playerTwoCustomizationButtons = playerTwoCanvas.gameObject.transform.Find("CustomizationButtons").gameObject;
             playerTwoCustomizationButtons.SetActive(true);
             playerTwoHatButton = playerTwoCustomizationButtons.transform.Find("HatButton").gameObject;
@@ -237,7 +237,7 @@ public class CustomizationSystem : MonoBehaviour
         }
         else
         {
-            playerOneCustomizationButtons.SetActive(true);
+            playerTwoCustomizationButtons.SetActive(true);
             playerTwoEventSystem.SetSelectedGameObject(playerTwoNoHatButton);
         }
 
