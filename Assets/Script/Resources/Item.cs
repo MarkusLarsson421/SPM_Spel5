@@ -15,7 +15,6 @@ public class Item : MonoBehaviour{
     private PickupObjectPooled pickupSpawner;
 
     private GameObject ammo, scrap, battery;
-
     private bool isPickedUp;
 
 	//@Author Axel Sterner
@@ -24,7 +23,6 @@ public class Item : MonoBehaviour{
     {
         pickupPool = GameObject.Find("PickupPool").GetComponent<PickupPool>();
         pickupSpawner = GameObject.Find("PickupSpawner").GetComponent<PickupObjectPooled>();
-        Debug.Log(pickupSpawner);
         apu = gameObject.GetComponent<APU_SimonPrototype>();
 		bpu = gameObject.GetComponent<BPU_SimonPrototype>();
 		spu = gameObject.GetComponent<SPU_SimonPrototype>();   
@@ -49,7 +47,7 @@ public class Item : MonoBehaviour{
 		pickUpEvent.Description = "Item: " + type + " x " + amount + " has been picked up.";
 		pickUpEvent.SetItemType(type);
 		pickUpEvent.SetAmount(amount);
-		pickUpEvent.SetRM(GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<ResourceManager>());//optimera
+		pickUpEvent.SetRM(GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<ResourceManager>());
 		pickUpEvent.FireEvent();
 		if (ss != null && type.ToString() == "Scrap") { ss.ScrapsUsedForCarLine(); }
 		playah = null;

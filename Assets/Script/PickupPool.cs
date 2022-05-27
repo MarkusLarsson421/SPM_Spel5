@@ -11,6 +11,7 @@ public class PickupPool : MonoBehaviour
     [SerializeField] private GameObject[] spawnPoints;
     [SerializeField] private GameObject[] scraps;
     private int amountOfScraps;
+    private int randomItem;
 
 
     private Queue<GameObject> pickupContainer = new Queue<GameObject>();
@@ -41,7 +42,7 @@ public class PickupPool : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            int randomItem = Random.Range(0, 3);
+            randomItem = Random.Range(0, 3);
             switch (randomItem)
             {
                 case 0:

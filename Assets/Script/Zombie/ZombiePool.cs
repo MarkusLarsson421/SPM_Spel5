@@ -13,7 +13,7 @@ public class ZombiePool : MonoBehaviour
     public static int zombieQty = 1;
     private System.Random rnd = new System.Random();
     [SerializeField] private LayerMask zombieLayer;
-    [SerializeField] private GameObject[] spawnObjects;
+    public ZombieObjectPooled[] spawnObjects;
     public static ZombiePool Instance { get; private set; }
     private void Awake()
     {

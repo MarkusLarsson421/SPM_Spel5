@@ -16,12 +16,12 @@ public class PickupObjectPooled : MonoBehaviour
     }
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > timeUntilRespawn)
-        {
-            timer = 0;
-            SpawnPickupItem();
-        }
+         timer += Time.deltaTime;
+         if (timer > timeUntilRespawn)
+         {
+             timer = 0;
+             SpawnPickupItem();
+         }
     }
 
     private void SpawnPickupItem()
@@ -29,7 +29,6 @@ public class PickupObjectPooled : MonoBehaviour
         if (isAbleToSpawn == true)
         {
             isAbleToSpawn = false;
-            Debug.Log(isAbleToSpawn);
             GameObject item = PickupPool.Instance.Get();
             item.transform.SetPositionAndRotation(transform.position, transform.rotation);
             item.gameObject.SetActive(true);

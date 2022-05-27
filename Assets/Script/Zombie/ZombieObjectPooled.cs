@@ -19,9 +19,12 @@ public class ZombieObjectPooled : MonoBehaviour
     private int minutes;
     public float delay = 20.1f;
     private float newZombieHealth;
+    private ZombiePool zP;
+
     private void Start()
     {
         NoMoreZombies();
+        zP = ZombiePool.Instance;
     }
     private void Update()
     {
@@ -32,6 +35,20 @@ public class ZombieObjectPooled : MonoBehaviour
     {
         timeInSeconds += Time.deltaTime;
         minutes = ((int)(timeInSeconds / 60)) % 60;
+    }
+
+    private void ActivateSpawners(int amtOfspawnersToEnable)
+    {
+        for(int i = 0; i < amtOfspawnersToEnable; i++)
+        {
+            zP.spawnObjects[i].SetAbleToSpawn(true);
+        }
+    }
+
+    //Khaled Alraas
+    public int getCurrentWave()
+    {
+        return currentWave;
     }
 
     /*
@@ -46,6 +63,7 @@ public class ZombieObjectPooled : MonoBehaviour
         {
             zombiesNextWave = 7;
             newZombieHealth = 150;
+            ActivateSpawners(3);
         }
         if (currentWave == 2)
         {
@@ -137,14 +155,27 @@ public class ZombieObjectPooled : MonoBehaviour
              
             for (int i = 0; i < zombiesNextWave; i++)
             {
-
-                
                 SpawnZombie();
                 zombieAmount++;
                 debug++;
             }
             
         }
+
+
+
+        
+        /*if(minutes == 1) 
+        {
+            for (int i = 0; i < zombiesNextWave; i++)
+            {
+                Debug.Log("wave startad");
+                SpawnZombie();
+                zombieAmount++;
+                debug++;
+            }
+        }*/
+        //att anropa spawnzombie på det här sättet fungerar. alldeles för många zombies spawnas dock.
     }
 
    
@@ -165,9 +196,9 @@ public class ZombieObjectPooled : MonoBehaviour
         zombie.SetNewHealth(newZombieHealth); //Simon Hessling Oscarson
         zombie.gameObject.SetActive(true);
     }
-    //Khaled Alraas
-    public int getCurrentWave()
-    {
-        return currentWave;
-    }
 }
+/*ATT GÖRA
+ * Lös vågor och hordes (se trello).
+ * Räkna ut tid på nåt bra sätt, skapa därefter logik för att starta ny våg
+ * - Se över hur jag gör med AddZombies() och InstantiateZombie(), kanske slå ihop dem.
+ */
