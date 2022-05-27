@@ -42,7 +42,7 @@ public class Generator : MonoBehaviour{
         {
 			interactingPlayer = interactable.interactingGameObject.transform.parent.gameObject;
 			rm = interactable.interactingGameObject.GetComponentInChildren<ResourceManager>();
-			if(rm.Get(ResourceManager.ItemType.Scrap) >= 1)
+			if(rm.Get(ResourceManager.ItemType.Scrap) >= 1 && !isOn)
             {
 				RefillFuel(100);
 				OpenDoors();
