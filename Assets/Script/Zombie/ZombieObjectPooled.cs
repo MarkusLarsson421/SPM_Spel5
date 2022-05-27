@@ -9,6 +9,7 @@ using TMPro;
 public class ZombieObjectPooled : MonoBehaviour
 {
     [SerializeField] private TMP_Text waveText;
+    [SerializeField] private Generator generator;
     private static int zombiesNextWave;
     private static int zombieAmount;
     private int currentWave;
@@ -70,6 +71,7 @@ public class ZombieObjectPooled : MonoBehaviour
             
             zombiesNextWave = 9;
             newZombieHealth = 200;
+            generator.SetFuel(0);
 
         }
         if (currentWave == 3)
@@ -80,6 +82,7 @@ public class ZombieObjectPooled : MonoBehaviour
         if (currentWave == 4)
         {
             zombiesNextWave = 21;
+            generator.SetFuel(0);
         }
         if (currentWave == 5)
         {
@@ -95,6 +98,7 @@ public class ZombieObjectPooled : MonoBehaviour
         {
             zombiesNextWave = 32;
             newZombieHealth = 300;
+            generator.SetFuel(0);
             //EN HORDE SPAWNAS
         }
         if (currentWave == 8)
@@ -105,6 +109,7 @@ public class ZombieObjectPooled : MonoBehaviour
         if (currentWave == 9)
         {
             zombiesNextWave = 34;
+            generator.SetFuel(0);
             //EN HORDE SPAWNAS
         }
         if(currentWave == 10)
