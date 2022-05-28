@@ -10,9 +10,10 @@ public class MaleeWeapon : MonoBehaviour
 	[SerializeField] private float range = 1f;
 	[SerializeField] private float fireRate = 1.0f;
 	private float nextTimeToFire;
+    private SoundManager sM;
 
-	//Ammo
-	private bool isReloading;
+    //Ammo
+    private bool isReloading;
 
 	private bool isFiring;
 
@@ -24,7 +25,11 @@ public class MaleeWeapon : MonoBehaviour
     {
         player = GetComponentInParent<DynamicMovementController>();
 	}
+    private void Awake()
+    {
+        sM = GameObject.Find("SM").GetComponent<SoundManager>();
 
+    }
 
     [SerializeField] private Camera fpsCamera;
 
@@ -36,6 +41,7 @@ public class MaleeWeapon : MonoBehaviour
 		if (context.performed && !isReloading && canFire)
 		{
 			Fire();
+            sM.SoundPlaying("meleeAttack");
 			OnAttackWithMaleeEvent unit = new OnAttackWithMaleeEvent();
 			unit.player = player;
 			unit.FireEvent();
