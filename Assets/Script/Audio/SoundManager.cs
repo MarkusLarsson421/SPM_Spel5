@@ -4,27 +4,35 @@ using UnityEngine;
 using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
+    /*
+     * 
+     * @Author Simon Hessling Oscarson
+     * Används i Weapon.
+     * 
+     * 
+     */
+
     //Counter counter;
-/*
-    public static AudioClip pointSound;
-    public static AudioClip swooshSound;
-    public static AudioClip balloonPopSound;
+    public static AudioClip shootSound;
+    public static AudioClip zombieDeathSound;
+
+    //  public static AudioClip balloonPopSound;*/
 
     private static AudioSource audioSrc;
 
     public AudioMixerSnapshot intenseSnapshot; //bör göras om till [SerializedField] private
     public AudioMixerSnapshot normalSnapshot;
-    public AudioMixerSnapshot paused;
-    public AudioMixerSnapshot gameOver;
-
-    public AudioSource birdHum;
-    public AudioSource ambienceDay;
-    public AudioSource pianoMusic;
-
+    /*public AudioMixerSnapshot paused;
+    public AudioMixerSnapshot gameOver;*/
+    
+    public AudioSource zombieRoar;
+    //public AudioSource ambienceDay;
+    //public AudioSource pianoMusic;
+    
     public AudioSource[] triggerSounds;
 
-    private AudioSource swoosh;
-    private AudioSource pointSoundSource;
+    private AudioSource shootSoundSource;
+    private AudioSource zombieDeathSource;
     private AudioSource balloonPop;
 
     private float volLowRan = 0.3f;
@@ -36,20 +44,20 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
        // counter = GameObject.Find("CO").GetComponent<Counter>();
-
-        pointSound = Resources.Load<AudioClip>("PointSound");
-        swooshSound = Resources.Load<AudioClip>("Ghost Swish");
-        balloonPopSound = Resources.Load<AudioClip>("Balloon Pop Sound");
+       
+        zombieDeathSound = Resources.Load<AudioClip>("ADD_SOUND_NAME");
+        shootSound = Resources.Load<AudioClip>("ADD_SOUND_NAME");
+        //balloonPopSound = Resources.Load<AudioClip>("Balloon Pop Sound");*/
 
         audioSrc = GetComponent<AudioSource>();
 
-        swoosh = triggerSounds[0];
-        pointSoundSource = triggerSounds[1];
+        shootSoundSource = triggerSounds[0];
+        zombieDeathSource = triggerSounds[1];
         balloonPop = triggerSounds[2];
-
+        /*
         ambienceDay.time = Random.Range(0, 60);
         pianoMusic.time = Random.Range(0, 60);
-
+        */
         SoundPlaying("normalSnapshot");
     }
     void Update()
@@ -61,7 +69,7 @@ public class SoundManager : MonoBehaviour
     { //hanterar vilket ljud som spelas. kallas på i andra scripts.
         if (clip == "paused")
         {
-            paused.TransitionTo(0.0f);
+            //paused.TransitionTo(0.0f);
         }
         if (clip == "intenseSnapshot")
         {
@@ -75,41 +83,41 @@ public class SoundManager : MonoBehaviour
         {
             GameOver();
         }
-        if (clip == "swoosh")
+        if (clip == "shootSound")
         {
-            Swoosh();
+            Shoot();
         }
-        if (clip == "pointSound")
+        if (clip == "zombieDeathSound")
         {
-            PointSound();
+            ZombieDeathSound();
         }
     }
     private void GameOver()
     {
         //balloonPop.pitch = (counter.GetTimePassed() / 10);
-        balloonPop.PlayOneShot(balloonPopSound);
-        gameOver.TransitionTo(0.0f);
+       // balloonPop.PlayOneShot(balloonPopSound);
+      //  gameOver.TransitionTo(0.0f);
     }
-    private void Swoosh()
+    private void Shoot()
     {
-        swoosh.pitch = Random.Range(0.6f, highPitchRan);
-        swoosh.PlayOneShot(swooshSound);
+        shootSoundSource.pitch = Random.Range(0.6f, highPitchRan);
+        shootSoundSource.PlayOneShot(shootSound);
     }
-    private void PointSound()
+    private void ZombieDeathSound()
     {
         float vol = Random.Range(volLowRan, volHighRan);
-        pointSoundSource.pitch = Random.Range(lowPitchRan, highPitchRan);
-        pointSoundSource.PlayOneShot(pointSound, vol);
+        zombieDeathSource.pitch = Random.Range(lowPitchRan, highPitchRan);
+        zombieDeathSource.PlayOneShot(zombieDeathSound, vol);
     }
 
     private void RandomiseSoundPlayback()
     { //Gör att ett ljud körs random.
-        if (!birdHum.isPlaying)
+        if (!zombieRoar.isPlaying)
         {
-            birdHum.pitch = Random.Range(lowPitchRan, highPitchRan);
+            zombieRoar.pitch = Random.Range(lowPitchRan, highPitchRan);
             float t = Random.Range(minHumDelay, maxHumDelay);
-            birdHum.PlayDelayed(t);
+            zombieRoar.PlayDelayed(t);
         }
     }
-*/
+
 }
