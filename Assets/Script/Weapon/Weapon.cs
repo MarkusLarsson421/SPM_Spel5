@@ -62,6 +62,7 @@ public class Weapon : MonoBehaviour
     {
         if (context.performed && isReloading == false && rm.Get(ResourceManager.ItemType.Ammo) != 0)
         {
+            
             StartCoroutine(Reload());
         }
 
@@ -145,6 +146,7 @@ public class Weapon : MonoBehaviour
         //temp reload animation - nyman
         if (currentMag < magCapacity && !isReloading)
         {
+            sM.SoundPlaying("reload");
             playerAnim.SetTrigger("Reload");
             gunAnim.SetTrigger("Reload");
         }

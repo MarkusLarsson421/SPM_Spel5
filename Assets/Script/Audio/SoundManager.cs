@@ -16,9 +16,9 @@ public class SoundManager : MonoBehaviour
     
 
     //PlayerSounds
-    public static AudioClip shootSound;
+    private  AudioClip shootSound;
     private AudioClip meleeSound;
-
+    private AudioClip reloadSound;
     //EnemySounds
     public static AudioClip zombieDeathSound;
 
@@ -31,17 +31,16 @@ public class SoundManager : MonoBehaviour
     public AudioMixerSnapshot gameOver;*/
 
     
-    public AudioSource[] triggerSounds;
-
+    
+    //Player AudioSources
     private AudioSource shootSoundSource;
     private AudioSource meleeAttackSoundSource;
+    private AudioSource reloadSoundSource;
 
     //Enemy AudioSources
     private AudioSource zombieDeathSource;
     private AudioSource zombieRoarSoundSource;
 
-
-    private AudioSource balloonPop;
     private AudioSource intenseMusic;
 
     private float volLowRan = 0.3f;
@@ -54,30 +53,23 @@ public class SoundManager : MonoBehaviour
     {
         intenseMusic = GameObject.Find("IntenseMusic").GetComponent<AudioSource>();
         //AudioSources
-        shootSoundSource = triggerSounds[0];
-        zombieDeathSource = triggerSounds[1];
-        meleeAttackSoundSource = triggerSounds[2];
-        zombieRoarSoundSource = triggerSounds[3];
+        shootSoundSource = GameObject.Find("ShootAudioSource").GetComponent<AudioSource>();
+        reloadSoundSource = GameObject.Find("ReloadAudioSource").GetComponent<AudioSource>();
 
-        meleeSound = Resources.Load<AudioClip>("ADD_SOUND_NAME");
-       
+        //zombieDeathSource;
+        //meleeAttackSoundSource;
+        //zombieRoarSoundSource;
 
-        // counter = GameObject.Find("CO").GetComponent<Counter>();
-
-        /* zombieDeathSound = Resources.Load<AudioClip>("ADD_SOUND_NAME");
+        meleeSound = Resources.Load<AudioClip>("Swing");
+        shootSound = Resources.Load<AudioClip>("BulletImpact");
+        reloadSound = Resources.Load<AudioClip>("Reload");
+        zombieDeathSound = Resources.Load<AudioClip>("ADD_SOUND_NAME");
          
-         shootSound = Resources.Load<AudioClip>("ADD_SOUND_NAME");
          
+         //ambienceDay.time = Random.Range(0, 60);
+         //pianoMusic.time = Random.Range(0, 60);
 
-         //balloonPopSound = Resources.Load<AudioClip>("Balloon Pop Sound");
-
-         audioSrc = GetComponent<AudioSource>();
-
-         
-         ambienceDay.time = Random.Range(0, 60);
-         pianoMusic.time = Random.Range(0, 60);
-
-         SoundPlaying("normalSnapshot");*/
+         SoundPlaying("normalSnapshot");
     }
     void Update()
     {
@@ -111,13 +103,16 @@ public class SoundManager : MonoBehaviour
         }
         if (clip == "shootSound") //Weapon
         {
-            // Shoot();
-            Debug.Log("shootSound");
+            Shoot();
+        }
+        if (clip == "reload") //Weapon
+        {
+            ReloadSound();
         }
         if (clip == "meleeAttack") //Weapon
         {
-            // meleeAttackSound();
-            Debug.Log("shootSound");
+            MeleeAttackSound();
+            Debug.Log("meleeAttackSounds");
         }
         if (clip == "zombieDeathSound") //enemyAI
         {
@@ -158,9 +153,10 @@ public class SoundManager : MonoBehaviour
         zombieDeathSource.pitch = Random.Range(lowPitchRan, highPitchRan);
         zombieDeathSource.PlayOneShot(zombieDeathSound, vol);
     }
-    private void IntenseMusicStart()
+    private void ReloadSound()
     {
-        
+        reloadSoundSource.pitch = Random.Range(0.6f, highPitchRan);
+        reloadSoundSource.PlayOneShot(reloadSound);
     }
 
     private void RandomiseSoundPlayback()
