@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour
     //Ammo
     [SerializeField] private float reloadTime = 2.0f;
     [SerializeField] private ResourceManager rm;
-    [SerializeField] private SoundManager sm;
+    private SoundManager sM;
     private int magCapacity = 8;
     private int currentMag;
     private bool isReloading;
@@ -35,6 +35,11 @@ public class Weapon : MonoBehaviour
     {
         currentMag = magCapacity;
         muzzleFlash = transform.GetChild(0).GetComponent<ParticleSystem>();
+    }
+    private void Awake()
+    {
+        sM = GameObject.Find("SM").GetComponent<SoundManager>();
+
     }
 
     /**
@@ -96,7 +101,7 @@ public class Weapon : MonoBehaviour
     {
         currentMag--;
         muzzleFlash.Play();
-        sm.SoundPlaying("shootSound");
+        sM.SoundPlaying("shootSound");
         //temp shoot animation - nyman
         if (!isReloading)
         {

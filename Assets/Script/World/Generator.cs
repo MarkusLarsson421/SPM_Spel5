@@ -7,9 +7,11 @@ public class Generator : MonoBehaviour{
 	//Whether or not the generator is on.
 	[SerializeField] private bool isOn;
 	[SerializeField] private Interactable interactable;
-	
-	//Fuel
-	[Header("Fuel settings")]
+    [SerializeField] private SoundManager sM;
+
+
+    //Fuel
+    [Header("Fuel settings")]
 	[SerializeField][Range(1, maxFuel)] private float fuel;
 	[SerializeField] private float fuelDrainMultiplier = 1.0f;
 

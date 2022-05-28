@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
      * 
      * @Author Simon Hessling Oscarson
      * Används i Weapon.
-     * 
+     * Används i enemyAI.
      * 
      */
 
@@ -44,25 +44,26 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
        // counter = GameObject.Find("CO").GetComponent<Counter>();
-       
-        zombieDeathSound = Resources.Load<AudioClip>("ADD_SOUND_NAME");
+
+       /* zombieDeathSound = Resources.Load<AudioClip>("ADD_SOUND_NAME");
+
         shootSound = Resources.Load<AudioClip>("ADD_SOUND_NAME");
-        //balloonPopSound = Resources.Load<AudioClip>("Balloon Pop Sound");*/
+        //balloonPopSound = Resources.Load<AudioClip>("Balloon Pop Sound");
 
         audioSrc = GetComponent<AudioSource>();
 
         shootSoundSource = triggerSounds[0];
         zombieDeathSource = triggerSounds[1];
         balloonPop = triggerSounds[2];
-        /*
+        
         ambienceDay.time = Random.Range(0, 60);
         pianoMusic.time = Random.Range(0, 60);
-        */
-        SoundPlaying("normalSnapshot");
+        
+        SoundPlaying("normalSnapshot");*/
     }
     void Update()
     {
-        RandomiseSoundPlayback();
+        //RandomiseSoundPlayback();
     }
 
     public void SoundPlaying(string clip)
@@ -70,37 +71,54 @@ public class SoundManager : MonoBehaviour
         if (clip == "paused")
         {
             //paused.TransitionTo(0.0f);
+            Debug.Log("DOESNTEXISTYET");
         }
         if (clip == "intenseSnapshot")
         {
-            intenseSnapshot.TransitionTo(0.0f);
+            //intenseSnapshot.TransitionTo(0.0f);
+            Debug.Log("intenseMusic");
         }
         if (clip == "normalSnapshot")
         {
-            normalSnapshot.TransitionTo(0.0f);
+            //normalSnapshot.TransitionTo(0.0f);
+            Debug.Log("normalMusic");
         }
         if (clip == "gameOver")
         {
-            GameOver();
+            // GameOver();
+            Debug.Log("DOESNTEXISTYET");
         }
-        if (clip == "shootSound")
+        if (clip == "shootSound") //Weapon
         {
-            Shoot();
+            // Shoot();
+            Debug.Log("shootSound");
         }
-        if (clip == "zombieDeathSound")
+        if (clip == "zombieDeathSound") //enemyAI
         {
-            ZombieDeathSound();
+            //  ZombieDeathSound();
+            Debug.Log("zombieDiedd");
+        }
+        if (clip == "generatorTurnedOn") //Generator
+        {
+            //  GeneratorTurnedOn();
+            Debug.Log("generator turned on");
+        }
+        if (clip == "generatorBroke") //Generator
+        {
+            //  GeneratorBroke();
+            Debug.Log("generator broke");
         }
     }
     private void GameOver()
     {
+        normalSnapshot.TransitionTo(0.0f);
         //balloonPop.pitch = (counter.GetTimePassed() / 10);
-       // balloonPop.PlayOneShot(balloonPopSound);
-      //  gameOver.TransitionTo(0.0f);
+        // balloonPop.PlayOneShot(balloonPopSound);
+        //  gameOver.TransitionTo(0.0f);
     }
     private void Shoot()
     {
-        shootSoundSource.pitch = Random.Range(0.6f, highPitchRan);
+        shootSoundSource.pitch = Random.Range(0.6f, highPitchRan);//kanske ska ha samma pitch hela tiden?
         shootSoundSource.PlayOneShot(shootSound);
     }
     private void ZombieDeathSound()
@@ -118,6 +136,14 @@ public class SoundManager : MonoBehaviour
             float t = Random.Range(minHumDelay, maxHumDelay);
             zombieRoar.PlayDelayed(t);
         }
+    }
+    private void GeneratorTurnedOn()
+    {
+
+    }
+    private void GeneratorBroke()
+    {
+
     }
 
 }

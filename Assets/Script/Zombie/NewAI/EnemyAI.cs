@@ -13,6 +13,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float startingHealth;
     [SerializeField] private float chasingRange;
     [SerializeField] private float shootingRange;
+
+    public SoundManager sM; //Simon Hessling Oscarson
     int counter = 0;
 
     public ZombieObjectPooled zOP;
@@ -36,6 +38,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
+        sM = GameObject.Find("SM").GetComponent<SoundManager>();
         _collider = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
@@ -52,6 +55,7 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         Tasks();
+        chaseRangeFromPlayer(); //Simon Hessling Oscarson
     }
     void Tasks()
     {
@@ -72,6 +76,7 @@ public class EnemyAI : MonoBehaviour
         }
         
     }
+    
     void TasksWithTimer()
     {
         if (timer < 2f && !allFounded) timer += Time.deltaTime;
@@ -136,6 +141,7 @@ public class EnemyAI : MonoBehaviour
         if (_currentHealth <= 0)
         {
             ++counter;
+            sM.SoundPlaying("zombieDeathSound");//Simon Hessling Oscarson
             //agent.transform.position = Vector3.zero;
             _collider.enabled = false;
             //_collider
@@ -198,6 +204,18 @@ public class EnemyAI : MonoBehaviour
     public int getCounter()
     {
         return counter;
+    }
+    private void chaseRangeFromPlayer()//Simon Hessling Oscarson
+    {
+        if(chasingRange < 5)
+        {
+            sM.SoundPlaying("intenseSnapshot");
+        }
+        else
+        {
+            sM.SoundPlaying("normalSnapshot");
+
+        }
     }
 
 }
