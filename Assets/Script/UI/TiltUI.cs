@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class TiltUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    /*
+     * 
+     * 
+     * Author@ Simon Hessling Oscarson
+     */
 
     // Update is called once per frame
     void Update()
