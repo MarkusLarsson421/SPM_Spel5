@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TiltUI : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            TiltImageLeft();
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            TiltImageUp();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            TiltImageDown();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            TiltImageRight();
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            TiltImageRight();
+        }
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            TiltImageDown();
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            TiltImageUp();
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            TiltImageLeft();
+        }
+
+    }
+    private void TiltImageLeft()
+    {
+        transform.Rotate(0, 10, 0);
+    }
+    private void TiltImageRight()
+    {
+        transform.Rotate(0, -10, 0);
+    }
+    private void TiltImageUp()
+    {
+        transform.Rotate(10, 0, 0);
+    }
+    private void TiltImageDown()
+    {
+        transform.Rotate(-10, 0, 0);
+    }
+   
+}
