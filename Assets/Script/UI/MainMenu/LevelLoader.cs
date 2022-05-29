@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+     * 
+     * @Author Martin Nyman
+     */
+
 public class LevelLoader : MonoBehaviour
 {
-    public Animator anim;
+    [SerializeField] private Animator anim;
 
-    public float transitionTime = 1f;
-    public int sceneToIndex;
+    [SerializeField] private float transitionTime = 1.5f;
 
-    public bool doTransitionOnStart = true;
+    [SerializeField] private bool doTransitionOnStart = true;
+    [SerializeField] private bool doTransitionOnEnd = true;
 
     private void Start()
     {
@@ -21,18 +26,22 @@ public class LevelLoader : MonoBehaviour
     }
 
 
-    public void LoadNextLevel()
+    public void LoadNextLevel(string sceneToLoad)
     {
-        StartCoroutine(LoadLevel());
+        StartCoroutine(LoadLevel(sceneToLoad));
     }
 
-    IEnumerator LoadLevel()
+    IEnumerator LoadLevel(string sceneIndex)
     {
-        anim.SetTrigger("Close");
+        if (doTransitionOnEnd)
+        {
+            anim.SetTrigger("Close");
+        }
+
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene(sceneToIndex);
+        SceneManager.LoadScene(sceneIndex);
     }
 
 }
