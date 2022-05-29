@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 /*
      * 
@@ -16,13 +17,21 @@ public class LevelLoader : MonoBehaviour
 
     [SerializeField] private bool doTransitionOnStart = true;
     [SerializeField] private bool doTransitionOnEnd = true;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip doorTransitionToggleSound;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         if (doTransitionOnStart)
         {
            anim.SetTrigger("Open");
+           RandomizePitch();
+           audioSource.PlayOneShot(doorTransitionToggleSound);
         }
+
+
+
     }
 
 
@@ -36,6 +45,8 @@ public class LevelLoader : MonoBehaviour
         if (doTransitionOnEnd)
         {
             anim.SetTrigger("Close");
+            RandomizePitch();
+            audioSource.PlayOneShot(doorTransitionToggleSound);
         }
 
 
@@ -43,5 +54,11 @@ public class LevelLoader : MonoBehaviour
 
         SceneManager.LoadScene(sceneIndex);
     }
+
+    private void RandomizePitch()
+    {
+        audioSource.pitch = audioSource.pitch = Random.Range(0.8f, 1f);
+    }
+
 
 }
