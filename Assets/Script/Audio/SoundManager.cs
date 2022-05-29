@@ -84,7 +84,7 @@ public class SoundManager : MonoBehaviour
         zombieTakesDamageSound = Resources.Load<AudioClip>("BulletImpact");
         //WorldSounds
         newWave = Resources.Load<AudioClip>("NewWave");
-        generatorOnSound = Resources.Load<AudioClip>("BulletImpact");
+        generatorOnSound = Resources.Load<AudioClip>("GeneratorOn");
         generatorOffSound = Resources.Load<AudioClip>("BulletImpact");
         //ambienceDay.time = Random.Range(0, 60);
         //pianoMusic.time = Random.Range(0, 60);
