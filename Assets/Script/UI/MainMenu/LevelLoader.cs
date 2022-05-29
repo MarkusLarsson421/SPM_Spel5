@@ -18,7 +18,9 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private bool doTransitionOnStart = true;
     [SerializeField] private bool doTransitionOnEnd = true;
     private AudioSource audioSource;
-    [SerializeField] private AudioClip doorTransitionToggleSound;
+    [SerializeField] private AudioClip doorTransitionOpenSound;
+    [SerializeField] private AudioClip doorTransitionCloseSound;
+
 
     private void Start()
     {
@@ -27,10 +29,8 @@ public class LevelLoader : MonoBehaviour
         {
            anim.SetTrigger("Open");
            RandomizePitch();
-           audioSource.PlayOneShot(doorTransitionToggleSound);
+           audioSource.PlayOneShot(doorTransitionOpenSound);
         }
-
-
 
     }
 
@@ -46,7 +46,7 @@ public class LevelLoader : MonoBehaviour
         {
             anim.SetTrigger("Close");
             RandomizePitch();
-            audioSource.PlayOneShot(doorTransitionToggleSound);
+            audioSource.PlayOneShot(doorTransitionCloseSound);
         }
 
 
