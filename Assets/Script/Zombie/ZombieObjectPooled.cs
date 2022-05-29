@@ -76,6 +76,8 @@ public class ZombieObjectPooled : MonoBehaviour
             zombiesNextWave = 9;
             newZombieHealth = 200;
             generator.SetFuel(0);
+            sM.SoundPlaying("generatorOff");
+
 
         }
         if (currentWave == 3)
@@ -87,6 +89,8 @@ public class ZombieObjectPooled : MonoBehaviour
         {
             zombiesNextWave = 21;
             generator.SetFuel(0);
+            sM.SoundPlaying("generatorOff");
+
         }
         if (currentWave == 5)
         {
@@ -103,6 +107,8 @@ public class ZombieObjectPooled : MonoBehaviour
             zombiesNextWave = 32;
             newZombieHealth = 300;
             generator.SetFuel(0);
+            sM.SoundPlaying("generatorOff");
+
             //EN HORDE SPAWNAS
         }
         if (currentWave == 8)
@@ -114,9 +120,11 @@ public class ZombieObjectPooled : MonoBehaviour
         {
             zombiesNextWave = 34;
             generator.SetFuel(0);
+            sM.SoundPlaying("generatorOff");
+
             //EN HORDE SPAWNAS
         }
-        if(currentWave == 10)
+        if (currentWave == 10)
         {
             zombiesNextWave = 42;
             newZombieHealth = 350;

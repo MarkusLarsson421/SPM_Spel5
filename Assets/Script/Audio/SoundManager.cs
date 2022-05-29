@@ -14,10 +14,10 @@ public class SoundManager : MonoBehaviour
     //Snapshots
     public AudioMixerSnapshot intenseSnapshot; //bör göras om till [SerializedField] private
     public AudioMixerSnapshot normalSnapshot;
-
     //WorldSounds
     private AudioClip newWave;
-
+    private AudioClip generatorOnSound;
+    private AudioClip generatorOffSound;
     //PlayerSounds
     private AudioClip shootSound;
     private AudioClip meleeSound;
@@ -36,20 +36,23 @@ public class SoundManager : MonoBehaviour
     //World AudioSources
     private AudioSource intenseMusic; 
     private AudioSource newWaveAudioSource;
+    private AudioSource generatorSource;
+    private AudioSource generatorSourceOn;
 
 
     private float volLowRan = 0.3f;
     private float volHighRan = 1.0f;
     private float lowPitchRan = 0.3f;
     private float highPitchRan = 1.0f;
-    private float minHumDelay = 5.0f;
-    private float maxHumDelay = 25.0f;
+    private float minHumDelay = 25.0f;
+    private float maxHumDelay = 200.0f;
     void Start()
     {
         //World Sources
         intenseMusic = GameObject.Find("IntenseMusic").GetComponent<AudioSource>();
         newWaveAudioSource = GameObject.Find("NewWaveAudioSource").GetComponent<AudioSource>();
-
+        generatorSource = GameObject.Find("GeneratorAudioSource").GetComponent<AudioSource>();
+        generatorSourceOn = GameObject.Find("GeneratorOnAudioSource").GetComponent<AudioSource>();
         //Player sources
         shootSoundSource = GameObject.Find("ShootAudioSource").GetComponent<AudioSource>();
         reloadSoundSource = GameObject.Find("ReloadAudioSource").GetComponent<AudioSource>();
@@ -58,19 +61,17 @@ public class SoundManager : MonoBehaviour
         zombieDeathSource = GameObject.Find("ZombieDeathAudioSource").GetComponent<AudioSource>();
         zombieRoarSoundSource = GameObject.Find("ZombieRoarAudioSource").GetComponent<AudioSource>();
         zombieTakesDamageSoundSource = GameObject.Find("ZombieTakesDamageAudioSource").GetComponent<AudioSource>();
-
         //PlayerSounds
         meleeSound = Resources.Load<AudioClip>("Swing");
         shootSound = Resources.Load<AudioClip>("GunShot");
         reloadSound = Resources.Load<AudioClip>("Reload");
-
         //EnemySounds
         zombieDeathSound = Resources.Load<AudioClip>("ZombieDies");
         zombieTakesDamageSound = Resources.Load<AudioClip>("BulletImpact");
-
         //WorldSounds
         newWave = Resources.Load<AudioClip>("NewWave");
-
+        generatorOnSound = Resources.Load<AudioClip>("BulletImpact");
+        generatorOffSound = Resources.Load<AudioClip>("BulletImpact");
         //ambienceDay.time = Random.Range(0, 60);
         //pianoMusic.time = Random.Range(0, 60);
 
@@ -78,7 +79,7 @@ public class SoundManager : MonoBehaviour
     }
     void Update()
     {
-       // RandomiseSoundPlayback();
+        RandomiseSoundPlayback();
     }
 
     public void SoundPlaying(string clip)
@@ -118,27 +119,21 @@ public class SoundManager : MonoBehaviour
         if (clip == "zombieDamagedSound") //enemyAI
         {
             ZombieDamagedSound();
-            Debug.Log("zombieTookDamage");
         }
-        if (clip == "generatorTurnedOn") //Generator
+        if (clip == "generatorOn") //Generator
         {
-            //  GeneratorTurnedOn();
+              GeneratorTurnedOn();
             Debug.Log("generator turned on");
         }
-        if (clip == "generatorBroke") //Generator
+        if (clip == "generatorOff") //Generator
         {
-            //  GeneratorBroke();
+            GeneratorBroke();
             Debug.Log("generator broke");
         }
         if (clip == "newWave") //Generator
         {
             NewWave();
-            Debug.Log("generator broke");
         }
-    }
-    private void GameOver()
-    {
-        normalSnapshot.TransitionTo(0.0f);
     }
     private void Shoot()
     {
@@ -169,7 +164,7 @@ public class SoundManager : MonoBehaviour
     }
     private void NewWave()
     {
-        newWaveAudioSource.pitch = Random.Range(0.6f, highPitchRan);
+        newWaveAudioSource.pitch = Random.Range(0.8f, highPitchRan);
         newWaveAudioSource.PlayOneShot(newWave);
     }
 
@@ -185,11 +180,13 @@ public class SoundManager : MonoBehaviour
     }
     private void GeneratorTurnedOn()
     {
-
+        generatorSourceOn.pitch = Random.Range(0.8f, highPitchRan);
+        generatorSourceOn.PlayOneShot(generatorOnSound);
     }
     private void GeneratorBroke()
     {
-
+        generatorSource.pitch = Random.Range(0.8f, highPitchRan);
+        generatorSource.PlayOneShot(generatorOffSound);
     }
 
 }

@@ -33,7 +33,8 @@ public class Generator : MonoBehaviour{
 	[SerializeField] private ResourceManager rm;
 
 	private void Start(){
-		fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
+        sM = GameObject.Find("SM").GetComponent<SoundManager>();
+        fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
 		SetState(isOn);
 		FuelIndicator();
 	}
@@ -46,7 +47,9 @@ public class Generator : MonoBehaviour{
 			rm = interactable.interactingGameObject.GetComponentInChildren<ResourceManager>();
 			if(rm.Get(ResourceManager.ItemType.Scrap) >= 1 && !isOn)
             {
-				RefillFuel(100);
+                sM.SoundPlaying("generatorOn");
+
+                RefillFuel(100);
 				OpenDoors();
 				rm.Offset(ResourceManager.ItemType.Scrap, -1);
 			}
@@ -108,7 +111,8 @@ public class Generator : MonoBehaviour{
 	}
 
 	public void TurnOff(){
-		isOn = false;
+
+        isOn = false;
 		SetLightState(false);
 		fuelIndicator.enabled = false;
 	}

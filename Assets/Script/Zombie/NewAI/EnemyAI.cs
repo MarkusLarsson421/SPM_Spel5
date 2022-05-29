@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float chasingRange;
     [SerializeField] private float shootingRange;
 
-    public SoundManager sM; //Simon Hessling Oscarson
+    private SoundManager sM; //Simon Hessling Oscarson
     int counter = 0;
 
     public ZombieObjectPooled zOP;
