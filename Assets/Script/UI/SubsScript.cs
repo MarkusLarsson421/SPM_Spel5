@@ -6,6 +6,7 @@ public class SubsScript : MonoBehaviour{
     [SerializeField] private GameObject textBox;
     [SerializeField] private GameObject controlsTextBox;
     [SerializeField] private GameObject background;
+    private SoundManager sM; //Simon Hessling Oscarson
     public bool scrapPickUpLine;
 	public bool needToReload;
 	public bool flashLightLine;
@@ -19,7 +20,13 @@ public class SubsScript : MonoBehaviour{
     public float delay = 0.1f;
     private string fullText;
     private string currentText = "";
-    
+
+    private void Start()
+    {
+        sM = GameObject.Find("SM").GetComponent<SoundManager>();
+
+    }
+
     /*
      *       
      * @Author Simon Hessling Oscarson
@@ -63,6 +70,7 @@ public class SubsScript : MonoBehaviour{
         {
             currentText = fullText.Substring(0, i);
             textBox.GetComponent<TextMeshProUGUI>().text = currentText;
+            sM.SoundPlaying("subtitlesSound");
             yield return new WaitForSeconds(delay);
         }
 		yield return new WaitForSeconds(timeToFinish);

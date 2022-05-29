@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 //Martin Wallmark
 public class Interactor : MonoBehaviour
 {
+    private SoundManager sM; //Simon Hessling Oscarson
     public ResourceManager rM;
     // om det behövs mer instruktioner: https://www.youtube.com/watch?v=lZThP8KG1W0&t=21&ab_channel=JTAGames
     public LayerMask interactableLayerMask = 7;
@@ -23,7 +24,11 @@ public class Interactor : MonoBehaviour
 
     private bool canInteract = true;
     private float timer;
+    private void Awake()
+    {
+        sM = GameObject.Find("SM").GetComponent<SoundManager>();
 
+    }
     void Update()
     {
         
@@ -76,7 +81,8 @@ public class Interactor : MonoBehaviour
                 ChangeInteractionIcon();
                 if (isInteractPressed || Input.GetKeyDown(KeyCode.E))
                 {
-                    
+                    sM.SoundPlaying("pickUp");
+
                     interactable.onInteract.Invoke();
                     interactable.interactingGameObject = this.gameObject;
 

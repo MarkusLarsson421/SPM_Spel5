@@ -18,10 +18,14 @@ public class SoundManager : MonoBehaviour
     private AudioClip newWave;
     private AudioClip generatorOnSound;
     private AudioClip generatorOffSound;
+    private AudioClip subtitlesSound;
     //PlayerSounds
     private AudioClip shootSound;
     private AudioClip meleeSound;
     private AudioClip reloadSound;
+    private AudioClip pickUpSound;
+
+
     //EnemySounds
     private AudioClip zombieDeathSound;
     private AudioClip zombieTakesDamageSound;
@@ -29,6 +33,10 @@ public class SoundManager : MonoBehaviour
     private AudioSource shootSoundSource;
     private AudioSource meleeAttackSoundSource;
     private AudioSource reloadSoundSource;
+    private AudioSource pickUpSoundSource;
+    private AudioSource subtitlesSoundSource;
+
+
     //Enemy AudioSources
     private AudioSource zombieDeathSource;
     private AudioSource zombieTakesDamageSoundSource;
@@ -53,18 +61,24 @@ public class SoundManager : MonoBehaviour
         newWaveAudioSource = GameObject.Find("NewWaveAudioSource").GetComponent<AudioSource>();
         generatorSource = GameObject.Find("GeneratorAudioSource").GetComponent<AudioSource>();
         generatorSourceOn = GameObject.Find("GeneratorOnAudioSource").GetComponent<AudioSource>();
+        subtitlesSoundSource = GameObject.Find("SubtitlesAudioSource").GetComponent<AudioSource>();
+
         //Player sources
         shootSoundSource = GameObject.Find("ShootAudioSource").GetComponent<AudioSource>();
         reloadSoundSource = GameObject.Find("ReloadAudioSource").GetComponent<AudioSource>();
         meleeAttackSoundSource = GameObject.Find("MeleeAudioSource").GetComponent<AudioSource>();
+        pickUpSoundSource = GameObject.Find("PickUpSoundSource").GetComponent<AudioSource>();
         //Enemy sources
         zombieDeathSource = GameObject.Find("ZombieDeathAudioSource").GetComponent<AudioSource>();
         zombieRoarSoundSource = GameObject.Find("ZombieRoarAudioSource").GetComponent<AudioSource>();
         zombieTakesDamageSoundSource = GameObject.Find("ZombieTakesDamageAudioSource").GetComponent<AudioSource>();
+
         //PlayerSounds
         meleeSound = Resources.Load<AudioClip>("Swing");
         shootSound = Resources.Load<AudioClip>("GunShot");
         reloadSound = Resources.Load<AudioClip>("Reload");
+        pickUpSound = Resources.Load<AudioClip>("PickUp");
+        subtitlesSound = Resources.Load<AudioClip>("Subtitles");
         //EnemySounds
         zombieDeathSound = Resources.Load<AudioClip>("ZombieDies");
         zombieTakesDamageSound = Resources.Load<AudioClip>("BulletImpact");
@@ -111,6 +125,14 @@ public class SoundManager : MonoBehaviour
             MeleeAttackSound();
             Debug.Log("meleeAttackSounds");
         }
+        if (clip == "pickUp") //Interactor
+        {
+            PickUp();
+        }
+        if (clip == "subtitlesSound") //SubsScript
+        {
+            Subtitles();
+        }
         if (clip == "zombieDeathSound") //enemyAI
         {
               ZombieDeathSound();
@@ -144,6 +166,17 @@ public class SoundManager : MonoBehaviour
     {
         meleeAttackSoundSource.pitch = Random.Range(0.6f, highPitchRan);//kanske ska ha samma pitch hela tiden?
         meleeAttackSoundSource.PlayOneShot(meleeSound);
+    }
+    private void PickUp()
+    {
+        pickUpSoundSource.pitch = Random.Range(0.8f, highPitchRan);//kanske ska ha samma pitch hela tiden?
+        pickUpSoundSource.PlayOneShot(pickUpSound);
+    }
+
+    private void Subtitles()
+    {
+        subtitlesSoundSource.pitch = Random.Range(0.8f, highPitchRan);//kanske ska ha samma pitch hela tiden?
+        subtitlesSoundSource.PlayOneShot(subtitlesSound);
     }
     private void ZombieDeathSound()
     {
