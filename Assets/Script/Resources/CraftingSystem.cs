@@ -211,6 +211,7 @@ public class CraftingSystem : MonoBehaviour
                     playerOneRM.Offset(ResourceManager.ItemType.Battery, -1);
                     playerOneRM.Offset(ResourceManager.ItemType.Scrap, -3);
                     playerOneWeapon.SetMagCapacity(12);
+                    playerOneWeapon.ReloadOnce();
                     list.Add(currentPlayerTag);
 
                     UpdateInfoText("GotUpgrade");
@@ -230,6 +231,7 @@ public class CraftingSystem : MonoBehaviour
                     playerTwoRM.Offset(ResourceManager.ItemType.Scrap, -3);
                     playerTwoWeapon.SetMagCapacity(12);
                     list.Add(currentPlayerTag);
+                    playerTwoWeapon.ReloadOnce();
 
                     UpdateInfoText("GotUpgrade");
 

@@ -121,7 +121,7 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        if (currentMag <= 0)
+        if (currentMag <= 0 && rm.Get(ResourceManager.ItemType.Ammo) > 0 )
         {
             StartCoroutine(Reload());
         }
@@ -193,5 +193,10 @@ public class Weapon : MonoBehaviour
     public void SetCanFire(bool nCanFire)
     {
         canFire = nCanFire;
+    }
+
+    public void ReloadOnce()
+    {
+        StartCoroutine(Reload());
     }
 }
