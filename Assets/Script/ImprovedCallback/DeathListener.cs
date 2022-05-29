@@ -30,7 +30,7 @@ namespace EventCallbacks
         }
         void SoundListener(PlayerDieEvent unitDeathInfo) //SoundListener är dåligt namn
         {
-            speaker.PlayOneShot(deathSound);
+           // speaker.PlayOneShot(deathSound); //Ska inte finnas här 
 
         }
         void RemoveListener(PlayerDieEvent unitDeathInfo) //RemoveListener är dåligt namn

@@ -8,6 +8,7 @@ using TMPro;
  */
 public class ZombieObjectPooled : MonoBehaviour
 {
+    private SoundManager sM;
     [SerializeField] private TMP_Text waveText;
     [SerializeField] private Generator generator;
     private static int zombiesNextWave;
@@ -26,6 +27,8 @@ public class ZombieObjectPooled : MonoBehaviour
     {
         NoMoreZombies();
         zP = ZombiePool.Instance;
+        sM = GameObject.Find("SM").GetComponent<SoundManager>();
+
     }
     private void Update()
     {
@@ -60,6 +63,7 @@ public class ZombieObjectPooled : MonoBehaviour
     private void SimpleWaveIncreaser()
     {
         currentWave++;
+        sM.SoundPlaying("newWave");
         if(currentWave == 1)
         {
             zombiesNextWave = 7;

@@ -14,8 +14,12 @@ public class SoundManager : MonoBehaviour
     //Snapshots
     public AudioMixerSnapshot intenseSnapshot; //bör göras om till [SerializedField] private
     public AudioMixerSnapshot normalSnapshot;
+
+    //WorldSounds
+    private AudioClip newWave;
+
     //PlayerSounds
-    private  AudioClip shootSound;
+    private AudioClip shootSound;
     private AudioClip meleeSound;
     private AudioClip reloadSound;
     //EnemySounds
@@ -31,6 +35,8 @@ public class SoundManager : MonoBehaviour
     private AudioSource zombieRoarSoundSource; //AudioSourcen har ljudet på sig.
     //World AudioSources
     private AudioSource intenseMusic; 
+    private AudioSource newWaveAudioSource;
+
 
     private float volLowRan = 0.3f;
     private float volHighRan = 1.0f;
@@ -42,6 +48,8 @@ public class SoundManager : MonoBehaviour
     {
         //World Sources
         intenseMusic = GameObject.Find("IntenseMusic").GetComponent<AudioSource>();
+        newWaveAudioSource = GameObject.Find("NewWaveAudioSource").GetComponent<AudioSource>();
+
         //Player sources
         shootSoundSource = GameObject.Find("ShootAudioSource").GetComponent<AudioSource>();
         reloadSoundSource = GameObject.Find("ReloadAudioSource").GetComponent<AudioSource>();
@@ -59,6 +67,9 @@ public class SoundManager : MonoBehaviour
         //EnemySounds
         zombieDeathSound = Resources.Load<AudioClip>("ZombieDies");
         zombieTakesDamageSound = Resources.Load<AudioClip>("BulletImpact");
+
+        //WorldSounds
+        newWave = Resources.Load<AudioClip>("NewWave");
 
         //ambienceDay.time = Random.Range(0, 60);
         //pianoMusic.time = Random.Range(0, 60);
@@ -119,6 +130,11 @@ public class SoundManager : MonoBehaviour
             //  GeneratorBroke();
             Debug.Log("generator broke");
         }
+        if (clip == "newWave") //Generator
+        {
+            NewWave();
+            Debug.Log("generator broke");
+        }
     }
     private void GameOver()
     {
@@ -150,6 +166,11 @@ public class SoundManager : MonoBehaviour
     {
         reloadSoundSource.pitch = Random.Range(0.6f, highPitchRan);
         reloadSoundSource.PlayOneShot(reloadSound);
+    }
+    private void NewWave()
+    {
+        newWaveAudioSource.pitch = Random.Range(0.6f, highPitchRan);
+        newWaveAudioSource.PlayOneShot(newWave);
     }
 
     private void RandomiseSoundPlayback()
