@@ -11,37 +11,26 @@ using UnityEngine.Audio;
      */
 public class SoundManager : MonoBehaviour
 {
-    
-
-    
-
+    //Snapshots
+    public AudioMixerSnapshot intenseSnapshot; //bör göras om till [SerializedField] private
+    public AudioMixerSnapshot normalSnapshot;
     //PlayerSounds
     private  AudioClip shootSound;
     private AudioClip meleeSound;
     private AudioClip reloadSound;
     //EnemySounds
-    public static AudioClip zombieDeathSound;
-
-    
-
-    //WorldSounds
-    public AudioMixerSnapshot intenseSnapshot; //bör göras om till [SerializedField] private
-    public AudioMixerSnapshot normalSnapshot;
-    /*public AudioMixerSnapshot paused;
-    public AudioMixerSnapshot gameOver;*/
-
-    
-    
+    private AudioClip zombieDeathSound;
+    private AudioClip zombieTakesDamageSound;
     //Player AudioSources
     private AudioSource shootSoundSource;
     private AudioSource meleeAttackSoundSource;
     private AudioSource reloadSoundSource;
-
     //Enemy AudioSources
     private AudioSource zombieDeathSource;
-    private AudioSource zombieRoarSoundSource;
-
-    private AudioSource intenseMusic;
+    private AudioSource zombieTakesDamageSoundSource;
+    private AudioSource zombieRoarSoundSource; //AudioSourcen har ljudet på sig.
+    //World AudioSources
+    private AudioSource intenseMusic; 
 
     private float volLowRan = 0.3f;
     private float volHighRan = 1.0f;
@@ -51,38 +40,39 @@ public class SoundManager : MonoBehaviour
     private float maxHumDelay = 25.0f;
     void Start()
     {
+        //World Sources
         intenseMusic = GameObject.Find("IntenseMusic").GetComponent<AudioSource>();
-        //AudioSources
+        //Player sources
         shootSoundSource = GameObject.Find("ShootAudioSource").GetComponent<AudioSource>();
         reloadSoundSource = GameObject.Find("ReloadAudioSource").GetComponent<AudioSource>();
+        meleeAttackSoundSource = GameObject.Find("MeleeAudioSource").GetComponent<AudioSource>();
+        //Enemy sources
+        zombieDeathSource = GameObject.Find("ZombieDeathAudioSource").GetComponent<AudioSource>();
+        zombieRoarSoundSource = GameObject.Find("ZombieRoarAudioSource").GetComponent<AudioSource>();
+        zombieTakesDamageSoundSource = GameObject.Find("ZombieTakesDamageAudioSource").GetComponent<AudioSource>();
 
-        //zombieDeathSource;
-        //meleeAttackSoundSource;
-        //zombieRoarSoundSource;
-
+        //PlayerSounds
         meleeSound = Resources.Load<AudioClip>("Swing");
-        shootSound = Resources.Load<AudioClip>("BulletImpact");
+        shootSound = Resources.Load<AudioClip>("GunShot");
         reloadSound = Resources.Load<AudioClip>("Reload");
-        zombieDeathSound = Resources.Load<AudioClip>("ADD_SOUND_NAME");
-         
-         
-         //ambienceDay.time = Random.Range(0, 60);
-         //pianoMusic.time = Random.Range(0, 60);
 
-         SoundPlaying("normalSnapshot");
+        //EnemySounds
+        zombieDeathSound = Resources.Load<AudioClip>("ZombieDies");
+        zombieTakesDamageSound = Resources.Load<AudioClip>("BulletImpact");
+
+        //ambienceDay.time = Random.Range(0, 60);
+        //pianoMusic.time = Random.Range(0, 60);
+
+        SoundPlaying("normalSnapshot");
     }
     void Update()
     {
-        RandomiseSoundPlayback();
+       // RandomiseSoundPlayback();
     }
 
     public void SoundPlaying(string clip)
     { //hanterar vilket ljud som spelas. kallas på i andra scripts.
-        if (clip == "paused")
-        {
-            //paused.TransitionTo(0.0f);
-            Debug.Log("DOESNTEXISTYET");
-        }
+
         if (clip == "intenseSnapshot")
         {
             intenseSnapshot.TransitionTo(0.0f);
@@ -95,11 +85,6 @@ public class SoundManager : MonoBehaviour
             normalSnapshot.TransitionTo(0.0f);
             intenseMusic.Stop();
             Debug.Log("normalMusic");
-        }
-        if (clip == "gameOver")
-        {
-            // GameOver();
-            Debug.Log("DOESNTEXISTYET");
         }
         if (clip == "shootSound") //Weapon
         {
@@ -116,8 +101,13 @@ public class SoundManager : MonoBehaviour
         }
         if (clip == "zombieDeathSound") //enemyAI
         {
-            //  ZombieDeathSound();
+              ZombieDeathSound();
             Debug.Log("zombieDiedd");
+        }
+        if (clip == "zombieDamagedSound") //enemyAI
+        {
+            ZombieDamagedSound();
+            Debug.Log("zombieTookDamage");
         }
         if (clip == "generatorTurnedOn") //Generator
         {
@@ -133,9 +123,6 @@ public class SoundManager : MonoBehaviour
     private void GameOver()
     {
         normalSnapshot.TransitionTo(0.0f);
-        //balloonPop.pitch = (counter.GetTimePassed() / 10);
-        // balloonPop.PlayOneShot(balloonPopSound);
-        //  gameOver.TransitionTo(0.0f);
     }
     private void Shoot()
     {
@@ -152,6 +139,12 @@ public class SoundManager : MonoBehaviour
         float vol = Random.Range(volLowRan, volHighRan);
         zombieDeathSource.pitch = Random.Range(lowPitchRan, highPitchRan);
         zombieDeathSource.PlayOneShot(zombieDeathSound, vol);
+    }
+    private void ZombieDamagedSound()
+    {
+        float vol = Random.Range(volLowRan, volHighRan);
+        zombieTakesDamageSoundSource.pitch = Random.Range(lowPitchRan, highPitchRan);
+        zombieTakesDamageSoundSource.PlayOneShot(zombieTakesDamageSound, vol);
     }
     private void ReloadSound()
     {

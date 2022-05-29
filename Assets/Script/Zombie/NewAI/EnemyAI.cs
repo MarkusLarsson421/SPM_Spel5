@@ -137,11 +137,12 @@ public class EnemyAI : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        sM.SoundPlaying("zombieDamagedSound");
         anim.SetTrigger("Stun4");
         if (_currentHealth <= 0)
         {
             ++counter;
-            sM.SoundPlaying("zombieDeathSound");//Simon Hessling Oscarson
+            //sM.SoundPlaying("zombieDeathSound");//Simon Hessling Oscarson
             //agent.transform.position = Vector3.zero;
             _collider.enabled = false;
             //_collider
