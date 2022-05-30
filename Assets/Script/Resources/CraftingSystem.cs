@@ -251,7 +251,7 @@ public class CraftingSystem : MonoBehaviour
         }
     }
 
-    public void flashLightUpgrade()
+    public void TotalAmmoUpgrade()
     {
         if (!isButtonClicked)
         {
@@ -268,7 +268,7 @@ public class CraftingSystem : MonoBehaviour
             {
                 if (playerOneRM.Get(ResourceManager.ItemType.Battery) >= 3 && playerOneRM.Get(ResourceManager.ItemType.Scrap) >= 1)
                 {
-                    playerOneRM.SetMaxAmmo(100);
+                    playerOneRM.SetMaxAmmo(150);
                     list.Add(currentPlayerTag);
                     UpdateInfoText("GotUpgrade");
                     playerOneFlashLightUpgrade.GetComponent<Button>().interactable = false;
@@ -282,9 +282,7 @@ public class CraftingSystem : MonoBehaviour
             {
                 if (playerTwoRM.Get(ResourceManager.ItemType.Battery) >= 3 && playerTwoRM.Get(ResourceManager.ItemType.Scrap) >= 1)
                 {
-                    playerTwoRM.Offset(ResourceManager.ItemType.Battery, -3);
-                    playerTwoRM.Offset(ResourceManager.ItemType.Scrap, -1);
-                    playerTwoFlashLight.SetDrainMultiplier(0.25f);
+                    playerTwoRM.SetMaxAmmo(150);
                     list.Add(currentPlayerTag);
                     UpdateInfoText("GotUpgrade");
                     playerTwoFlashLightUpgrade.GetComponent<Button>().interactable = false;
@@ -315,12 +313,12 @@ public class CraftingSystem : MonoBehaviour
 
             playerOneDamageUpgrade = playerOneButtons.gameObject.transform.Find("DamageUpgrade").gameObject;
             playerOneMagazineUpgrade = playerOneButtons.gameObject.transform.Find("MagazineUpgrade").gameObject;
-            playerOneFlashLightUpgrade = playerOneButtons.gameObject.transform.Find("fireRateUpgrade").gameObject;
+            playerOneFlashLightUpgrade = playerOneButtons.gameObject.transform.Find("TotalAmmoUpgrade").gameObject;
             playerOneCancelButton = playerOneButtons.gameObject.transform.Find("CancelButton").gameObject;
 
             playerOneDamageUpgrade.gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
             playerOneMagazineUpgrade.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
-            playerOneFlashLightUpgrade.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
+            playerOneFlashLightUpgrade.GetComponent<Button>().onClick.AddListener(delegate { TotalAmmoUpgrade(); });
 
             playerOneRM = interactingPlayer.GetComponentInChildren<ResourceManager>();
             playerOneWeapon = interactingPlayer.GetComponentInChildren<Weapon>();
@@ -336,12 +334,12 @@ public class CraftingSystem : MonoBehaviour
 
             playerTwoDamageUpgrade = playerTwoButtons.gameObject.transform.Find("DamageUpgrade").gameObject;
             playerTwoMagazineUpgrade = playerTwoButtons.gameObject.transform.Find("MagazineUpgrade").gameObject;
-            playerTwoFlashLightUpgrade = playerTwoButtons.gameObject.transform.Find("fireRateUpgrade").gameObject;
+            playerTwoFlashLightUpgrade = playerTwoButtons.gameObject.transform.Find("TotalAmmoUpgrade").gameObject;
             playerTwoCancelButton = playerTwoButtons.gameObject.transform.Find("CancelButton").gameObject;
 
             playerTwoDamageUpgrade.gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
             playerTwoMagazineUpgrade.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
-            playerTwoFlashLightUpgrade.GetComponent<Button>().onClick.AddListener(delegate { flashLightUpgrade(); });
+            playerTwoFlashLightUpgrade.GetComponent<Button>().onClick.AddListener(delegate { TotalAmmoUpgrade(); });
 
             playerTwoRM = interactingPlayer.GetComponentInChildren<ResourceManager>();
             playerTwoWeapon = interactingPlayer.GetComponentInChildren<Weapon>();
