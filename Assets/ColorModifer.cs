@@ -6,7 +6,7 @@ public class ColorModifer : MonoBehaviour
 {
     Image image;
     Color c;
-    public int value;
+    private int value;
    
     // Start is called before the first frame update
     void Start()
@@ -22,8 +22,41 @@ public class ColorModifer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(HpSampleToggler());
-        
+        HpIndicator();
+        //StartCoroutine(HpSampleToggler());
+
+    }
+    public void setValue(int value)
+    {
+        this.value = value;
+    }
+    void HpIndicator()
+    {
+        if (value <= 20)
+        {
+            c.a = 0.75f;
+            image.color = c;
+        }
+        else if (value <= 40)
+        {
+            c.a = 0.5f;
+            image.color = c;
+        }
+        else if (value <= 60)
+        {
+            c.a = 0.25f;
+            image.color = c;
+        }
+        else if (value <= 80)
+        {
+            c.a = 0.25f;
+            image.color = c;
+        }
+        else
+        {
+            c.a = 0f;
+            image.color = c;
+        }
     }
    
         IEnumerator HpSampleToggler()

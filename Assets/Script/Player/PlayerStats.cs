@@ -27,6 +27,7 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
+        UpdatePlayerStatsCnvas();
 
         if (isHit)
         {
