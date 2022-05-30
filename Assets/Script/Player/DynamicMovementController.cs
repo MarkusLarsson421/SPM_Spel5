@@ -79,7 +79,7 @@ public class DynamicMovementController : MonoBehaviour
         maxSpeed = initialMaxSpeed;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         
         
