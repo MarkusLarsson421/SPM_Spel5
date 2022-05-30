@@ -27,7 +27,6 @@ public class PickupListener : MonoBehaviour{
 	
 	//Unregister listener
 	private void OnDestroy(){
-        Debug.Log("whyyyyy");
         PickUpEvent.UnregisterListener(OnItemPickedUp);
 	}
 }
