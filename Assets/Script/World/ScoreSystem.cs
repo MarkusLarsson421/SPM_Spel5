@@ -46,6 +46,4 @@ public class ScoreSystem : MonoBehaviour
         DisplayZombieWave();
         DisplayZombiesKilled();
     }
-
-
 }

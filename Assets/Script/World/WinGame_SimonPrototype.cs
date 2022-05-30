@@ -39,7 +39,7 @@ public class WinGame_SimonPrototype : MonoBehaviour
 
             rm.SetTotal(ResourceManager.ItemType.Scrap, 0);
             Debug.Log("rm scraps = " + rm.Get(ResourceManager.ItemType.Scrap) + " scrapsInCar = " + scrapsInCar);
-            scrapsInCarText.text = "scraps in car " + scrapsInCar + " / " + scrapsNeededToFixCar;
+            scrapsInCarText.text = "      in car " + scrapsInCar + " / " + scrapsNeededToFixCar;
             if (scrapsInCar >= scrapsNeededToFixCar)
             {
 
