@@ -158,6 +158,7 @@ public class CraftingSystem : MonoBehaviour
 
                     list.Add(currentPlayerTag);
                     UpdateInfoText("GotUpgrade");
+                    playerOneDamageUpgrade.GetComponent<Button>().interactable = false;
                 }
                 else
                 {
@@ -174,6 +175,7 @@ public class CraftingSystem : MonoBehaviour
 
                     list.Add(currentPlayerTag);
                     UpdateInfoText("GotUpgrade");
+                    playerTwoDamageUpgrade.GetComponent<Button>().interactable = false;
                 }
                 else
                 {
@@ -215,6 +217,7 @@ public class CraftingSystem : MonoBehaviour
                     list.Add(currentPlayerTag);
 
                     UpdateInfoText("GotUpgrade");
+                    playerOneMagazineUpgrade.GetComponent<Button>().interactable = false;
 
                 }
                 else
@@ -234,6 +237,7 @@ public class CraftingSystem : MonoBehaviour
                     playerTwoWeapon.ReloadOnce();
 
                     UpdateInfoText("GotUpgrade");
+                    playerTwoMagazineUpgrade.GetComponent<Button>().interactable = false;
 
                 }
                 else
@@ -267,6 +271,7 @@ public class CraftingSystem : MonoBehaviour
                     playerOneRM.SetMaxAmmo(100);
                     list.Add(currentPlayerTag);
                     UpdateInfoText("GotUpgrade");
+                    playerOneFlashLightUpgrade.GetComponent<Button>().interactable = false;
                 }
                 else
                 {
@@ -282,6 +287,7 @@ public class CraftingSystem : MonoBehaviour
                     playerTwoFlashLight.SetDrainMultiplier(0.25f);
                     list.Add(currentPlayerTag);
                     UpdateInfoText("GotUpgrade");
+                    playerTwoFlashLightUpgrade.GetComponent<Button>().interactable = false;
                 }
                 else
                 {
