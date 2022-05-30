@@ -264,9 +264,7 @@ public class CraftingSystem : MonoBehaviour
             {
                 if (playerOneRM.Get(ResourceManager.ItemType.Battery) >= 3 && playerOneRM.Get(ResourceManager.ItemType.Scrap) >= 1)
                 {
-                    playerOneRM.Offset(ResourceManager.ItemType.Battery, -3);
-                    playerOneRM.Offset(ResourceManager.ItemType.Scrap, -1);
-                    playerOneFlashLight.SetDrainMultiplier(0.25f);
+                    playerOneRM.SetMaxAmmo(100);
                     list.Add(currentPlayerTag);
                     UpdateInfoText("GotUpgrade");
                 }

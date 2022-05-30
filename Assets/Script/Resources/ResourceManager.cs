@@ -90,4 +90,9 @@ public class ResourceManager : MonoBehaviour
     {
 		return batteriesMax;
     }
+
+	public void SetMaxAmmo(int nMaxAmmo)
+    {
+		ammoMax = nMaxAmmo;
+    }
 }
