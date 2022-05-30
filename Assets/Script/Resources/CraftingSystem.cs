@@ -116,10 +116,12 @@ public class CraftingSystem : MonoBehaviour
             
             isToggled = true;
             infoText.enabled = true;
-            
-            infoText.text = "Craft here! \n" + "\nUpgrade damage: 2 Batteries, 2 Scraps \n" + "\nUpgrade magazine: 1 Battery, 3 Scraps \n" + "\nUpgrade flashlight: 3 Batteries, 1 Scrap";
-            
-            
+
+            //infoText.text = "Craft here! \n" + "\nUpgrade damage: 2 Batteries, 2 Scraps \n" + "\nUpgrade magazine: 1 Battery, 3 Scraps \n" + "\nUpgrade flashlight: 3 Batteries, 1 Scrap";
+            infoText.text = "";
+
+
+
         }
         else
         {
