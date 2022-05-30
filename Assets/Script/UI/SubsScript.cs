@@ -21,12 +21,13 @@ public class SubsScript : MonoBehaviour{
     private string fullText;
     private string currentText = "";
 
-    private void Start()
+    
+    private void Awake()
     {
-        sM = GameObject.Find("SM").GetComponent<SoundManager>();
-
+        
+        
+        Debug.Log(sM);
     }
-
     /*
      *       
      * @Author Simon Hessling Oscarson
@@ -66,6 +67,7 @@ public class SubsScript : MonoBehaviour{
 
 	private IEnumerator Subtitle(string text, int timeToFinish){
         fullText = text;
+        sM = GameObject.Find("SM").GetComponent<SoundManager>();
         for (int i = 0; i < fullText.Length; i++)
         {
             currentText = fullText.Substring(0, i);
@@ -88,7 +90,7 @@ public class SubsScript : MonoBehaviour{
     }
     private IEnumerator ToolTips(int timeToStart, int timeToFinish)
     {
-        
+        Debug.Log("gegkwogeggdsgsdgdsgdsgdsdsg");
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "";
         yield return new WaitForSeconds(3);
         background.SetActive(true);
@@ -116,9 +118,11 @@ public class SubsScript : MonoBehaviour{
 
     public void FixCarLinePlay()
     {
-        StartCoroutine(Subtitle("Dan: We got to fix the car.", timeToShowText));
+        
 
-        StartCoroutine(ToolTips( 2, timeToShowText));
+        StartCoroutine(ToolTips(2, timeToShowText));
+
+        StartCoroutine(Subtitle("Dan: We got to fix the car.", timeToShowText));
     }
     public void ScrapsUsedForCarLine()
     {

@@ -13,7 +13,7 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private Transform playerOneSpawnPoint;
     [SerializeField] private Transform playerTwoSpawnPoint;
     [SerializeField] private PlayerInputManager playerInputManager;
-    [SerializeField] private SubsScript ss;
+    private SubsScript ss;
     [SerializeField] private GameObject player1Prefab;
     [SerializeField] private GameObject player2Prefab;
     [SerializeField] private GameObject startCamera;
@@ -34,6 +34,7 @@ public class PlayerSpawnManager : MonoBehaviour
     {
         playerInputManager.playerPrefab = player1Prefab;
     }
+   
 
     private void Update()
     {
@@ -51,17 +52,18 @@ public class PlayerSpawnManager : MonoBehaviour
 
         if(playerInput.gameObject.GetComponent<PlayerStartInfo>().GetPlayerID() == 1)
         {
-            if(ss != null)
-            {
-                ss.FixCarLinePlay();
-            }
-            
+
+            ss = playerInput.gameObject.GetComponentInChildren<SubsScript>();
             DestroyStartImage();
             player1 = playerInput.gameObject;
             player1.GetComponent<PlayerStartInfo>().SetStartPosition(playerOneSpawnPoint.position);
             player1.GetComponent<PlayerStartInfo>().SetPlayerRotation(player1Rotation);
             player1.tag = "Player1";
             playerInputManager.playerPrefab = player2Prefab;
+            if (ss != null)
+            {
+                ss.FixCarLinePlay();
+            }
         }
         else
         {
