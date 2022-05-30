@@ -90,9 +90,21 @@ public class SubsScript : MonoBehaviour{
     {
         
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "";
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(3);
         background.SetActive(true);
-        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "press START to see controls";
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "Controls:";
+        yield return new WaitForSeconds(3);
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "Left Trigger(LT) - Use Flashlight";
+        yield return new WaitForSeconds(2);
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "B - Toggle Sprint";
+        yield return new WaitForSeconds(2);
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "Y - Switch Weapon";
+        yield return new WaitForSeconds(2);
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "X - Reload";
+        yield return new WaitForSeconds(2);
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "A - Interact";
+        yield return new WaitForSeconds(2);
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "START - Controls and Pause";
         yield return new WaitForSeconds(4);
         background.SetActive(false);
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "";
