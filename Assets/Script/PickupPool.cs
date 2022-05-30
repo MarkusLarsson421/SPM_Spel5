@@ -42,7 +42,7 @@ public class PickupPool : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            randomItem = Random.Range(0, 3);
+            randomItem = Random.Range(0, 2);
             switch (randomItem)
             {
                 case 0:
