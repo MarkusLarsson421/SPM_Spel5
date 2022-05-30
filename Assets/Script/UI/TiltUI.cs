@@ -11,8 +11,13 @@ public class TiltUI : MonoBehaviour
      */
 
     // Update is called once per frame
+    private void Start()
+    {
+        StartCoroutine(Shaker());
+    }
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.A))
         {
             TiltImageLeft();
@@ -63,5 +68,24 @@ public class TiltUI : MonoBehaviour
     {
         transform.Rotate(-10, 0, 0);
     }
-   
+
+    IEnumerator Shaker()
+    {
+        transform.Rotate(0, 0, -2);
+        yield return new WaitForSeconds(0.1f);
+        transform.Rotate(0, 0, 4 );
+        yield return new WaitForSeconds(0.1f);
+        transform.Rotate(0, 0, -4);
+        yield return new WaitForSeconds(0.1f);
+        transform.Rotate(0, 0, 4);
+        yield return new WaitForSeconds(0.1f);
+        transform.Rotate(0, 0, -4);
+        yield return new WaitForSeconds(0.1f);
+        transform.Rotate(0, 0, 4);
+        yield return new WaitForSeconds(0.1f);
+        transform.Rotate(0, 0, -2);
+
+
+    }
+
 }
