@@ -7,6 +7,7 @@ public class ColorModifer : MonoBehaviour
     Image image;
     Color c;
     public int value;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class ColorModifer : MonoBehaviour
     void Update()
     {
         StartCoroutine(HpSampleToggler());
+        
     }
    
         IEnumerator HpSampleToggler()
@@ -31,10 +33,10 @@ public class ColorModifer : MonoBehaviour
         {
             c.a = 0.25f;
             image.color = c;
-            yield return new WaitForSeconds(8f);
-            c.a = 0.15f;
+            yield return new WaitForSeconds(4f);
+            c.a = 0.20f;
             image.color = c;
-            yield return new WaitForSeconds(8f);
+            yield return new WaitForSeconds(4f);
 
             
         }
