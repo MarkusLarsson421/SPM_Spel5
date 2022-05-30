@@ -88,7 +88,7 @@ public class PickupPool : MonoBehaviour
             if(i == randomNumber)
             {
                 pickUp.transform.position = spawnPoints[i].transform.position;
-                //spawnPoints[i].GetComponent<PickupObjectPooled>().SetAbleToSpawn(true);
+                spawnPoints[i].GetComponent<PickupObjectPooled>().SetAbleToSpawn(true);
                 //se över detta. Items spawnar inuti varandra
             }
         }
