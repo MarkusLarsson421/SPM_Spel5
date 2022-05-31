@@ -118,11 +118,12 @@ public class SubsScript : MonoBehaviour{
 
     public void FixCarLinePlay()
     {
-        
-
-        StartCoroutine(ToolTips(2, timeToShowText));
-
         StartCoroutine(Subtitle("Dan: We got to fix the car.", timeToShowText));
+    }
+
+    public void PlayInfoAboutStuff()
+    {
+        StartCoroutine(ToolTips(2, timeToShowText));
     }
     public void ScrapsUsedForCarLine()
     {
