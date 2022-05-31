@@ -24,7 +24,8 @@ public class Weapon : MonoBehaviour
 
     private bool canFire = true;
 
-    private ParticleSystem muzzleFlash;
+    [SerializeField] private ParticleSystem[] muzzleFlash;
+
 
     [SerializeField] private Camera fpsCamera;
 
@@ -34,7 +35,6 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         currentMag = magCapacity;
-        muzzleFlash = transform.GetChild(0).GetComponent<ParticleSystem>();
     }
     private void Awake()
     {
@@ -101,7 +101,10 @@ public class Weapon : MonoBehaviour
     private void Fire()
     {
         currentMag--;
-        muzzleFlash.Play();
+        for(int i = 0; i < muzzleFlash.Length; i++)
+        {
+            muzzleFlash[i].Play();
+        }
         sM.SoundPlaying("shootSound");
         //temp shoot animation - nyman
         if (!isReloading)
