@@ -14,14 +14,14 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private Image axeImageSmall;
     [SerializeField] private Image gunImageBig;
     [SerializeField] private Image axeImageBig;
-    [SerializeField] private Image ak47ImageBig;
-    [SerializeField] private Image ak47ImageSmall;
+    //[SerializeField] private Image ak47ImageBig;
+    //[SerializeField] private Image ak47ImageSmall;
 
     private void Start()
     {
         gunImageSmall.enabled = false;
         axeImageBig.enabled = false;
-        ak47ImageBig.enabled = false;
+        
     }
 
     private void Update()
@@ -55,6 +55,9 @@ public class UIHandler : MonoBehaviour
         scrapText.text = rm.Get(ResourceManager.ItemType.Scrap)+"";
     }
 
+    /**
+     * @Author Martin Wallmark
+     */
     public void SwitchWeaponIcons(string currentWeapon)
     {
         switch (currentWeapon)
@@ -65,30 +68,35 @@ public class UIHandler : MonoBehaviour
             case "Pistol":
                 EnlargePistolIcon();
                 break;
-            case "AK47":
-                EnlargeAKIcon();
-                break;
+            
         }
     }
 
+    
     public void SetCurrentHealth(int currentHealth)
     {
         healthText.text = currentHealth+"";
     }
 
+    /**
+     * @Author Martin Wallmark
+     */
+
     private void EnlargeMeleeIcon()
     {
         gunImageBig.enabled = false;
-        gunImageSmall.enabled = false;
+        gunImageSmall.enabled = true;
 
         axeImageBig.enabled = true;
         axeImageSmall.enabled = false;
 
-        ak47ImageBig.enabled = false;
-        ak47ImageSmall.enabled = true;
+        
 
     }
 
+    /**
+     * @Author Martin Wallmark
+     */
     private void EnlargePistolIcon()
     {
         gunImageBig.enabled = true;
@@ -97,12 +105,11 @@ public class UIHandler : MonoBehaviour
         axeImageBig.enabled = false;
         axeImageSmall.enabled = true;
 
-        ak47ImageBig.enabled = false;
-        ak47ImageSmall.enabled = false;
+        
 
 
     }
-
+    /*
     private void EnlargeAKIcon()
     {
 
@@ -116,4 +123,5 @@ public class UIHandler : MonoBehaviour
         axeImageSmall.enabled = false;
 
     }
+    */
 }
