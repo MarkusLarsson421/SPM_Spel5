@@ -39,7 +39,7 @@ public class SubsScript : MonoBehaviour{
     private void Update(){
         if (generatorBrokeFirstTime)
         {
-            StartCoroutine(Subtitle("Shit, the generator broke, we have to fix it.", timeToShowText));
+            StartCoroutine(Subtitle(1,"Shit, the generator broke, we have to fix it.", timeToShowText));
             generatorBrokeFirstTime = false;
         }
         /*
@@ -65,8 +65,9 @@ public class SubsScript : MonoBehaviour{
 		}*/
 	}
 
-	private IEnumerator Subtitle(string text, int timeToFinish){
+	private IEnumerator Subtitle(int startWaitTime, string text, int timeToFinish){
         fullText = text;
+        yield return new WaitForSeconds(startWaitTime);
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
         for (int i = 0; i < fullText.Length; i++)
         {
@@ -97,16 +98,16 @@ public class SubsScript : MonoBehaviour{
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "Controls:";
         yield return new WaitForSeconds(3);
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "Left Trigger(LT) - Use Flashlight";
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "B - Toggle Sprint";
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "Y - Switch Weapon";
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "X - Reload";
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "A - Interact";
-        yield return new WaitForSeconds(2);
-        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "START - Controls and Pause";
+        yield return new WaitForSeconds(1);
+        controlsTextBox.GetComponent<TextMeshProUGUI>().text = "START - see Controls and Pause";
         yield return new WaitForSeconds(4);
         background.SetActive(false);
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "";
@@ -118,7 +119,7 @@ public class SubsScript : MonoBehaviour{
 
     public void FixCarLinePlay()
     {
-        StartCoroutine(Subtitle("Dan: We got to fix the car.", timeToShowText));
+        StartCoroutine(Subtitle(0,"Dan: We got to fix the car.", timeToShowText));
     }
 
     public void PlayInfoAboutStuff()
@@ -129,7 +130,7 @@ public class SubsScript : MonoBehaviour{
     {
         if (firstScrapPickedUp)
         {
-            StartCoroutine(Subtitle("We can probably use these to fix the car.", timeToShowText));
+            StartCoroutine(Subtitle(0,"We can probably use these to fix the car.", timeToShowText));
         }
         firstScrapPickedUp = false;
         
