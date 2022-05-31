@@ -7,7 +7,7 @@ namespace EventCallbacks
     public class PlayerHealthChangeListener : MonoBehaviour
     {
         //[SerializeField] CanvasHandler playerStateCanvas;
-        [SerializeField] private ColorModifer colorModifer;
+        [SerializeField] private GameObject colorModifer;
         // Start is called before the first frame update
         void Start()
         {
@@ -15,8 +15,9 @@ namespace EventCallbacks
         }
         void ChangePlayerHealthInPlayerStateCanvas(PlayerHealthChangeEvent playerHealth)
         {
+            ColorModifer color = colorModifer.GetComponent<ColorModifer>();
             //playerStateCanvas.UpdatePlayerStats(playerHealth.PlayerHealth);
-            colorModifer.setValue(playerHealth.PlayerHealth);
+            color.setValue(playerHealth.PlayerHealth);
         }
 
     }
