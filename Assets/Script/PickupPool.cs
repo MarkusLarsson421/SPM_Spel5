@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*@Author Axel Sterner
- * Databehållare för föremål som ska spawnas med object pooling.
+ * DatabehÃ¥llare fÃ¶r fÃ¶remÃ¥l som ska spawnas med object pooling.
  */
 public class PickupPool : MonoBehaviour
 {
@@ -74,6 +74,7 @@ public class PickupPool : MonoBehaviour
         MoveToRandomSpawnPoint(pickupToReturn);
         pickupToReturn.gameObject.SetActive(false);
         pickupContainer.Enqueue(pickupToReturn);
+
     }
 
     /**
@@ -89,14 +90,14 @@ public class PickupPool : MonoBehaviour
             {
                 pickUp.transform.position = spawnPoints[i].transform.position;
                 spawnPoints[i].GetComponent<PickupObjectPooled>().SetAbleToSpawn(true);
-                //se över detta. Items spawnar inuti varandra
+                //se ï¿½ver detta. Items spawnar inuti varandra
             }
         }
     }
 
     /**
      * @author Martin Wallmark
-     * aktiverar ett antal scraps som bestämms av amountOfScraps
+     * aktiverar ett antal scraps som bestï¿½mms av amountOfScraps
      */
 
     public void SetScrapsActive()

@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 /*@Author Axel Sterner 
  *@Simon Hessling Oscarson
- * Klass som instansierar zombie-objekt ur poolen. Läggs på en prefab som agerar spawner
+ * Klass som instansierar zombie-objekt ur poolen. Lï¿½ggs pï¿½ en prefab som agerar spawner
  */
 public class ZombieObjectPooled : MonoBehaviour
 {
@@ -138,7 +138,7 @@ public class ZombieObjectPooled : MonoBehaviour
         if (currentWave >= 12)
         {
             zombiesNextWave++;
-            //TVÅ HORDE SPAWNAS
+            //TVï¿½ HORDE SPAWNAS
         }
 
         waveText.text = currentWave.ToString();

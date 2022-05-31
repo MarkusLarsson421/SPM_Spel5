@@ -23,7 +23,6 @@ public class DistanceCheck : MonoBehaviour
             player1 = GameObject.FindGameObjectWithTag("Player1");
             player2 = GameObject.FindGameObjectWithTag("Player2");
             CheckDistFromSpawner();
-            Debug.DrawLine(transform.position, player1.transform.position);
         }
     }
     private void CheckDistFromSpawner()
