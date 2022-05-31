@@ -98,11 +98,11 @@ public class PlayerSpawnManager : MonoBehaviour
     {
         if (playerInput.currentControlScheme == "Keyboard+mouse")
         {
-            playerInput.gameObject.GetComponentInChildren<GamePadCamera>().SetSensitivity(20);
+            playerInput.gameObject.GetComponentInChildren<GamePadCamera>().SetSensitivity(10);
         }
         else if (playerInput.currentControlScheme == "Gamepad")
         {
-            playerInput.gameObject.GetComponentInChildren<GamePadCamera>().SetSensitivity(150);
+            playerInput.gameObject.GetComponentInChildren<GamePadCamera>().SetSensitivity(175);
         }
     }
 
