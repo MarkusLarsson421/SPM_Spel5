@@ -15,14 +15,12 @@ public class PlayerStats : MonoBehaviour
     private float timer;
     private bool isDead = false;
     private bool isHit;
+
     void Start()
     {
-     
         UpdatePlayerStatsCnvas();
         runImage.enabled = false;
-        walkImage.enabled = true;
-        
-        
+        walkImage.enabled = true;    
     }
 
     void Update()
@@ -62,13 +60,10 @@ public class PlayerStats : MonoBehaviour
     float Timer = 0;
     public void HitByZombie()
     {
-        if (Timer < 1)
-        {
-            Timer += Time.deltaTime;
-        }
+        if (Timer < 1)Timer += Time.deltaTime;
         else
         {
-            int randomNr = Random.Range(15, 26);
+            int randomNr = Random.Range(15, 26);        // Hur mycket skada man tar av en zombie varierar
             health -= randomNr;
             Timer = 0;
             UpdatePlayerStatsCnvas();
@@ -77,12 +72,8 @@ public class PlayerStats : MonoBehaviour
             playerGetHitByZombie.FireEvent();
             isHit = true;
             timer = 0;
-            //CanvasHandler tookDamgeCanvas = gameObject.GetComponentInChildren<CanvasHandler>();
-            //tookDamgeCanvas.setFadeIn(true);
-            //tookDamgeCanvas.EnemyAttackedMe();
 
         }
-        // Hur mycket skada man tar av en zombie varierar
 
     }
     private void PlayerDeath()

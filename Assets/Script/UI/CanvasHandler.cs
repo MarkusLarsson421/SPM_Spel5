@@ -106,10 +106,10 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         fadeIn = value;
     }
 
-    public void UpdatePlayerStats(int playerHealth)
-    {
-        playerHealthText.text = playerHealth.ToString();
-    }
+    //public void UpdatePlayerStats(int playerHealth)
+    //{
+    //    playerHealthText.text = playerHealth.ToString();
+    //}
     float timer = 0;
     public void showPopOutText(string text)
     {

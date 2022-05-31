@@ -22,13 +22,13 @@ public class ColorModifer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HpIndicator();
         //StartCoroutine(HpSampleToggler());
 
     }
     public void setValue(int value)
     {
         this.value = value;
+        HpIndicator();
     }
     void HpIndicator()
     {
