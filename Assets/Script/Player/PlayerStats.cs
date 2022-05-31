@@ -51,9 +51,9 @@ public class PlayerStats : MonoBehaviour
             health = 0;
             PlayerDeath();
         }
-        handler.SetCurrentHealth(health);
+        //handler.SetCurrentHealth(health); // Används inte längre
 
-        
+
         //staminaSlider.value = stamina;
     }
 

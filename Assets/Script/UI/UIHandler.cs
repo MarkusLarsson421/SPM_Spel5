@@ -73,10 +73,10 @@ public class UIHandler : MonoBehaviour
     }
 
     
-    public void SetCurrentHealth(int currentHealth)
-    {
-        healthText.text = currentHealth+"";
-    }
+    //public void SetCurrentHealth(int currentHealth) // Används inte längre
+    //{
+    //    healthText.text = currentHealth+"";
+    //}
 
     /**
      * @Author Martin Wallmark
