@@ -75,8 +75,8 @@ public class SoundManager : MonoBehaviour
         reloadSoundSource = GameObject.Find("ReloadAudioSource").GetComponent<AudioSource>();
         meleeAttackSoundSource = GameObject.Find("MeleeAudioSource").GetComponent<AudioSource>();
         pickUpSoundSource = GameObject.Find("PickUpSoundSource").GetComponent<AudioSource>();
-        danHitSoundSource = GameObject.Find("DanHitSoundSource").GetComponent<AudioSource>();
-        kateHitSoundSource = GameObject.Find("KateHitSoundSource").GetComponent<AudioSource>();
+        danHitSoundSource = GameObject.Find("DanHitAudioSource").GetComponent<AudioSource>();
+        kateHitSoundSource = GameObject.Find("KateHitAudioSource").GetComponent<AudioSource>();
 
 
         //Enemy sources
