@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
     PlayerStats instance;
-    [SerializeField] private int health = 100; 
+    [SerializeField] private int health = 100;
     [SerializeField] private int stamina; //set the stamina of health in unity
     //[SerializeField] private Slider staminaSlider;
     [SerializeField] private Image walkImage;
@@ -16,11 +16,14 @@ public class PlayerStats : MonoBehaviour
     private bool isDead = false;
     private bool isHit;
 
+    private SoundManager sm;
+
     void Start()
     {
         UpdatePlayerStatsCnvas();
         runImage.enabled = false;
-        walkImage.enabled = true;    
+        walkImage.enabled = true;
+        sm = FindObjectOfType<SoundManager>();
     }
 
     void Update()
@@ -60,7 +63,7 @@ public class PlayerStats : MonoBehaviour
     float Timer = 0;
     public void HitByZombie()
     {
-        if (Timer < 1)Timer += Time.deltaTime;
+        if (Timer < 1) Timer += Time.deltaTime;
         else
         {
             int randomNr = Random.Range(15, 26);        // Hur mycket skada man tar av en zombie varierar
@@ -72,7 +75,14 @@ public class PlayerStats : MonoBehaviour
             playerGetHitByZombie.FireEvent();
             isHit = true;
             timer = 0;
-
+            if (gameObject.tag == "Player1")
+            {
+                sm.SoundPlaying("danHit");
+            }
+            /*else if(gameObject.tag == "Player2")
+            {
+                sm.SoundPlaying("kateHit");
+            }*/
         }
 
     }
@@ -91,7 +101,7 @@ public class PlayerStats : MonoBehaviour
         PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
         playerHealthChange.PlayerHealth = health;
         playerHealthChange.FireEvent();
-        
+
     }
 
     /**
@@ -101,19 +111,19 @@ public class PlayerStats : MonoBehaviour
      */
     public void StaminaUpdater(bool isRunning)
     {
-        if(stamina < 100 && !isRunning)
+        if (stamina < 100 && !isRunning)
         {
             stamina++;
             runImage.enabled = false;
             walkImage.enabled = true;
         }
-        else if(stamina > 0 && isRunning)
+        else if (stamina > 0 && isRunning)
         {
             stamina--;
             runImage.enabled = true;
             walkImage.enabled = false;
         }
-        else if(stamina <= 0 && isRunning)
+        else if (stamina <= 0 && isRunning)
         {
             runImage.enabled = false;
             walkImage.enabled = true;
@@ -125,7 +135,8 @@ public class PlayerStats : MonoBehaviour
         return stamina;
     }
 
-	public int GetHealth(){
-		return health;
-	}
+    public int GetHealth()
+    {
+        return health;
+    }
 }

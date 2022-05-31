@@ -35,6 +35,8 @@ public class SoundManager : MonoBehaviour
     private AudioSource reloadSoundSource;
     private AudioSource pickUpSoundSource;
     private AudioSource subtitlesSoundSource;
+    private AudioSource danHitSoundSource;
+    private AudioSource kateHitSoundSource;
 
 
     //Enemy AudioSources
@@ -55,6 +57,10 @@ public class SoundManager : MonoBehaviour
     private float highPitchRan = 1.0f;
     private float minHumDelay = 25.0f;
     private float maxHumDelay = 200.0f;
+
+    [SerializeField] private AudioClip[] danHitSounds;
+    [SerializeField] private AudioClip[] kateHitSounds;
+
     void Start()
     {
         //World Sources
@@ -69,6 +75,10 @@ public class SoundManager : MonoBehaviour
         reloadSoundSource = GameObject.Find("ReloadAudioSource").GetComponent<AudioSource>();
         meleeAttackSoundSource = GameObject.Find("MeleeAudioSource").GetComponent<AudioSource>();
         pickUpSoundSource = GameObject.Find("PickUpSoundSource").GetComponent<AudioSource>();
+        danHitSoundSource = GameObject.Find("DanHitSoundSource").GetComponent<AudioSource>();
+        kateHitSoundSource = GameObject.Find("KateHitSoundSource").GetComponent<AudioSource>();
+
+
         //Enemy sources
         zombieDeathSource = GameObject.Find("ZombieDeathAudioSource").GetComponent<AudioSource>();
         zombieRoarSoundSource = GameObject.Find("ZombieRoarAudioSource").GetComponent<AudioSource>();
@@ -158,6 +168,17 @@ public class SoundManager : MonoBehaviour
         {
             NewWave();
         }
+        if(clip == "danHit") //Dan take damage
+        {
+            RandomClip(danHitSounds, danHitSoundSource);
+            DanHitSound();
+        }
+        if(clip == "kateHit")
+        {
+            RandomClip(kateHitSounds, kateHitSoundSource);
+            KateHitSound();
+        }
+
     }
     private void Shoot()
     {
@@ -223,6 +244,30 @@ public class SoundManager : MonoBehaviour
         generatorSource.pitch = Random.Range(0.8f, highPitchRan);
         generatorSource.time = 4;
         generatorSource.PlayOneShot(generatorOffSound);
+    }
+
+    private void DanHitSound()
+    {
+        danHitSoundSource.pitch = Random.Range(0.8f, highPitchRan);
+        danHitSoundSource.PlayOneShot(danHitSoundSource.clip);
+    }
+
+    private void KateHitSound()
+    {
+        kateHitSoundSource.pitch = Random.Range(0.8f, highPitchRan);
+        kateHitSoundSource.PlayOneShot(kateHitSoundSource.clip);
+    }
+
+    //Nyman
+    //Returns random clip and make sure the same clip does not repeat
+    private void RandomClip(AudioClip[] sounds, AudioSource source)
+    {
+        int randomIndex = Random.Range(0, sounds.Length);
+        if (source.clip == sounds[randomIndex])
+        {
+            RandomClip(sounds, source);
+        }
+        source.clip = sounds[randomIndex];
     }
 
 }
