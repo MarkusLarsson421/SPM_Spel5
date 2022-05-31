@@ -106,7 +106,7 @@ public class Weapon : MonoBehaviour
             muzzleFlash[i].Play();
         }
         sM.SoundPlaying("shootSound");
-        //temp shoot animation - nyman
+        //Shoot animation - nyman
         if (!isReloading)
         {
             gunAnim.SetTrigger("Fire");
