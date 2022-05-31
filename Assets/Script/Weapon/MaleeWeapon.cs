@@ -21,7 +21,11 @@ public class MaleeWeapon : MonoBehaviour
 
 	private DynamicMovementController player;
 
-    private void Start()
+	[SerializeField] private Animator playerAnimator;
+	[SerializeField] private Animator handAnimator;
+
+
+	private void Start()
     {
         player = GetComponentInParent<DynamicMovementController>();
 	}
@@ -42,6 +46,8 @@ public class MaleeWeapon : MonoBehaviour
 		{
 			Fire();
             sM.SoundPlaying("meleeAttack");
+			playerAnimator.SetTrigger("Attack");
+			handAnimator.SetTrigger("Fire");
 			OnAttackWithMaleeEvent unit = new OnAttackWithMaleeEvent();
 			unit.player = player;
 			unit.FireEvent();
