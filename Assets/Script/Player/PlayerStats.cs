@@ -46,13 +46,13 @@ public class PlayerStats : MonoBehaviour
             }
             
         }
-
-        handler.SetCurrentHealth(health);
         if (health <= 0 && !isDead)
         {
             health = 0;
             PlayerDeath();
         }
+        handler.SetCurrentHealth(health);
+
         
         //staminaSlider.value = stamina;
     }
