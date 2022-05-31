@@ -14,6 +14,7 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private Transform playerTwoSpawnPoint;
     [SerializeField] private PlayerInputManager playerInputManager;
     private SubsScript ss;
+    private SubsScript ss2;
     [SerializeField] private GameObject player1Prefab;
     [SerializeField] private GameObject player2Prefab;
     [SerializeField] private GameObject startCamera;
@@ -60,21 +61,33 @@ public class PlayerSpawnManager : MonoBehaviour
             player1.GetComponent<PlayerStartInfo>().SetPlayerRotation(player1Rotation);
             player1.tag = "Player1";
             playerInputManager.playerPrefab = player2Prefab;
+            
             if (ss != null)
             {
                 ss.FixCarLinePlay();
             }
+            
+            
         }
         else
         {
+            ss2 = playerInput.gameObject.GetComponentInChildren<SubsScript>();
             player2 = playerInput.gameObject;
             player2.GetComponent<PlayerStartInfo>().SetStartPosition(playerTwoSpawnPoint.position);
             player2.GetComponent<PlayerStartInfo>().SetPlayerRotation(player2Rotation);
             player2.tag = "Player2";
             player2hasjoined = true;
             
+            if (ss2 != null)
+            {
+                ss2.FixCarLinePlay();
+            }
+            
+            ss.FixCarLinePlay();
+
         }
         SetPlayerSensitivity(playerInput);
+        
         playerHasJoined = true;
     }
 

@@ -48,6 +48,7 @@ public class Item : MonoBehaviour{
 		pickUpEvent.SetItemType(type);
 		pickUpEvent.SetAmount(amount);
 		pickUpEvent.SetRM(GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<ResourceManager>());
+		ss = GameObject.FindGameObjectWithTag(playah).GetComponentInChildren<SubsScript>();
 		pickUpEvent.FireEvent();
 		if (ss != null && type.ToString() == "Scrap") { ss.ScrapsUsedForCarLine(); }
 		playah = null;

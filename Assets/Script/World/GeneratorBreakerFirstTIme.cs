@@ -19,6 +19,7 @@ public class GeneratorBreakerFirstTIme : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player1" || collision.gameObject.tag == "Player2")
         {
+            ss = collision.gameObject.transform.Find("SubtiltesManager").GetComponent<SubsScript>();
             sM.SoundPlaying("generatorOff");
             ss.SetGeneratorBreakFirstTime(true);
 			gen.GetComponent<Generator>().SetFuel(0.0f);
