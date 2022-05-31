@@ -107,6 +107,15 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""fe4d0894-00d5-4d13-a01c-39a21a9286df"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -371,6 +380,17 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard+mouse"",
                     ""action"": ""SwitchWeaponUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ff4c475-8f5d-4b38-9dba-60a915e03a1a"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard+mouse"",
+                    ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -824,6 +844,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         m_Gameplay_Sprint = m_Gameplay.FindAction("Sprint", throwIfNotFound: true);
         m_Gameplay_PauseGame = m_Gameplay.FindAction("PauseGame", throwIfNotFound: true);
         m_Gameplay_SwitchWeaponUp = m_Gameplay.FindAction("SwitchWeaponUp", throwIfNotFound: true);
+        m_Gameplay_Scroll = m_Gameplay.FindAction("Scroll", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -904,6 +925,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Sprint;
     private readonly InputAction m_Gameplay_PauseGame;
     private readonly InputAction m_Gameplay_SwitchWeaponUp;
+    private readonly InputAction m_Gameplay_Scroll;
     public struct GameplayActions
     {
         private @InputSystem m_Wrapper;
@@ -917,6 +939,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Gameplay_Sprint;
         public InputAction @PauseGame => m_Wrapper.m_Gameplay_PauseGame;
         public InputAction @SwitchWeaponUp => m_Wrapper.m_Gameplay_SwitchWeaponUp;
+        public InputAction @Scroll => m_Wrapper.m_Gameplay_Scroll;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -953,6 +976,9 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 @SwitchWeaponUp.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchWeaponUp;
                 @SwitchWeaponUp.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchWeaponUp;
                 @SwitchWeaponUp.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchWeaponUp;
+                @Scroll.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnScroll;
+                @Scroll.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnScroll;
+                @Scroll.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnScroll;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -984,6 +1010,9 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 @SwitchWeaponUp.started += instance.OnSwitchWeaponUp;
                 @SwitchWeaponUp.performed += instance.OnSwitchWeaponUp;
                 @SwitchWeaponUp.canceled += instance.OnSwitchWeaponUp;
+                @Scroll.started += instance.OnScroll;
+                @Scroll.performed += instance.OnScroll;
+                @Scroll.canceled += instance.OnScroll;
             }
         }
     }
@@ -1122,6 +1151,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnSwitchWeaponUp(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
