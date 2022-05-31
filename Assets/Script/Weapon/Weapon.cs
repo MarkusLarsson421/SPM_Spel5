@@ -146,7 +146,7 @@ public class Weapon : MonoBehaviour
     private IEnumerator Reload()
     {
 
-        //temp reload animation - nyman
+        //load animation - nyman
         if (currentMag < magCapacity && !isReloading)
         {
             sM.SoundPlaying("reload");

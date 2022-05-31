@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 /*
      * 
      * @Author Martin Nyman
+     * Loads level and play Scenetransitions
      */
 
 public class LevelLoader : MonoBehaviour
