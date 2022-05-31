@@ -43,6 +43,7 @@ public class SoundManager : MonoBehaviour
     private AudioSource zombieRoarSoundSource; //AudioSourcen har ljudet på sig.
     //World AudioSources
     private AudioSource intenseMusic; 
+    
     private AudioSource newWaveAudioSource;
     private AudioSource generatorSource;
     private AudioSource generatorSourceOn;
@@ -85,7 +86,8 @@ public class SoundManager : MonoBehaviour
         //WorldSounds
         newWave = Resources.Load<AudioClip>("NewWave");
         generatorOnSound = Resources.Load<AudioClip>("GeneratorOn");
-        generatorOffSound = Resources.Load<AudioClip>("BulletImpact");
+        generatorOffSound = Resources.Load<AudioClip>("GeneratorOff");
+        
         //ambienceDay.time = Random.Range(0, 60);
         //pianoMusic.time = Random.Range(0, 60);
 
@@ -219,6 +221,7 @@ public class SoundManager : MonoBehaviour
     private void GeneratorBroke()
     {
         generatorSource.pitch = Random.Range(0.8f, highPitchRan);
+        generatorSource.time = 4;
         generatorSource.PlayOneShot(generatorOffSound);
     }
 
