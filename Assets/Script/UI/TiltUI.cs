@@ -13,7 +13,7 @@ public class TiltUI : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        StartCoroutine(Shaker());
+        //StartCoroutine(Shaker());
     }
     void Update()
     {
@@ -86,6 +86,11 @@ public class TiltUI : MonoBehaviour
         transform.Rotate(0, 0, -2);
 
 
+    }
+
+    public void RunShaker()
+    {
+        StartCoroutine(Shaker());
     }
 
 }

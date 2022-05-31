@@ -63,10 +63,10 @@ public class CustomizationSystem : MonoBehaviour
             buttonsEnabled = true;
         }
 
-        if (!isToggled && currentPlayerTag != null)
+        if (!isToggled && !currentPlayerTag.Equals(""))
         {
             RemoveCurrentPlayer();
-            currentPlayerTag = null;
+            currentPlayerTag = "";
             buttonsEnabled = false;
             
 

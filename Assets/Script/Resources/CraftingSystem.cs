@@ -31,7 +31,7 @@ public class CraftingSystem : MonoBehaviour
     private float textTimer;
     private float distanceToInteractingPlayer;
     //Listorna är till för att hålla koll på om en viss spelare redan har en uppgradering.
-    //private TiltUI playerOneTiltUI, playerTwoTiltUI;
+    private TiltUI playerOneTiltUI, playerTwoTiltUI;
     private Weapon playerOneWeapon, playerTwoWeapon;
     private ResourceManager playerOneRM, playerTwoRM;
     private FlashLight playerOneFlashLight, playerTwoFlashLight;
@@ -56,6 +56,9 @@ public class CraftingSystem : MonoBehaviour
     private List<string> flashLightUpgradedPlayers = new List<string>();
     */
 
+    private float shutDownTimer;
+    private bool willShutdown;
+
     private void Start()
     {
         upgradedPlayers.Add("DamageUpgrade", new List<string>());
@@ -79,9 +82,18 @@ public class CraftingSystem : MonoBehaviour
         }
         
         
-        if(!isToggled && currentPlayerTag != null)
+        if(!isToggled && !currentPlayerTag.Equals(""))
         {
-            RemoveCurrentPlayer();
+            willShutdown = true;
+            shutDownTimer += Time.deltaTime;
+            if(shutDownTimer >= 0.7f)
+            {
+                Debug.Log("yy2es!" + " " + shutDownTimer);
+                shutDownTimer = 0;
+                Debug.Log("yyes!" + " " + shutDownTimer);
+                RemoveCurrentPlayer();
+            }
+            //RemoveCurrentPlayer();
         }
 
         if(isToggled && !buttonsEnabled)
@@ -170,6 +182,7 @@ public class CraftingSystem : MonoBehaviour
                 else
                 {
                     UpdateInfoText("NotEnoughItems");
+                    playerOneTiltUI.RunShaker();
                 }
             }
             else
@@ -187,6 +200,7 @@ public class CraftingSystem : MonoBehaviour
                 else
                 {
                     UpdateInfoText("NotEnoughItems");
+                    playerTwoTiltUI.RunShaker();
                 }
             }
 
@@ -230,6 +244,7 @@ public class CraftingSystem : MonoBehaviour
                 else
                 {
                     UpdateInfoText("NotEnoughItems");
+                    playerOneTiltUI.RunShaker();
                 }
                 
             }
@@ -250,6 +265,7 @@ public class CraftingSystem : MonoBehaviour
                 else
                 {
                     UpdateInfoText("NotEnoughItems");
+                    playerTwoTiltUI.RunShaker();
                 }
             }
             isButtonClicked = true;
@@ -285,7 +301,7 @@ public class CraftingSystem : MonoBehaviour
                 else
                 {
                     UpdateInfoText("NotEnoughItems");
-                    //playerOneTiltUI.RunShaker();
+                    playerOneTiltUI.RunShaker();
                 }
             }
             else
@@ -302,6 +318,7 @@ public class CraftingSystem : MonoBehaviour
                 else
                 {
                     UpdateInfoText("NotEnoughItems");
+                    playerTwoTiltUI.RunShaker();
                 }
             }
             //gör så att ficklampans batterie räcker längre
@@ -329,7 +346,7 @@ public class CraftingSystem : MonoBehaviour
             playerOneMagazineUpgrade = playerOneButtons.gameObject.transform.Find("MagazineUpgrade").gameObject;
             playerOneFlashLightUpgrade = playerOneButtons.gameObject.transform.Find("TotalAmmoUpgrade").gameObject;
             playerOneCancelButton = playerOneButtons.gameObject.transform.Find("CancelButton").gameObject;
-            //playerOneTiltUI = playerOneButtons.gameObject.transform.Find("Tilt").GetComponent<TiltUI>();
+            playerOneTiltUI = playerOneButtons.gameObject.transform.Find("Tilt").GetComponent<TiltUI>();
 
             playerOneDamageUpgrade.gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
             playerOneMagazineUpgrade.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
@@ -353,7 +370,7 @@ public class CraftingSystem : MonoBehaviour
             playerTwoMagazineUpgrade = playerTwoButtons.gameObject.transform.Find("MagazineUpgrade").gameObject;
             playerTwoFlashLightUpgrade = playerTwoButtons.gameObject.transform.Find("TotalAmmoUpgrade").gameObject;
             playerTwoCancelButton = playerTwoButtons.gameObject.transform.Find("CancelButton").gameObject;
-            //playerTwoTiltUI = playerTwoButtons.gameObject.transform.Find("Tilt").GetComponent<TiltUI>();
+            playerTwoTiltUI = playerTwoButtons.gameObject.transform.Find("Tilt").GetComponent<TiltUI>();
 
             playerTwoDamageUpgrade.gameObject.GetComponent<Button>().onClick.AddListener(delegate { DamageUpgrade(); });
             playerTwoMagazineUpgrade.GetComponent<Button>().onClick.AddListener(delegate { IncreaseMagazineSize(); });
@@ -438,11 +455,12 @@ public class CraftingSystem : MonoBehaviour
         {
             playerTwoButtons.SetActive(false);
         }
-        currentPlayerTag = null;
+        currentPlayerTag = "";
         //currentCanvas.gameObject.transform.Find("CraftingTable").gameObject.SetActive(false);
         currentCanvas = null;
         buttonsEnabled = false;
         interactingPlayer = null;
+        Debug.Log("ayayaay");
     }
 
     private void UpdateInfoText(string s)
