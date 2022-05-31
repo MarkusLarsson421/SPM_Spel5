@@ -106,7 +106,7 @@ public class Weapon : MonoBehaviour
             muzzleFlash[i].Play();
         }
         sM.SoundPlaying("shootSound");
-        //temp shoot animation - nyman
+        //Shoot animation - nyman
         if (!isReloading)
         {
             gunAnim.SetTrigger("Fire");
@@ -146,7 +146,7 @@ public class Weapon : MonoBehaviour
     private IEnumerator Reload()
     {
 
-        //temp reload animation - nyman
+        //load animation - nyman
         if (currentMag < magCapacity && !isReloading)
         {
             sM.SoundPlaying("reload");

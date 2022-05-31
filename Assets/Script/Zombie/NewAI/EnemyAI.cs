@@ -154,7 +154,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    //temp death animation nyman
+    //Death animation Nyman
     IEnumerator PlayDeathAnimation(float time)
     {
         anim.SetTrigger("Die");
