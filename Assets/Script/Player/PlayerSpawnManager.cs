@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 //Martin Wallmark
 
 /*
- * Används av LocalCo-opManager för att kunna hantera in-spawningen av spelare samt identifiera spelarna med varsit id och tag.
+ * Anvï¿½nds av LocalCo-opManager fï¿½r att kunna hantera in-spawningen av spelare samt identifiera spelarna med varsit id och tag.
  */
 public class PlayerSpawnManager : MonoBehaviour
 {
@@ -25,7 +25,7 @@ public class PlayerSpawnManager : MonoBehaviour
 
     private float timer;
     public bool playerHasJoined = false;
-    private bool player2hasjoined;
+    public bool player2hasjoined;
     private bool isEventSystemReset;
 
     [SerializeField] private GameObject player1;
@@ -44,7 +44,7 @@ public class PlayerSpawnManager : MonoBehaviour
             FixPlayerOneEventSystem();
         }
     }
-    //Metoden används av inputsystemet för att spawna in en spelare när den tar emot input från spelarens handkontroller/tangentbord
+    //Metoden anvï¿½nds av inputsystemet fï¿½r att spawna in en spelare nï¿½r den tar emot input frï¿½n spelarens handkontroller/tangentbord
     public void OnPlayerJoined(PlayerInput playerInput)
     {
         Debug.Log("Player joined " + playerInput.playerIndex);
@@ -93,7 +93,7 @@ public class PlayerSpawnManager : MonoBehaviour
         playerHasJoined = true;
     }
 
-    //Anpassar sensitivity baserat på om spelaren har handkontroller eller mus
+    //Anpassar sensitivity baserat pï¿½ om spelaren har handkontroller eller mus
     private void SetPlayerSensitivity(PlayerInput playerInput)
     {
         if (playerInput.currentControlScheme == "Keyboard+mouse")
@@ -106,7 +106,7 @@ public class PlayerSpawnManager : MonoBehaviour
         }
     }
 
-    //Player1s evensystem stängs av och sätts på när player2 joinar. Görs bara för att komma runt en bugg i unity
+    //Player1s evensystem stï¿½ngs av och sï¿½tts pï¿½ nï¿½r player2 joinar. Gï¿½rs bara fï¿½r att komma runt en bugg i unity
     private void FixPlayerOneEventSystem()
     {
         GameObject player1 = GameObject.FindGameObjectWithTag("Player1");

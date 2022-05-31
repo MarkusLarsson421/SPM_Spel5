@@ -23,8 +23,8 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
 
     private void Awake()
     {
-        tookDamgeCanvasObject.SetActive(true);
-        tookDamgeCanvas.alpha = 0;
+//        tookDamgeCanvasObject.SetActive(true);
+//        tookDamgeCanvas.alpha = 0;
 
     }
     private void Update()

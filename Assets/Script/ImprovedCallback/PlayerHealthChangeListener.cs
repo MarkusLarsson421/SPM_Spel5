@@ -16,7 +16,7 @@ namespace EventCallbacks
         void ChangePlayerHealthInPlayerStateCanvas(PlayerHealthChangeEvent playerHealth)
         {
             //playerStateCanvas.UpdatePlayerStats(playerHealth.PlayerHealth);
-            colorModifer.setValue(playerHealth.PlayerHealth);
+//            colorModifer.setValue(playerHealth.PlayerHealth);
         }
 
     }

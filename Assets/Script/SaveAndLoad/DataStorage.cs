@@ -9,12 +9,12 @@ public class DataStorage : MonoBehaviour
 	private void Update(){
 		if(players[0] == null)
 		{
-			players[0] = GameObject.FindWithTag("player1");
+			players[0] = GameObject.FindWithTag("Player1");
 		}
 
 		if(players[1] == null)
 		{
-			players[1] = GameObject.FindWithTag("player2");
+			players[1] = GameObject.FindWithTag("Player2");
 		}
 	}
 

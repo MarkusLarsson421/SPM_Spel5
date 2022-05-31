@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /*@Author Axel Sterner
- * Klass för att kontrollera avstånd mellan spawner och spelarna och hindra zombies från att spawna nära spelarna.
+ * Klass fï¿½r att kontrollera avstï¿½nd mellan spawner och spelarna och hindra zombies frï¿½n att spawna nï¿½ra spelarna.
  */
 public class DistanceCheck : MonoBehaviour
 {
-    GameObject player1, player2;
+    private GameObject player1, player2;
     private ZombieObjectPooled spawner;
     private PlayerSpawnManager pSpawner;
     private float distanceFromSpawner = 50.0f;
@@ -18,7 +18,7 @@ public class DistanceCheck : MonoBehaviour
 
     void Update()
     {
-        if(pSpawner.playerHasJoined)
+        if(pSpawner.playerHasJoined && pSpawner.player2hasjoined)
         {
             player1 = GameObject.FindGameObjectWithTag("Player1");
             player2 = GameObject.FindGameObjectWithTag("Player2");
