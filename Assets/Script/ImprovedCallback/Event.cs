@@ -25,7 +25,6 @@ public abstract class Event<T> where T : Event<T>{
 		hasFired = true;
 		if (listeners != null){listeners(this as T);}
 		
-		Debug.Log(Description);
 	}
 }
 /**
@@ -78,7 +77,7 @@ public class PlayerHealthChangeEvent : Event<PlayerHealthChangeEvent>
 
 public class PlayerGetHitByZombieEvent : Event<PlayerGetHitByZombieEvent>
 {
-	public GameObject UnitGO;
+	public GameObject player;
 
 }
 

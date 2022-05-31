@@ -49,7 +49,7 @@ namespace EventCallbacks
         void TriggerScoreUpdate(PlayerDieEvent unitDeathInfo)
         {
             ScoreSystem scoreSystem = gameObject.GetComponent<ScoreSystem>();
-            scoreSystem.UpdateValues();
+            //scoreSystem.UpdateValues();
         }
 
 

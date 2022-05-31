@@ -27,25 +27,25 @@ public class PlayerStats : MonoBehaviour
     {
         //UpdatePlayerStatsCnvas();
 
-        if (isHit)
-        {
-            timer += Time.deltaTime;
-            if (timer >= 4)
-            {
-                isHit = false;
-                timer = 0;
-            }
-        }
-        if (!isHit && health != 100)
-        {
-            timer += Time.deltaTime;
-            if (timer >= 0.5)
-            {
-                health++;
-                timer = 0;
-            }
-            
-        }
+        //if (isHit)
+        //{
+        //    timer += Time.deltaTime;
+        //    if (timer >= 4)
+        //    {
+        //        isHit = false;
+        //        timer = 0;
+        //    }
+        //}
+        //if (!isHit && health != 100)
+        //{
+        //    timer += Time.deltaTime;
+        //    if (timer >= 0.5)
+        //    {
+        //        health++;
+        //        timer = 0;
+        //    }
+
+        //}
         if (health <= 0 && !isDead)
         {
             health = 0;
@@ -68,7 +68,7 @@ public class PlayerStats : MonoBehaviour
             Timer = 0;
             UpdatePlayerStatsCnvas();
             PlayerGetHitByZombieEvent playerGetHitByZombie = new PlayerGetHitByZombieEvent();
-            playerGetHitByZombie.UnitGO = gameObject;
+            playerGetHitByZombie.player = gameObject;
             playerGetHitByZombie.FireEvent();
             isHit = true;
             timer = 0;

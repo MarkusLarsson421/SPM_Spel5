@@ -10,8 +10,8 @@ public class DamagePlayer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("bombam");
-            collision.gameObject.GetComponent<PlayerStats>().HitByZombie();
+            //Debug.Log("bombam");
+            //collision.gameObject.GetComponent<PlayerStats>().HitByZombie();
         }
     }
     //solution 1
