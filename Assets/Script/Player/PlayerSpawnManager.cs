@@ -65,6 +65,7 @@ public class PlayerSpawnManager : MonoBehaviour
             if (ss != null)
             {
                 ss.FixCarLinePlay();
+                ss.PlayInfoAboutStuff();
             }
             
             
@@ -80,10 +81,11 @@ public class PlayerSpawnManager : MonoBehaviour
             
             if (ss2 != null)
             {
-                ss2.FixCarLinePlay();
+                ss2.PlayInfoAboutStuff();
+                //ss.PlayInfoAboutStuff();
             }
             
-            ss.FixCarLinePlay();
+            
 
         }
         SetPlayerSensitivity(playerInput);
