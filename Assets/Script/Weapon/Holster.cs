@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Holster : MonoBehaviour
 {
     [SerializeField] private UIHandler handler;
+
     private int selectedWeapon;
     private float switchTimer;
     private bool isSwitched;
@@ -11,6 +13,12 @@ public class Holster : MonoBehaviour
 
     private bool isSwitchingUp;
     private bool isSwitchingDown;
+
+    [SerializeField] private Animator handAnimator;
+    [SerializeField] private Animator playerAnimator;
+
+    //List include every weaponassociated gameobject sorted by tag IE mesh, rigg, particleffects etc..
+    [SerializeField] private GameObject[] weaponRelatedGameObjects;
 
     private void Start()
     {
@@ -29,7 +37,7 @@ public class Holster : MonoBehaviour
 
     private void Update()
     {
-        if (canSwitch){UserInput();}
+        if (canSwitch) { UserInput(); }
 
         switchTimer += Time.deltaTime;
 
@@ -111,11 +119,19 @@ public class Holster : MonoBehaviour
                 {
                     currentWeapon.GetComponent<Weapon>().SetCanFire(true);
                     handler.SwitchWeaponIcons("Pistol");
+                    handAnimator.SetBool("Axe", false);
+                    playerAnimator.SetBool("Axe", false);
+                    StartCoroutine(ToggleWeaponObjects("Pistol"));
+
                 }
                 else if (currentWeapon.tag.Equals("Melee"))
                 {
                     currentWeapon.GetComponent<MaleeWeapon>().SetCanFire(true);
                     handler.SwitchWeaponIcons("Melee");
+                    handAnimator.SetBool("Axe", true);
+                    playerAnimator.SetBool("Axe", true);
+                    StartCoroutine(ToggleWeaponObjects("Melee"));
+
                 }
                 /*
                 else if (currentWeapon.tag.Equals("AK47"))
@@ -124,7 +140,7 @@ public class Holster : MonoBehaviour
                     handler.SwitchWeaponIcons("AK47");
                 }
                 */
-              
+
             }
             else
             {
@@ -147,4 +163,31 @@ public class Holster : MonoBehaviour
             }
         }
     }
+
+    /**
+    * @Author Martin Nyman
+    * 
+    * Loops through the list of weapons and associated parts like mesh, rigg and particles and toggles all related gameobjects by tag.
+    */
+
+
+    IEnumerator ToggleWeaponObjects(string tag)
+    {
+
+        yield return new WaitForSeconds(0.25f);
+
+        for (int i = 0; i < weaponRelatedGameObjects.Length; i++)
+        {
+            if (weaponRelatedGameObjects[i].tag == tag)
+            {
+                weaponRelatedGameObjects[i].SetActive(true);
+            }
+            else
+            {
+                weaponRelatedGameObjects[i].SetActive(false);
+            }
+        }
+    }
+
+
 }
