@@ -10,6 +10,7 @@ public class Holster : MonoBehaviour
     private float switchTimer;
     private bool isSwitched;
     private bool canSwitch;
+    private bool isSwitching;
 
     private bool isSwitchingUp;
     private bool isSwitchingDown;
@@ -109,6 +110,8 @@ public class Holster : MonoBehaviour
 	 */
     private void SelectWeapon()
     {
+        if (isSwitching) { return; }
+
         for (int i = 0; i < transform.childCount; i++)
         {
             GameObject currentWeapon = transform.GetChild(i).transform.gameObject;
@@ -173,6 +176,7 @@ public class Holster : MonoBehaviour
 
     IEnumerator ToggleWeaponObjects(string tag)
     {
+        isSwitching = true;
 
         yield return new WaitForSeconds(0.25f);
 
@@ -187,6 +191,8 @@ public class Holster : MonoBehaviour
                 weaponRelatedGameObjects[i].SetActive(false);
             }
         }
+
+        isSwitching = false;
     }
 
 
