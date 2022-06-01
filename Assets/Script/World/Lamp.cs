@@ -162,7 +162,7 @@ public class Lamp : MonoBehaviour{
 	/**
 	 * Updates the light if the inspectorState value has been updated.
 	 */
-	private void OnValidate(){
+	/*private void OnValidate(){
 		Start();
-	}
+	}*/
 }

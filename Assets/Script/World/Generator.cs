@@ -33,7 +33,7 @@ public class Generator : MonoBehaviour{
 	[SerializeField] private ResourceManager rm;
 
 	private void Start(){
-//        sM = GameObject.Find("SM").GetComponent<SoundManager>();
+        sM = GameObject.Find("SM").GetComponent<SoundManager>();
         fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
 		SetState(isOn);
 		FuelIndicator();
@@ -47,7 +47,7 @@ public class Generator : MonoBehaviour{
 			rm = interactable.interactingGameObject.GetComponentInChildren<ResourceManager>();
 			if(rm.Get(ResourceManager.ItemType.Scrap) >= 1 && !isOn)
             {
-               // sM.SoundPlaying("generatorOn");
+                sM.SoundPlaying("generatorOn");
 
                 RefillFuel(100);
 				OpenDoors();
@@ -175,13 +175,13 @@ public class Generator : MonoBehaviour{
 	 * @Author Martin Wallmark and Markus Larsson
 	 */
 	private void SetLightState(bool desiredState){
-		/*foreach(GameObject go in highPowerLights){
+		foreach(GameObject go in highPowerLights){
 			go.GetComponent<Lamp>().SetState(desiredState);
-		}*/
+		}
 
-		/*foreach(GameObject go in lowPowerLights){
+		foreach(GameObject go in lowPowerLights){
 			go.GetComponent<Lamp>().SetState(!desiredState);
-		}*/
+		}
 	}
 	
 	/*
@@ -201,12 +201,12 @@ public class Generator : MonoBehaviour{
 	 * 
 	 * @Author Martin Wallmark
 	 */
-	private void LerpingLights(){
-		/*foreach(Light light in lights){
+	/*private void LerpingLights(){
+		foreach(Light light in lights){
 			float lerpTimer = Time.deltaTime / 3f;
 			light.intensity = Mathf.Lerp(light.intensity, 1f, lerpTimer);
-		}*/
-	}
+		}
+	}*/
 
 	/*private void OnValidate()
 	{
