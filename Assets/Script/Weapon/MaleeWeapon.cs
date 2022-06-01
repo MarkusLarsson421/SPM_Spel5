@@ -59,6 +59,7 @@ public class MaleeWeapon : MonoBehaviour
 		{
 			canFire = false;
 			StartCoroutine(Fire());
+			sM.SoundPlaying("meleeAttack");
 			playerAnimator.SetTrigger("Attack");
 			handAnimator.SetTrigger("Fire");
 			OnAttackWithMaleeEvent unit = new OnAttackWithMaleeEvent();
@@ -97,7 +98,6 @@ public class MaleeWeapon : MonoBehaviour
 			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
 			if (target != null)
 			{
-				sM.SoundPlaying("meleeAttack");
 				target.TakeDamage(damage);
 			}
 		}
