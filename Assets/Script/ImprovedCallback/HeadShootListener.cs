@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HeadShootListener : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private int headShotCounter = 0;
     void Start()
     {
-        
+        HeadShootEvent.RegisterListener(IncreaseHeadShotCounter);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void IncreaseHeadShotCounter(HeadShootEvent info)
     {
-        
+        ++headShotCounter;
+    }
+    public int GetHeadShotCounter()
+    {
+        return headShotCounter;
     }
 }
