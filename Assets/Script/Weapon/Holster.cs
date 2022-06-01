@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 public class Holster : MonoBehaviour
 {
     [SerializeField] private UIHandler handler;
+    [SerializeField] private Weapon pistol;
+    [SerializeField] private MaleeWeapon melee;
 
     private int selectedWeapon;
     private float switchTimer;
@@ -120,7 +122,7 @@ public class Holster : MonoBehaviour
                 currentWeapon.SetActive(true);
                 if (currentWeapon.tag.Equals("Pistol"))
                 {
-                    currentWeapon.GetComponent<Weapon>().SetCanFire(true);
+                    pistol.SetCanFire(true);
                     handler.SwitchWeaponIcons("Pistol");
                     handAnimator.SetBool("Axe", false);
                     playerAnimator.SetBool("Axe", false);
@@ -129,7 +131,7 @@ public class Holster : MonoBehaviour
                 }
                 else if (currentWeapon.tag.Equals("Melee"))
                 {
-                    currentWeapon.GetComponent<MaleeWeapon>().SetCanFire(true);
+                    melee.SetCanFire(true);
                     handler.SwitchWeaponIcons("Melee");
                     handAnimator.SetBool("Axe", true);
                     playerAnimator.SetBool("Axe", true);
@@ -150,11 +152,11 @@ public class Holster : MonoBehaviour
                 currentWeapon.SetActive(false);
                 if (currentWeapon.tag.Equals("Pistol"))
                 {
-                    currentWeapon.GetComponent<Weapon>().SetCanFire(false);
+                    pistol.SetCanFire(false);
                 }
                 else if (currentWeapon.tag.Equals("Melee"))
                 {
-                    currentWeapon.GetComponent<MaleeWeapon>().SetCanFire(false);
+                    melee.SetCanFire(false);
                 }
                 /*
                 else if (currentWeapon.tag.Equals("AK47"))
