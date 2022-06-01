@@ -1,7 +1,7 @@
-using EventCallbacks;
+using System;
 using UnityEngine;
 
-public class Generator : MonoBehaviour{
+public class Generator : MonoBehaviour, Saveable{
 	private const int maxFuel = 100;
 	
 	//Whether or not the generator is on.
@@ -9,8 +9,7 @@ public class Generator : MonoBehaviour{
 	[SerializeField] private Interactable interactable;
     [SerializeField] private SoundManager sM;
 
-
-    //Fuel
+	//Fuel
     [Header("Fuel settings")]
 	[SerializeField][Range(1, maxFuel)] private float fuel;
 	[SerializeField] private float fuelDrainMultiplier = 1.0f;
@@ -25,16 +24,27 @@ public class Generator : MonoBehaviour{
 	[Tooltip("Powered objects when the power is turned off. Such as emergency lights.")]
 	[SerializeField] private GameObject[] lowPowerLights;
 
-	private Light fuelIndicator;
+	[SerializeField] private Light fuelIndicator;
+	
 	[SerializeField] private GameObject interactingPlayer;
 	public string interactingTag;
 	private bool isToggled;
 	private bool hasRegistered;
 	[SerializeField] private ResourceManager rm;
 
+	//Comps = Components
+	private Lamp[] highPowerComps;
+	private Lamp[] lowPowerComps;
+	private Door[] doorComps;
+
 	private void Start(){
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
         fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
+
+		highPowerComps = GetComponentsFromArray<Lamp>(highPowerLights);
+		lowPowerComps = GetComponentsFromArray<Lamp>(lowPowerLights);
+		doorComps = GetComponentsFromArray<Door>(doors);
+
 		SetState(isOn);
 		FuelIndicator();
 	}
@@ -58,8 +68,6 @@ public class Generator : MonoBehaviour{
 		}
 		DrainFuel();
 		FuelIndicator();
-
-		
 	}
 
 	public void SetInteractingPlayer()
@@ -90,7 +98,8 @@ public class Generator : MonoBehaviour{
 	public void TurnOn(){
 		if(fuel <= 0){return;}
 		isOn = true;
-		SetLightState(true);
+		SetLampState(true, highPowerComps);
+		SetLampState(false, lowPowerComps);
 		fuelIndicator.enabled = true;
 		call();
     }
@@ -111,29 +120,19 @@ public class Generator : MonoBehaviour{
 	}
 
 	public void TurnOff(){
-
-        isOn = false;
-		SetLightState(false);
+		isOn = false;
+		SetLampState(false, highPowerComps);
+		SetLampState(true, lowPowerComps);
 		fuelIndicator.enabled = false;
 	}
 
 	public void OpenDoors(){
-		SetDoorState(true);
+		SetDoorState(true, doorComps);
 	}
 
-	public void SetFuel(float fuel){
-		this.fuel = fuel;
-	}
-
-	public float GetFuel()
-	{
-		return fuel;
-	}
-
-	public bool GetState()
-	{
-		return isOn;
-	}
+	public void SetFuel(float fuel) => this.fuel = fuel;
+	public float GetFuel => fuel;
+	public bool GetState => isOn;
 
 	/**
 	 * Drains fuel each frame.
@@ -172,46 +171,80 @@ public class Generator : MonoBehaviour{
 	}
 
 	/*
+	 * Tells the Lamps to be either powered or unpowered.
+	 * 
+	 * @Param desiredState What state the Lamp is desired to be in.
+	 * @Param doors Array of which Lamp components to set to the desired state.
+	 * 
 	 * @Author Martin Wallmark and Markus Larsson
 	 */
-	private void SetLightState(bool desiredState){
-		foreach(GameObject go in highPowerLights){
-            if (go == null) { continue; }
-			go.GetComponent<Lamp>().SetState(desiredState);
-		}
-
-		foreach(GameObject go in lowPowerLights){
-			if (go == null) { continue; }
-			go.GetComponent<Lamp>().SetState(!desiredState);
+	private void SetLampState(bool desiredState, Lamp[] lamps){
+		for(int i = 0; i < lamps.Length; i++){
+			if(lamps[i] != null){
+				lamps[i].SetState(desiredState);
+			}
 		}
 	}
 	
 	/*
 	 * Tells the doors to either open or close.
 	 *
-	 * @Param desiredState What state the door is desired to be in.
+	 * @Param desiredState What state the Door is desired to be in.
+	 * @Param doors Array of which Door components to set to the desired state.
 	 * @Author Martin Wallmark and Markus Larsson
 	 */
-	private void SetDoorState(bool desiredState){
-		foreach(GameObject go in doors){
-			go.GetComponent<Door>().SetState(desiredState);
+	private void SetDoorState(bool desiredState, Door[] doors){
+		for(int i = 0; i < doors.Length; i++){
+			if(doors[i] != null){
+				doors[i].SetState(desiredState);
+			}
 		}
 	}
 
 	/*
-	 * When generator is half full the light intensity will lerp from 2 to 1 before shutting off
-	 * 
-	 * @Author Martin Wallmark
+	 * Gets all Components of the specified type inside all game objects from the list and returns a list of those
+	 * Components.
+	 *
+	 * @Param gameObjects The Array of GameObjects to copy the Components from.
+	 * @Return Array of the Components.
+	 * @Author Markus Larsson
 	 */
-	/*private void LerpingLights(){
-		foreach(Light light in lights){
-			float lerpTimer = Time.deltaTime / 3f;
-			light.intensity = Mathf.Lerp(light.intensity, 1f, lerpTimer);
+	private T[] GetComponentsFromArray<T>(GameObject[] gameObjects){
+		T[] comps = new T[gameObjects.Length];
+		
+		for(int i = 0; i < gameObjects.Length; i++){
+			T comp = gameObjects[i].GetComponent<T>();
+			if(comp != null){
+				gameObjects[i].GetComponent<T>();
+				comps[i] = comp;
+			}
 		}
-	}*/
+		
+		//Sending array's back is not a good design decision but it makes it more readable
+		return comps;
+	}
 
-	/*private void OnValidate()
+	private void OnValidate()
 	{
 		Start();
-	}*/
+	}
+	
+	public object CaptureState(){
+		return new SaveData(){
+			isOn = isOn,
+			fuel = fuel,
+		};
+	}
+
+	public void RestoreState(object state){
+		SaveData saveData = (SaveData)state;
+		isOn = saveData.isOn;
+		fuel = saveData.fuel;
+	}
+
+	[Serializable]
+	private struct SaveData{
+		public bool isOn;
+		public float fuel;
+	}
 }

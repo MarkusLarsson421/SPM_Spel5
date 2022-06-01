@@ -15,7 +15,7 @@ public class GeneratorRotator : MonoBehaviour {
 
     void Update()
     {
-        if(gen.GetFuel() != 0)
+        if(gen.GetFuel != 0)
             Rotate();
         else
             StopRotate();

@@ -108,5 +108,5 @@ public class EatThePizza : Event<EatThePizza>
 }
 public class IncreaseWaveEvent : Event<IncreaseWaveEvent>
 {
-
 }
+public class HeadShootEvent : Event<HeadShootEvent> { }

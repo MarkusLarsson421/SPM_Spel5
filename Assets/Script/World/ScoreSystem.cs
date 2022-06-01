@@ -6,14 +6,13 @@ using EventCallbacks;
 
 public class ScoreSystem : MonoBehaviour
 {
-    // [SerializeField] private TMP_Text waveText;
+    [SerializeField] private InreaseWaveListener increasedWave;
+    [SerializeField] private TMP_Text waveText;
     [SerializeField] private ZombieDeathListener zombieKilled;
     [SerializeField] private TMP_Text zombieKilledText;
     [SerializeField] private TMP_Text timeTakenText;
     private float timeValue;
 
-    private ZombieObjectPooled spawner;
-    private EnemyAI enemyAI;
 
     private void Start()
     {
@@ -35,8 +34,7 @@ public class ScoreSystem : MonoBehaviour
 
     public void DisplayZombieWave()
     {
-        //waveText.text = spawner.getCurrentWave().ToString();
-        //Debug.Log(waveText);
+        waveText.text = "Wave: " +  increasedWave.GetCurrentWave().ToString();
     }
 
     public void DisplayZombiesKilled()

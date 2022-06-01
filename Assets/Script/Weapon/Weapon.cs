@@ -137,8 +137,9 @@ public class Weapon : MonoBehaviour
             {
                
                 
-                    target.TakeDamage(damage + headshotDmg);
-                    
+                target.TakeDamage(damage + headshotDmg);
+                HeadShootEvent headShootEvent = new HeadShootEvent();
+                headShootEvent.FireEvent();
 
 
                 ParticleOnHitEffect();
