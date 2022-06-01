@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3207547, g: 0, b: 0, a: 0.4745098}
+  m_Color: {r: 0.3207547, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4259,7 +4259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &176602901841672445
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8610,7 +8610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6737206074718321347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8620,7 +8620,7 @@ RectTransform:
   m_GameObject: {fileID: 9215144777786908620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 8950331851325633987}
   - {fileID: 1094313399008463928}
@@ -8634,7 +8634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.158, y: 10.353}
+  m_AnchoredPosition: {x: 10.158, y: -100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &9217032531649718991
@@ -8722,15 +8722,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9065745292132849935, guid: a45cf4840120f044ba5cdbb533a3c8b5, type: 3}
       propertyPath: m_Color.b
-      value: 0.745283
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9065745292132849935, guid: a45cf4840120f044ba5cdbb533a3c8b5, type: 3}
       propertyPath: m_Color.g
-      value: 0.745283
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9065745292132849935, guid: a45cf4840120f044ba5cdbb533a3c8b5, type: 3}
       propertyPath: m_Color.r
-      value: 0.745283
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9065745292132849935, guid: a45cf4840120f044ba5cdbb533a3c8b5, type: 3}
       propertyPath: m_FontData.m_Font
@@ -10129,7 +10129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1395471263059743850, guid: a7ef0957406455b44b10253fd01714b3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1462452220070206797, guid: a7ef0957406455b44b10253fd01714b3, type: 3}
       propertyPath: m_TargetGraphic
@@ -10205,11 +10205,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902101857651041989, guid: a7ef0957406455b44b10253fd01714b3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.9
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3902101857651041989, guid: a7ef0957406455b44b10253fd01714b3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.9
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3902101857651041989, guid: a7ef0957406455b44b10253fd01714b3, type: 3}
       propertyPath: m_LocalScale.z
@@ -10249,7 +10249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902101857651041989, guid: a7ef0957406455b44b10253fd01714b3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 10.353
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 3902101857651041989, guid: a7ef0957406455b44b10253fd01714b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
