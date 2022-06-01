@@ -23,7 +23,7 @@ public class Door : MonoBehaviour
             }
         }
         //SetState(isOpen);
-        //SetCanOpen(playerCanOpen);
+        SetCanOpen(playerCanOpen);
     }
 
     private void OnTriggerEnter(Collider other)
