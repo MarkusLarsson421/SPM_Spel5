@@ -66,7 +66,7 @@ public class PlayerSpawnManager : MonoBehaviour
             
             if (ss != null)
             {
-                ss.FixCarLinePlay();
+                //ss.FixCarLinePlay();
                 ss.PlayInfoAboutStuff();
             }
             
