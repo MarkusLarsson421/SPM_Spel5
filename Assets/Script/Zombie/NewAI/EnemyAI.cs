@@ -228,6 +228,11 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    public SoundManager GetSM()
+    {
+        return sM;
+    }
+
 }
 /*
  private void Start()
