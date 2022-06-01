@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private Image runImage;
     [SerializeField] private CanvasHandler ch;
     [SerializeField] private UIHandler handler;
+    [SerializeField] private ColorModifer tookDamge;
     private float timer;
     private bool isDead = false;
     private bool isHit;
@@ -100,9 +101,10 @@ public class PlayerStats : MonoBehaviour
 
     void UpdatePlayerStatsCnvas()
     {
-        PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
-        playerHealthChange.PlayerHealth = health;
-        playerHealthChange.FireEvent();
+        tookDamge.setValue(GetHealth());
+        //PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();
+        //playerHealthChange.PlayerHealth = health;
+        //playerHealthChange.FireEvent();
 
     }
 

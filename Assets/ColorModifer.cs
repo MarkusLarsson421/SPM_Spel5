@@ -6,7 +6,7 @@ public class ColorModifer : MonoBehaviour
 {
     Image image;
     Color c;
-    private int value;
+    [SerializeField]private int value;
    
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,6 @@ public class ColorModifer : MonoBehaviour
     void Update()
     {
         //StartCoroutine(HpSampleToggler());
-
     }
     public void setValue(int value)
     {
