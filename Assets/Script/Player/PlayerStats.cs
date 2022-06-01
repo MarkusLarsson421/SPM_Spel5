@@ -30,15 +30,15 @@ public class PlayerStats : MonoBehaviour
     {
         //UpdatePlayerStatsCnvas();
 
-        //if (isHit)
-        //{
-        //    timer += Time.deltaTime;
-        //    if (timer >= 4)
-        //    {
-        //        isHit = false;
-        //        timer = 0;
-        //    }
-        //}
+        if (isHit)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 4)
+            {
+                isHit = false;
+                timer = 0;
+            }
+        }
         if (!isHit && health != 100)
         {
             timer += Time.deltaTime;
