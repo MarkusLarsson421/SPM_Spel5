@@ -47,6 +47,8 @@ public class SoundManager : MonoBehaviour
     private AudioSource zombieDeathSource;
     private AudioSource zombieTakesDamageSoundSource;
     private AudioSource zombieRoarSoundSource; //AudioSourcen har ljudet på sig.
+    private AudioSource zombieAttackSoundSource;
+
     //World AudioSources
     private AudioSource intenseMusic; 
     
@@ -65,6 +67,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioClip[] danHitSounds;
     [SerializeField] private AudioClip[] kateHitSounds;
+    [SerializeField] private AudioClip[] zombieAttackSounds;
 
     void Start()
     {
@@ -89,6 +92,7 @@ public class SoundManager : MonoBehaviour
         zombieDeathSource = GameObject.Find("ZombieDeathAudioSource").GetComponent<AudioSource>();
         zombieRoarSoundSource = GameObject.Find("ZombieRoarAudioSource").GetComponent<AudioSource>();
         zombieTakesDamageSoundSource = GameObject.Find("ZombieTakesDamageAudioSource").GetComponent<AudioSource>();
+        zombieAttackSoundSource = GameObject.Find("ZombieAttackSoundSource").GetComponent<AudioSource>();
 
         //PlayerSounds
         meleeSound = Resources.Load<AudioClip>("Swing");
@@ -195,7 +199,11 @@ public class SoundManager : MonoBehaviour
         {
             ToggleDoorSound();
         }
-
+        if(clip == "zombieAttack")
+        {
+            RandomClip(zombieAttackSounds, zombieAttackSoundSource);
+            ZombieAttackSound();
+        }
     }
     private void Shoot()
     {
@@ -282,6 +290,16 @@ public class SoundManager : MonoBehaviour
         kateHitSoundSource.pitch = Random.Range(0.8f, highPitchRan);
         kateHitSoundSource.PlayOneShot(kateHitSoundSource.clip);
     }
+
+    private void ZombieAttackSound()
+    {
+        if (!zombieAttackSoundSource.isPlaying)
+        {
+            zombieAttackSoundSource.pitch = Random.Range(0.8f, highPitchRan);
+            zombieAttackSoundSource.PlayOneShot(zombieAttackSoundSource.clip);
+        }
+    }
+
 
     private void ToggleDoorSound()
     {
