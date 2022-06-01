@@ -38,7 +38,7 @@ public class Generator : MonoBehaviour, Saveable{
 	private Door[] doorComps;
 
 	private void Start(){
-        sM = GameObject.Find("SM").GetComponent<SoundManager>();
+        //sM = GameObject.Find("SM").GetComponent<SoundManager>();
         fuelIndicator = transform.GetChild(0).gameObject.GetComponent<Light>();
 
 		highPowerComps = GetComponentsFromArray<Lamp>(highPowerLights);
