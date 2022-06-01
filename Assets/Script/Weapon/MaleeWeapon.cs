@@ -55,7 +55,7 @@ public class MaleeWeapon : MonoBehaviour
 	 */
 	public void OnFire(InputAction.CallbackContext context)
 	{
-		if (context.performed && canFire)
+		if (context.performed && canFire && gameObject.activeSelf)
 		{
 			canFire = false;
 			StartCoroutine(Fire());
