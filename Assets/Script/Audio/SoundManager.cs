@@ -19,6 +19,7 @@ public class SoundManager : MonoBehaviour
     private AudioClip generatorOnSound;
     private AudioClip generatorOffSound;
     private AudioClip subtitlesSound;
+    private AudioClip doorToggleSound;
     //PlayerSounds
     private AudioClip shootSound;
     private AudioClip meleeSound;
@@ -52,6 +53,7 @@ public class SoundManager : MonoBehaviour
     private AudioSource newWaveAudioSource;
     private AudioSource generatorSource;
     private AudioSource generatorSourceOn;
+    private AudioSource doorToggleSource;
 
 
     private float volLowRan = 0.3f;
@@ -72,6 +74,7 @@ public class SoundManager : MonoBehaviour
         generatorSource = GameObject.Find("GeneratorAudioSource").GetComponent<AudioSource>();
         generatorSourceOn = GameObject.Find("GeneratorOnAudioSource").GetComponent<AudioSource>();
         subtitlesSoundSource = GameObject.Find("SubtitlesAudioSource").GetComponent<AudioSource>();
+        doorToggleSource = GameObject.Find("DoorToggleAudioSource").GetComponent<AudioSource>();
 
         //Player sources
         shootSoundSource = GameObject.Find("ShootAudioSource").GetComponent<AudioSource>();
@@ -102,6 +105,7 @@ public class SoundManager : MonoBehaviour
         newWave = Resources.Load<AudioClip>("NewWave");
         generatorOnSound = Resources.Load<AudioClip>("GeneratorOn");
         generatorOffSound = Resources.Load<AudioClip>("GeneratorOff");
+        doorToggleSound = Resources.Load<AudioClip>("DoorToggle");
         
         //ambienceDay.time = Random.Range(0, 60);
         //pianoMusic.time = Random.Range(0, 60);
@@ -182,10 +186,14 @@ public class SoundManager : MonoBehaviour
             RandomClip(danHitSounds, danHitSoundSource);
             DanHitSound();
         }
-        if(clip == "kateHit")
+        if(clip == "kateHit") //Kate take damage
         {
             RandomClip(kateHitSounds, kateHitSoundSource);
             KateHitSound();
+        }
+        if (clip == "toggleDoor") //Doors
+        {
+            ToggleDoorSound();
         }
 
     }
@@ -273,6 +281,15 @@ public class SoundManager : MonoBehaviour
     {
         kateHitSoundSource.pitch = Random.Range(0.8f, highPitchRan);
         kateHitSoundSource.PlayOneShot(kateHitSoundSource.clip);
+    }
+
+    private void ToggleDoorSound()
+    {
+        if (!doorToggleSource.isPlaying)
+        {
+            doorToggleSource.pitch = Random.Range(0.8f, highPitchRan);
+            doorToggleSource.PlayOneShot(doorToggleSound);
+        }
     }
 
     //Nyman
