@@ -30,6 +30,10 @@ public class ColorModifer : MonoBehaviour
         this.value = value;
         HpIndicator();
     }
+    public void setImage(Image image)
+    {
+        this.image = image;
+    }
     void HpIndicator()
     {
         if (value <= 20)
