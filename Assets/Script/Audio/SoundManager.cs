@@ -248,7 +248,7 @@ public class SoundManager : MonoBehaviour
     }
     private void ReloadSound()
     {
-        reloadSoundSource.pitch = Random.Range(0.6f, highPitchRan);
+        //reloadSoundSource.pitch = Random.Range(0.6f, highPitchRan);
         reloadSoundSource.PlayOneShot(reloadSound);
     }
     private void NewWave()
