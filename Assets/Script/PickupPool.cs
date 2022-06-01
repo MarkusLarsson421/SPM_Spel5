@@ -90,7 +90,7 @@ public class PickupPool : MonoBehaviour
             {
                 pickUp.transform.position = spawnPoints[i].transform.position;
                 spawnPoints[i].GetComponent<PickupObjectPooled>().SetAbleToSpawn(true);
-                //se �ver detta. Items spawnar inuti varandra
+                //se över detta. Items spawnar inuti varandra
             }
         }
     }

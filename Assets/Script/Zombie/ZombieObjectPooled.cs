@@ -177,6 +177,7 @@ public class ZombieObjectPooled : MonoBehaviour
                 zombieAmount++;
                 debug++;
             }
+            Debug.Log("startat ny våg");
             
         }
     }
