@@ -153,6 +153,8 @@ public class EnemyAI : MonoBehaviour
             //sM.SoundPlaying("zombieDeathSound");//Simon Hessling Oscarson
             //agent.transform.position = Vector3.zero;
             _collider.enabled = false;
+            OnZombieDeathEvent zombieDeathEvent = new OnZombieDeathEvent();
+            zombieDeathEvent.FireEvent();
             //_collider
             /*Debug.Log("returned");
             zOP.DecreaseZombies();
