@@ -24,7 +24,7 @@ public class DynamicMovementController : MonoBehaviour
 
     private float maxSpeed;
     private float acceleration = 2f;
-    private float deceleration = 1f;
+    private float deceleration = 100f;
     private float gravity = 15f;
     private float timer;
     private float collisionMargin = 0.2f;
