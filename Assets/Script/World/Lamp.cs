@@ -11,7 +11,7 @@ public class Lamp : MonoBehaviour{
 	[SerializeField] private bool isOn;
 	
 	//Array filled with the children which has light components.
-	private Light[] lights;
+	 [SerializeField]private Light[] lights;
 
 	//Materials to be used for the light bulb when active and or inactive.
 	[SerializeField] private Color colour;
