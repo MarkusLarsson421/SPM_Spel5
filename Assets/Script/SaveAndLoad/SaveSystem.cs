@@ -1,34 +1,67 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public static class SaveSystem{
-	private const string exention = ".sin";
-	private const string saveLocation = "/saves/";
+public class SaveSystem : MonoBehaviour{
+	private const string extention = ".sin";
+	private const string defaultSaveName = "autosave";
 
-	public static void Save<T>(string saveSubLocation, string saveName, T save, string key){
-		BinaryFormatter formatter = new BinaryFormatter();
-		string path = SaveLocation(saveSubLocation, saveName);
-		using (FileStream stream = new FileStream(path, FileMode.Create))
-		{
-			formatter.Serialize(stream, save);
+	private string SavePath(string saveName) => Application.persistentDataPath + "/" + saveName + extention;
+
+	[ContextMenu("Save")]
+	public void Save(){
+		Save(defaultSaveName);
+	}
+	
+	public void Save(string saveName){
+		Dictionary<string, object> state = LoadFile(saveName);
+		CaptureState(state);
+		SaveFile(state, saveName);
+	}
+
+
+	[ContextMenu("Load")]
+	public void Load(){
+		Load(defaultSaveName);
+	}
+	
+	public void Load(string saveName){
+		Dictionary<string, object> state = LoadFile(saveName);
+		RestoreState(state);
+	}
+	
+	private void SaveFile(object state, string saveName){
+		using(FileStream stream = File.Open(SavePath(saveName), FileMode.Create)){
+			BinaryFormatter formatter = new BinaryFormatter();
+			formatter.Serialize(stream, state);
 		}
 	}
 
-	public static T Load<T>(string saveSubLocation, string saveName, string key){
-		string path = SaveLocation(saveSubLocation, saveName);
-		BinaryFormatter formatter = new BinaryFormatter();
-		T output;
-		using (FileStream stream = new FileStream(path, FileMode.Open))
-		{
-			output = (T)formatter.Deserialize(stream);
+	private Dictionary<string, object> LoadFile(string saveName){
+		if(File.Exists(SavePath(saveName)) == false){
+			return new Dictionary<string, object>();
 		}
 
-		return output;
+		using(FileStream stream = File.Open(SavePath(saveName), FileMode.Open)){
+			BinaryFormatter formatter = new BinaryFormatter();
+			return formatter.Deserialize(stream) as Dictionary<string, object>;
+		}
 	}
 
-	private static string SaveLocation(string saveSubLocation, string saveName)
-	{
-		return Path.Combine(Application.persistentDataPath, saveLocation, saveSubLocation, saveName + exention);
+	private void CaptureState(Dictionary<string, object> state){
+		SaveableEntity[] entities = FindObjectsOfType<SaveableEntity>();
+		for(int i = 0; i < entities.Length; i++){
+			state[entities[i].GetId] = entities[i].CaptureState();
+		}
+	}
+
+	private void RestoreState(Dictionary<string, object> state){
+		SaveableEntity[] entities = FindObjectsOfType<SaveableEntity>();
+		for(int i = 0; i < entities.Length; i++){
+			if(state.TryGetValue(entities[i].GetId, out object value)){
+				entities[i].RestoreState(value);
+			}
+		}
 	}
 }
