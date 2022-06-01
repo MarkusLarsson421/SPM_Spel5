@@ -174,9 +174,10 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("returned");
         //agent.isStopped = false;
         _collider.enabled = true;
-       zOP.DecreaseZombies();
-       // gameObject.transform.position = spawnPosition;
         zP.ReturnToPool(zReference);
+        //zOP.DecreaseZombies();
+       // gameObject.transform.position = spawnPosition;
+        
     }
 
     public void SetColor(Color color)

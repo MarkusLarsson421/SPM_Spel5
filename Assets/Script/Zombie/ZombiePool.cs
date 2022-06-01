@@ -64,5 +64,6 @@ public class ZombiePool : MonoBehaviour
         zombieContainer.Enqueue(zo);
         ZombieObjectPooled.amountOfZombiesSpawned--;
         zo.transform.position = zo.spawnPosition;
+        spawnObjects[0].DecreaseZombies();
     }
 }
