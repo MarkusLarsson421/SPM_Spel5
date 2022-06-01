@@ -167,8 +167,8 @@ public class EnemyAI : MonoBehaviour
     //Death animation Nyman
     IEnumerator PlayDeathAnimation(float time)
     {
-        anim.SetTrigger("Die");
         anim.SetBool("CanAttack", false);
+        anim.SetTrigger("Die");
         agent.isStopped = true;
         yield return new WaitForSeconds(time);
         agent.isStopped = false;
