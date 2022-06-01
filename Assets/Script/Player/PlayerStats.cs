@@ -80,10 +80,10 @@ public class PlayerStats : MonoBehaviour
             {
                 sm.SoundPlaying("danHit");
             }
-            /*else if(gameObject.tag == "Player2")
+            else if(gameObject.tag == "Player2")
             {
                 sm.SoundPlaying("kateHit");
-            }*/
+            }
         }
 
     }
