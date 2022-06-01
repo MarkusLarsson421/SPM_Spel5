@@ -176,10 +176,12 @@ public class Generator : MonoBehaviour{
 	 */
 	private void SetLightState(bool desiredState){
 		foreach(GameObject go in highPowerLights){
+            if (go == null) { continue; }
 			go.GetComponent<Lamp>().SetState(desiredState);
 		}
 
 		foreach(GameObject go in lowPowerLights){
+			if (go == null) { continue; }
 			go.GetComponent<Lamp>().SetState(!desiredState);
 		}
 	}
