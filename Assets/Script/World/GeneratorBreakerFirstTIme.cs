@@ -24,7 +24,7 @@ public class GeneratorBreakerFirstTIme : MonoBehaviour
             ss.SetGeneratorBreakFirstTime(true);
 			gen.GetComponent<Generator>().SetFuel(0.0f);
             Destroy(gameObject);
-            pool.SetAmountOfScraps(7);
+            pool.SetAmountOfScraps(4);
             pool.SetScrapsActive();
             
         }
