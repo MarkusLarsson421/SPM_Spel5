@@ -7,7 +7,7 @@ using EventCallbacks;
  *@Simon Hessling Oscarson
  * Klass som instansierar zombie-objekt ur poolen. L�ggs p� en prefab som agerar spawner
  */
-public class ZombieObjectPooled : MonoBehaviour
+public class ZombieObjectPooled : MonoBehaviour, Saveable
 {
     private SoundManager sM;
     [SerializeField] private TMP_Text waveText;
@@ -199,6 +199,27 @@ public class ZombieObjectPooled : MonoBehaviour
         var zombie = ZombiePool.Instance.Get();
         zombie.SetNewHealth(newZombieHealth); //Simon Hessling Oscarson
         zombie.gameObject.SetActive(true);
+    }
+    
+    public object CaptureState()
+    {
+        return new SaveData()
+        {
+            currentWave = currentWave  
+        };
+    }
+
+    public void RestoreState(object state)
+    {
+        SaveData saveData = (SaveData)state;
+        currentWave = saveData.currentWave;
+    }
+
+    [SerializeField]
+
+    public struct SaveData
+    {
+        public int currentWave;
     }
 }
 
