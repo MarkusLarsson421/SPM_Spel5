@@ -10,6 +10,8 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField] private TMP_Text waveText;
     [SerializeField] private ZombieDeathListener zombieKilled;
     [SerializeField] private TMP_Text zombieKilledText;
+    [SerializeField] private HeadShootListener headShots;
+    [SerializeField] private TMP_Text headShotText;
     [SerializeField] private TMP_Text timeTakenText;
     private float timeValue;
 
@@ -40,6 +42,10 @@ public class ScoreSystem : MonoBehaviour
     public void DisplayZombiesKilled()
     {
         zombieKilledText.text = "Zombie Killed: " + zombieKilled.GetDeathCounter().ToString();
+    }
+    public void DisplayHeadShots()
+    {
+        headShotText.text = "Head Shots: " + headShots.GetHeadShotCounter().ToString();
     }
     public void UpdateValues()
     {
