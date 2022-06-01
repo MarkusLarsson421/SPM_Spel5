@@ -31,7 +31,7 @@ public class ScoreSystem : MonoBehaviour
     {
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        timeTakenText.text = minutes + ":" + seconds;
+        timeTakenText.text = "time: "+ minutes + "." + seconds;
     }
 
     public void DisplayZombieWave()
