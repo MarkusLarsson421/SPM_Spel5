@@ -17,7 +17,7 @@ public class MaleeWeapon : MonoBehaviour
 
 	private bool isFiring;
 
-	private bool canFire;
+	private bool canFire = true;
 
 	private DynamicMovementController player;
 
@@ -34,6 +34,19 @@ public class MaleeWeapon : MonoBehaviour
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
 
     }
+	float timer=0;
+    private void Update()
+    {
+		if (!canFire&& timer<1)
+		{
+			timer += Time.deltaTime;
+		}
+        else
+        {
+			timer = 0;
+			canFire = true;
+		}
+    }
 
     [SerializeField] private Camera fpsCamera;
 
@@ -42,10 +55,10 @@ public class MaleeWeapon : MonoBehaviour
 	 */
 	public void OnFire(InputAction.CallbackContext context)
 	{
-		if (context.performed && !isReloading && canFire)
+		if (context.performed && canFire)
 		{
-			Fire();
-            sM.SoundPlaying("meleeAttack");
+			canFire = false;
+			StartCoroutine(Fire());
 			playerAnimator.SetTrigger("Attack");
 			handAnimator.SetTrigger("Fire");
 			OnAttackWithMaleeEvent unit = new OnAttackWithMaleeEvent();
@@ -74,8 +87,9 @@ public class MaleeWeapon : MonoBehaviour
 	 * @Author Markus Larsson 
 	 * @Simon Hessling Oscarson
 	 */
-	private void Fire()
+	private IEnumerator Fire()
 	{
+		yield return new WaitForSeconds(0.4f);
 		RaycastHit hit;
 		if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
 		{
@@ -83,6 +97,7 @@ public class MaleeWeapon : MonoBehaviour
 			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
 			if (target != null)
 			{
+				sM.SoundPlaying("meleeAttack");
 				target.TakeDamage(damage);
 			}
 		}
