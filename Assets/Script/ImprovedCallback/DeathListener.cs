@@ -9,6 +9,7 @@ namespace EventCallbacks
         //public GameObject bloodParticle;
         public AudioClip deathSound;
         public AudioSource speaker;
+        public ScoreSystem scoreSystem;
 
         // Use this for initialization
         void Start()
@@ -48,8 +49,7 @@ namespace EventCallbacks
 
         void TriggerScoreUpdate(PlayerDieEvent unitDeathInfo)
         {
-            ScoreSystem scoreSystem = gameObject.GetComponent<ScoreSystem>();
-            //scoreSystem.UpdateValues();
+            scoreSystem.UpdateValues();
         }
 
 

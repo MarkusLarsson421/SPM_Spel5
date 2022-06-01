@@ -5,8 +5,8 @@ using TMPro;
 
 public class ScoreSystem : MonoBehaviour
 {
-   [SerializeField] private TMP_Text waveText;
-    [SerializeField] private TMP_Text zombieKilledText;
+    // [SerializeField] private TMP_Text waveText;
+    // [SerializeField] private TMP_Text zombieKilledText;
     [SerializeField] private TMP_Text timeTakenText;
     private float timeValue;
 
@@ -15,8 +15,8 @@ public class ScoreSystem : MonoBehaviour
 
     private void Start()
     {
-        spawner = gameObject.GetComponentInChildren<ZombieObjectPooled>();
-        enemyAI = gameObject.GetComponentInChildren<EnemyAI>();
+        //spawner = gameObject.GetComponentInChildren<ZombieObjectPooled>();
+        //enemyAI = gameObject.GetComponentInChildren<EnemyAI>();
     }
 
     private void Update()
@@ -33,17 +33,18 @@ public class ScoreSystem : MonoBehaviour
 
     public void DisplayZombieWave()
     {
-        waveText.text = spawner.getCurrentWave().ToString();
+        //waveText.text = spawner.getCurrentWave().ToString();
+        //Debug.Log(waveText);
     }
 
     public void DisplayZombiesKilled()
     {
-        zombieKilledText.text = enemyAI.getCounter().ToString();
+        //zombieKilledText.text = enemyAI.getCounter().ToString();
     }
     public void UpdateValues()
     {
         DisplayTime(timeValue);
-        DisplayZombieWave();
-        DisplayZombiesKilled();
+        //DisplayZombieWave();
+        //DisplayZombiesKilled();
     }
 }
