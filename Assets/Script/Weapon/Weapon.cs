@@ -121,9 +121,9 @@ public class Weapon : MonoBehaviour
             if (hit.collider.CompareTag("headshot"))
             {
                 target = hit.collider.GetComponentInParent<EnemyAI>();
-                headshotDmg = 30;
+                headshotDmg = 20;
 
-                Debug.Log("headshot");
+                
             }
             else
             {

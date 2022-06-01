@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class MaleeWeapon : MonoBehaviour
 {
 	//Shooting
-	[SerializeField] private int damage = 100;
+	[SerializeField] private int damage = 1000;
 	[SerializeField] private float range = 1f;
 	[SerializeField] private float fireRate = 1.0f;
 	private float nextTimeToFire;

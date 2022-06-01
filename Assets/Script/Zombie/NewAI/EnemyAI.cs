@@ -137,7 +137,7 @@ public class EnemyAI : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        if(damage > 50 && damage < 99)
+        if(damage > 49 && damage < 499)
         {
             sM.SoundPlaying("headshotSound");
         }
