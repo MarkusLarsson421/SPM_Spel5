@@ -31,6 +31,8 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
 
+    [SerializeField] private Animator startUIAnimator;
+
     private void Start()
     {
         playerInputManager.playerPrefab = player1Prefab;
@@ -124,7 +126,7 @@ public class PlayerSpawnManager : MonoBehaviour
     private void DestroyStartImage()
     {
         Destroy(startCamera);
-        Destroy(startUIPicture);
+        startUIAnimator.SetTrigger("FadeOut");
     }
 
     public GameObject GetPlayer1()

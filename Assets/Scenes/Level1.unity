@@ -14534,6 +14534,8 @@ GameObject:
   - component: {fileID: 561000781}
   - component: {fileID: 561000780}
   - component: {fileID: 561000779}
+  - component: {fileID: 561000783}
+  - component: {fileID: 561000784}
   m_Layer: 0
   m_Name: GameCanvas
   m_TagString: Untagged
@@ -14623,6 +14625,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &561000783
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561000778}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8515e182d45bbc04db1f54733370183e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &561000784
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561000778}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &562430978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62655,6 +62688,7 @@ MonoBehaviour:
   player2hasjoined: 0
   player1: {fileID: 0}
   player2: {fileID: 0}
+  startUIAnimator: {fileID: 561000783}
 --- !u!1 &1246783943502825460
 GameObject:
   m_ObjectHideFlags: 0
