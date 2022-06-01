@@ -14,6 +14,7 @@ public class AttackNode : Node
     private Vector3 currentVelocity;
     private float smoothDamp;
 
+
     public AttackNode(NavMeshAgent agent, EnemyAI ai, Transform target, GameObject player)
     {
         this.agent = agent;
@@ -43,6 +44,8 @@ public class AttackNode : Node
     private void AttackAnimation()
     {
         Animator anim = ai.GetComponent<Animator>();
+        SoundManager sm = ai.GetSM();
+        sm.SoundPlaying("zombieAttack");
         anim.SetTrigger("Attack");
     }
 

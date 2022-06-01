@@ -92,7 +92,7 @@ public class SoundManager : MonoBehaviour
         zombieDeathSource = GameObject.Find("ZombieDeathAudioSource").GetComponent<AudioSource>();
         zombieRoarSoundSource = GameObject.Find("ZombieRoarAudioSource").GetComponent<AudioSource>();
         zombieTakesDamageSoundSource = GameObject.Find("ZombieTakesDamageAudioSource").GetComponent<AudioSource>();
-        zombieAttackSoundSource = GameObject.Find("ZombieAttackSoundSource").GetComponent<AudioSource>();
+        zombieAttackSoundSource = GameObject.Find("ZombieAttackAudioSource").GetComponent<AudioSource>();
 
         //PlayerSounds
         meleeSound = Resources.Load<AudioClip>("Swing");
