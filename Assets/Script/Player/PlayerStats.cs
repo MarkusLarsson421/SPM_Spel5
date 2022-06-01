@@ -24,6 +24,10 @@ public class PlayerStats : MonoBehaviour
         UpdatePlayerStatsCnvas();
         runImage.enabled = false;
         walkImage.enabled = true;
+    }
+
+    private void Awake()
+    {
         sm = FindObjectOfType<SoundManager>();
     }
 
