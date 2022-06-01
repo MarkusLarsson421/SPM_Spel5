@@ -6,13 +6,13 @@ using UnityEngine.EventSystems;
 public class WinGame_SimonPrototype : MonoBehaviour
 {
     public ResourceManager rm;
-    public CanvasHandler ch;
+    [SerializeField] private GameObject winPanel;
     [SerializeField] private SubsScript ss;
     [SerializeField] private TMP_Text scrapsInCarText;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GameObject theButton;
     private int scrapsInCar;
-    private int scrapsNeededToFixCar = 12;
+    private int scrapsNeededToFixCar = 1;
     private bool isClicked;
    
 
@@ -43,7 +43,7 @@ public class WinGame_SimonPrototype : MonoBehaviour
             if (scrapsInCar >= scrapsNeededToFixCar)
             {
 
-                ch.ChangeCanvasToWinCanvas();
+                winPanel.SetActive(true);
                 eventSystem.SetSelectedGameObject(theButton);
                 Debug.Log("u won the game");
             }
