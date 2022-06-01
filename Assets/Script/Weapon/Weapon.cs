@@ -61,16 +61,16 @@ public class Weapon : MonoBehaviour
     public void OnReload(InputAction.CallbackContext context)
     {
         if (!gameObject.activeSelf) return;
-        if (context.performed && isReloading == false && rm.Get(ResourceManager.ItemType.Ammo) != 0)
+        if (context.performed && isReloading == false && rm.Get(ResourceManager.ItemType.Ammo) != 0 && currentMag != magCapacity)
         {
-            
+
             StartCoroutine(Reload());
         }
 
-        if (context.canceled)
+        /*if (context.canceled)
         {
             isReloading = false;
-        }
+        }*/
     }
 
     /**
@@ -83,7 +83,7 @@ public class Weapon : MonoBehaviour
             nextTimeToFire = Time.time + 1.0f / fireRate;
             Fire();
         }
-        else if (Input.GetKeyDown(KeyCode.R) && !isReloading)
+        else if (Input.GetKeyDown(KeyCode.R) && !isReloading && currentMag != magCapacity)
         {
             if (rm.Get(ResourceManager.ItemType.Ammo) != 0)
             {
@@ -101,15 +101,16 @@ public class Weapon : MonoBehaviour
     RaycastHit hit;
     private void Fire()
     {
-        currentMag--;
-        for(int i = 0; i < muzzleFlash.Length; i++)
-        {
-            muzzleFlash[i].Play();
-        }
-        sM.SoundPlaying("shootSound");
+
         //Shoot animation - nyman
         if (!isReloading)
         {
+            currentMag--;
+            for (int i = 0; i < muzzleFlash.Length; i++)
+            {
+                muzzleFlash[i].Play();
+            }
+            sM.SoundPlaying("shootSound");
             gunAnim.SetTrigger("Fire");
         }
 
@@ -117,7 +118,7 @@ public class Weapon : MonoBehaviour
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
         {
             EnemyAI target;
-            int headshotDmg= 0;
+            int headshotDmg = 0;
             if (hit.collider.CompareTag("headshot"))
             {
                 target = hit.collider.GetComponentInParent<EnemyAI>();
@@ -129,14 +130,14 @@ public class Weapon : MonoBehaviour
             {
                 target = hit.collider.GetComponent<EnemyAI>();//Khaled ändrat typen från Zombie till EnemyAI
             }
-            
-            
+
+
 
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
             if (target != null)
             {
-               
-                
+
+
                 target.TakeDamage(damage + headshotDmg);
                 HeadShootEvent headShootEvent = new HeadShootEvent();
                 headShootEvent.FireEvent();
@@ -146,7 +147,7 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        if (currentMag <= 0 && rm.Get(ResourceManager.ItemType.Ammo) > 0 )
+        if (currentMag <= 0 && rm.Get(ResourceManager.ItemType.Ammo) > 0 && !isReloading)
         {
             StartCoroutine(Reload());
         }
@@ -167,17 +168,15 @@ public class Weapon : MonoBehaviour
 	 */
     private IEnumerator Reload()
     {
-
+        isReloading = true;
+        SetCanFire(false);
         //load animation - nyman
-        if (currentMag < magCapacity && !isReloading)
+        if (currentMag < magCapacity)
         {
             sM.SoundPlaying("reload");
             playerAnim.SetTrigger("Reload");
             gunAnim.SetTrigger("Reload");
         }
-
-
-        isReloading = true;
 
 
         yield return new WaitForSeconds(reloadTime);
@@ -199,6 +198,7 @@ public class Weapon : MonoBehaviour
         }
         Debug.Log("Reloaded!");
         isReloading = false;
+        SetCanFire(true);
     }
 
     public void SetDamage(int newDamage)
@@ -222,6 +222,10 @@ public class Weapon : MonoBehaviour
 
     public void ReloadOnce()
     {
-        StartCoroutine(Reload());
+        if (!isReloading && currentMag != magCapacity)
+        {
+            StartCoroutine(Reload());
+        }
+
     }
 }
