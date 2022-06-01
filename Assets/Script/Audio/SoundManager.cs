@@ -29,6 +29,9 @@ public class SoundManager : MonoBehaviour
     //EnemySounds
     private AudioClip zombieDeathSound;
     private AudioClip zombieTakesDamageSound;
+    private AudioClip headshotSound;
+    private AudioClip headshotSound2;
+
     //Player AudioSources
     private AudioSource shootSoundSource;
     private AudioSource meleeAttackSoundSource;
@@ -93,6 +96,8 @@ public class SoundManager : MonoBehaviour
         //EnemySounds
         zombieDeathSound = Resources.Load<AudioClip>("ZombieDies");
         zombieTakesDamageSound = Resources.Load<AudioClip>("BulletImpact");
+        headshotSound = Resources.Load<AudioClip>("headshotSound");
+        headshotSound2 = Resources.Load<AudioClip>("headshotSound2");
         //WorldSounds
         newWave = Resources.Load<AudioClip>("NewWave");
         generatorOnSound = Resources.Load<AudioClip>("GeneratorOn");
@@ -154,6 +159,10 @@ public class SoundManager : MonoBehaviour
         {
             ZombieDamagedSound();
         }
+        if (clip == "headshotSound") //enemyAI
+        {
+            ZombieHeadshotSound();
+        }
         if (clip == "generatorOn") //Generator
         {
               GeneratorTurnedOn();
@@ -212,6 +221,14 @@ public class SoundManager : MonoBehaviour
         float vol = Random.Range(volLowRan, volHighRan);
         zombieTakesDamageSoundSource.pitch = Random.Range(lowPitchRan, highPitchRan);
         zombieTakesDamageSoundSource.PlayOneShot(zombieTakesDamageSound, vol);
+    }
+    private void ZombieHeadshotSound()
+    {
+        float vol = Random.Range(volLowRan, volHighRan);
+        zombieTakesDamageSoundSource.pitch = Random.Range(0.8f, 1.2f);
+        zombieTakesDamageSoundSource.PlayOneShot(headshotSound, vol);
+        
+
     }
     private void ReloadSound()
     {

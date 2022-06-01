@@ -137,7 +137,15 @@ public class EnemyAI : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        sM.SoundPlaying("zombieDamagedSound");
+        if(damage > 50 && damage < 99)
+        {
+            sM.SoundPlaying("headshotSound");
+        }
+        else
+        {
+            sM.SoundPlaying("zombieDamagedSound");
+        }
+        
         anim.SetTrigger("Stun4");
         if (_currentHealth <= 0)
         {
