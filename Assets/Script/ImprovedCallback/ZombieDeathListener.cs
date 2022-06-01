@@ -8,27 +8,35 @@ namespace EventCallbacks
     */
     public class ZombieDeathListener : MonoBehaviour // khaled Alraas gjort själva drop systemet
     {
-        float range;
+        private int deathCounter;
+        //float range;
         // const float battery_dropChance = 2f / 10f;
-        const float battery_dropChance = 100f;
-        const float scrap_dropChance = 5f / 10f;
+        //const float battery_dropChance = 100f;
+        //const float scrap_dropChance = 5f / 10f;
 
         // Start is called before the first frame update
         void Start()
         {
-            OnZombieDeathEvent.RegisterListener(DropItems);
+            OnZombieDeathEvent.RegisterListener(GetDeathCounter);
         }
         private void Update()
         {
-            range = Random.Range(0f, 1f);
+            //range = Random.Range(0f, 1f);
         }
-
-        private void DropItems(OnZombieDeathEvent obj)
+        private void GetDeathCounter(OnZombieDeathEvent obj)
         {
-            if (battery_dropChance == 100.0f)
-            {
-                
-            }
+            ++deathCounter;
         }
+        public int GetDeathCounter()
+        {
+            return deathCounter;
+        }
+        //private void DropItems(OnZombieDeathEvent obj)
+        //{
+        //    //if (battery_dropChance == 100.0f)
+        //    //{
+
+        //    //}
+        //}
     }
 }

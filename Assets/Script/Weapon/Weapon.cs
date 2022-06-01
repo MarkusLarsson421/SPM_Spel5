@@ -60,6 +60,7 @@ public class Weapon : MonoBehaviour
 	 */
     public void OnReload(InputAction.CallbackContext context)
     {
+        if (!gameObject.activeSelf) return;
         if (context.performed && isReloading == false && rm.Get(ResourceManager.ItemType.Ammo) != 0)
         {
             

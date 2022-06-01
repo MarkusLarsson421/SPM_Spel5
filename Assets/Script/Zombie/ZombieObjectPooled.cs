@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using EventCallbacks;
 /*@Author Axel Sterner 
  *@Simon Hessling Oscarson
  * Klass som instansierar zombie-objekt ur poolen. L�ggs p� en prefab som agerar spawner
@@ -63,6 +64,8 @@ public class ZombieObjectPooled : MonoBehaviour
     private void SimpleWaveIncreaser()
     {
         currentWave++;
+        IncreaseWaveEvent increaseWaveEvent = new IncreaseWaveEvent();
+        increaseWaveEvent.FireEvent();
         sM.SoundPlaying("newWave");
         if(currentWave == 1)
         {

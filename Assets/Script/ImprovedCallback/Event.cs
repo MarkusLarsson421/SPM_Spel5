@@ -91,7 +91,6 @@ public class GneratorIsOnEvent : Event<GneratorIsOnEvent>
 }
 public class OnZombieDeathEvent : Event<OnZombieDeathEvent>
 {
-	public GameObject zombie;
 }
 public class PlayeIsNearTheCarEvent : Event<PlayeIsNearTheCarEvent>
 {
@@ -106,4 +105,8 @@ public class OnAttackWithMaleeEvent : Event<OnAttackWithMaleeEvent>
 public class EatThePizza : Event<EatThePizza>
 {
 	public IWantPizza pizza; //ni behöver inte lägga något här.
+}
+public class IncreaseWaveEvent : Event<IncreaseWaveEvent>
+{
+
 }
