@@ -72,9 +72,11 @@ public class PlayerStats : MonoBehaviour
             health -= randomNr;
             Timer = 0;
             UpdatePlayerStatsCnvas();
-            PlayerGetHitByZombieEvent playerGetHitByZombie = new PlayerGetHitByZombieEvent();
-            playerGetHitByZombie.player = gameObject;
-            playerGetHitByZombie.FireEvent();
+            ch.setFadeIn(true);
+            ch.EnemyAttackedMe();
+            //PlayerGetHitByZombieEvent playerGetHitByZombie = new PlayerGetHitByZombieEvent();
+            //playerGetHitByZombie.player = gameObject;
+            //playerGetHitByZombie.FireEvent();
             isHit = true;
             timer = 0;
             if (gameObject.tag == "Player1")
