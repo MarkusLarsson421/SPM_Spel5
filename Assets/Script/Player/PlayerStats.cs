@@ -39,16 +39,17 @@ public class PlayerStats : MonoBehaviour
         //        timer = 0;
         //    }
         //}
-        //if (!isHit && health != 100)
-        //{
-        //    timer += Time.deltaTime;
-        //    if (timer >= 0.5)
-        //    {
-        //        health++;
-        //        timer = 0;
-        //    }
+        if (!isHit && health != 100)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 0.5)
+            {
+                health++;
+                timer = 0;
+                UpdatePlayerStatsCnvas();
+            }
 
-        //}
+        }
         if (health <= 0 && !isDead)
         {
             health = 0;
@@ -86,14 +87,15 @@ public class PlayerStats : MonoBehaviour
         }
 
     }
+
     private void PlayerDeath()
     {
-        PlayerDieEvent udei = new PlayerDieEvent();
-        udei.UnitGO = gameObject;
-        udei.FireEvent();
+        PlayerDieEvent player = new PlayerDieEvent();
+        player.UnitGO = gameObject;
+        player.FireEvent();
         isDead = true;
-
     }
+
     public bool IsDead() { return isDead; }
 
     void UpdatePlayerStatsCnvas()

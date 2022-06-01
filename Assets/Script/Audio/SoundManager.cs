@@ -127,7 +127,7 @@ public class SoundManager : MonoBehaviour
         {
             normalSnapshot.TransitionTo(0.0f);
             intenseMusic.Stop();
-            Debug.Log("normalMusic");
+            //Debug.Log("normalMusic");
         }
         if (clip == "shootSound") //Weapon
         {

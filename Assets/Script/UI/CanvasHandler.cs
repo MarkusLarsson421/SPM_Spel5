@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 //https://www.youtube.com/watch?v=tF9RMjF9wDc
 public class CanvasHandler : MonoBehaviour // @Khaled Alraas
@@ -10,25 +11,24 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     [SerializeField] private GameObject CanvasObject;
     [SerializeField] private GameObject deathCanvasObject;
     [SerializeField] private GameObject winCanvasObject;
-    [SerializeField] private GameObject tookDamgeCanvasObject;
     [SerializeField] private GameObject popOutTextCanvas;
     [SerializeField] private TextMeshProUGUI nearCarText;
     [SerializeField] private int sceneToIndex;
     static private int MainMenuSceneIsIndex = 0;
-    [SerializeField] private CanvasGroup tookDamgeCanvas;
+    [SerializeField] private Image tookDamgeImage;
     [SerializeField] private TextMeshProUGUI playerHealthText;
+    [SerializeField] private Color color;
     private bool fadeIn = false;
     private bool fadeOut = false;
 
 
     private void Awake()
     {
-//        tookDamgeCanvasObject.SetActive(true);
-//        tookDamgeCanvas.alpha = 0;
-
+        color.a = 0;
     }
     private void Update()
     {
+        tookDamgeImage.color = color;
         EnemyAttackedMe();
     }
     public void ReastartLevel()
@@ -74,13 +74,12 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     void showTookDamgeCanavs()
     {
 
-        if (tookDamgeCanvas.alpha < 1)
+        if (tookDamgeImage.color.a < 1)
         {
             
-            tookDamgeCanvas.alpha += Time.deltaTime * 20;
-            if (tookDamgeCanvas.alpha >= 0.9)
-            {
-                
+            color.a += Time.deltaTime * 20;
+            if (color.a >= 1)
+            { 
                 hideTookDamgeCanvas();
                 fadeIn = false;
                 fadeOut = true;
@@ -90,13 +89,12 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
 
     void hideTookDamgeCanvas()
     {
-        if (tookDamgeCanvas.alpha > 0)
+        if (color.a > 0)
         {
            
-            tookDamgeCanvas.alpha -= Time.deltaTime * 2;
-            if (tookDamgeCanvas.alpha <= 0)
+            color.a -= Time.deltaTime * 2;
+            if (color.a <= 0)
             {
-                
                 fadeOut = false;
             }
         }
