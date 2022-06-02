@@ -35,11 +35,13 @@ public class EnemyAI : MonoBehaviour
     private bool allFounded = false;
     private GameObject chosenPlayer;
     private Collider _collider;
+    private BoxCollider _boxCollider;
 
     private void Awake()
     {
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
         _collider = GetComponent<Collider>();
+        _boxCollider = GetComponentInChildren<BoxCollider>();
         agent = GetComponent<NavMeshAgent>();
         material = GetComponentInChildren<MeshRenderer>().material;
         agent.acceleration = 10;
@@ -153,6 +155,7 @@ public class EnemyAI : MonoBehaviour
             //sM.SoundPlaying("zombieDeathSound");//Simon Hessling Oscarson
             //agent.transform.position = Vector3.zero;
             _collider.enabled = false;
+            _boxCollider.enabled = false;
             OnZombieDeathEvent zombieDeathEvent = new OnZombieDeathEvent();
             zombieDeathEvent.FireEvent();
             //_collider
@@ -176,6 +179,7 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("returned");
         //agent.isStopped = false;
         _collider.enabled = true;
+        _boxCollider.enabled = true;
         zP.ReturnToPool(zReference);
         //zOP.DecreaseZombies();
        // gameObject.transform.position = spawnPosition;
