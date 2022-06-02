@@ -113,7 +113,3 @@ public class IncreaseWaveEvent : Event<IncreaseWaveEvent>
 public class HeadShootEvent : Event<HeadShootEvent> {
 	public String name;
 }
-public class ZombieWaveEvent : Event<ZombieWaveEvent>
-{
-
-}
