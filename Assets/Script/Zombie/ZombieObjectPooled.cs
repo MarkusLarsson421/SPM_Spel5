@@ -223,7 +223,6 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
 
     private void OnDestroy()
     {
-        Debug.Log("DEsREOYED");
         amountOfZombiesSpawned = 0;
         zombiesNextWave = 0;
         zombieAmount = 0;
