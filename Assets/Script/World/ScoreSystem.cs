@@ -18,6 +18,7 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField] private TMP_Text timeTakenText;
     [SerializeField] private TMP_Text winTimeTakenText;
     private float timeValue;
+    private bool isUpdatingTime = true;
 
 
     private void Start()
@@ -28,7 +29,11 @@ public class ScoreSystem : MonoBehaviour
 
     private void Update()
     {
-        timeValue += Time.deltaTime;
+        if (isUpdatingTime)
+        {
+            timeValue += Time.deltaTime;
+        }
+        
     }
 
     void DisplayTime(float timeToDisplay)
@@ -41,6 +46,7 @@ public class ScoreSystem : MonoBehaviour
 
     public void DisplayZombieWave()
     {
+        isUpdatingTime = false;
         waveText.text = "Waves: " +  increasedWave.GetCurrentWave().ToString();
         winWaveText.text = "Waves: " + increasedWave.GetCurrentWave().ToString();
     }
@@ -61,5 +67,10 @@ public class ScoreSystem : MonoBehaviour
         DisplayZombieWave();
         DisplayZombiesKilled();
         DisplayHeadShots();
+    }
+
+    public void SetIsUpdatingTime(bool value)
+    {
+        isUpdatingTime = value;
     }
 }
