@@ -6,6 +6,7 @@ public class SubsScript : MonoBehaviour{
     [SerializeField] private GameObject textBox;
     [SerializeField] private GameObject controlsTextBox;
     [SerializeField] private GameObject background;
+    [SerializeField] private Animator uiAnimator;
     private SoundManager sM; //Simon Hessling Oscarson
     public bool scrapPickUpLine;
 	public bool needToReload;
@@ -58,8 +59,7 @@ public class SubsScript : MonoBehaviour{
 			StartCoroutine(Subtitle("We can probably use these to fix the car.",0, timeToShowText));
 		}*/
 	}
-
-	private IEnumerator Subtitle(int startWaitTime, string text, int timeToFinish){
+    private IEnumerator Subtitle(int startWaitTime, string text, int timeToFinish){
         fullText = text;
         yield return new WaitForSeconds(startWaitTime);
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
@@ -83,7 +83,7 @@ public class SubsScript : MonoBehaviour{
         yield return new WaitForSeconds(timeToFinish);
         textBox.GetComponent<TextMeshProUGUI>().text = "";
     }
-    private IEnumerator ToolTips(int timeToStart, int timeToFinish)
+    /*private IEnumerator ToolTips(int timeToStart, int timeToFinish)
     {
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "";
         yield return new WaitForSeconds(3);
@@ -104,6 +104,11 @@ public class SubsScript : MonoBehaviour{
         yield return new WaitForSeconds(4);
         background.SetActive(false);
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "";
+    }*/
+
+    private void ToolTips()
+    {
+        uiAnimator.SetTrigger("Play");
     }
     public void SetGeneratorBreakFirstTime(bool boolean)
     {
@@ -112,12 +117,12 @@ public class SubsScript : MonoBehaviour{
 
     public void FixCarLinePlay()
     {
-        StartCoroutine(Subtitle(0,"Dan: We got to fix the car.", timeToShowText));
+        //StartCoroutine(Subtitle(0,"Dan: We got to fix the car.", timeToShowText));
     }
 
     public void PlayInfoAboutStuff()
     {
-        StartCoroutine(ToolTips(2, timeToShowText));
+        ToolTips();
     }
     public void ScrapsUsedForCarLine()
     {
