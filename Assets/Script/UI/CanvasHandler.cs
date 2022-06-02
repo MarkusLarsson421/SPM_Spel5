@@ -65,6 +65,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         CanvasObject.SetActive(false);
         deathCanvasObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
     }
     public void ChangeCanvasToWinCanvas()
     {
