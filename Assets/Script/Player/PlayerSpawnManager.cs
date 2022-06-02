@@ -22,6 +22,7 @@ public class PlayerSpawnManager : MonoBehaviour
 
     [SerializeField] private float player1Rotation;
     [SerializeField] private float player2Rotation;
+    [SerializeField] private PlayerSettings playerSettings;
 
     private float timer;
     public bool playerHasJoined = false;
@@ -55,14 +56,19 @@ public class PlayerSpawnManager : MonoBehaviour
 
         if(playerInput.gameObject.GetComponent<PlayerStartInfo>().GetPlayerID() == 1)
         {
-
+          
             ss = playerInput.gameObject.GetComponentInChildren<SubsScript>();
             DestroyStartImage();
             player1 = playerInput.gameObject;
             player1.GetComponent<PlayerStartInfo>().SetStartPosition(playerOneSpawnPoint.position);
             player1.GetComponent<PlayerStartInfo>().SetPlayerRotation(player1Rotation);
             player1.tag = "Player1";
+            playerSettings.addRM(player1.GetComponentInChildren<ResourceManager>());
             playerInputManager.playerPrefab = player2Prefab;
+            if (LevelLoader.isSceneLoaded)
+            {
+                playerSettings.SetPlayerOneRM();
+            }
             
             if (ss != null)
             {
@@ -79,8 +85,14 @@ public class PlayerSpawnManager : MonoBehaviour
             player2.GetComponent<PlayerStartInfo>().SetStartPosition(playerTwoSpawnPoint.position);
             player2.GetComponent<PlayerStartInfo>().SetPlayerRotation(player2Rotation);
             player2.tag = "Player2";
+            playerSettings.addRM2(player1.GetComponentInChildren<ResourceManager>());
             player2hasjoined = true;
-            
+
+            if (LevelLoader.isSceneLoaded)
+            {
+                playerSettings.SetPlayerTwoRM();
+            }
+
             if (ss2 != null)
             {
                 ss2.PlayInfoAboutStuff();

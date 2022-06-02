@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 //Martin Wallmark
 /*
@@ -15,14 +17,18 @@ public class PauseGame : MonoBehaviour
     [SerializeField] private GameObject menuButton;
     [SerializeField] private GameObject pauseCanvas;
     [SerializeField] private EventSystem eventSystem;
-    private SaveSystem saveSystem;
-    private LoadChoice loader;
+    [SerializeField] private PlayerSettings playerSettings;
+    private ZombieObjectPooled zOP;
+    //private SaveSystem saveSystem;
+    //private LoadChoice loader;
 
     private bool isPaused;
 
     private void Awake()
     {
-        saveSystem = GameObject.Find("SaveAndLoad").GetComponent<SaveSystem>();
+        playerSettings = GameObject.FindGameObjectWithTag("Saver").GetComponent<PlayerSettings>();
+        zOP = GameObject.FindGameObjectWithTag("TheSpawnPoint").GetComponent<ZombieObjectPooled>();
+        //saveSystem = GameObject.Find("SaveAndLoad").GetComponent<SaveSystem>();
         //loader = GameObject.Find("Loader").GetComponent<LoadChoice>();
         resumeButton.SetActive(false);
         menuButton.SetActive(false);
@@ -66,9 +72,29 @@ public class PauseGame : MonoBehaviour
     public void MainMenu()
     {
         Time.timeScale = 1;
-        saveSystem.Save();
-        //Destroy(loader.gameObject);
+        SaveGame();
+        playerSettings.SavePlayerRM();
+       
         SceneManager.LoadScene("Main menu");
     }
 
+
+    private Save CreateSaveGame()
+    {
+        Save save = new Save();
+        save.currentWave = zOP.GetCurrentWave();
+        return save;
+    }
+
+    private void SaveGame()
+    {
+        Save save = CreateSaveGame();
+
+        // 2
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+        bf.Serialize(file, save);
+        file.Close();
+        Debug.Log("Game Saved");
+    }
 }
