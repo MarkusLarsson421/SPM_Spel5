@@ -69,7 +69,7 @@ public class LevelLoader : MonoBehaviour
     {
         isSceneLoaded = true;
         //loader.setLoad(true);
-        SceneManager.LoadScene("Level1");
+        LoadLevel("Level1");
         
     }
 
