@@ -14,7 +14,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     [SerializeField] private Generator generator;
     private static int zombiesNextWave;
     private static int zombieAmount;
-    private int currentWave;
+    private static int currentWave;
     private int betweenWaves = 20;
     public static int amountOfZombiesSpawned;
     [SerializeField] private bool isAbleToSpawn = false;
@@ -69,7 +69,11 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
      */
     private void SimpleWaveIncreaser()
     {
-        currentWave++;
+        if (LevelLoader.isSceneLoaded == false)
+        {
+            currentWave++;
+        }
+        
         waveText.text = currentWave.ToString();
         IncreaseWaveEvent increaseWaveEvent = new IncreaseWaveEvent();
         increaseWaveEvent.FireEvent();
@@ -226,11 +230,23 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
         public int currentWave;
     }
 
+
+    public int GetCurrentWave()
+    {
+        return currentWave;
+    }
+
+    public void SetCurrentWave(int wave)
+    {
+        currentWave = wave;
+    }
+
     private void OnDestroy()
     {
         amountOfZombiesSpawned = 0;
         zombiesNextWave = 0;
         zombieAmount = 0;
+        currentWave = 0;
     }
 }
 
