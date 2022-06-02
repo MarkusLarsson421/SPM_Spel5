@@ -24,6 +24,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     private float newZombieHealth;
     private ZombiePool zP;
     private PickupPool pPool;
+    private bool hasIncreasedOnLoad;
 
     private void Awake()
     {
@@ -69,7 +70,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
      */
     private void SimpleWaveIncreaser()
     {
-        if (LevelLoader.isSceneLoaded == false)
+        if (LevelLoader.isSceneLoaded == false || hasIncreasedOnLoad)
         {
             currentWave++;
         }
@@ -153,7 +154,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
             zombiesNextWave++;
             //TV� HORDE SPAWNAS
         }
-
+        hasIncreasedOnLoad = true;
        
     }
     /*
