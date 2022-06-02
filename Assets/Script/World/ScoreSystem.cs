@@ -41,19 +41,19 @@ public class ScoreSystem : MonoBehaviour
 
     public void DisplayZombieWave()
     {
-        waveText.text = "Wave: " +  increasedWave.GetCurrentWave().ToString();
-        winWaveText.text = "Wave: " + increasedWave.GetCurrentWave().ToString();
+        waveText.text = "Waves: " +  increasedWave.GetCurrentWave().ToString();
+        winWaveText.text = "Waves: " + increasedWave.GetCurrentWave().ToString();
     }
 
     public void DisplayZombiesKilled()
     {
-        zombieKilledText.text = "Zombie Killed: " + zombieKilled.GetDeathCounter().ToString();
-        winZombieKilledText.text = "Zombie Killed: " + zombieKilled.GetDeathCounter().ToString();
+        zombieKilledText.text = "Zombies Killed: " + zombieKilled.GetDeathCounter().ToString();
+        winZombieKilledText.text = "Zombies Killed: " + zombieKilled.GetDeathCounter().ToString();
     }
     public void DisplayHeadShots()
     {
-        headShotText.text = "Head Shots: " + headShots.GetHeadShotCounter().ToString();
-        winHeadShotText.text = "Head Shots: " + headShots.GetHeadShotCounter().ToString();
+        headShotText.text = "Headshots: " + headShots.GetHeadShotCounter().ToString();
+        winHeadShotText.text = "Headshots: " + headShots.GetHeadShotCounter().ToString();
     }
     public void UpdateValues()
     {
