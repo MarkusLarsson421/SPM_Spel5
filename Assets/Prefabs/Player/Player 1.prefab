@@ -412,7 +412,6 @@ MonoBehaviour:
   ch: {fileID: 474367291}
   handler: {fileID: 2424314286279223469}
   tookDamge: {fileID: 6057076904305693301}
-  scoreSystem: {fileID: 1265930589139945230}
 --- !u!114 &4075965575175922090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,6 +673,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fe4d0894-00d5-4d13-a01c-39a21a9286df
     m_ActionName: Gameplay/Scroll[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 694eeec8-4a24-4ca8-9c12-b884c5701c2d
+    m_ActionName: UI/MenuNavigation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -6161,6 +6164,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8023728910275866718}
     - target: {fileID: 736184732, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
+      propertyPath: scoreSystem
+      value: 
+      objectReference: {fileID: 1265930589139945230}
+    - target: {fileID: 736184732, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
       propertyPath: player1Event
       value: 
       objectReference: {fileID: 8023728910275866718}
@@ -6351,6 +6358,10 @@ PrefabInstance:
     - target: {fileID: 7056060793214284134, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658917621282016867, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 45.600037
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fb950d1afc0d7348b82ed8f9d09f782, type: 3}

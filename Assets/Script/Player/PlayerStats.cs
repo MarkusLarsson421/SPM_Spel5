@@ -13,7 +13,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private CanvasHandler ch;
     [SerializeField] private UIHandler handler;
     [SerializeField] private ColorModifer tookDamge;
-    public ScoreSystem scoreSystem;
     private float timer;
     private bool isDead = false;
     private bool isHit;
@@ -103,9 +102,8 @@ public class PlayerStats : MonoBehaviour
         player.UnitGO = gameObject;
         player.FireEvent();
         */
-        CanvasHandler deathCanvas = GameObject.FindGameObjectWithTag("UI").GetComponent<CanvasHandler>();
+        CanvasHandler deathCanvas = GetComponentInChildren<CanvasHandler>();
         deathCanvas.ChangeCanvasToDeathCanvas();
-        scoreSystem.UpdateValues();
         isDead = true;
     }
 
