@@ -77,12 +77,11 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
         }
         if (currentWave == 2)
         {
-            
             zombiesNextWave = 9;
             newZombieHealth = 150;
             generator.SetFuel(0);
             sM.SoundPlaying("generatorOff");
-            pPool.SetTotalScraps(6);
+            pPool.SetAmountOfScraps(7);
         }
         if (currentWave == 3)
         {
