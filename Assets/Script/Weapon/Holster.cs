@@ -30,7 +30,7 @@ public class Holster : MonoBehaviour
 
     public void OnSwitchUp(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !pistol.GetIsReloading())
         {
             isSwitchingUp = true;
             UserInput();

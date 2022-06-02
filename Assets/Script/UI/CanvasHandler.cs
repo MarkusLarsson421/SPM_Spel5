@@ -23,6 +23,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     [SerializeField] private GameObject mainMenuButton;
     [SerializeField] private GameObject winGameButton;
     private WinGame_SimonPrototype winScript;
+    [SerializeField] private ScoreSystem scoreSystem;
     private bool fadeIn = false;
     private bool fadeOut = false;
 
@@ -59,6 +60,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     public void ChangeCanvasToDeathCanvas()
     {
         playerEvent.SetSelectedGameObject(mainMenuButton);
+        scoreSystem.UpdateValues();
         CanvasObject.SetActive(false);
         deathCanvasObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
@@ -66,6 +68,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     public void ChangeCanvasToWinCanvas()
     {
         playerEvent.SetSelectedGameObject(winGameButton);
+        scoreSystem.UpdateValues();
         CanvasObject.SetActive(false);
         winCanvasObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
