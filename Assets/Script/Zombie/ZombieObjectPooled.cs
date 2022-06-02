@@ -73,7 +73,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
         {
             zombiesNextWave = 7;
             newZombieHealth = 80;
-            ActivateSpawners(3);
+            //ActivateSpawners(3);
         }
         if (currentWave == 2)
         {
