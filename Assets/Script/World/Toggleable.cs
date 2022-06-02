@@ -37,7 +37,7 @@ public abstract class Toggleable : MonoBehaviour{
 	public bool GetState => state;
 
 	public virtual object CaptureState(){
-		return new SaveData(){
+		return new SaveData{
 			state = state,
 		};
 	}
@@ -45,6 +45,7 @@ public abstract class Toggleable : MonoBehaviour{
 	public virtual void RestoreState(object state){
 		SaveData saveData = (SaveData)state;
 		this.state = saveData.state;
+		SetState(saveData.state);
 	}
 
 	[Serializable]

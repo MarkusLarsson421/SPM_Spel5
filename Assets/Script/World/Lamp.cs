@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /**
  * @Author Markus Larsson
@@ -133,5 +135,25 @@ public class Lamp : Toggleable{
 
 	private void OnValidate(){
 		Start();
+	}
+	
+		public override object CaptureState(){
+		return new SaveData{
+			state = state,
+			isFlickering = isFlickering,
+		};
+	}
+
+	public override void RestoreState(object state){
+		SaveData saveData = (SaveData)state;
+		this.state = saveData.state;
+		this.isFlickering = saveData.isFlickering;
+		SetState(saveData.state);
+	}
+
+	[Serializable]
+	private struct SaveData{
+		public bool state;
+		public bool isFlickering;
 	}
 }

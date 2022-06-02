@@ -39,7 +39,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7070153185746291199}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 5925426719339257579}
   - component: {fileID: 8493700374031755809}
   - component: {fileID: 8364180237128241950}
+  - component: {fileID: 4088450982181270239}
   m_Layer: 0
   m_Name: AboveDoor1Lamp
   m_TagString: Untagged
@@ -204,10 +205,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec8411e93aad6144bc6f0fd5441cd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 1
-  lights: []
+  state: 0
+  lights:
+  - {fileID: 7070153185746292225}
   colour: {r: 1, g: 0.06774931, b: 0, a: 0}
   materialIndex: 1
   isFlickering: 1
+  randomness: 0
   blinkInterval: 1
   blinkLength: 1
+--- !u!114 &4088450982181270239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7989195579822197748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e016f5e108f0c34e975496e08d98d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 21a1acec-d77c-4536-848a-371f3117c4ab

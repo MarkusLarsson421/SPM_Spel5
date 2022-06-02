@@ -208,21 +208,22 @@ public class Generator : Toggleable, Saveable{
 	}
 
 	public override object CaptureState(){
-		return new SaveData(){
-			isOn = state,
+		return new SaveData{
+			state = state,
 			fuel = fuel,
 		};
 	}
 
 	public override void RestoreState(object state){
 		SaveData saveData = (SaveData)state;
-		base.state = saveData.isOn;
+		this.state = saveData.state;
 		fuel = saveData.fuel;
+		SetState(saveData.state);
 	}
 
 	[Serializable]
 	private struct SaveData{
-		public bool isOn;
+		public bool state;
 		public float fuel;
 	}
 }

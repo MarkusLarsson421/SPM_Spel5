@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -76,4 +77,24 @@ public class FlashLight : Toggleable{
     }
 
 	public float GetCharge => batteryCharge;
+	
+	public override object CaptureState(){
+		return new SaveData{
+			state = state,
+			batteryCharge = batteryCharge,
+		};
+	}
+
+	public override void RestoreState(object state){
+		SaveData saveData = (SaveData)state;
+		this.state = saveData.state;
+		this.batteryCharge = saveData.batteryCharge;
+		SetState(saveData.state);
+	}
+
+	[Serializable]
+	private struct SaveData{
+		public bool state;
+		public float batteryCharge;
+	}
 }
