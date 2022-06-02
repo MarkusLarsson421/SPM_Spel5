@@ -12,7 +12,7 @@ public class PickupPool : MonoBehaviour
     [SerializeField] private GameObject[] scraps;
     private int amountOfScraps;
     private int randomItem;
-
+    private int totalScrapsOnLevel;
 
     private Queue<GameObject> pickupContainer = new Queue<GameObject>();
     public static PickupPool Instance { get; private set; }
@@ -21,6 +21,7 @@ public class PickupPool : MonoBehaviour
     {
         Instance = this;
         amountOfScraps = 3;
+        totalScrapsOnLevel = 3;
         scraps = GameObject.FindGameObjectsWithTag("Scrap");
         foreach(GameObject go in scraps)
         {
@@ -29,20 +30,23 @@ public class PickupPool : MonoBehaviour
         SetScrapsActive();
     }
 
+    public void SetTotalScraps(int newValue)
+    {
+        totalScrapsOnLevel = newValue;
+    }
+
     public GameObject Get()
     {
         if (pickupContainer.Count == 0)
         {
-            AddPickups(1);
+            AddPickups();
         }
         return pickupContainer.Dequeue();
     }
 
-    private void AddPickups(int count)  
+    private void AddPickups()  
     {
-        for (int i = 0; i < count; i++)
-        {
-            randomItem = Random.Range(0, 2);
+            randomItem = Random.Range(0, 3);
             switch (randomItem)
             {
                 case 0:
@@ -57,16 +61,20 @@ public class PickupPool : MonoBehaviour
                     pickupContainer.Enqueue(ammo);
                     break;
 
-               /* case 5:
-                    GameObject scrap = Instantiate(scrapPrefab);
-                    scrap.gameObject.SetActive(false);
-                    pickupContainer.Enqueue(scrap);
-                    break;*/
+                case 2:
+                    if(amountOfScraps != totalScrapsOnLevel)
+                    {
+                        GameObject scrap = Instantiate(scrapPrefab);
+                        scrap.gameObject.SetActive(false);
+                        pickupContainer.Enqueue(scrap);
+                        amountOfScraps++;
+                        Debug.Log("scrap har spawnat" + amountOfScraps + totalScrapsOnLevel);
+                    }
+                    break;
 
                 default:
                     break;
             }
-        }
     }
 
     public void ReturnToPool(GameObject pickupToReturn)

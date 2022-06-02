@@ -23,12 +23,14 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     public float delay = 20.1f;
     private float newZombieHealth;
     private ZombiePool zP;
+    private PickupPool pPool;
 
     private void Start()
     {
         NoMoreZombies();
         zP = ZombiePool.Instance;
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
+        pPool = GameObject.Find("PickupPool").GetComponent<PickupPool>(); ;
 
     }
     private void Update()
@@ -80,8 +82,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
             newZombieHealth = 150;
             generator.SetFuel(0);
             sM.SoundPlaying("generatorOff");
-
-
+            pPool.SetTotalScraps(6);
         }
         if (currentWave == 3)
         {
@@ -180,7 +181,6 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
                 zombieAmount++;
                 debug++;
             }
-            Debug.Log("startat ny våg");
             
         }
     }

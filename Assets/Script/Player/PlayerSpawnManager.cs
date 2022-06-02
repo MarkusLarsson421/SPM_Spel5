@@ -49,7 +49,7 @@ public class PlayerSpawnManager : MonoBehaviour
     //Metoden anv�nds av inputsystemet f�r att spawna in en spelare n�r den tar emot input fr�n spelarens handkontroller/tangentbord
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        Debug.Log("Player joined " + playerInput.playerIndex);
+
 
         playerInput.gameObject.GetComponent<PlayerStartInfo>().SetPlayerID(playerInput.playerIndex + 1);
 

@@ -75,7 +75,6 @@ public class Interactor : MonoBehaviour
                 if (interactable == null || interactable.ID != hit.collider.GetComponent<Interactable>().ID)
                 {
                     interactable = hit.collider.GetComponent<Interactable>();
-                    Debug.Log("interaction Done Once");
                 }
 
                 ChangeInteractionIcon();

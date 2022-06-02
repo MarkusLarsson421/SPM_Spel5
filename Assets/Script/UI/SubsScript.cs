@@ -21,13 +21,7 @@ public class SubsScript : MonoBehaviour{
     private string fullText;
     private string currentText = "";
 
-    
-    private void Awake()
-    {
-        
-        
-        Debug.Log(sM);
-    }
+
     /*
      *       
      * @Author Simon Hessling Oscarson
@@ -91,7 +85,6 @@ public class SubsScript : MonoBehaviour{
     }
     private IEnumerator ToolTips(int timeToStart, int timeToFinish)
     {
-        Debug.Log("gegkwogeggdsgsdgdsgdsgdsdsg");
         controlsTextBox.GetComponent<TextMeshProUGUI>().text = "";
         yield return new WaitForSeconds(3);
         background.SetActive(true);
