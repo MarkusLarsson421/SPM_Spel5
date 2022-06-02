@@ -94,7 +94,7 @@ private void AddPickups()
             scrap.gameObject.SetActive(false);
             pickupContainer.Enqueue(scrap);
             totalScrapsOnLevel++;
-            Debug.Log("spawnar skit" + totalScrapsOnLevel);
+            //Debug.Log("spawnar skit" + totalScrapsOnLevel);
             //Debug.Log("scrap har spawnat" + amountOfScraps + totalScrapsOnLevel);
 
         }

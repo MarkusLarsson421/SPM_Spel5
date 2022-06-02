@@ -701,12 +701,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec8411e93aad6144bc6f0fd5441cd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 1
+  state: 0
   lights:
   - {fileID: 495400904}
   colour: {r: 0, g: 0, b: 0, a: 0}
   materialIndex: -1
   isFlickering: 1
+  randomness: 0
   blinkInterval: 1
   blinkLength: 1
 --- !u!1 &408319598
@@ -825,7 +826,7 @@ MonoBehaviour:
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: add0e2cf70f1f634bb65d3a268fd9104, type: 3}
   m_PointAction: {fileID: -3798694959465491244, guid: add0e2cf70f1f634bb65d3a268fd9104, type: 3}
-  m_MoveAction: {fileID: 3710738434707379630, guid: add0e2cf70f1f634bb65d3a268fd9104, type: 3}
+  m_MoveAction: {fileID: -6413698504395510795, guid: add0e2cf70f1f634bb65d3a268fd9104, type: 3}
   m_SubmitAction: {fileID: 8461953607931979397, guid: add0e2cf70f1f634bb65d3a268fd9104, type: 3}
   m_CancelAction: {fileID: -8290403124069805806, guid: add0e2cf70f1f634bb65d3a268fd9104, type: 3}
   m_LeftClickAction: {fileID: 7891445166781551710, guid: add0e2cf70f1f634bb65d3a268fd9104, type: 3}
@@ -1024,7 +1025,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 495400903}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -1091,12 +1092,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec8411e93aad6144bc6f0fd5441cd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 1
-  lights:
-  - {fileID: 495400904}
+  state: 0
+  lights: []
   colour: {r: 0, g: 0, b: 0, a: 0}
   materialIndex: -1
   isFlickering: 1
+  randomness: 0
   blinkInterval: 0.1
   blinkLength: 0.1
 --- !u!4 &495400906
@@ -3124,7 +3125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1033565056
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5162,7 +5163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -619.70447, y: -383}
+  m_AnchoredPosition: {x: -619.70447, y: -233}
   m_SizeDelta: {x: -1539.4089, y: -1001.3025}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1390160451
