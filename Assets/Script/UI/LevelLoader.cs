@@ -49,9 +49,7 @@ public class LevelLoader : MonoBehaviour
     {
         if (doTransitionOnEnd)
         {
-            anim.SetTrigger("Close");
-            RandomizePitch();
-            audioSource.PlayOneShot(doorTransitionCloseSound);
+            SceneTransitionOut();
         }
 
 
@@ -74,5 +72,11 @@ public class LevelLoader : MonoBehaviour
 
     }
 
+    private void SceneTransitionOut()
+    {
+        anim.SetTrigger("Close");
+        RandomizePitch();
+        audioSource.PlayOneShot(doorTransitionCloseSound);
+    }
 
 }
