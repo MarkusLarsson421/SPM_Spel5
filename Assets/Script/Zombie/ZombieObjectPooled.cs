@@ -69,7 +69,11 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
      */
     private void SimpleWaveIncreaser()
     {
-        currentWave++;
+        if (LevelLoader.isSceneLoaded == false)
+        {
+            currentWave++;
+        }
+        
         waveText.text = currentWave.ToString();
         IncreaseWaveEvent increaseWaveEvent = new IncreaseWaveEvent();
         increaseWaveEvent.FireEvent();
