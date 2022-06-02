@@ -3,10 +3,8 @@ using UnityEngine;
 /**
  * @Author Markus Larsson
  */
-public class Door : MonoBehaviour
+public class Door : Toggleable
 {
-    [SerializeField] private bool isOpen;
-    [SerializeField] private bool playerCanOpen;
     private Animator[] ani;
     private SoundManager sm;
 
@@ -22,49 +20,14 @@ public class Door : MonoBehaviour
                 ani[i] = tmpAni;
             }
         }
-        //SetState(isOpen);
-        SetCanOpen(playerCanOpen);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && playerCanOpen)
-        {
-            Open();
-        }
-    }
-
-    /**
-	 * Toggle the open-close state of the door.
-	 */
-    public void ToggleState()
-    {
-        SetState(!isOpen);
-    }
-
-    /**
-	 * Set the state of the door.
-	 *
-	 * @param State the desired state of the door.
-	 */
-    public void SetState(bool desiredOpen)
-    {
-        if (desiredOpen)
-        {
-            Open();
-        }
-        else
-        {
-            Close();
-        }
-    }
-
-    /**
+	/**
 	 * Closes the door.
 	 */
-    public void Close()
+    public override void SetFalse()
     {
-        isOpen = false;
+        state = false;
         foreach (Animator a in ani)
         {
             if (a != null)
@@ -76,24 +39,16 @@ public class Door : MonoBehaviour
     /**
 	 * Opens the door.
 	 */
-    public void Open()
+    public override void SetTrue()
     {
-        isOpen = true;
+        state = true;
         foreach (Animator a in ani)
         {
             a.SetBool("isOpen", true);
             sm.SoundPlaying("toggleDoor");
         }
     }
-
-    public void SetCanOpen(bool desiredState)
-    {
-        playerCanOpen = desiredState;
-    }
-
-    /**
-	 * Updates the light if the inspectorState value has been updated.
-	 */
+	
     private void OnValidate()
     {
         Start();

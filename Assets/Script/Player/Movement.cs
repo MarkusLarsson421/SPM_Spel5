@@ -46,32 +46,12 @@ public class Movement : MonoBehaviour
             velocity += jumpForce;
         }
 
-        //Open door
-        if(Input.GetKeyDown(KeyCode.E)){Interact();}
-        
         UpdateVelocity();
         Rotation();
         ThirdPersonCamera();
     }
 
-    /**
-     * @Author Markus Larsson
-     * 
-     * Opens or closes the door the user is looking at.
-     * Shoots raycast from the main camera.
-     */
-    private void Interact()
-    {
-	    RaycastHit hit;
-	    //Possibly replace Camera.main.transform with a reference to the camera.
-	    Transform cameraTransform = Camera.main.transform; 
-	    if(!Physics.Raycast(cameraTransform.position, cameraTransform.forward * 2, out hit, 10)){return;}
-	    Door door = hit.transform.gameObject.GetComponent<Door>();
-	    if(door == null){return;}
-	    door.ToggleState();
-    }
-    
-    void ThirdPersonCamera()
+	void ThirdPersonCamera()
     {
         transform.position = Vector3.Lerp(transform.position, camTarget.position, pLerp);
         transform.rotation = Quaternion.Lerp(transform.rotation, camTarget.rotation, rLerp);

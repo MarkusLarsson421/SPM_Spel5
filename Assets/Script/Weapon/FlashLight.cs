@@ -2,16 +2,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class FlashLight : MonoBehaviour{
-	private const int maxBatteryCharge = 100;
+public class FlashLight : Toggleable{
+	private const int MaxBatteryCharge = 100;
 	
 	public ResourceManager rm;
-    [SerializeField] [Range(1, maxBatteryCharge)] private float batteryCharge = 100.0f;
+    [SerializeField] [Range(1, MaxBatteryCharge)] private float batteryCharge = 100.0f;
     [SerializeField] private float batteryDrainMultiplier = 0.1f;
     [SerializeField] private Slider batterySlider;
 
     private Light flashLight;
-    private bool isOn = true;
 
     private void Start()
     {
@@ -20,25 +19,22 @@ public class FlashLight : MonoBehaviour{
 
     private void Update()
     {
-        if(batteryCharge > 0f && isOn)
+        if(state && batteryCharge > 0.0f)
         {
             batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
         }
-        batterySlider.value = batteryCharge;
 
-        if (isOn && batteryCharge <= 0)
+		if (state && batteryCharge <= 0.0f)
         {
-            if(rm.Get(ResourceManager.ItemType.Battery) >= 1)
-            {
-                Recharge();
-            }
-            else
-            {
+            if(rm.Get(ResourceManager.ItemType.Battery) >= 1){
+				Recharge(); 
+			}
+            else{
                 SetState(false);
             }
-
-            
-        }
+		}
+		
+		batterySlider.value = batteryCharge;
     }
     /**
 	 * @Author Martin Wallmark
@@ -51,52 +47,23 @@ public class FlashLight : MonoBehaviour{
         }
     }
 
-    public void SetDrainMultiplier(float nDrainMultiplier)
+	public override void SetTrue()
     {
-        batteryDrainMultiplier = nDrainMultiplier;
-    }
-
-    public void TurnOn()
-    {
-        if (batteryCharge <= 0 && rm.Get(ResourceManager.ItemType.Battery) == 0)
+        if (batteryCharge <= 0 && rm.Get(ResourceManager.ItemType.Battery) <= 0)
         {
-            return;
+			Recharge();
         }
-        else if(batteryCharge <= 0 && rm.Get(ResourceManager.ItemType.Battery) != 0)
-        {
-            Recharge();
-        }
-        isOn = true;
+		state = true;
         flashLight.enabled = true;
     }
 
-    public void TurnOff()
+    public override void SetFalse()
     {
-        isOn = false;
+        state = false;
         flashLight.enabled = false;
     }
 
-    /**
-	 * @Author Markus Larsson
-	 */
-    private void SetState(bool desiredState)
-    {
-        if (desiredState)
-        {
-            TurnOn();
-        }
-        else
-        {
-            TurnOff();
-        }
-    }
-
-    private void Toggle()
-    {
-        SetState(!isOn);
-    }
-
-    /**
+	/**
 	 * @Simon Hessling Oscarson
 	 */
     private void Recharge()
@@ -104,11 +71,9 @@ public class FlashLight : MonoBehaviour{
         if (rm.Get(ResourceManager.ItemType.Battery) > 0)
         {
             rm.Offset(ResourceManager.ItemType.Battery, -1);
-			batteryCharge = maxBatteryCharge;
+			batteryCharge = MaxBatteryCharge;
 		}
     }
 
-	public float GetBatteryCharge(){
-		return batteryCharge;
-	}
+	public float GetCharge => batteryCharge;
 }

@@ -1,11 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem.XR.Haptics;
 
-public class Generator : MonoBehaviour, Saveable{
+public class Generator : Toggleable, Saveable{
 	private const int maxFuel = 100;
 	
-	//Whether or not the generator is on.
-	[SerializeField] private bool isOn;
 	[SerializeField] private Interactable interactable;
     [SerializeField] private SoundManager sM;
 
@@ -45,7 +44,7 @@ public class Generator : MonoBehaviour, Saveable{
 		lowPowerComps = GetComponentsFromArray<Lamp>(lowPowerLights);
 		doorComps = GetComponentsFromArray<Door>(doors);
 
-		SetState(isOn);
+		SetState(state);
 		FuelIndicator();
 	}
 
@@ -55,7 +54,7 @@ public class Generator : MonoBehaviour, Saveable{
         {
 			interactingPlayer = interactable.interactingGameObject.transform.parent.gameObject;
 			rm = interactable.interactingGameObject.GetComponentInChildren<ResourceManager>();
-			if(rm.Get(ResourceManager.ItemType.Scrap) >= 1 && !isOn)
+			if(rm.Get(ResourceManager.ItemType.Scrap) >= 1 && !state)
             {
                 sM.SoundPlaying("generatorOn");
 
@@ -84,20 +83,12 @@ public class Generator : MonoBehaviour, Saveable{
 			amount = maxFuel - fuel;
 		}
 		fuel += amount;
-		TurnOn();
+		SetTrue();
 	}
 	
-	public void SetState(bool desiredState){
-		if(desiredState){
-			TurnOn();
-		} else{
-			TurnOff();
-		}
-	}
-
-	public void TurnOn(){
+	public override void SetTrue(){
 		if(fuel <= 0){return;}
-		isOn = true;
+		state = true;
 		SetLampState(true, highPowerComps);
 		SetLampState(false, lowPowerComps);
 		fuelIndicator.enabled = true;
@@ -119,8 +110,8 @@ public class Generator : MonoBehaviour, Saveable{
 		//Debug.Log("i work Generator");
 	}
 
-	public void TurnOff(){
-		isOn = false;
+	public override void SetFalse(){
+		state = false;
 		SetLampState(false, highPowerComps);
 		SetLampState(true, lowPowerComps);
 		fuelIndicator.enabled = false;
@@ -132,7 +123,6 @@ public class Generator : MonoBehaviour, Saveable{
 
 	public void SetFuel(float fuel) => this.fuel = fuel;
 	public float GetFuel => fuel;
-	public bool GetState => isOn;
 
 	/**
 	 * Drains fuel each frame.
@@ -140,12 +130,12 @@ public class Generator : MonoBehaviour, Saveable{
 	 * @Author Markus Larsson and Martin Wallmark
 	 */
 	private void DrainFuel(){
-		if(isOn){
+		if(state){
 			fuel -= fuelDrainMultiplier * Time.deltaTime;
 		}
 		if(fuel <= 0){
 			fuel = 0;
-			TurnOff();
+			SetFalse();
 		}
 	}
 
@@ -161,13 +151,6 @@ public class Generator : MonoBehaviour, Saveable{
 		} else if(fuelRatio < 1.0f){
 			fuelIndicator.color = fuelIndicatorColours[0];
 		}
-	}
-
-	/*
-	 * Toggles the state of the generator.
-	 */
-	private void ToggleGenerator(){
-		SetState(!isOn);
 	}
 
 	/*
@@ -209,7 +192,7 @@ public class Generator : MonoBehaviour, Saveable{
 	 * @Return Array of the Components.
 	 * @Author Markus Larsson
 	 */
-	private T[] GetComponentsFromArray<T>(GameObject[] gameObjects){
+	private static T[] GetComponentsFromArray<T>(GameObject[] gameObjects){
 		T[] comps = new T[gameObjects.Length];
 		
 		for(int i = 0; i < gameObjects.Length; i++){
@@ -224,21 +207,16 @@ public class Generator : MonoBehaviour, Saveable{
 		return comps;
 	}
 
-	private void OnValidate()
-	{
-		Start();
-	}
-	
-	public object CaptureState(){
+	public override object CaptureState(){
 		return new SaveData(){
-			isOn = isOn,
+			isOn = state,
 			fuel = fuel,
 		};
 	}
 
-	public void RestoreState(object state){
+	public override void RestoreState(object state){
 		SaveData saveData = (SaveData)state;
-		isOn = saveData.isOn;
+		base.state = saveData.isOn;
 		fuel = saveData.fuel;
 	}
 

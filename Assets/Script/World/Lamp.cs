@@ -1,15 +1,10 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
-using LightType = UnityEngine.LightType;
 
 /**
  * @Author Markus Larsson
  */
-public class Lamp : MonoBehaviour{
-	//Changing the state inside the inspector.
-	[SerializeField] private bool isOn;
-	
+public class Lamp : Toggleable{
 	//Array filled with the children which has light components.
 	 [SerializeField]private Light[] lights;
 
@@ -22,6 +17,9 @@ public class Lamp : MonoBehaviour{
 	[Header("Blinking variables")]
 	[Tooltip("Whether or not the current lamp is flickering.")]
 	[SerializeField] private bool isFlickering;
+	[Tooltip("How much how many potential extra seconds there should be. \n " +
+			"Formula: Random value between 0 and 1 multiplied by randomness")] 
+	[SerializeField] private float randomness = 0.0f;
 	[Tooltip("How long the light will be off.")]
 	[SerializeField] private float blinkInterval = 5.0f;
 	[Tooltip("How long the light will be on.")]
@@ -51,7 +49,7 @@ public class Lamp : MonoBehaviour{
 		}
 		
 		//Set the inspector state to the current state.
-		SetState(isOn);
+		SetState(state);
 	}
 
 	private void Update(){
@@ -61,41 +59,15 @@ public class Lamp : MonoBehaviour{
 		}
 	}
 
-	/**
-	 * Toggle the state of the light.
-	 */
-	public void ToggleState(){
-		SetState(!isOn);
-	}
-	
-	/**
-	 * Set the state of the light.
-	 *
-	 * @param State the desired state of the light.
-	 */
-	public void SetState(bool desiredState){
-		if(desiredState){
-			TurnOn();
-		} else{
-			TurnOff();
-		}
-	}
-
-	/**
-	 * Turn the light on.
-	 */
-	public void TurnOn(){
-		isOn = true;
+	public override void SetTrue(){
+		state = true;
 		
 		SetChildState(true);
 		ChangeColour(true);
 	}
-	
-	/**
-	 * Turn the light off.
-	 */
-	public void TurnOff(){
-		isOn = false;
+
+	public override void SetFalse(){
+		state = false;
 
 		SetChildState(false);
 		ChangeColour(false);
@@ -107,12 +79,12 @@ public class Lamp : MonoBehaviour{
 	private IEnumerator Flickering(){
 		while(isFlickering){
 			//Lights on.
-			TurnOff();
-			yield return new WaitForSeconds(blinkInterval);
+			SetFalse();
+			yield return new WaitForSeconds(blinkInterval + Random.value * randomness);
 			
 			//Lights off.
-			TurnOn();
-			yield return new WaitForSeconds(blinkLength);
+			SetTrue();
+			yield return new WaitForSeconds(blinkLength + Random.value * randomness);
 		}
 		currentlyFlickering = false;
 	}
@@ -124,10 +96,10 @@ public class Lamp : MonoBehaviour{
 	 */
 	private void SetChildState(bool desiredState)
 	{
-		foreach(Light l in lights){
-			if (l != null)
+		for(int i = 0; i < lights.Length; i++){
+			if (lights[i] != null)
 			{
-				l.enabled = desiredState;
+				lights[i].enabled = desiredState;
 			}
 		}
 	}
@@ -137,7 +109,7 @@ public class Lamp : MonoBehaviour{
 	 *
 	 * @Param emission Whether or not emission should be turned on or not.
 	 */
-	private void ChangeColour(bool emission){
+	private void ChangeColour(bool emissionState){
 		if(materialIndex < 0){return;}
 
 		//Gets the array and replaces the material index with the desired state material.
@@ -147,7 +119,7 @@ public class Lamp : MonoBehaviour{
 		Material[] materials = meshRenderer.sharedMaterials;
 		Material material = materials[materialIndex];
 		
-		if(emission){
+		if(emissionState){
 			material.EnableKeyword("_EMISSION");
 			material.SetColor(Shader.PropertyToID("_EmissionColor"), colour);
 		} else{
@@ -159,10 +131,7 @@ public class Lamp : MonoBehaviour{
 		meshRenderer.sharedMaterials = materials;
 	}
 
-	/**
-	 * Updates the light if the inspectorState value has been updated.
-	 */
-	/*private void OnValidate(){
+	private void OnValidate(){
 		Start();
-	}*/
+	}
 }
