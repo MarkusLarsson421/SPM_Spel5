@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager : MonoBehaviour, Saveable
 {
 	[SerializeField] private int ammo = 0;
 	[SerializeField] private int ammoMax = 20;
@@ -95,4 +96,31 @@ public class ResourceManager : MonoBehaviour
     {
 		ammoMax = nMaxAmmo;
     }
+
+    public object CaptureState()
+    {
+		return new SaveData()
+		{
+			ammo = ammo,
+			batteries = batteries,
+			scraps = scrap
+		};
+	}
+
+    public void RestoreState(object state)
+    {
+		SaveData saveData = (SaveData)state;
+		ammo = saveData.ammo;
+		batteries= saveData.batteries;
+		scrap = saveData.scraps;
+	}
+
+
+	[Serializable]
+	private struct SaveData
+	{
+		public int ammo;
+		public int scraps;
+		public int batteries;
+	}
 }
