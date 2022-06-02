@@ -33,8 +33,12 @@ public class Door : Toggleable
         state = true;
         foreach (Animator a in ani)
         {
+            if (a.GetBool("isOpen") == false)
+            {
+
+                sm.SoundPlaying("toggleDoor");
+            }
             a.SetBool("isOpen", true);
-            sm.SoundPlaying("toggleDoor");
         }
     }
 	
@@ -49,8 +53,13 @@ public class Door : Toggleable
         foreach (Animator a in ani)
         {
             if (a != null)
-                a.SetBool("isOpen", false);
-            sm.SoundPlaying("toggleDoor");
+            if (a.GetBool("isOpen") == true)
+            {
+
+                sm.SoundPlaying("toggleDoor");
+
+            }
+            a.SetBool("isOpen", false);
         }
     }
 	

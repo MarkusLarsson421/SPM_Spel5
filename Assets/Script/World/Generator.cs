@@ -28,6 +28,7 @@ public class Generator : Toggleable{
 	public string interactingTag;
 	private bool isToggled;
 	private bool hasRegistered;
+	private bool doorsOpen;
 	[SerializeField] private ResourceManager rm;
 
 	//Comps = Components
@@ -114,6 +115,7 @@ public class Generator : Toggleable{
 		SetLampState(false, highPowerComps);
 		SetLampState(true, lowPowerComps);
 		fuelIndicator.enabled = false;
+		sM.MuteSource("generatorOn");
 	}
 
 	public void OpenDoors(){

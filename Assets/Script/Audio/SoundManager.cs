@@ -325,11 +325,15 @@ public class SoundManager : MonoBehaviour
         source.clip = sounds[randomIndex];
     }
 
-    public void MuteSource(string str)
+    public void MuteSource(string sourceName)
     {
-        if (str == "subtitles")
+        if (sourceName == "subtitles")
         {
             subtitlesSoundSource.Stop();
+        }
+        else if (sourceName == "generatorOn")
+        {
+            generatorSourceOn.Stop();
         }
     }
 
