@@ -25,7 +25,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     private ZombiePool zP;
     private PickupPool pPool;
 
-    private void Start()
+    private void Awake()
     {
         NoMoreZombies();
         zP = ZombiePool.Instance;
@@ -219,6 +219,14 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     public struct SaveData
     {
         public int currentWave;
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("DEsREOYED");
+        amountOfZombiesSpawned = 0;
+        zombiesNextWave = 0;
+        zombieAmount = 0;
     }
 }
 
