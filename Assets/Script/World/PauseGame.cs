@@ -15,12 +15,15 @@ public class PauseGame : MonoBehaviour
     [SerializeField] private GameObject menuButton;
     [SerializeField] private GameObject pauseCanvas;
     [SerializeField] private EventSystem eventSystem;
+    private SaveSystem saveSystem;
+    private LoadChoice loader;
 
     private bool isPaused;
 
     private void Awake()
     {
-
+        saveSystem = GameObject.Find("SaveAndLoad").GetComponent<SaveSystem>();
+        //loader = GameObject.Find("Loader").GetComponent<LoadChoice>();
         resumeButton.SetActive(false);
         menuButton.SetActive(false);
         pauseCanvas.SetActive(false);
@@ -63,6 +66,8 @@ public class PauseGame : MonoBehaviour
     public void MainMenu()
     {
         Time.timeScale = 1;
+        saveSystem.Save();
+        //Destroy(loader.gameObject);
         SceneManager.LoadScene("Main menu");
     }
 
