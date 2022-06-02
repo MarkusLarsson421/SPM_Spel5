@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6082658416396908407
 Transform:
@@ -83,12 +83,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2502215695886173905, guid: 2b321b91a3a78b649a9c4ba74fefad53, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2502215695886173905, guid: 2b321b91a3a78b649a9c4ba74fefad53, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0f1c3230aad3d7b4c83ae3e2d721791f, type: 2}
     - target: {fileID: 919132149155446097, guid: 2b321b91a3a78b649a9c4ba74fefad53, type: 3}
       propertyPath: m_Name
       value: fryingpan
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2b321b91a3a78b649a9c4ba74fefad53, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3672548509089925874, guid: 2b321b91a3a78b649a9c4ba74fefad53, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7510089802060981170, guid: 2b321b91a3a78b649a9c4ba74fefad53, type: 3}
       propertyPath: m_LocalPosition.x
