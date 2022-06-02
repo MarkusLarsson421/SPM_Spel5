@@ -228,4 +228,9 @@ public class Weapon : MonoBehaviour
         }
 
     }
+
+    public bool GetIsReloading()
+    {
+        return isReloading;
+    }
 }
