@@ -85,7 +85,7 @@ public class PlayerSpawnManager : MonoBehaviour
             player2.GetComponent<PlayerStartInfo>().SetStartPosition(playerTwoSpawnPoint.position);
             player2.GetComponent<PlayerStartInfo>().SetPlayerRotation(player2Rotation);
             player2.tag = "Player2";
-            playerSettings.addRM2(player1.GetComponentInChildren<ResourceManager>());
+            playerSettings.addRM2(player2.GetComponentInChildren<ResourceManager>());
             player2hasjoined = true;
 
             if (LevelLoader.isSceneLoaded)
