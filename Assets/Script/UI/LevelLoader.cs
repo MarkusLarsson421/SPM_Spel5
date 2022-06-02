@@ -28,7 +28,7 @@ public class LevelLoader : MonoBehaviour
 
     private void Awake()
     {
-        GameObject.Find("Loader").GetComponent<LoadChoice>();
+        //GameObject.Find("Loader").GetComponent<LoadChoice>();
         audioSource = GetComponent<AudioSource>();
         if (doTransitionOnStart)
         {
