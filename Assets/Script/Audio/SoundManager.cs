@@ -56,7 +56,8 @@ public class SoundManager : MonoBehaviour
     private AudioSource generatorSource;
     private AudioSource generatorSourceOn;
     private AudioSource doorToggleSource;
-
+    private AudioSource ambience;
+    private AudioClip ambSound;
 
     private float volLowRan = 0.3f;
     private float volHighRan = 1.0f;
@@ -78,6 +79,7 @@ public class SoundManager : MonoBehaviour
         generatorSourceOn = GameObject.Find("GeneratorOnAudioSource").GetComponent<AudioSource>();
         subtitlesSoundSource = GameObject.Find("SubtitlesAudioSource").GetComponent<AudioSource>();
         doorToggleSource = GameObject.Find("DoorToggleAudioSource").GetComponent<AudioSource>();
+        ambience = GameObject.Find("AmbienceMusic").GetComponent<AudioSource>();
 
         //Player sources
         shootSoundSource = GameObject.Find("ShootAudioSource").GetComponent<AudioSource>();
@@ -110,7 +112,8 @@ public class SoundManager : MonoBehaviour
         generatorOnSound = Resources.Load<AudioClip>("GeneratorOn");
         generatorOffSound = Resources.Load<AudioClip>("GeneratorOff");
         doorToggleSound = Resources.Load<AudioClip>("DoorToggle");
-        
+
+        ambSound = Resources.Load<AudioClip>("ambience");
         //ambienceDay.time = Random.Range(0, 60);
         //pianoMusic.time = Random.Range(0, 60);
 
