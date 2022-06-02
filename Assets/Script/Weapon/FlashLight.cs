@@ -22,7 +22,6 @@ public class FlashLight : Toggleable{
     {
         if(state)
         {
-			Debug.Log("hi");
             batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
         }
 

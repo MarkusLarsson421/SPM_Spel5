@@ -117,8 +117,12 @@ public class Lamp : Toggleable{
 		//Gets the array and replaces the material index with the desired state material.
 		//Unity requires the entire array to be replaced.
 		//'sharedMaterials' is required as otherwise it might leak materials into the
-		//	scenes according to Unity.
+		// scenes according to Unity.
+		//Got a NullReferenceException here and looked it up. Might need to use "materials" instead of "sharedMaterials"
+		// according to the source bellow but is immediately causing errors!
+		//https://answers.unity.com/questions/228744/material-versus-shared-material.html
 		Material[] materials = meshRenderer.sharedMaterials;
+		if(materials[0] == null){return;}
 		Material material = materials[materialIndex];
 		
 		if(emissionState){
