@@ -12,7 +12,7 @@ public class WinGame_SimonPrototype : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GameObject theButton;
     public int scrapsInCar;
-    public int scrapsNeededToFixCar = 1;
+    public int scrapsNeededToFixCar = 12;
     private bool isClicked;
    
 
