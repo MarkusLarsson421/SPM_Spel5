@@ -11,8 +11,8 @@ public class WinGame_SimonPrototype : MonoBehaviour
     [SerializeField] private TMP_Text scrapsInCarText;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GameObject theButton;
-    private int scrapsInCar;
-    private int scrapsNeededToFixCar = 12;
+    public int scrapsInCar;
+    public int scrapsNeededToFixCar = 1;
     private bool isClicked;
    
 
@@ -43,8 +43,8 @@ public class WinGame_SimonPrototype : MonoBehaviour
             if (scrapsInCar >= scrapsNeededToFixCar)
             {
 
-                winPanel.SetActive(true);
-                eventSystem.SetSelectedGameObject(theButton);
+                //winPanel.SetActive(true);
+                //eventSystem.SetSelectedGameObject(theButton);
                 Debug.Log("u won the game");
             }
         }

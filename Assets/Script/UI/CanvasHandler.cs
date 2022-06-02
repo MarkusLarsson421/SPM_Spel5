@@ -21,18 +21,25 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     [SerializeField] private TextMeshProUGUI playerHealthText;
     [SerializeField] private Color color;
     [SerializeField] private GameObject mainMenuButton;
+    [SerializeField] private GameObject winGameButton;
+    private WinGame_SimonPrototype winScript;
     private bool fadeIn = false;
     private bool fadeOut = false;
 
 
     private void Awake()
     {
+        winScript = GameObject.FindGameObjectWithTag("Car").GetComponent<WinGame_SimonPrototype>();
         color.a = 0;
     }
     private void Update()
     {
         tookDamgeImage.color = color;
         EnemyAttackedMe();
+        if(winScript.scrapsInCar >= winScript.scrapsNeededToFixCar)
+        {
+            ChangeCanvasToWinCanvas();
+        }
     }
     public void ReastartLevel()
     {
@@ -58,6 +65,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     }
     public void ChangeCanvasToWinCanvas()
     {
+        playerEvent.SetSelectedGameObject(winGameButton);
         CanvasObject.SetActive(false);
         winCanvasObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
