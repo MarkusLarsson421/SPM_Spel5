@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * @Authors Martin Wallmark, Simon Hessling Oscarson
+ */
 public class PlayerSettings : MonoBehaviour
 {
     [SerializeField] private ResourceManager rm;

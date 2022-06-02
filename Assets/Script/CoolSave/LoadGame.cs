@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 /*
- * 
+ * @Authors Martin Wallmark, Simon Hessling Oscarson
  */
 public class LoadGame : MonoBehaviour
 {
@@ -28,16 +28,11 @@ public class LoadGame : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
 
-
-            // 2
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
 
-
-
-            // 4
             zOP.SetCurrentWave(save.currentWave);
 
             Debug.Log("Game Loaded");
