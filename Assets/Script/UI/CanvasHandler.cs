@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 //https://www.youtube.com/watch?v=tF9RMjF9wDc
 public class CanvasHandler : MonoBehaviour // @Khaled Alraas
@@ -14,10 +15,12 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     [SerializeField] private GameObject popOutTextCanvas;
     [SerializeField] private TextMeshProUGUI nearCarText;
     [SerializeField] private int sceneToIndex;
+    [SerializeField] private EventSystem player1Event;
     static private int MainMenuSceneIsIndex = 0;
     [SerializeField] private Image tookDamgeImage;
     [SerializeField] private TextMeshProUGUI playerHealthText;
     [SerializeField] private Color color;
+    [SerializeField] private GameObject mainMenuButton;
     private bool fadeIn = false;
     private bool fadeOut = false;
 
@@ -48,6 +51,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
 	 */
     public void ChangeCanvasToDeathCanvas()
     {
+        player1Event.SetSelectedGameObject(mainMenuButton);
         CanvasObject.SetActive(false);
         deathCanvasObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
