@@ -59,11 +59,8 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
         }
     }
 
-    //Khaled Alraas
-    public int getCurrentWave()
-    {
-        return currentWave;
-    }
+
+   
 
     /*
      * @ AuthorSimon Hessling Oscarson
@@ -73,6 +70,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     private void SimpleWaveIncreaser()
     {
         currentWave++;
+        waveText.text = currentWave.ToString();
         IncreaseWaveEvent increaseWaveEvent = new IncreaseWaveEvent();
         increaseWaveEvent.FireEvent();
         sM.SoundPlaying("newWave");
@@ -152,7 +150,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
             //TV� HORDE SPAWNAS
         }
 
-        waveText.text = currentWave.ToString();
+       
     }
     /*
     * @ AuthorSimon Hessling Oscarson
