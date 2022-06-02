@@ -69,8 +69,9 @@ public class LevelLoader : MonoBehaviour
     {
         isSceneLoaded = true;
         //loader.setLoad(true);
-        LoadLevel("Level1");
-        
+        StartCoroutine(LoadLevel("Level1"));
+
+
     }
 
 
