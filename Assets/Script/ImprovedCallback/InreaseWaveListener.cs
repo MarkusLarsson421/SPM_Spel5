@@ -10,9 +10,9 @@ namespace EventCallbacks{
             IncreaseWaveEvent.RegisterListener(addWave);
         }
 
-        private void addWave(IncreaseWaveEvent info)
+        private void addWave(IncreaseWaveEvent wave)
         {
-            ++waveCounter;
+            waveCounter = wave.currentWave;
         }
         public int GetCurrentWave()
         {

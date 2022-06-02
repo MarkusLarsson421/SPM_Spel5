@@ -77,6 +77,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
         
         waveText.text = currentWave.ToString();
         IncreaseWaveEvent increaseWaveEvent = new IncreaseWaveEvent();
+        increaseWaveEvent.currentWave = currentWave;
         increaseWaveEvent.FireEvent();
         sM.SoundPlaying("newWave");
         if(currentWave == 1)
