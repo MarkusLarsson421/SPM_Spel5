@@ -15,7 +15,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     [SerializeField] private GameObject popOutTextCanvas;
     [SerializeField] private TextMeshProUGUI nearCarText;
     [SerializeField] private int sceneToIndex;
-    [SerializeField] private EventSystem player1Event;
+    [SerializeField] private EventSystem playerEvent;
     static private int MainMenuSceneIsIndex = 0;
     [SerializeField] private Image tookDamgeImage;
     [SerializeField] private TextMeshProUGUI playerHealthText;
@@ -51,7 +51,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
 	 */
     public void ChangeCanvasToDeathCanvas()
     {
-        player1Event.SetSelectedGameObject(mainMenuButton);
+        playerEvent.SetSelectedGameObject(mainMenuButton);
         CanvasObject.SetActive(false);
         deathCanvasObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
