@@ -111,7 +111,7 @@ public class Interactor : MonoBehaviour
                             break;
                         case "Car":
                             interactable.gameObject.GetComponent<WinGame_SimonPrototype>().rm = gameObject.GetComponentInChildren<ResourceManager>();
-                            interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
+                            //interactable.gameObject.GetComponent<Item>().playah = gameObject.transform.parent.tag;
                             break;
                         case "Generator":
                             //interactable.interactingGameObject = gameObject.transform.parent.gameObject;
