@@ -98,7 +98,7 @@ public class MaleeWeapon : MonoBehaviour
 			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red, 2);
 			if (target != null)
 			{
-				target.TakeDamage(damage);
+				target.TakeDamage(damage,transform.parent.parent.parent.tag);
 			}
 		}
 	}

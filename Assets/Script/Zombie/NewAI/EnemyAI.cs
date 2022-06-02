@@ -136,7 +136,7 @@ public class EnemyAI : MonoBehaviour
         topNode = new Selector(new List<Node> { deathSequence, isPlayerDeadNode, shootSequence, chaseSequence, idleNode });
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string tag)
     {
         currentHealth -= damage;
         if(damage > 49 && damage < 499)
@@ -157,6 +157,8 @@ public class EnemyAI : MonoBehaviour
             _collider.enabled = false;
             _boxCollider.enabled = false;
             OnZombieDeathEvent zombieDeathEvent = new OnZombieDeathEvent();
+            
+            zombieDeathEvent.name =tag;
             zombieDeathEvent.FireEvent();
             //_collider
             /*Debug.Log("returned");

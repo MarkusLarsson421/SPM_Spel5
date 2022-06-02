@@ -138,8 +138,9 @@ public class Weapon : MonoBehaviour
             {
 
 
-                target.TakeDamage(damage + headshotDmg);
+                target.TakeDamage(damage + headshotDmg, transform.parent.parent.parent.tag);
                 HeadShootEvent headShootEvent = new HeadShootEvent();
+                headShootEvent.name = transform.parent.parent.parent.tag;
                 headShootEvent.FireEvent();
 
 

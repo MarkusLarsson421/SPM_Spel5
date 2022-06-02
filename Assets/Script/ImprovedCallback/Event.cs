@@ -91,6 +91,7 @@ public class GneratorIsOnEvent : Event<GneratorIsOnEvent>
 }
 public class OnZombieDeathEvent : Event<OnZombieDeathEvent>
 {
+	public String name;
 }
 public class PlayeIsNearTheCarEvent : Event<PlayeIsNearTheCarEvent>
 {
@@ -109,4 +110,6 @@ public class EatThePizza : Event<EatThePizza>
 public class IncreaseWaveEvent : Event<IncreaseWaveEvent>
 {
 }
-public class HeadShootEvent : Event<HeadShootEvent> { }
+public class HeadShootEvent : Event<HeadShootEvent> {
+	public String name;
+}
