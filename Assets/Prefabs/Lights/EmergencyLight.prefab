@@ -39,7 +39,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3768444222574582570}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -204,10 +204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec8411e93aad6144bc6f0fd5441cd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 1
-  lights: []
+  state: 0
+  lights:
+  - {fileID: 3768444222574582996}
   colour: {r: 1, g: 0, b: 0, a: 0}
   materialIndex: 1
   isFlickering: 0
+  randomness: 0
   blinkInterval: 5
   blinkLength: 5
