@@ -7,7 +7,7 @@ using UnityEngine;
  * 
  * @Author Markus Larsson
  */
-public abstract class Toggleable : MonoBehaviour{
+public abstract class Toggleable : MonoBehaviour, Saveable{
 	//Whether or not it is on.
 	[SerializeField] protected bool state = false;
 
@@ -35,7 +35,6 @@ public abstract class Toggleable : MonoBehaviour{
 	public virtual void SetFalse(){}
 
 	public bool GetState => state;
-
 	public virtual object CaptureState(){
 		return new SaveData{
 			state = state,

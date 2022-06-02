@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem.XR.Haptics;
 
-public class Generator : Toggleable, Saveable{
+public class Generator : Toggleable{
 	private const int maxFuel = 100;
 	
 	[SerializeField] private Interactable interactable;

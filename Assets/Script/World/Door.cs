@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /**
@@ -23,24 +24,12 @@ public class Door : Toggleable
     }
 
 	/**
-	 * Closes the door.
-	 */
-    public override void SetFalse()
-    {
-        state = false;
-        foreach (Animator a in ani)
-        {
-            if (a != null)
-                a.SetBool("isOpen", false);
-            sm.SoundPlaying("toggleDoor");
-        }
-    }
-
-    /**
 	 * Opens the door.
 	 */
+	[ContextMenu("Open Door")]
     public override void SetTrue()
     {
+		Debug.Log("Opening door!");
         state = true;
         foreach (Animator a in ani)
         {
@@ -49,8 +38,43 @@ public class Door : Toggleable
         }
     }
 	
+	/**
+	 * Closes the door.
+	 */
+	[ContextMenu("Close Door")]
+    public override void SetFalse()
+    {
+		Debug.Log("Closing door!");
+        state = false;
+        foreach (Animator a in ani)
+        {
+            if (a != null)
+                a.SetBool("isOpen", false);
+            sm.SoundPlaying("toggleDoor");
+        }
+    }
+	
     private void OnValidate()
     {
         Start();
     }
+	
+	public virtual object CaptureState(){
+		Debug.Log("Captured " + name + "!");
+		return new SaveData{
+			state = state,
+		};
+	}
+
+	public virtual void RestoreState(object state){
+		Debug.Log("Restored " + name + "!");
+		SaveData saveData = (SaveData)state;
+		this.state = saveData.state;
+		SetState(saveData.state);
+	}
+
+	[Serializable]
+	private struct SaveData{
+		public bool state;
+	}
 }

@@ -137,7 +137,7 @@ public class Lamp : Toggleable{
 		Start();
 	}
 	
-		public override object CaptureState(){
+	public override object CaptureState(){
 		return new SaveData{
 			state = state,
 			isFlickering = isFlickering,

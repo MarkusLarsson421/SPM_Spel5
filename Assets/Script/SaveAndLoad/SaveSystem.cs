@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -7,7 +8,13 @@ public class SaveSystem : MonoBehaviour{
 	private const string extention = ".sin";
 	private const string defaultSaveName = "autosave";
 
+	private SaveableEntity[] entities;
+
 	private string SavePath(string saveName) => Application.persistentDataPath + "/" + saveName + extention;
+
+	private void Start(){
+		entities = FindObjectsOfType<SaveableEntity>();
+	}
 
 	[ContextMenu("Save")]
 	public void Save(){
@@ -15,6 +22,7 @@ public class SaveSystem : MonoBehaviour{
 	}
 	
 	public void Save(string saveName){
+		Debug.Log("Saved: " + saveName + "!");
 		Dictionary<string, object> state = LoadFile(saveName);
 		CaptureState(state);
 		SaveFile(state, saveName);
@@ -27,6 +35,7 @@ public class SaveSystem : MonoBehaviour{
 	}
 	
 	public void Load(string saveName){
+		Debug.Log("Loaded: " + saveName + "!");
 		Dictionary<string, object> state = LoadFile(saveName);
 		RestoreState(state);
 	}
@@ -50,14 +59,12 @@ public class SaveSystem : MonoBehaviour{
 	}
 
 	private void CaptureState(Dictionary<string, object> state){
-		SaveableEntity[] entities = FindObjectsOfType<SaveableEntity>();
 		for(int i = 0; i < entities.Length; i++){
 			state[entities[i].GetId] = entities[i].CaptureState();
 		}
 	}
 
 	private void RestoreState(Dictionary<string, object> state){
-		SaveableEntity[] entities = FindObjectsOfType<SaveableEntity>();
 		for(int i = 0; i < entities.Length; i++){
 			if(state.TryGetValue(entities[i].GetId, out object value)){
 				entities[i].RestoreState(value);

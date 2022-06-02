@@ -20,8 +20,9 @@ public class FlashLight : Toggleable{
 
     private void Update()
     {
-        if(state && batteryCharge > 0.0f)
+        if(state)
         {
+			Debug.Log("hi");
             batteryCharge -= batteryDrainMultiplier * Time.deltaTime;
         }
 
@@ -88,7 +89,7 @@ public class FlashLight : Toggleable{
 	public override void RestoreState(object state){
 		SaveData saveData = (SaveData)state;
 		this.state = saveData.state;
-		this.batteryCharge = saveData.batteryCharge;
+		batteryCharge = saveData.batteryCharge;
 		SetState(saveData.state);
 	}
 
