@@ -44,7 +44,7 @@ public class PlayerSettings : MonoBehaviour
     {
         rm.SetTotal(ResourceManager.ItemType.Ammo, PlayerPrefs.GetInt("CurrentAmmo"));
         rm.SetTotal(ResourceManager.ItemType.Scrap, PlayerPrefs.GetInt("CurrentScraps"));
-        rm.SetTotal(ResourceManager.ItemType.Scrap, PlayerPrefs.GetInt("CurrentBatteries"));
+        rm.SetTotal(ResourceManager.ItemType.Battery, PlayerPrefs.GetInt("CurrentBatteries"));
 
 
     }
@@ -53,7 +53,7 @@ public class PlayerSettings : MonoBehaviour
     {
         rm2.SetTotal(ResourceManager.ItemType.Ammo, PlayerPrefs.GetInt("CurrentAmmo2"));
         rm2.SetTotal(ResourceManager.ItemType.Scrap, PlayerPrefs.GetInt("CurrentScraps2"));
-        rm2.SetTotal(ResourceManager.ItemType.Scrap, PlayerPrefs.GetInt("CurrentBatteries2"));
+        rm2.SetTotal(ResourceManager.ItemType.Battery, PlayerPrefs.GetInt("CurrentBatteries2"));
     }
 
 
