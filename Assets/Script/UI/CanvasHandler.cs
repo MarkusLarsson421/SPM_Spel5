@@ -50,6 +50,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
     }
     public void GoToMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(MainMenuSceneIsIndex);
     }
     /**
@@ -72,6 +73,7 @@ public class CanvasHandler : MonoBehaviour // @Khaled Alraas
         CanvasObject.SetActive(false);
         winCanvasObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
     }
 
     public void EnemyAttackedMe()
