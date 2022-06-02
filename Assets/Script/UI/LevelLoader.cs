@@ -21,10 +21,14 @@ public class LevelLoader : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private AudioClip doorTransitionOpenSound;
     [SerializeField] private AudioClip doorTransitionCloseSound;
+    [SerializeField] private SaveSystem saveSystem;
+    [SerializeField] private LoadChoice loader;
+    public static bool isSceneLoaded;
 
 
-    private void Start()
+    private void Awake()
     {
+        GameObject.Find("Loader").GetComponent<LoadChoice>();
         audioSource = GetComponent<AudioSource>();
         if (doTransitionOnStart)
         {
@@ -59,6 +63,14 @@ public class LevelLoader : MonoBehaviour
     private void RandomizePitch()
     {
         audioSource.pitch = audioSource.pitch = Random.Range(0.8f, 1f);
+    }
+
+    public void LoadSavedLevel()
+    {
+        isSceneLoaded = true;
+        //loader.setLoad(true);
+        SceneManager.LoadScene("Level1");
+        
     }
 
 

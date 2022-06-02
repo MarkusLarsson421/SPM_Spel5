@@ -7,17 +7,36 @@ using UnityEngine;
 public class SaveSystem : MonoBehaviour{
 	private const string extention = ".sin";
 	private const string defaultSaveName = "autosave";
+	private bool isLoadingSave;
+	[SerializeField] private LoadChoice loader;
+
 
 	private SaveableEntity[] entities;
 
 	private string SavePath(string saveName) => Application.persistentDataPath + "/" + saveName + extention;
 
-	private void Start(){
+	private void Awake(){
 		entities = FindObjectsOfType<SaveableEntity>();
+		//loader = GameObject.Find("Loader").GetComponent<LoadChoice>();
+		
+        
+
 	}
 
-	[ContextMenu("Save")]
+    private void Start()
+    {
+        if (LevelLoader.isSceneLoaded)
+        {
+			Debug.Log("wadasda");
+			Load(defaultSaveName);
+			LevelLoader.isSceneLoaded = false;
+		}
+		
+    }
+
+    [ContextMenu("Save")]
 	public void Save(){
+		Debug.Log("Saved!!!!");
 		Save(defaultSaveName);
 	}
 	
