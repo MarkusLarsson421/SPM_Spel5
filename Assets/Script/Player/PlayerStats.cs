@@ -21,7 +21,7 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        UpdatePlayerStatsCnvas();
+        UpdatePlayerHealth();
         runImage.enabled = false;
         walkImage.enabled = true;
     }
@@ -33,7 +33,7 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        //UpdatePlayerStatsCnvas();
+        UpdatePlayerHealth();
 
         if (isHit)
         {
@@ -51,7 +51,7 @@ public class PlayerStats : MonoBehaviour
             {
                 health++;
                 timer = 0;
-                UpdatePlayerStatsCnvas();
+                UpdatePlayerHealth();
             }
 
         }
@@ -75,7 +75,7 @@ public class PlayerStats : MonoBehaviour
             int randomNr = Random.Range(15, 26);        // Hur mycket skada man tar av en zombie varierar
             health -= randomNr;
             Timer = 0;
-            UpdatePlayerStatsCnvas();
+            UpdatePlayerHealth();
             ch.setFadeIn(true);
             ch.EnemyAttackedMe();
             //PlayerGetHitByZombieEvent playerGetHitByZombie = new PlayerGetHitByZombieEvent();
@@ -105,7 +105,7 @@ public class PlayerStats : MonoBehaviour
 
     public bool IsDead() { return isDead; }
 
-    void UpdatePlayerStatsCnvas()
+    void UpdatePlayerHealth()
     {
         tookDamge.setValue(GetHealth());
         //PlayerHealthChangeEvent playerHealthChange = new PlayerHealthChangeEvent();

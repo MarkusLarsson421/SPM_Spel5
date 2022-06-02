@@ -6,28 +6,25 @@ public class ColorModifer : MonoBehaviour
 {
     Image image;
     Color c;
-    [SerializeField]private int value;
+    [SerializeField]private float value;
    
     // Start is called before the first frame update
     void Start()
     {
 
-         image = gameObject.GetComponent<Image>();
-         c = image.color;
-        c.a = 0;
-        image.color = c;
-
+        image = gameObject.GetComponent<Image>();
+        c = image.color;
     }
     
     // Update is called once per frame
     void Update()
     {
-        //StartCoroutine(HpSampleToggler());
-    }
-    public void setValue(int value)
-    {
-        this.value = value;
         HpIndicator();
+    }
+    public void setValue(float health)
+    {
+        float healthProcent = 1f - (health / 100f);
+        this.value = healthProcent;
     }
     public void setImage(Image image)
     {
@@ -35,31 +32,33 @@ public class ColorModifer : MonoBehaviour
     }
     void HpIndicator()
     {
-        if (value <= 20)
-        {
-            c.a = 0.75f;
-            image.color = c;
-        }
-        else if (value <= 40)
-        {
-            c.a = 0.5f;
-            image.color = c;
-        }
-        else if (value <= 60)
-        {
-            c.a = 0.25f;
-            image.color = c;
-        }
-        else if (value <= 80)
-        {
-            c.a = 0.25f;
-            image.color = c;
-        }
-        else
-        {
-            c.a = 0f;
-            image.color = c;
-        }
+        c.a = value;
+        image.color = c;
+        //if (value <= 20)
+        //{
+        //    c.a = 0.75f;
+        //    image.color = c;
+        //}
+        //else if (value <= 40)
+        //{
+        //    c.a = 0.5f;
+        //    image.color = c;
+        //}
+        //else if (value <= 60)
+        //{
+        //    c.a = 0.25f;
+        //    image.color = c;
+        //}
+        //else if (value <= 80)
+        //{
+        //    c.a = 0.25f;
+        //    image.color = c;
+        //}
+        //else
+        //{
+        //    c.a = 0f;
+        //    image.color = c;
+        //}
     }
    
         IEnumerator HpSampleToggler()

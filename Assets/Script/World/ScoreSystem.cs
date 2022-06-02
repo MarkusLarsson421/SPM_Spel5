@@ -52,5 +52,6 @@ public class ScoreSystem : MonoBehaviour
         DisplayTime(timeValue);
         DisplayZombieWave();
         DisplayZombiesKilled();
+        DisplayHeadShots();
     }
 }
