@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 namespace EventCallbacks{
     public class InreaseWaveListener : MonoBehaviour
