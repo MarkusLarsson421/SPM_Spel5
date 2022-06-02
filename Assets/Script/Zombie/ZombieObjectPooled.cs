@@ -27,10 +27,17 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
 
     private void Awake()
     {
-        NoMoreZombies();
         zP = ZombiePool.Instance;
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
         pPool = GameObject.Find("PickupPool").GetComponent<PickupPool>(); ;
+
+    }
+
+    private void Start()
+    {
+
+        NoMoreZombies();
+
 
     }
     private void Update()

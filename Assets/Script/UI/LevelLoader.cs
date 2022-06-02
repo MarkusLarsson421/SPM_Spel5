@@ -42,6 +42,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel(string sceneToLoad)
     {
+        isSceneLoaded = false;
         StartCoroutine(LoadLevel(sceneToLoad));
     }
 
