@@ -7,28 +7,28 @@ using UnityEngine.UI;
 public class CustomizationSystem : MonoBehaviour
 {
 
-     
+
     [SerializeField] private GameObject canvas;
-    
+
     [SerializeField] private Font font;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Interactable inter;
     [SerializeField] private string currentPlayerTag;
 
     private List<string> interactedPlayers = new List<string>();
-  
-   
+
+
     private GameObject interactingPlayer;
     private ResourceManager rm;
+    private EquippedHats hatRack;
 
-    
 
     private GameObject playerOneCustomizationButtons, playerTwoCustomizationButtons;
     private GameObject playerOneHatButton, playerTwoHatButton;
     private GameObject playerOneNoHatButton, playerTwoNoHatButton;
     private GameObject playerOneMysteryHatButton, playerTwoMysteryHatButton;
     private GameObject playerOneMilitaryHatButton, playerTwoMilitaryHatButton;
-   
+
     private GameObject playerOneHat, playerTwoHat;
     private GameObject playerOneMysteryHat, playerTwoMysteryHat;
     private GameObject playerOneMilitaryHat, playerTwoMilitaryHat;
@@ -40,14 +40,14 @@ public class CustomizationSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
-        
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         if (isToggled && !buttonsEnabled)
         {
             interactingPlayer = inter.interactingGameObject.transform.parent.gameObject;
@@ -59,7 +59,7 @@ public class CustomizationSystem : MonoBehaviour
             {
                 ActivateInteractingPlayer();
             }
-            
+
             buttonsEnabled = true;
         }
 
@@ -68,7 +68,7 @@ public class CustomizationSystem : MonoBehaviour
             RemoveCurrentPlayer();
             currentPlayerTag = "";
             buttonsEnabled = false;
-            
+
 
         }
 
@@ -89,7 +89,7 @@ public class CustomizationSystem : MonoBehaviour
 
     public void ToggleCustomizationTable()
     {
-        
+
         if (!isToggled)
         {
             isToggled = true;
@@ -109,11 +109,12 @@ public class CustomizationSystem : MonoBehaviour
 
         if (interactingPlayer.tag.Equals("Player1"))
         {
-            playerOneCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
-            playerOneHat = interactingPlayer.transform.Find("Hat").gameObject;
-            playerOneMysteryHat = interactingPlayer.transform.Find("MysteryHat").gameObject;
-            playerOneMilitaryHat = interactingPlayer.transform.Find("MilitaryHat").gameObject;
-            playerOneCustomizationButtons = playerOneCanvas.gameObject.transform.Find("CustomizationButtons").gameObject;
+            FindHatObjects(interactingPlayer);
+            //playerOneCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
+            ////playerOneHat = interactingPlayer.transform.Find("Hat").gameObject;
+            //playerOneMysteryHat = interactingPlayer.transform.Find("MysteryHat").gameObject;
+            //playerOneMilitaryHat = interactingPlayer.transform.Find("MilitaryHat").gameObject;
+            //playerOneCustomizationButtons = playerOneCanvas.gameObject.transform.Find("CustomizationButtons").gameObject;
             playerOneCustomizationButtons.SetActive(true);
             playerOneHatButton = playerOneCustomizationButtons.transform.Find("HatButton").gameObject;
             playerOneNoHatButton = playerOneCustomizationButtons.transform.Find("NoHatButton").gameObject;
@@ -126,11 +127,12 @@ public class CustomizationSystem : MonoBehaviour
         }
         else
         {
-            playerTwoCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
-            playerTwoHat = interactingPlayer.transform.Find("Hat").gameObject;
-            playerTwoMysteryHat = interactingPlayer.transform.Find("MysteryHat").gameObject;
-            playerTwoMilitaryHat = interactingPlayer.transform.Find("MilitaryHat").gameObject;
-            playerTwoCustomizationButtons = playerTwoCanvas.gameObject.transform.Find("CustomizationButtons").gameObject;
+            FindHatObjects(interactingPlayer);
+            //playerTwoCanvas = interactingPlayer.GetComponentInChildren<Canvas>();
+            //playerTwoHat = interactingPlayer.transform.Find("Hat").gameObject;
+            //playerTwoMysteryHat = interactingPlayer.transform.Find("MysteryHat").gameObject;
+            //playerTwoMilitaryHat = interactingPlayer.transform.Find("MilitaryHat").gameObject;
+            //playerTwoCustomizationButtons = playerTwoCanvas.gameObject.transform.Find("CustomizationButtons").gameObject;
             playerTwoCustomizationButtons.SetActive(true);
             playerTwoHatButton = playerTwoCustomizationButtons.transform.Find("HatButton").gameObject;
             playerTwoNoHatButton = playerTwoCustomizationButtons.transform.Find("NoHatButton").gameObject;
@@ -162,6 +164,29 @@ public class CustomizationSystem : MonoBehaviour
         }
     }
 
+    private void FindHatObjects(GameObject interactingPlayr)
+    {
+        hatRack = interactingPlayr.GetComponentInChildren<EquippedHats>();
+        if (interactingPlayr.tag.Equals("Player1"))
+        {
+            playerOneCanvas = hatRack.canvas;
+            playerOneHat = hatRack.hat;
+            playerOneMilitaryHat = hatRack.militaryHat;
+            playerOneMysteryHat = hatRack.mysteryHat;
+            playerOneCustomizationButtons = hatRack.customizationButtons;
+
+        }
+        if (interactingPlayr.tag.Equals("Player2"))
+        {
+            playerTwoCanvas = hatRack.canvas;
+            playerTwoHat = hatRack.hat;
+            playerTwoMilitaryHat = hatRack.militaryHat;
+            playerTwoMysteryHat = hatRack.mysteryHat;
+            playerTwoCustomizationButtons = hatRack.customizationButtons;
+        }
+
+    }
+
     private void ActivateHat()
     {
         if (interactingPlayer.tag.Equals("Player1"))
@@ -176,7 +201,7 @@ public class CustomizationSystem : MonoBehaviour
             playerOneMysteryHat.SetActive(false);
             playerOneMilitaryHat.SetActive(false);
         }
-        
+
     }
 
     private void DisableHat()
@@ -193,7 +218,7 @@ public class CustomizationSystem : MonoBehaviour
             playerOneMysteryHat.SetActive(false);
             playerOneMilitaryHat.SetActive(false);
         }
-        
+
     }
 
     private void ActivateMysteryHat()
