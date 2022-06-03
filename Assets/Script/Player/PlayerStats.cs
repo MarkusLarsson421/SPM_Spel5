@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using EventCallbacks;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour, Saveable
 {
     PlayerStats instance;
     [SerializeField] private int health = 100;
@@ -24,7 +26,11 @@ public class PlayerStats : MonoBehaviour
         UpdatePlayerHealth();
         runImage.enabled = false;
         walkImage.enabled = true;
-    }
+		
+		SaveableEntity entity = GetComponent<SaveableEntity>();
+		entity.GenerateId();
+		GameObject.FindGameObjectWithTag("SaveSystem").GetComponent<SaveSystem>().AddEntity(entity);
+	}
 
     private void Awake()
     {
@@ -153,4 +159,33 @@ public class PlayerStats : MonoBehaviour
     {
         return health;
     }
+
+	public object CaptureState(){
+		Debug.Log("TEST SAVE PLAYER SHIT");
+		Vector3 pos = transform.position;
+		Quaternion rot = transform.rotation;
+		return new SaveData{
+			pos = new[]{pos.x, pos.y, pos.z},
+			rot = new []{rot.x, rot.y, rot.z, rot.w},
+			health = health,
+			isDead = isDead,
+		};
+	}
+
+	public void RestoreState(object state){
+		Debug.Log("TEST LOAD PLAYER SHIT");
+		SaveData saveData = (SaveData)state;
+		transform.position = new Vector3(saveData.pos[0], saveData.pos[1], saveData.pos[2]);
+		transform.rotation = new Quaternion(saveData.rot[0], saveData.rot[1], saveData.rot[2], saveData.rot[3]);
+		health = saveData.health;
+		isDead = saveData.isDead;
+	}
+
+	[Serializable]
+	private struct SaveData{
+		public float[] pos;
+		public float[] rot;
+		public int health;
+		public bool isDead;
+	}
 }

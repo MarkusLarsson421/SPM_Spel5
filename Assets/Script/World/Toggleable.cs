@@ -35,6 +35,7 @@ public abstract class Toggleable : MonoBehaviour, Saveable{
 	public virtual void SetFalse(){}
 
 	public bool GetState => state;
+	
 	public virtual object CaptureState(){
 		return new SaveData{
 			state = state,

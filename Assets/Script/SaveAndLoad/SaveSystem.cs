@@ -1,26 +1,24 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class SaveSystem : MonoBehaviour{
-	private const string extention = ".sin";
-	private const string defaultSaveName = "autosave";
-	private bool isLoadingSave;
 	[SerializeField] private LoadChoice loader;
-
-
+	
+	private const string defaultSaveName = "autosave";
+	private const string extention = ".sin";
+	private bool isLoadingSave;
 	private SaveableEntity[] entities;
+
+	private GameObject player1;
+	private GameObject player2;
 
 	private string SavePath(string saveName) => Application.persistentDataPath + "/" + saveName + extention;
 
 	private void Awake(){
 		entities = FindObjectsOfType<SaveableEntity>();
 		//loader = GameObject.Find("Loader").GetComponent<LoadChoice>();
-		
-        
-
 	}
 
     private void Start()
@@ -34,9 +32,8 @@ public class SaveSystem : MonoBehaviour{
 		
     }
 
-    [ContextMenu("Save")]
+	[ContextMenu("Save")]
 	public void Save(){
-		Debug.Log("Saved!!!!");
 		Save(defaultSaveName);
 	}
 	
@@ -47,7 +44,6 @@ public class SaveSystem : MonoBehaviour{
 		SaveFile(state, saveName);
 	}
 
-
 	[ContextMenu("Load")]
 	public void Load(){
 		Load(defaultSaveName);
@@ -57,6 +53,13 @@ public class SaveSystem : MonoBehaviour{
 		Debug.Log("Loaded: " + saveName + "!");
 		Dictionary<string, object> state = LoadFile(saveName);
 		RestoreState(state);
+	}
+
+	public void AddEntity(SaveableEntity entity){
+		SaveableEntity[] tmp = new SaveableEntity[entities.Length + 1];
+		entities.CopyTo(tmp, 0);
+		tmp[tmp.Length - 1] = entity;
+		entities = tmp;
 	}
 	
 	private void SaveFile(object state, string saveName){

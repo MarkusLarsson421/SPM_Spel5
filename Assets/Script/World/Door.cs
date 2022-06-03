@@ -67,23 +67,4 @@ public class Door : Toggleable
     {
         Start();
     }
-	
-	public virtual object CaptureState(){
-		Debug.Log("Captured " + name + "!");
-		return new SaveData{
-			state = state,
-		};
-	}
-
-	public virtual void RestoreState(object state){
-		Debug.Log("Restored " + name + "!");
-		SaveData saveData = (SaveData)state;
-		this.state = saveData.state;
-		SetState(saveData.state);
-	}
-
-	[Serializable]
-	private struct SaveData{
-		public bool state;
-	}
 }

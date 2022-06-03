@@ -34,7 +34,7 @@ public class Lamp : Toggleable{
 		}
 
 		//Reference to render.
-		meshRenderer = GetComponent<Renderer>();
+		meshRenderer = GetComponent<MeshRenderer>();
 
 		lights = new Light[transform.childCount];
 		for(int i = 0; i < transform.childCount; i++){

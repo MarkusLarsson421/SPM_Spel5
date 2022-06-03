@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveableEntity : MonoBehaviour{
-	[SerializeField] private string id = "";
+	[SerializeField] private string id;
 	public string GetId => id;
 
 	private Saveable[] saveables;
@@ -31,5 +31,5 @@ public class SaveableEntity : MonoBehaviour{
 	}
 	
 	[ContextMenu("Generate ID")]
-	private void GenerateId() => id = Guid.NewGuid().ToString();
+	public void GenerateId() => id = Guid.NewGuid().ToString();
 }
