@@ -88,7 +88,7 @@ private void AddPickups()
             pickupContainer.Enqueue(ammo);
         }
 
-        if (randomItem == 1&& totalScrapsOnLevel != amountOfScraps)
+        if (randomItem == 1 && totalScrapsOnLevel != amountOfScraps)
         {
             GameObject scrap = Instantiate(scrapPrefab);
             scrap.gameObject.SetActive(false);

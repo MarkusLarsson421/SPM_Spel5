@@ -11,6 +11,8 @@ public class DistanceCheck : MonoBehaviour
     private PlayerSpawnManager pSpawner;
     private float distanceFromSpawner = 50.0f;
     private float dist2;
+    private bool playerOneIsSet;
+    private bool playerTwoIsSet;
     void Start()
     {
         spawner = gameObject.GetComponentInChildren<ZombieObjectPooled>();
@@ -19,12 +21,19 @@ public class DistanceCheck : MonoBehaviour
 
     void Update()
     {
-        if(pSpawner.playerHasJoined)
+        if(pSpawner.playerHasJoined && !playerOneIsSet)
         {
+            Debug.Log("wrara");
             player1 = GameObject.FindGameObjectWithTag("Player1");
-            player2 = GameObject.FindGameObjectWithTag("Player2");
-            CheckDistFromSpawner();
+            playerOneIsSet = true;
         }
+        if (pSpawner.player2hasjoined && playerTwoIsSet)
+        {
+            player2 = GameObject.FindGameObjectWithTag("Player2");
+            playerTwoIsSet = true;
+
+        }
+        CheckDistFromSpawner();
     }
     private void CheckDistFromSpawner()
     {

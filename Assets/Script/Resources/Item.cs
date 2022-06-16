@@ -54,4 +54,12 @@ public class Item : MonoBehaviour{
 		playah = null;
 		
 	}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag.Equals("Ammo") || collision.gameObject.tag.Equals("Battery") || collision.gameObject.tag.Equals("Scrap"))
+        {
+			pickupPool.ReturnToPool(collision.gameObject);
+        }
+    }
 }

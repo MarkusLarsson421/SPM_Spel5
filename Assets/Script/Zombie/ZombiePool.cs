@@ -41,13 +41,17 @@ public class ZombiePool : MonoBehaviour
         int randomNumber = Random.Range(0, spawnObjects.Length);//Martin Wallmark
         for (int i = 0; i < spawnObjects.Length; i++)
         {
-            if(i == randomNumber)//Martin Wallmark
-            {
-                EnemyAI zo = Instantiate(zPrefab, spawnObjects[i].transform.position, Quaternion.identity);
-                zo.spawnPosition = spawnObjects[i].transform.position;
-                zo.gameObject.SetActive(true);
-                zombieContainer.Enqueue(zo);
+                if (i == randomNumber)//Martin Wallmark
+                {
+                  if (spawnObjects[i].isAbleToSpawn == true)
+                {
+                    EnemyAI zo = Instantiate(zPrefab, spawnObjects[i].transform.position, Quaternion.identity);
+                    zo.spawnPosition = spawnObjects[i].transform.position;
+                    zo.gameObject.SetActive(true);
+                    zombieContainer.Enqueue(zo);
+                }
             }
+           
             
         }
     }
