@@ -41,13 +41,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
 
 
     }
-    private void ActivateSpawners(int amtOfspawnersToEnable)
-    {
-        for(int i = 0; i < amtOfspawnersToEnable; i++)
-        {
-            zP.spawnObjects[i].SetAbleToSpawn(true);
-        }
-    }
+   
     /*
      * @ AuthorSimon Hessling Oscarson
      * 
