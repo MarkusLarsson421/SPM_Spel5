@@ -10,8 +10,6 @@ public class ZombiePool : MonoBehaviour
 
     [SerializeField] private EnemyAI zPrefab;
     private Queue<EnemyAI> zombieContainer = new Queue<EnemyAI>();
-    public static int zombieQty = 1;
-    private System.Random rnd = new System.Random();
     [SerializeField] private LayerMask zombieLayer;
     public ZombieObjectPooled[] spawnObjects;
     public static ZombiePool Instance { get; private set; }
@@ -29,20 +27,15 @@ public class ZombiePool : MonoBehaviour
     {
         if (zombieContainer.Count == 0)
         {
-            AddZombies(zombieQty);
+            InstantiateZombie();
+            
         }
         zombieContainer.Peek().SetHealth();
         ZombieObjectPooled.amountOfZombiesSpawned++;
         return zombieContainer.Dequeue();
     }
 
-    private void AddZombies(int count)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            InstantiateZombie();
-        }
-    }
+    
     private void InstantiateZombie()
     {
         int randomNumber = Random.Range(0, spawnObjects.Length);//Martin Wallmark
