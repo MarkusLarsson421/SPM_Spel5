@@ -72,20 +72,18 @@ public class PauseGame : MonoBehaviour
     public void MainMenu()
     {
         Time.timeScale = 1;
-        SaveGame();
-        playerSettings.SavePlayerRM();
-       
         SceneManager.LoadScene("Main menu");
     }
 
-
+    /*
     private Save CreateSaveGame()
     {
         Save save = new Save();
         save.currentWave = zOP.GetCurrentWave();
         return save;
     }
-
+    */
+    /*
     private void SaveGame()
     {
         Save save = CreateSaveGame();
@@ -97,4 +95,5 @@ public class PauseGame : MonoBehaviour
         file.Close();
         Debug.Log("Game Saved");
     }
+    */
 }
