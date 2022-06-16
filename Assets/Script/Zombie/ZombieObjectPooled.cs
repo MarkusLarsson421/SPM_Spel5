@@ -17,20 +17,20 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     private static int currentWave;
     private int betweenWaves = 20;
     public static int amountOfZombiesSpawned;
-    [SerializeField] public bool isAbleToSpawn = false;
-    //private float timeInSeconds;
-    //private int minutes;
-    //public float delay = 20.1f;
+    [SerializeField] private bool isAbleToSpawn = false;
+    private float timeInSeconds;
+    private int minutes;
+    public float delay = 20.1f;
     private float newZombieHealth;
     private ZombiePool zP;
     private PickupPool pPool;
-    //private bool hasIncreasedOnLoad;
+    private bool hasIncreasedOnLoad;
 
     private void Awake()
     {
         zP = ZombiePool.Instance;
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
-        pPool = GameObject.Find("PickupPool").GetComponent<PickupPool>();
+        pPool = GameObject.Find("PickupPool").GetComponent<PickupPool>(); ;
 
     }
 
@@ -41,7 +41,28 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
 
 
     }
+    private void Update()
+    {
+        CountMinutes();
+    }
+
+    private void CountMinutes()
+    {
+        timeInSeconds += Time.deltaTime;
+        minutes = ((int)(timeInSeconds / 60)) % 60;
+    }
+
+    private void ActivateSpawners(int amtOfspawnersToEnable)
+    {
+        for(int i = 0; i < amtOfspawnersToEnable; i++)
+        {
+            zP.spawnObjects[i].SetAbleToSpawn(true);
+        }
+    }
+
+
    
+
     /*
      * @ AuthorSimon Hessling Oscarson
      * 
@@ -49,9 +70,10 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
      */
     private void SimpleWaveIncreaser()
     {
-        
-        currentWave++;
-        Debug.Log("brodafada");
+        if (LevelLoader.isSceneLoaded == false || hasIncreasedOnLoad)
+        {
+            currentWave++;
+        }
         
         waveText.text = currentWave.ToString();
         IncreaseWaveEvent increaseWaveEvent = new IncreaseWaveEvent();
@@ -133,7 +155,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
             zombiesNextWave++;
             //TV� HORDE SPAWNAS
         }
-        
+        hasIncreasedOnLoad = true;
        
     }
     /*
@@ -143,7 +165,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     */
     private void NoMoreZombies()
     {
-        InvokeRepeating(nameof(DoIT), 1, betweenWaves);
+        InvokeRepeating(nameof(DoIT), 0, betweenWaves);
     }
 
     public void SetAbleToSpawn(bool value)
@@ -208,6 +230,12 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     public struct SaveData
     {
         public int currentWave;
+    }
+
+
+    public int GetCurrentWave()
+    {
+        return currentWave;
     }
 
     public void SetCurrentWave(int wave)
