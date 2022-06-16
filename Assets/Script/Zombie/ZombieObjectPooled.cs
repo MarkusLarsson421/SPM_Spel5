@@ -30,7 +30,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     {
         zP = ZombiePool.Instance;
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
-        pPool = GameObject.Find("PickupPool").GetComponent<PickupPool>(); ;
+        pPool = GameObject.Find("PickupPool").GetComponent<PickupPool>();
 
     }
 
