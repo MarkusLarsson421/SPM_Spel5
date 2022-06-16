@@ -210,12 +210,6 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
         public int currentWave;
     }
 
-
-    public int GetCurrentWave()
-    {
-        return currentWave;
-    }
-
     public void SetCurrentWave(int wave)
     {
         currentWave = wave;
