@@ -17,7 +17,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     private static int currentWave;
     private int betweenWaves = 20;
     public static int amountOfZombiesSpawned;
-    [SerializeField] private bool isAbleToSpawn = false;
+    [SerializeField] public bool isAbleToSpawn = false;
     private float timeInSeconds;
     private int minutes;
     public float delay = 20.1f;
