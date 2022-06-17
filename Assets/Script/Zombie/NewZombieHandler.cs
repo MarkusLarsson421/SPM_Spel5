@@ -56,11 +56,10 @@ public class NewZombieHandler : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("ANoothaOne");
+                    Debug.Log("AnotthaOne "+spawnPicker);
 
-                    IsAbleToSpawnHere();
                 }
-                
+
             }
         }
 
@@ -69,7 +68,6 @@ public class NewZombieHandler : MonoBehaviour
     {
         EnemyAI zo = Instantiate(zPrefab, zombieSpawners[spawnPicker].transform.position, Quaternion.identity);
         AddZombie();
-        Debug.Log("DJKHALED");
         Debug.Log(spawnPicker);
 
 
