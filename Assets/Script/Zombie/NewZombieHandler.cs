@@ -8,13 +8,17 @@ public class NewZombieHandler : MonoBehaviour
     [SerializeField] private EnemyAI zPrefab;
     [SerializeField] private Generator generator;
     [SerializeField] private TMP_Text waveText;
+    public static NewZombieHandler Instance { get; private set; }
+
     private SoundManager sM;
 
 
     private static int currentWave;
+    private static int zombieAmount;
+
 
     private int zombieSpawned;
-    private int totalZombiesOnMap;
+    private int totalZombiesOnMap = 15;
     private float newZombieHealth;
 
     private int spawnPicker;
@@ -25,20 +29,28 @@ public class NewZombieHandler : MonoBehaviour
     void Start()
     {
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
+        
+    }
+    private void Awake()
+    {
+        Instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (SpawnMoreZombies())
         {
             IsAbleToSpawnHere();
            // SpawnHere();
         }
+        
     }
     private void AddZombie()
     {
          zombieSpawned++;
+        zombieAmount++;
     }
     private bool SpawnMoreZombies()
     {
@@ -79,83 +91,12 @@ public class NewZombieHandler : MonoBehaviour
         AddZombie();
         Debug.Log(spawnPicker);
     }
-
-
-
-    private void SimpleWaveIncreaser()
+ 
+   
+ 
+    public void DecreaseZombies()
     {
-        waveText.text = currentWave.ToString();
-        IncreaseWaveEvent increaseWaveEvent = new IncreaseWaveEvent();
-        increaseWaveEvent.currentWave = currentWave;
-        increaseWaveEvent.FireEvent();
-        sM.SoundPlaying("newWave");
-        if (currentWave == 1)
-        {
-            totalZombiesOnMap = 7;
-            newZombieHealth = 80;
-        }
-        if (currentWave == 2)
-        {
-            totalZombiesOnMap = 9;
-            newZombieHealth = 150;
-            generator.SetFuel(0);
-            sM.SoundPlaying("generatorOff");
-        }
-        if (currentWave == 3)
-        {
-            totalZombiesOnMap = 15;
-            newZombieHealth = 200;
-        }
-        if (currentWave == 4)
-        {
-            totalZombiesOnMap = 21;
-            generator.SetFuel(0);
-            sM.SoundPlaying("generatorOff");
-
-        }
-        if (currentWave == 5)
-        {
-            totalZombiesOnMap = 27;
-        }
-        if (currentWave == 6)
-        {
-            totalZombiesOnMap = 31;
-        }
-        if (currentWave == 7)
-        {
-            totalZombiesOnMap = 32;
-            newZombieHealth = 250;
-            generator.SetFuel(0);
-            sM.SoundPlaying("generatorOff");
-
-        }
-        if (currentWave == 8)
-        {
-            totalZombiesOnMap = 33;
-        }
-        if (currentWave == 9)
-        {
-            totalZombiesOnMap = 34;
-            generator.SetFuel(0);
-            sM.SoundPlaying("generatorOff");
-
-        }
-        if (currentWave == 10)
-        {
-            totalZombiesOnMap = 42;
-            newZombieHealth = 275;
-        }
-        if (currentWave == 11)
-        {
-            totalZombiesOnMap = 45;
-            newZombieHealth = 300;
-        }
-        if (currentWave >= 12)
-        {
-            totalZombiesOnMap++;
-        }
-        
-
+        zombieAmount--;
     }
 
 
