@@ -9080,6 +9080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 289377848}
   - component: {fileID: 289377849}
+  - component: {fileID: 289377851}
   m_Layer: 0
   m_Name: ZombieSpawner (5)
   m_TagString: Untagged
@@ -9114,6 +9115,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae45b5989dad1114c863aaded049dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &289377851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289377847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a62fdd052aad814f984e574ed6a785c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zPrefab: {fileID: 8360870753106494007, guid: 34e13d58a3041bc46a8788357d4c28a3, type: 3}
+  zombieSpawners:
+  - {fileID: 1907240420}
+  - {fileID: 986209728}
+  - {fileID: 1533052560}
+  - {fileID: 509867384}
+  - {fileID: 2128632145}
+  - {fileID: 289377847}
 --- !u!1001 &293618541
 PrefabInstance:
   m_ObjectHideFlags: 0

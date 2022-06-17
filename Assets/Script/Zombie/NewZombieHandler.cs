@@ -8,6 +8,10 @@ public class NewZombieHandler : MonoBehaviour
     [SerializeField] private EnemyAI zPrefab;
     private int zombieSpawned;
     private int totalZombiesOnMap = 15;
+    private int spawnPicker;
+    private DistanceCheck distanceCheck;
+    private List<GameObject> disabledSpawner = new List<GameObject>();
+
     [SerializeField] private GameObject[] zombieSpawners;
     void Start()
     {
@@ -19,14 +23,15 @@ public class NewZombieHandler : MonoBehaviour
     {
         if (SpawnMoreZombies())
         {
-            SpawnHere();
+            IsAbleToSpawnHere();
+           // SpawnHere();
         }
     }
-    public void AddZombie()
+    private void AddZombie()
     {
          zombieSpawned++;
     }
-    public bool SpawnMoreZombies()
+    private bool SpawnMoreZombies()
     {
         if(zombieSpawned < totalZombiesOnMap)
         {
@@ -37,11 +42,31 @@ public class NewZombieHandler : MonoBehaviour
             return false;
         }
     }
-
-    private void SpawnHere()
+    private void IsAbleToSpawnHere()
     {
         int zS = zombieSpawners.Length;
-        int spawnPicker = Random.Range(0, zS);
+        spawnPicker = Random.Range(0, zS);
+        for(int i = 0; i < zombieSpawners.Length; i++)
+        {
+            if(i == spawnPicker)
+            {
+                if (zombieSpawners[i].GetComponent<DistanceCheck>().isAbleToSpawn())
+                {
+                    SpawnHere();
+                }
+                else
+                {
+                    Debug.Log("ANoothaOne");
+
+                    IsAbleToSpawnHere();
+                }
+                
+            }
+        }
+
+    }
+    private void SpawnHere()
+    {
         EnemyAI zo = Instantiate(zPrefab, zombieSpawners[spawnPicker].transform.position, Quaternion.identity);
         AddZombie();
         Debug.Log("DJKHALED");
