@@ -13,14 +13,14 @@ public class NewZombieHandler : MonoBehaviour
     private SoundManager sM;
 
 
-    private static int currentWave;
-    private static int zombieAmount;
+    private int currentWave;
+    private int zombieAmount;
 
 
     private int zombieSpawned;
-    private int totalZombiesOnMap = 15;
+    private int totalZombiesOnMap;
     private float newZombieHealth;
-
+    private bool gameStarted;
     private int spawnPicker;
     private DistanceCheck distanceCheck;
     private List<GameObject> disabledSpawner = new List<GameObject>();
@@ -29,7 +29,9 @@ public class NewZombieHandler : MonoBehaviour
     void Start()
     {
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
-        
+        InvokeRepeating(nameof(WaveIncreaser), 0, 10);
+
+
     }
     private void Awake()
     {
@@ -39,18 +41,25 @@ public class NewZombieHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+       
         if (SpawnMoreZombies())
         {
+           
             IsAbleToSpawnHere();
-           // SpawnHere();
+          
         }
-        
+       
+
     }
     private void AddZombie()
     {
          zombieSpawned++;
         zombieAmount++;
+
+
+
+
     }
     private bool SpawnMoreZombies()
     {
@@ -73,17 +82,14 @@ public class NewZombieHandler : MonoBehaviour
             {
                 if (zombieSpawners[i].GetComponent<DistanceCheck>().isAbleToSpawn())
                 {
+                    gameStarted = true;
                     SpawnHere();
+                    
                 }
-                else
-                {
-                    Debug.Log("AnotthaOne "+spawnPicker);
-
-                }
-
             }
         }
-
+        Debug.Log("mängd zombies" + zombieAmount);
+        
     }
     private void SpawnHere()
     {
@@ -98,6 +104,30 @@ public class NewZombieHandler : MonoBehaviour
     {
         zombieAmount--;
     }
+    private void WaveIncreaser()
+    {
+        if (zombieAmount == 0)
+        {
+            currentWave++;
 
+            if (currentWave == 1)
+            {
+                totalZombiesOnMap = 7;
+                newZombieHealth = 80;
+                
+            }
+            if (currentWave == 2)
+            {
+                totalZombiesOnMap = 9;
+                newZombieHealth = 150;
+                generator.SetFuel(0);
+                sM.SoundPlaying("generatorOff");
+            }
+        }
+
+        Debug.Log("detta är wavet" + currentWave);
+        Debug.Log("detta är mängd zombies" + zombieAmount);
+
+    }
 
 }
