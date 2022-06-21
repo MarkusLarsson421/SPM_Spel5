@@ -6,6 +6,7 @@ public class NewZombieHandler : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private EnemyAI zPrefab;
+    private Queue<EnemyAI> zombieContainer = new Queue<EnemyAI>();
     [SerializeField] private Generator generator;
     [SerializeField] private TMP_Text waveText;
     public static NewZombieHandler Instance { get; private set; }
@@ -95,6 +96,7 @@ public class NewZombieHandler : MonoBehaviour
     {
         EnemyAI zo = Instantiate(zPrefab, zombieSpawners[spawnPicker].transform.position, Quaternion.identity);
         AddZombie();
+        zombieContainer.Enqueue(zo);
         Debug.Log(spawnPicker);
     }
  

@@ -45,10 +45,14 @@ public class ZombiePool : MonoBehaviour
                 {
                   if (spawnObjects[i].isAbleToSpawn == true)
                 {
-                    EnemyAI zo = Instantiate(zPrefab, spawnObjects[i].transform.position, Quaternion.identity);
-                    zo.spawnPosition = spawnObjects[i].transform.position;
-                    zo.gameObject.SetActive(true);
-                    zombieContainer.Enqueue(zo);
+                    //if (spawnObjects[i].gameObject.GetComponent<DistanceCheck>().isAbleToSpawn())
+                   // {
+                        EnemyAI zo = Instantiate(zPrefab, spawnObjects[i].transform.position, Quaternion.identity);
+                        zo.spawnPosition = spawnObjects[i].transform.position;
+                        zo.gameObject.SetActive(true);
+                        zombieContainer.Enqueue(zo);
+                    //}
+                 
                 }
             }
            
@@ -60,7 +64,20 @@ public class ZombiePool : MonoBehaviour
         zo.gameObject.SetActive(false);
         zombieContainer.Enqueue(zo);
         ZombieObjectPooled.amountOfZombiesSpawned--;
-        zo.transform.position = zo.spawnPosition;
+        zo.transform.position = GetTurnedOnSpawnPoint();
         spawnObjects[0].DecreaseZombies();
+    }
+
+    public Vector3 GetTurnedOnSpawnPoint()
+    {
+        Vector3 positionToReturn = new Vector3();
+        foreach(ZombieObjectPooled zp in spawnObjects)
+        {
+            if (zp.isAbleToSpawn)
+            {
+                positionToReturn = zp.transform.position;
+            }
+        }
+        return positionToReturn;
     }
 }

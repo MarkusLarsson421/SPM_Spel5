@@ -187,9 +187,21 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
              
             for (int i = 0; i < zombiesNextWave; i++)
             {
+
                 SpawnZombie();
                 zombieAmount++;
                 debug++;
+                /*
+                if (gameObject.GetComponent<DistanceCheck>().isAbleToSpawn())
+                {
+                   
+                }
+                else
+                {
+                    Debug.Log("doesnt soawn hera! " + gameObject);
+                }
+                */
+                
             }
             
         }
