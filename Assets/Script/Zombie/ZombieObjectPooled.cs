@@ -219,6 +219,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
     private void SpawnZombie()
     {
         var zombie = ZombiePool.Instance.Get();
+        zombie.transform.position = zP.GetTurnedOnSpawnPoint();
         zombie.SetNewHealth(newZombieHealth); //Simon Hessling Oscarson
         zombie.gameObject.SetActive(true);
     }
