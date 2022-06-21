@@ -70,14 +70,25 @@ public class ZombiePool : MonoBehaviour
 
     public Vector3 GetTurnedOnSpawnPoint()
     {
+        List<Vector3> activeSpawnPoints = new List<Vector3>();
         Vector3 positionToReturn = new Vector3();
         foreach(ZombieObjectPooled zp in spawnObjects)
         {
-            if (zp.gameObject.GetComponent<DistanceCheck>().isAbleToSpawn())
+            if (zp.gameObject.GetComponent<DistanceCheck>().isAbleToSpawn() == true)
             {
-                positionToReturn = zp.transform.position;
+                activeSpawnPoints.Add(zp.transform.position);
             }
         }
+        int randomNumber = Random.Range(0, activeSpawnPoints.Count);
+
+        for(int i = 0; i < activeSpawnPoints.Count; i++)
+        {
+            if(i == randomNumber)
+            {
+                positionToReturn = activeSpawnPoints[i];
+            }
+        }
+
         return positionToReturn;
     }
 }

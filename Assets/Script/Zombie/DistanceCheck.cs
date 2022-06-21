@@ -13,7 +13,7 @@ public class DistanceCheck : MonoBehaviour
     private float dist2;
     private bool playerOneIsSet;
     private bool playerTwoIsSet;
-    private bool tOrF;
+    [SerializeField] private bool tOrF;
     void Start()
     {
         spawner = gameObject.GetComponentInChildren<ZombieObjectPooled>();
