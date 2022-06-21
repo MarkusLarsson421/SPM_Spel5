@@ -73,7 +73,7 @@ public class ZombiePool : MonoBehaviour
         Vector3 positionToReturn = new Vector3();
         foreach(ZombieObjectPooled zp in spawnObjects)
         {
-            if (zp.isAbleToSpawn)
+            if (zp.gameObject.GetComponent<DistanceCheck>().isAbleToSpawn())
             {
                 positionToReturn = zp.transform.position;
             }
