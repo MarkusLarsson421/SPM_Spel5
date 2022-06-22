@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
 
     private SoundManager sM; //Simon Hessling Oscarson
     int counter = 0;
-
+    public InRageTochaseNode iRTCN;
     public ZombieObjectPooled zOP;
     private EnemyAI zReference;
     private ZombiePool zP;
@@ -39,6 +39,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
+       
         sM = GameObject.Find("SM").GetComponent<SoundManager>();
         _collider = GetComponent<Collider>();
         _boxCollider = GetComponentInChildren<BoxCollider>();
@@ -122,6 +123,7 @@ public class EnemyAI : MonoBehaviour
     {
         ChaseNode chaseNode = new ChaseNode(playerTransform, agent, this);
         InRageTochaseNode inRageTochaseNode = new InRageTochaseNode(chasingRange, playerTransform, transform);
+        iRTCN = inRageTochaseNode;
         InRangeToAttackNode inRangeToAttackNode = new InRangeToAttackNode(shootingRange, playerTransform, transform);
         AttackNode attackNode = new AttackNode(agent, this, playerTransform, player);
         IdleNode idleNode = new IdleNode(agent, this);
@@ -187,6 +189,7 @@ public class EnemyAI : MonoBehaviour
        // gameObject.transform.position = spawnPosition;
         
     }
+    
 
     public void SetColor(Color color)
     {
@@ -213,10 +216,11 @@ public class EnemyAI : MonoBehaviour
     {
         startingHealth = newHealth;
     }
+    /*
     public void setChasingRange(float chasingRange)
     {
         this.chasingRange = chasingRange;
-    }
+    }*/
 
     public int getCounter()
     {

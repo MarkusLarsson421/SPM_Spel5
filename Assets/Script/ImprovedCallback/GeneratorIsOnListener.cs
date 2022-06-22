@@ -8,13 +8,14 @@ namespace EventCallbacks
     {
         void Start()
         {
+
             GneratorIsOnEvent.RegisterListener(ShowTookDamgeCanvas);
         }
 
         void ShowTookDamgeCanvas(GneratorIsOnEvent generator)
         {
             GameObject zombie = GameObject.FindGameObjectWithTag("Zombie");
-            zombie.GetComponent<EnemyAI>().setChasingRange(1000);
+            //zombie.GetComponent<EnemyAI>().iRTCN.setChasingRange(1000);
             Debug.Log("GeneratorIsOnListener work");
 
         }

@@ -20,8 +20,8 @@ public class InRageTochaseNode : Node
         RaycastHit hit;
         if (distance <= range)
         {
-           
-           
+
+            Debug.Log(range);
             return NodeState.SUCCESS;
             
         }else if (Physics.Raycast(origin.position, target.position - origin.position, out hit))
