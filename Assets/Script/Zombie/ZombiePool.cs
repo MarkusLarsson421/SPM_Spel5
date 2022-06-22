@@ -48,12 +48,11 @@ public class ZombiePool : MonoBehaviour
                     //if (spawnObjects[i].gameObject.GetComponent<DistanceCheck>().isAbleToSpawn())
                    // {
                         EnemyAI zo = Instantiate(zPrefab, spawnObjects[i].transform.position, Quaternion.identity);
-                        zo.spawnPosition = spawnObjects[i].transform.position;                  
-                    zo.gameObject.SetActive(true);
+                        zo.spawnPosition = spawnObjects[i].transform.position;
+                        zo.gameObject.SetActive(true);
                         zombieContainer.Enqueue(zo);
-
                     //}
-
+                 
                 }
             }
            
@@ -66,8 +65,6 @@ public class ZombiePool : MonoBehaviour
         zombieContainer.Enqueue(zo);
         ZombieObjectPooled.amountOfZombiesSpawned--;
         zo.transform.position = GetTurnedOnSpawnPoint();
-    
-
         spawnObjects[0].DecreaseZombies();
     }
 
