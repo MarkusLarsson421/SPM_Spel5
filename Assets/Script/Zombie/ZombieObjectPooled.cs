@@ -223,7 +223,7 @@ public class ZombieObjectPooled : MonoBehaviour, Saveable
         zombie.SetNewHealth(newZombieHealth); //Simon Hessling Oscarson
         zombie.gameObject.SetActive(true);
     }
-    
+
     public object CaptureState()
     {
         return new SaveData()
