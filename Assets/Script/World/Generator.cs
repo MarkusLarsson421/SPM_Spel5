@@ -100,7 +100,7 @@ public class Generator : Toggleable{
 		zombies = GameObject.FindGameObjectsWithTag("Zombie");
 		foreach (GameObject zombie in zombies)
 		{
-			//zombie.GetComponent<EnemyAI>().iRTCN.setChasingRange(1000);
+			zombie.GetComponent<EnemyAI>().setChasingRange(1000);
 
 		}
 		////Khaled 
