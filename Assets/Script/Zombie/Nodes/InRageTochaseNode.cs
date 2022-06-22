@@ -20,16 +20,21 @@ public class InRageTochaseNode : Node
         RaycastHit hit;
         if (distance <= range)
         {
-            Debug.Log("succs"+range);
+           
+           
             return NodeState.SUCCESS;
             
         }else if (Physics.Raycast(origin.position, target.position - origin.position, out hit))
         {
             if(hit.collider.transform == target)
-                Debug.Log("failed"+range);
+                
             return NodeState.SUCCESS;
         }
         return NodeState.FAILURE;
+    }
+    public void setChasingRange(float chasingRange)
+    {
+        this.range = chasingRange;
     }
 
 }
